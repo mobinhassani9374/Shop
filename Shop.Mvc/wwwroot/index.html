@@ -1,0 +1,799 @@
+﻿<!doctype html>
+<html lang="fa">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
+    <meta name="keywords" content="دزدگیر خانه , دزدگیر مغازه , دزدگیر اماکن , دوربین مداربسته , دوربین مداربسته بیسیم , دوربین بیبی کم , دوربین لامپی , 
+        دوربین پانوراما , دوربین ۳۶۰ , رایاکالا , ردیاب شخصی , ردیاب خودرو , جی پی اس , GPS,
+        شنود , دوربین مخفی , سنسور , دی وی آر , DVR,NVR,دوربین تحت شبکه , دیجیکالا">
+    <meta name="author" content="ایمن فروش">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="./img/icon.png">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="ایمن فروش">
+    <meta property="og:url" content="https://imenforoush.com/">
+    <meta property="og:image" content="./img/logo.png">
+
+    <title>فروشگاه آنلاین ایمن فروش</title>
+
+    <link rel="stylesheet" href="./lib/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.rtl.css">
+    <link rel="stylesheet" href="./fonts/font-fa.css" />
+    <link rel="stylesheet" href="./css/styles.css?v=0.0.3" />
+    <link rel="stylesheet" href="./css/bootstrap-touch-slider.css" />
+    <link rel="stylesheet" href="./css/animate.css" />
+    <link rel="stylesheet" href="./lib/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="./css/icons.min.css" />
+    <link rel="stylesheet" href="./lib/slick/slick.css" />
+    <link href="./lib/toaster/toastr.min.css" rel="stylesheet" />
+    <link href="./lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./lib/fancybox/dist/jquery.fancybox.min.css">
+</head>
+
+<body dir="rtl">
+
+    <!-- menu -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand btn btn-default" href="javascript:void(0)" data-role="category">
+                    دسته بندی ها
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="javascript:void(0)" data-role="category">دسته بندی ها </a></li>
+                    <li><a href="#">راهنمای خرید </a></li>
+                    <li><a href="#">قوانین و مقررات</a></li>
+                    <li><a href="#">درباره ما</a></li>
+                    <li><a href="#">تماس با ما</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> ثبت نام </a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> ورود </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- header -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="row flex-center">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <img alt="ایمن فروش" src="./img/logo.png" class="img img-responsive" />
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-hide">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="جستجو در محصولات ایمن فروش " name="search" autocomplete="off">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-danger" type="submit"><i
+                                            class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <a class="btn btn-danger header__btn-cart col-xs-hide">
+                        پیشنهادات شگفت انگیز
+                        <span class=" badge">100</span>
+                    </a>
+                    <a class="btn btn-primary header__btn-cart">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> سبد خرید
+                        <span class="badge">7</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- sidebar -->
+    <div id="sidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" data-role="category-close">&times;</a>
+        <div class="sidenav__content">
+            <p class="sidenav__content__title">فروشگاه اینترنتی ایمن فروش</p>
+            <div class="sidenav__content__img">
+                <img alt="ایمن فروش" src="./img/logo.png" class="img-responsive" />
+            </div>
+            <a class="btn btn-danger btn-block">
+                پیشنهادات شگفت انگیز
+                <span class=" badge">100</span>
+            </a>
+            <div class="tree">
+                <ul id="myUL">
+                    <li><span class="parent">دوربین های مدار بسته</span>
+                        <ul class="nested">
+                            <li><span class="parent">لوزام جانبی ذوربین</span>
+                                <ul class="nested">
+                                    <li>
+                                        <a href="#">هارد و حافظه</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">بسته</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><span class="parent">دستگاه های رکورد</span>
+                        <ul class="nested">
+                            <li><a href="#">کوچگ</a></li>
+                            <li><a href="#">بزرگ</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">در باز کن</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- carousel -->
+    <div class="container">
+        <div class="row">
+            <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <a href="#">
+                            <img alt="ایمن فروش" src="./img/slider1.jpg" alt="Los Angeles">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img alt="ایمن فروش" src="./img/slider2.jpg" alt="Los Angeles">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img alt="ایمن فروش" src="./img/slider3.jpg" alt="Los Angeles">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- slick product  -->
+    <div class="container">
+        <div class="row">
+            <div class="offer">
+                <div class="offer__title">
+                    پیشنهادات شگفت انگیز
+                    <a href="#" class="btn btn-danger">پیشنهادات شگفت انگیز</a>
+                </div>
+                <div class="offer__arrow">
+                    <i data-role="offer-right" class="fa fa-angle-right offer__arrow__right"></i>
+                    <i data-role="offer-left" class="fa fa-angle-left offer__arrow__left"></i>
+                </div>
+                <div class="offer__product">
+                    <div class="offer__product__item">
+                        <a href="#">
+                            <div class="row">
+                                <div class="col-md-4 col-xs-12 col-sm-12">
+                                    <div class="offer__product__item__img">
+                                        <img alt="ایمن فروش" src="./img/product1.jpg" class="img-responsive" />
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-xs-12 col-sm-12">
+                                    <div class="offer__product__item__title">
+                                        پکیج دوربین کوپر B2MP-C8
+                                    </div>
+                                    <div class="offer__product__item__price">
+                                        <div>
+                                            <span class="badge">15 %</span>
+                                            <del>4,284,000</del>
+                                        </div>
+                                        <div class="flex-center" style="justify-content: space-between;">
+                                            <span style="margin-left: 10px;">تومان 4,284,000</span>
+                                            <div class="countdown" data-Date='2020/12/24 23:59:59'>
+                                                <div class="running">
+                                                    <timer>
+                                                        <span class="days"></span>:<span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span>
+                                                    </timer>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="offer__product__item__btn">
+                                        <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="offer__product__item">
+                        <a href="#">
+                            <div class="row">
+                                <div class="col-md-4 col-xs-12 col-sm-12">
+                                    <div class="offer__product__item__img">
+                                        <img alt="ایمن فروش" src="./img/product1.jpg" class="img-responsive" />
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-xs-12 col-sm-12">
+                                    <div class="offer__product__item__title">
+                                        پکیج دوربین کوپر B2MP-C8
+                                    </div>
+                                    <div class="offer__product__item__price">
+                                        <div>
+                                            <span class="badge">15 %</span>
+                                            <del>4,284,000</del>
+                                        </div>
+                                        <div class="flex-center" style="justify-content: space-between;">
+                                            <span style="margin-left: 10px;">تومان 4,284,000</span>
+                                            <div class="countdown" data-Date='2020/12/24 23:59:59'>
+                                                <div class="running">
+                                                    <timer>
+                                                        <span class="days"></span>:<span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span>
+                                                    </timer>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="offer__product__item__btn">
+                                        <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="offer__product__item">
+                        <a href="#">
+                            <div class="row">
+                                <div class="col-md-4 col-xs-12 col-sm-12">
+                                    <div class="offer__product__item__img">
+                                        <img alt="ایمن فروش" src="./img/product1.jpg" class="img-responsive" />
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-xs-12 col-sm-12">
+                                    <div class="offer__product__item__title">
+                                        پکیج دوربین کوپر B2MP-C8
+                                    </div>
+                                    <div class="offer__product__item__price">
+                                        <div>
+                                            <span class="badge">15 %</span>
+                                            <del>4,284,000</del>
+                                        </div>
+                                        <div class="flex-center" style="justify-content: space-between;">
+                                            <span style="margin-left: 10px;">تومان 4,284,000</span>
+                                            <div class="countdown" data-Date='2020/12/24 23:59:59'>
+                                                <div class="running">
+                                                    <timer>
+                                                        <span class="days"></span>:<span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span>
+                                                    </timer>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="offer__product__item__btn">
+                                        <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-header">
+        <h1 class="title">ایمن فروش</h1>
+        <div class="desc">
+            فروش سیستم های امنیتی و نظارتی : دوربین های مداربسته با سیم و بیسیم , دزدگیر اماکن , ردیاب های شخصی و خودرو
+        </div>
+    </div>
+
+    <!-- slick product  -->
+    <div class="container">
+        <div class="row">
+            <div class="slick">
+                <div class="slick__title">
+                    دوربین های مدار بسته
+                    <a href="#">نمایش بیشتر <i class="fa fa-plus"></i></a>
+                </div>
+                <div class="slick__arrow">
+                    <i data-role="slick-right" class="fa fa-angle-right slick__arrow__right"></i>
+                    <i data-role="slick-left" class="fa fa-angle-left slick__arrow__left"></i>
+                </div>
+                <div class="slick__product">
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product1.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product2.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product3.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product4.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product5.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product1.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product2.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product3.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product4.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product5.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- slick product  -->
+    <div class="container">
+        <div class="row">
+            <div class="slick">
+                <div class="slick__title">
+                    حافظه های جانبی
+                    <a href="#">نمایش بیشتر <i class="fa fa-plus"></i></a>
+                </div>
+                <div class="slick__arrow">
+                    <i data-role="slick-right" class="fa fa-angle-right slick__arrow__right"></i>
+                    <i data-role="slick-left" class="fa fa-angle-left slick__arrow__left"></i>
+                </div>
+                <div class="slick__product">
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product7.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product8.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product9.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product7.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product8.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slick__product__item">
+                        <a href="#">
+                            <div class="slick__product__item__img">
+                                <img alt="ایمن فروش" src="./img/product9.jpg" class="img-responsive" />
+                            </div>
+                            <div class="slick__product__item__title">
+                                پکیج دوربین کوپر B2MP-C8
+                            </div>
+                            <div class="slick__product__item__price">
+                                <div>
+                                    <span class="badge">15 %</span>
+                                    <del>4,284,000</del>
+                                </div>
+                                <div>
+                                    <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                                </div>
+                            </div>
+                            <div class="slick__product__item__btn">
+                                <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="scroll-top" data-role="scroll-top">
+        <i class="fa fa-angle-double-up"></i> برگشت به بالا
+        <i class="fa fa-angle-double-up"></i>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer__option">
+                    <div class="footer__option__item">
+                        <img alt="ایمن فروش" src="./img/freeDelivery.png" />
+                        <div>ارسال رایگان</div>
+                    </div>
+                    <div class="footer__option__item">
+                        <img alt="ایمن فروش" src="./img/7days.png" />
+                        <div>پشتیبانی و مشاوره حرفه ای</div>
+                    </div>
+                    <div class="footer__option__item">
+                        <img alt="ایمن فروش" src="./img/payment-type.png" />
+                        <div>پرداخت در محل</div>
+                    </div>
+                    <div class="footer__option__item">
+                        <img alt="ایمن فروش" src="./img/money-return.png" />
+                        <div>7 روز ضمانت بازگشت</div>
+                    </div>
+                    <div class="footer__option__item">
+                        <img alt="ایمن فروش" src="./img/original.png" />
+                        <div>ضمانت اصل بودن کالا</div>
+                    </div>
+                </div>
+                <div class="footer__info">
+                    <div class="col-md-4">
+                        <div class="footer__info__title">
+                            لینک های ایمن فروش
+                        </div>
+                        <a href="#" class="footer__info__link">تماس با ما</a>
+                        <a href="#" class="footer__info__link">درباره ما </a>
+                        <a href="#" class="footer__info__link">راهنمای خرید</a>
+                        <a href="#" class="footer__info__link">قوانین و مقررات</a>
+                    </div>
+                    <div class="col-md-4 text-left">
+                        <div class="footer__info__title">
+                            پشتیبانی
+                        </div>
+                        <p>
+                            شماره تماس ها : 09197572162 - 0919744264
+                        </p>
+                        <p>
+                            آدرس : تهران یافت آباد بلوار معلم میدان معلم پاساژ معلم ورودی 3 پلاک 27
+                        </p>
+                        <a href="#">
+                            <img alt="ایمن فروش" class="footer__info__share" src="./img/insta.png" />
+                        </a>
+                        <a href="#">
+                            <img alt="ایمن فروش" class="footer__info__share" src="./img/telegram.png" />
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="footer__info__title">
+                            مجوزهای اخذ شذه های ایمن فروش
+                        </div>
+                        <img alt="ایمن فروش" src="./img/enamad.png" class="img img-responsive" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        طراحی و توسعه توسط <a target="_blank" href="http://mobinmahdi.ir">مهدی و مبین حسنی</a>
+    </div>
+
+    <script src="./lib/jquery-3.1.1/jquery-3.1.1.min.js"></script>
+    <script src="./lib/bootstrap/bootstrap.min.js"></script>
+    <script src="./js/bootstrap-touch-slider-min.js"></script>
+    <script src="./js/jquery.touchSwipe.min.js"></script>
+    <script src="./lib/slick/slick.js"></script>
+    <script src="./lib/toaster/toastr.min.js"></script>
+    <script src="./lib/sweetalert2/sweetalert2.min.js"></script>
+    <script src="./js/multi-countdown.js"></script>
+    <script src="/lib/fancybox/dist/jquery.fancybox.min.js"></script>
+    <script src="./js/script.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5JP3Z6HC3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-N5JP3Z6HC3');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="fa">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+
+    <title>سبد خرید</title>
+
+    <link rel="stylesheet" href="./lib/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.rtl.css">
+    <link rel="stylesheet" href="./fonts/font-fa.css" />
+    <link rel="stylesheet" href="./css/styles.css?v=0.0.3" />
+    <link rel="stylesheet" href="./css/bootstrap-touch-slider.css" />
+    <link rel="stylesheet" href="./css/animate.css" />
+    <link rel="stylesheet" href="./lib/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="./css/icons.min.css" />
+    <link rel="stylesheet" href="./lib/slick/slick.css" />
+    <link href="./lib/toaster/toastr.min.css" rel="stylesheet" />
+    <link href="./lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./lib/fancybox/dist/jquery.fancybox.min.css">
+</head>
+
+<body dir="rtl">
+
+    <!-- menu -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand btn btn-default" href="javascript:void(0)" data-role="category">
+                    دسته بندی ها
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="javascript:void(0)" data-role="category">دسته بندی ها </a></li>
+                    <li><a href="#">راهنمای خرید </a></li>
+                    <li><a href="#">قوانین و مقررات</a></li>
+                    <li><a href="#">درباره ما</a></li>
+                    <li><a href="#">تماس با ما</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> ثبت نام </a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> ورود </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- header -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="row flex-center">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <img src="./img/logo.png" class="img img-responsive" />
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-hide">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="جستجو در محصولات ایمن فروش "
+                                    name="search" autocomplete="off">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-danger" type="submit"><i
+                                            class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <a class="btn btn-danger header__btn-cart col-xs-hide">
+                        پیشنهادات شگفت انگیز
+                        <span class=" badge">100</span>
+                    </a>
+                    <a class="btn btn-primary header__btn-cart">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        سبد خرید
+                        <span class="badge">7</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- sidebar -->
+    <div id="sidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" data-role="category-close">&times;</a>
+        <div class="sidenav__content">
+            <p class="sidenav__content__title">فروشگاه اینترنتی ایمن فروش</p>
+            <div class="sidenav__content__img">
+                <img src="./img/logo.png" class="img-responsive" />
+            </div>
+            <a class="btn btn-danger btn-block">
+                پیشنهادات شگفت انگیز
+                <span class=" badge">100</span>
+            </a>
+            <div class="tree">
+                <ul id="myUL">
+                    <li><span class="parent">دوربین های مدار بسته</span>
+                        <ul class="nested">
+                            <li><span class="parent">لوزام جانبی ذوربین</span>
+                                <ul class="nested">
+                                    <li>
+                                        <a href="#">هارد و حافظه</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">بسته</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><span class="parent">دستگاه های رکورد</span>
+                        <ul class="nested">
+                            <li><a href="#">کوچگ</a></li>
+                            <li><a href="#">بزرگ</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">در باز کن</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">ایمن فروش</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">سبد خرید</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="cart">
+                <div class="cart__title">سبد خرید شما </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>عکس محصول</th>
+                                <th>نام محصول</th>
+                                <th>تعداد</th>
+                                <th>قیمت</th>
+                                <th>مجموع</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src="./img/product1.jpg" class="img-responsive img-thumbnail" />
+                                </td>
+                                <td>دوربین مدار بسته</td>
+                                <td>45,000 تومان</td>
+                                <td>
+                                    <input style="width:130px;display: inline-block;" class="form-control" type="number"
+                                        value="2" min="1" max="10" />
+                                </td>
+                                <td>90,000 تومان</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="./img/product3.jpg" class="img-responsive img-thumbnail" />
+                                </td>
+                                <td>دوربین مدار بسته</td>
+                                <td>45,000 تومان</td>
+                                <td>
+                                    <input style="width:130px;display: inline-block;" class="form-control" type="number"
+                                        value="2" min="1" max="10" />
+                                </td>
+                                <td>90,000 تومان</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="./img/product2.jpg" class="img-responsive img-thumbnail" />
+                                </td>
+                                <td>دوربین مدار بسته</td>
+                                <td>45,000 تومان</td>
+                                <td>
+                                    <input style="width:130px;display: inline-block;" class="form-control" type="number"
+                                        value="2" min="1" max="10" />
+                                </td>
+                                <td>90,000 تومان</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-xs-12 pull-right">
+                        <div class="cart__price">
+                            <div>مجموعا به تومان : </div>
+                            <div class="text-success">180,000 </div>
+                        </div>
+                        <a class="btn btn-danger btn-block">ادامه فرآیند خرید</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="scroll-top" data-role="scroll-top">
+        <i class="fa fa-angle-double-up"></i>
+        برگشت به بالا
+        <i class="fa fa-angle-double-up"></i>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer__option">
+                    <div class="footer__option__item">
+                        <img src="./img/freeDelivery.png" />
+                        <div>ارسال رایگان</div>
+                    </div>
+                    <div class="footer__option__item">
+                        <img src="./img/7days.png" />
+                        <div>پشتیبانی و مشاوره حرفه ای</div>
+                    </div>
+                    <div class="footer__option__item">
+                        <img src="./img/payment-type.png" />
+                        <div>پرداخت در محل</div>
+                    </div>
+                    <div class="footer__option__item">
+                        <img src="./img/money-return.png" />
+                        <div>7 روز ضمانت بازگشت</div>
+                    </div>
+                    <div class="footer__option__item">
+                        <img src="./img/original.png" />
+                        <div>ضمانت اصل بودن کالا</div>
+                    </div>
+                </div>
+                <div class="footer__info">
+                    <div class="col-md-4">
+                        <div class="footer__info__title">
+                            لینک های ایمن فروش
+                        </div>
+                        <a href="#" class="footer__info__link">تماس با ما</a>
+                        <a href="#" class="footer__info__link">درباره ما </a>
+                        <a href="#" class="footer__info__link">راهنمای خرید</a>
+                        <a href="#" class="footer__info__link">قوانین و مقررات</a>
+                    </div>
+                    <div class="col-md-4 text-left">
+                        <div class="footer__info__title">
+                            پشتیبانی
+                        </div>
+                        <p>
+                            شماره تماس ها : 09197572162 - 0919744264
+                        </p>
+                        <p>
+                            آدرس : تهران یافت آباد بلوار معلم میدان معلم پاساژ معلم ورودی 3 پلاک 27
+                        </p>
+                        <a href="#">
+                            <img class="footer__info__share" src="./img/insta.png" />
+                        </a>
+                        <a href="#">
+                            <img class="footer__info__share" src="./img/telegram.png" />
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="footer__info__title">
+                            مجوزهای اخذ شذه های ایمن فروش
+                        </div>
+                        <img src="./img/enamad.png" class="img img-responsive" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        طراحی و توسعه توسط <a target="_blank" href="http://mobinmahdi.ir">مهدی و مبین حسنی</a>
+    </div>
+
+    <script src="./lib/jquery-3.1.1/jquery-3.1.1.min.js"></script>
+    <script src="./lib/bootstrap/bootstrap.min.js"></script>
+    <script src="./js/bootstrap-touch-slider-min.js"></script>
+    <script src="./js/jquery.touchSwipe.min.js"></script>
+    <script src="./lib/slick/slick.js"></script>
+    <script src="./lib/toaster/toastr.min.js"></script>
+    <script src="./lib/sweetalert2/sweetalert2.min.js"></script>
+    <script src="/lib/fancybox/dist/jquery.fancybox.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
