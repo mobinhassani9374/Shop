@@ -26,6 +26,8 @@ namespace Shop.Mvc
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+
             app.UseMvcWithDefaultRoute();
 
             app.UseMvc(routes =>
