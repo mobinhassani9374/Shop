@@ -1,50 +1,51 @@
-﻿
+﻿@model Shop.Mvc.Models.Account.LoginViewModel
 @{
     ViewData["Title"] = "ورود به سایت - ایمن فروش";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
- <div class="container">
-        <div class="row">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">ایمن فروش</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">ورود به سایت</li>
-                </ol>
-            </nav>
-        </div>
+<div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">ایمن فروش</a></li>
+                <li class="breadcrumb-item active" aria-current="page">ورود به سایت</li>
+            </ol>
+        </nav>
     </div>
+</div>
 
- <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-                <div class="login">
-                    <div class="login__title"> ورود به پنل کاربری ایمن فروش </div>
-                    <div class="login__desc">از این قسمت می توانید وارد پنل کاربری خود شوید</div>
-                    <div class="text-center">
-                        <div class="login__icon">
-                            <i class="fa fa-unlock-alt"></i>
-                        </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+            <div class="login">
+                <div class="login__title"> ورود به پنل کاربری ایمن فروش </div>
+                <div class="login__desc">از این قسمت می توانید وارد پنل کاربری خود شوید</div>
+                <div class="text-center">
+                    <div class="login__icon">
+                        <i class="fa fa-unlock-alt"></i>
                     </div>
-
-                    <form>
-                        <div class="form-group">
-                            <label> شماره همراه خود را وارد کنید</label>
-                            <input required="" type="text" class="form-control" placeholder="نام کاربری یا شماره همراه"
-                                 id="PhoneNumber"
-                                name="PhoneNumber">
-                        </div>
-                        <div class="form-group">
-                            <label>رمز عبور خود را وارد کنید</label>
-                            <input required="" type="password" class="form-control" placeholder="رمز عبور"  id="Password" name="Password">
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="ladda-button btn btn-primary btn-block" data-style="zoom-in">
-                                <span class="ladda-label">ورود به پنل</span>
-                            </button>
-                        </div>
-                    </form>
                 </div>
+
+                <form method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label> شماره همراه خود را وارد کنید</label>
+                        <input required="" type="text" class="form-control" placeholder="نام کاربری یا شماره همراه"
+                               id="PhoneNumber"
+                               asp-for="PhoneNumber">
+                    </div>
+                    <div class="form-group">
+                        <label>رمز عبور خود را وارد کنید</label>
+                        <input required="" type="password" class="form-control" placeholder="رمز عبور" id="Password" asp-for="Password">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="ladda-button btn btn-primary btn-block" data-style="zoom-in">
+                            <span class="ladda-label">ورود به پنل</span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 

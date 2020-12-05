@@ -5,7 +5,7 @@
     <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
     <meta name="description" content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
-    <meta name="keywords" content="دزدگیر خانه , دزدگیر مغازه , دزدگیر اماکن , دوربین مداربسته , دوربین مداربسته بیسیم , دوربین بیبی کم , دوربین لامپی , 
+    <meta name="keywords" content="دزدگیر خانه , دزدگیر مغازه , دزدگیر اماکن , دوربین مداربسته , دوربین مداربسته بیسیم , دوربین بیبی کم , دوربین لامپی ,
         دوربین پانوراما , دوربین ۳۶۰ , رایاکالا , ردیاب شخصی , ردیاب خودرو , جی پی اس , GPS,
         شنود , دوربین مخفی , سنسور , دی وی آر , DVR,NVR,دوربین تحت شبکه , دیجیکالا">
     <meta name="author" content="ایمن فروش">
@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="~/lib/fancybox/dist/jquery.fancybox.min.css">
 </head>
 <body dir="rtl">
-     <!-- menu -->
+    <!-- menu -->
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -72,8 +72,9 @@
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="جستجو در محصولات ایمن فروش " name="search" autocomplete="off">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-danger" type="submit"><i
-                                            class="glyphicon glyphicon-search"></i></button>
+                                    <button class="btn btn-danger" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -107,9 +108,11 @@
             </a>
             <div class="tree">
                 <ul id="myUL">
-                    <li><span class="parent">دوربین های مدار بسته</span>
+                    <li>
+                        <span class="parent">دوربین های مدار بسته</span>
                         <ul class="nested">
-                            <li><span class="parent">لوزام جانبی ذوربین</span>
+                            <li>
+                                <span class="parent">لوزام جانبی ذوربین</span>
                                 <ul class="nested">
                                     <li>
                                         <a href="#">هارد و حافظه</a>
@@ -121,7 +124,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li><span class="parent">دستگاه های رکورد</span>
+                    <li>
+                        <span class="parent">دستگاه های رکورد</span>
                         <ul class="nested">
                             <li><a href="#">کوچگ</a></li>
                             <li><a href="#">بزرگ</a></li>
@@ -135,7 +139,7 @@
     <div>
         @RenderBody()
     </div>
-      <!-- footer -->
+    <!-- footer -->
     <div class="scroll-top" data-role="scroll-top">
         <i class="fa fa-angle-double-up"></i> برگشت به بالا
         <i class="fa fa-angle-double-up"></i>
@@ -233,3 +237,5 @@
     </script>
 </body>
 </html>
+
+@Html.Partial("_Swal.cshtml")
