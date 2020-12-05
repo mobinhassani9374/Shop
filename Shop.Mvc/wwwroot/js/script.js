@@ -1,5 +1,5 @@
 $(function () {
-  $('#bootstrap-touch-slider').bsTouchSlider();
+  // $('#bootstrap-touch-slider').bsTouchSlider();
 
   toastr.options = {
     "closeButton": true,
@@ -12,13 +12,13 @@ $(function () {
   }
 
 
-  $("[data-role='date']").persianDatepicker({
-    format: 'YYYY/MM/DD',
-    initialValue: false,
-    initialValueType: 'persian'
-  });
+  // $("[data-role='date']").persianDatepicker({
+  //   format: 'YYYY/MM/DD',
+  //   initialValue: false,
+  //   initialValueType: 'persian'
+  // });
 
-  $('form').on('submit', function () {
+  $('form').on('submit', function () {  
     var l = Ladda.create(document.querySelector('.ladda-button'));
     l.start();
   })

@@ -1,0 +1,8 @@
+.checkbox label, .radio label {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.panel-body {
+    direction: rtl;
+}
