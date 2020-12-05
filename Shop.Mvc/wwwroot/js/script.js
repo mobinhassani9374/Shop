@@ -18,7 +18,12 @@ $(function () {
   //   initialValueType: 'persian'
   // });
 
-  $('form').on('submit', function () {  
+  $('.grid').isotope({
+    itemSelector: '.grid-item',
+    originLeft: false
+  });
+
+  $('form').on('submit', function () {
     var l = Ladda.create(document.querySelector('.ladda-button'));
     l.start();
   })
