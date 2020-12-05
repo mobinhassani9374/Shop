@@ -35,7 +35,7 @@ namespace Shop.Database
                     UserName = "09197442364",
                     PhoneNumber = "09197442364",
                     FullName = "مبین حسنی",
-                    IsProgrammer = true,
+                    Type = UserType.Programmer,
                     RegisterDate = DateTime.Now,
                 }, "9197442364"
                  ).Result;
@@ -47,7 +47,7 @@ namespace Shop.Database
                     UserName = "09212651629",
                     PhoneNumber = "09212651629",
                     FullName = "مهدی حسنی",
-                    IsProgrammer = true,
+                    Type = UserType.Programmer,
                     RegisterDate = DateTime.Now,
                 }, "9197572162"
                  ).Result;

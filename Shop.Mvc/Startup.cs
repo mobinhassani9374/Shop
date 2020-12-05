@@ -38,6 +38,8 @@ namespace Shop.Mvc
 
             app.UseStaticFiles();
 
+            app.UseAuthentication();
+
             app.UseMvcWithDefaultRoute();
 
             app.UseMvc(routes =>

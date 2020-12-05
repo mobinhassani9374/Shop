@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Shop.Database.Identity.Entities;
+using Shop.Domain.Enumeration;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -27,14 +28,23 @@ namespace Shop.Database.Identity
                 new Claim(ClaimTypes.Surname,user.FullName),
             });
 
-            //if (user.IsSuperAdmin)
-            //    ((ClaimsIdentity)principal.Identity).AddClaim(new Claim(ClaimTypes.Role, AccessCode.FullAccess.ToString()));
+            if (user.Type == UserType.Programmer)
+            {
+                ((ClaimsIdentity)principal.Identity).AddClaim(new Claim(ClaimTypes.Role, "Admin"));
+                ((ClaimsIdentity)principal.Identity).AddClaim(new Claim(ClaimTypes.WindowsUserClaim, AccessCode.FullAccess.ToString()));
+            }
 
-            //else
-            //{
-            //    foreach (var role in roles)
-            //        ((ClaimsIdentity)principal.Identity).AddClaim(new Claim(ClaimTypes.Role, role));
-            //}
+
+            else if (user.Type == UserType.Admin)
+            {
+                ((ClaimsIdentity)principal.Identity).AddClaim(new Claim(ClaimTypes.Role, "Admin"));
+
+                foreach (var role in roles)
+                    ((ClaimsIdentity)principal.Identity).AddClaim(new Claim(ClaimTypes.WindowsUserClaim, role));
+            }
+
+            else
+                ((ClaimsIdentity)principal.Identity).AddClaim(new Claim(ClaimTypes.Role, "User"));
 
             return principal;
         }

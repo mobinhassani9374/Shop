@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Shop.Domain.Enumeration;
 
 namespace Shop.Database.Identity.Entities
 {
@@ -10,6 +11,6 @@ namespace Shop.Database.Identity.Entities
     {
         public string FullName { get; set; }
         public DateTime RegisterDate { get; set; }
-        public bool IsProgrammer { get; set; }
+        public UserType Type { get; set; }
     }
 }
