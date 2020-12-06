@@ -12,40 +12,41 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">مدیریت دسته بندی ها</div>
-    <div class="panel-body">
+    <div class="panel-body" id="app">
         <div id="tree"></div>
     </div>
 </div>
 
 <script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue.js!'
+        },
+        methods: {
+            loadTree: function () {
+                $(function () {
+                    $.ajax({
+                        url: '/Admin/CategoryManagement/Get',
+                        success: function (result) {
+                            var tree = $('#tree').tree({
+                                primaryKey: 'id',
+                                uiLibrary: 'bootstrap',
+                                dataSource: result,
+                                checkboxes: false,
+                            })
+                        }
+                    })
+                })
+            }
+        },
+        created: function () {
+            console.log('message is: ' + this.message);
+            this.loadTree();
+        }
+
+    })
     $(document).ready(function () {
-        var tree = $('#tree').tree({
-            primaryKey: 'id',
-            uiLibrary: 'bootstrap',
-            dataSource: [
-                {
-                    id: 1, text: 'سیستم های حفاظتی و ایمنی',
-                    children: [
-                        {
-                            id: 2, text: 'دزدگیر اماکن',
-                            children: [
-                                {
-                                    id: 5, text: 'پکیچ های آماده نصب',
-                                    id: 6, text: 'دستگاه های دزدگیر مرکزی',
-                                    id: 7, text: 'سنسورها',
-                                    children: [
-                                        { id: 8, text: 'با سیم' },
-                                        { id: 9, text: 'بی سیم' }
-                                    ]
-                                }]
-                        },
-                        { id: 3, text: 'دوربین های مدار بسته' },
-                        { id: 4, text: 'حافظه های جانبی' },
-                    ]
-                },
-            ],
-            checkboxes: false,
-        });
         $('#btnSave').on('click', function () {
             alert(tree.getSelections());
         });
