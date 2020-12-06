@@ -6,3 +6,21 @@
 .panel-body {
     direction: rtl;
 }
+
+.ladda-button {
+    direction: ltr;
+}
+
+label[class="required"] {
+    position: relative;
+    padding-right: 10px;
+}
+
+label[class="required"]::before {
+    position: absolute;
+    content: '*';
+    top: 0px;
+    right: 0px;
+    color: #f00;
+    font-size: 18px;
+}
