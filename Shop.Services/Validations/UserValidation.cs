@@ -1,10 +1,7 @@
-﻿using Shop.Domain.Dto;
-using Shop.Utility;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Shop.Utility;
 using Shop.Utility.Extensions;
 using DNTPersianUtils.Core;
+using Shop.Domain.Dto.User;
 
 namespace Shop.Services.Validations
 {

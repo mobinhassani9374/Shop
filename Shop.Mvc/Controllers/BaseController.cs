@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shop.Mvc.Attributes;
 using Shop.Utility;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace Shop.Mvc.Controllers
 {
@@ -39,9 +38,28 @@ namespace Shop.Mvc.Controllers
             }
             else
             {
-                Swal(true,"عملیات با موفقیت صورت گرفت");
+                Swal(true, "عملیات با موفقیت صورت گرفت");
                 return RedirectToAction(this.ControllerContext.ActionDescriptor.ActionName);
             }
+        }
+        protected IActionResult View<TSearch, TModel>(TSearch search, TModel model)
+        {
+            var selectItemProperties = search.GetType().GetProperties()
+                .Where(c => c.CustomAttributes
+                .Any(i => i.AttributeType == typeof(SelectItemAttribute)))
+                .ToList();
+
+            foreach (var prop in selectItemProperties)
+            {
+                var attr = prop.CustomAttributes
+                    .FirstOrDefault(c => c.AttributeType == typeof(SelectItemAttribute));
+
+                var consut = attr.ConstructorArguments.Select(c => c.Value).First();
+
+                var values = Enum.GetValues(consut.GetType());
+            }
+
+            return View(new Models.SearchModel<TSearch, TModel>(search, model));
         }
     }
 }

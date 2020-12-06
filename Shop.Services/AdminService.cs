@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
-using Shop.Domain.Dto;
+using Shop.Domain.Dto.User;
 using Shop.Domain.Enumeration;
 using Shop.Services.Validations;
 using Shop.Utility;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Shop.Services

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shop.Domain.Dto
+namespace Shop.Domain.Dto.User
 {
     public class CreateUserDto
     {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Mvc.Mapping;
+using Shop.Mvc.Models.Pagination;
 using Shop.Mvc.Models.UserManagement;
 using Shop.Services;
 using System;
@@ -16,9 +17,10 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         {
             _adminService = adminService;
         }
-        public IActionResult Index()
+        public IActionResult Index(SearchUserViewModel searchModel)
         {
-            return View();
+            var data = _adminService.GetUsers(searchModel.ToDto());
+            return View<SearchUserViewModel, PaginationViewModel<UserViewModel>>(searchModel, data.ToViewModel());
         }
 
         public IActionResult Create()
