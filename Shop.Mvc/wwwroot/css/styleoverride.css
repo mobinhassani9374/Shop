@@ -1,4 +1,5 @@
-.checkbox label, .radio label {
+.checkbox label,
+.radio label {
     font-weight: 600;
     font-size: 15px;
 }
@@ -18,9 +19,25 @@ label[class="required"] {
 
 label[class="required"]::before {
     position: absolute;
-    content: '*';
+    content: "*";
     top: 0px;
     right: 0px;
     color: #f00;
     font-size: 18px;
+}
+
+ul.bt-list-bootstrap {
+    direction: rtl;
+}
+
+ul.bt-list-bootstrap li [data-role="display"] {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.list-group-item.active,
+.list-group-item.active:focus,
+.list-group-item.active:hover,
+.bt-tree-bootstrap-3 ul.bt-list-bootstrap li.active {
+    border-radius: 5px;
 }
