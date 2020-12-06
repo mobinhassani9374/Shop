@@ -1,0 +1,10 @@
+﻿@{
+    var model = (Shop.Utility.ServiceResult)ViewBag.ServiceResult;
+}
+
+@if (model != null)
+{
+    <div class="alert alert-danger">
+        @Html.ValidationSummary()
+    </div>
+}

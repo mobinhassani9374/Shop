@@ -25,6 +25,8 @@ namespace Shop.Mvc
 
             StartUp.ConfigureServices(services);
 
+            Services.StartUp.ConfigureServices(services);
+
             services.AddMvc();
         }
 

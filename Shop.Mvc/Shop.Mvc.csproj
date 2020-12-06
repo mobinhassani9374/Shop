@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Shop.Databse\Shop.Database.csproj" />
     <ProjectReference Include="..\Shop.Domain\Shop.Domain.csproj" />
+    <ProjectReference Include="..\Shop.Services\Shop.Services.csproj" />
     <ProjectReference Include="..\Shop.Utility\Shop.Utility.csproj" />
   </ItemGroup>
 

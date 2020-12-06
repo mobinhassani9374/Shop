@@ -1,4 +1,4 @@
-﻿
+﻿@model Shop.Mvc.Models.UserManagement.CreateUserViewModel
 @{
     ViewData["Title"] = "ایجاد کاربر جدید - پنل مدیریتی ایمن فروش";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -7,7 +7,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
-        <li class="breadcrumb-item active" aria-current="page">مدیریت کاربران</li>
+        <li class="breadcrumb-item" aria-current="/UserManagement/Index">مدیریت کاربران</li>
         <li class="breadcrumb-item active" aria-current="page">ایجاد کاربر جدید</li>
     </ol>
 </nav>
@@ -16,46 +16,56 @@
     <div class="panel-heading">ایجاد کاربر جدید</div>
     <div class="panel-body">
         <div class="row">
-            <form>
+            <form method="post">
+
+
+                <div class="col-md-12 col-xs-12">
+                    <div class="form-group">
+                        @Html.Partial("_ServiceResult")
+                    </div>
+                </div>
+
+                @Html.AntiForgeryToken()
+
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
                         <label>نام و نام خانوادگی کاربر را وارد کنید </label>
-                        <input required type="text" placeholder="نام و نام خانوادگی" class="form-control">
+                        <input asp-for="FullName" required type="text" placeholder="نام و نام خانوادگی" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
                         <label>شماره همراه کاربر را وارد کنید </label>
-                        <input required type="text" placeholder="شماره همراه" class="form-control">
+                        <input asp-for="PhoneNumber" required type="text" placeholder="شماره همراه" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
                         <label>رمز عبور کاربر را وارد کنید </label>
-                        <input required type="text" placeholder="رمز عبور" class="form-control">
+                        <input asp-for="Password" required type="text" placeholder="رمز عبور" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
                         <label>تکرار رمز عبور کاربر را وارد کنید </label>
-                        <input required type="text" placeholder="تکرار رمز عبور" class="form-control">
+                        <input asp-for="ConfirmPassword" required type="text" placeholder="تکرار رمز عبور" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
                         <div class="checkbox">
-                            <label><input type="checkbox" value="">آیا این کاربر مدیر است ؟؟؟</label>
+                            <label>@Html.CheckBoxFor(c => c.IsManager)آیا این کاربر مدیر است ؟</label>
                         </div>
                     </div>
                 </div>
 
                 <hr />
                 <div class="col-xs-12">
-                   <button type="submit" class="ladda-button btn btn-primary" data-style="zoom-in">
+                    <button type="submit" class="ladda-button btn btn-primary" data-style="zoom-in">
                         <span class="ladda-label">ثبت اطلاعات</span>
                     </button>
                 </div>
-            </form>                       
+            </form>
         </div>
     </div>
 </div>

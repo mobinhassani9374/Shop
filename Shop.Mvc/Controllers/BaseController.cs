@@ -10,7 +10,7 @@ namespace Shop.Mvc.Controllers
 {
     public class BaseController : Controller
     {
-        protected void AddErrors(ServiceResult serviceResult)
+        void AddErrors(ServiceResult serviceResult)
         {
             foreach (var error in serviceResult.Errors)
                 ModelState.AddModelError("", error);
@@ -27,6 +27,20 @@ namespace Shop.Mvc.Controllers
             {
                 var userClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
                 return userClaim?.Value;
+            }
+        }
+        protected IActionResult View<T>(ServiceResult serviceResult, T model)
+        {
+            if (!serviceResult.IsSuccess)
+            {
+                AddErrors(serviceResult);
+                ViewBag.ServiceResult = serviceResult;
+                return View(model);
+            }
+            else
+            {
+                Swal(true,"عملیات با موفقیت صورت گرفت");
+                return RedirectToAction(this.ControllerContext.ActionDescriptor.ActionName);
             }
         }
     }
