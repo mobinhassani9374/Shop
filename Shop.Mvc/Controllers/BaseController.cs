@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Shop.Mvc.Attributes;
 using Shop.Utility;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 
@@ -51,12 +53,10 @@ namespace Shop.Mvc.Controllers
 
             foreach (var prop in selectItemProperties)
             {
-                var attr = prop.CustomAttributes
-                    .FirstOrDefault(c => c.AttributeType == typeof(SelectItemAttribute));
-
-                var consut = attr.ConstructorArguments.Select(c => c.Value).First();
-
-                var values = Enum.GetValues(consut.GetType());
+                var enumValues = Enum.GetValues(prop.PropertyType);
+                List<SelectListItem> selectListItem = new List<SelectListItem>();
+                foreach (var value in enumValues)
+                    selectListItem.Add(new SelectListItem(value.ToString(),value.ToString()));
             }
 
             return View(new Models.SearchModel<TSearch, TModel>(search, model));

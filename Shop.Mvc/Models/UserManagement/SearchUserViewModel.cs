@@ -1,5 +1,5 @@
-﻿using Shop.Domain.Enumeration;
-using Shop.Mvc.Attributes;
+﻿using Shop.Mvc.Attributes;
+using Shop.Mvc.Enums;
 
 namespace Shop.Mvc.Models.UserManagement
 {
@@ -7,7 +7,7 @@ namespace Shop.Mvc.Models.UserManagement
     {
         public string FullName { get; set; }
 
-        [SelectItem(typeof(UserType))]
-        public UserType? Type { get; set; }
+        [SelectItem()]
+        public UserType Type { get; set; }
     }
 }
