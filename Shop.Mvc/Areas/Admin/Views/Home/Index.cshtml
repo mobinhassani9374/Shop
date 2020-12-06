@@ -69,34 +69,7 @@
                 <i class="fa fa-users"></i>
                 <div>مدیریت دسته بندی</div>
             </div>
-            <a class="admin__panel__link" href="/Admin/CategoryManagement/Index">لعنت به روحانی</a>
+            <a class="admin__panel__link" href="/Admin/CategoryManagement/Index">مدیریت دسته بندی</a>
         </div>
     </div>
 </div>
-
-<div id="tree"></div>
-
-<script>
-    $(document).ready(function () {
-        var tree = $('#tree').tree({
-            primaryKey: 'id',
-            uiLibrary: 'bootstrap',
-            dataSource: [
-                { id: 1, text: 'Apple', children: [{ id: 2, text: 'Avocado' }] },
-                {
-                    id: 3, text: 'Banana', children: [
-                        { id: 4, text: 'Beans' },
-                        {
-                            id: 5, text: 'Broccoli',
-                            children: [{ id: 6, text: 'Bunch Grape' }]
-                        }
-                    ]
-                }
-            ],
-            checkboxes: false,
-        });
-        $('#btnSave').on('click', function () {
-            alert(tree.getSelections());
-        });
-    });
-</script>

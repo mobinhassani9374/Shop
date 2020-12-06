@@ -1,8 +1,53 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+    ViewData["Title"] = "مدیریت دسته بندی ها - پنل مدیریتی ایمن فروش";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
+        <li class="breadcrumb-item">مدیریت دسته بندی ها</li>
+    </ol>
+</nav>
 
+<div class="panel panel-primary">
+    <div class="panel-heading">مدیریت دسته بندی ها</div>
+    <div class="panel-body">
+        <div id="tree"></div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var tree = $('#tree').tree({
+            primaryKey: 'id',
+            uiLibrary: 'bootstrap',
+            dataSource: [
+                {
+                    id: 1, text: 'سیستم های حفاظتی و ایمنی',
+                    children: [
+                        {
+                            id: 2, text: 'دزدگیر اماکن',
+                            children: [
+                                {
+                                    id: 5, text: 'پکیچ های آماده نصب',
+                                    id: 6, text: 'دستگاه های دزدگیر مرکزی',
+                                    id: 7, text: 'سنسورها',
+                                    children: [
+                                        { id: 8, text: 'با سیم' },
+                                        { id: 9, text: 'بی سیم' }
+                                    ]
+                                }]
+                        },
+                        { id: 3, text: 'دوربین های مدار بسته' },
+                        { id: 4, text: 'حافظه های جانبی' },
+                    ]
+                },
+            ],
+            checkboxes: false,
+        });
+        $('#btnSave').on('click', function () {
+            alert(tree.getSelections());
+        });
+    });
+</script>
