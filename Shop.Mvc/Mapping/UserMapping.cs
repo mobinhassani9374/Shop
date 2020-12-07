@@ -30,7 +30,9 @@ namespace Shop.Mvc.Mapping
             {
                 FullName = source.FullName,
                 PageNumber = source.PageNumber,
-                PageSize = source.PageSize
+                PageSize = source.PageSize,
+                PhoneNumber = source.PhoneNumber,
+                Type = (Domain.Enumeration.UserType?)source.Type
             };
         }
 
@@ -42,26 +44,26 @@ namespace Shop.Mvc.Mapping
                 Count = source.Count,
                 PageCount = source.PageCount,
                 PageNumber = source.PageNumber,
-                Data = source.Data.ToDto()
+                Data = source.Data.ToViewModel()
             };
         }
 
-        public static List<UserViewModel> ToDto(this List<UserDto> sources)
+        public static List<UserViewModel> ToViewModel(this List<UserDto> sources)
         {
             var result = new List<UserViewModel>();
             foreach (var source in sources)
-                result.Add(source.ToDto());
+                result.Add(source.ToViewModel());
             return result;
         }
 
-        public static UserViewModel ToDto(this UserDto source)
+        public static UserViewModel ToViewModel(this UserDto source)
         {
             return new UserViewModel
             {
                 FullName = source.FullName,
                 Id = source.Id,
                 RegisterDate = source.RegisterDate,
-                Type = source.Type,
+                Type = (Enums.UserType)source.Type,
                 PhoneNumber = source.PhoneNumber
             };
         }

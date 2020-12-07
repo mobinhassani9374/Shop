@@ -15,7 +15,7 @@ namespace Shop.Database.Identity
             services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 6;
+                options.Password.RequiredLength = Domain.Constants.Password_Length;
                 options.Password.RequiredUniqueChars = 0;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;

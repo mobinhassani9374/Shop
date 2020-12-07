@@ -1,6 +1,8 @@
 ﻿@using Shop.Mvc.Models
 @using Shop.Mvc.Models.UserManagement
 @using Shop.Mvc.Models.Pagination
+@using DNTPersianUtils.Core
+@using Shop.Utility.Extensions
 
 @model SearchModel<SearchUserViewModel, PaginationViewModel<UserViewModel>>
 @{
@@ -27,13 +29,13 @@
                     <div class="col-md-3 col-xs-12">
                         <div class="control-group">
                             <label>جستجو بر اساس نام و نام خانوادگی </label>
-                            <input type="text" class="form-control" placeholder="نام و نام خانوادگی" />
+                            <input name="FullName" value="@Model?.Search?.FullName" type="text" class="form-control" placeholder="نام و نام خانوادگی" />
                         </div>
                     </div>
                     <div class="col-md-3 col-xs-12">
                         <div class="control-group">
                             <label>جستجو بر اساس شماره تلفن </label>
-                            <input type="text" class="form-control" placeholder="شماره تلفن" />
+                            <input name="PhoneNumber" value="@Model?.Search?.PhoneNumber" type="text" class="form-control" placeholder="شماره تلفن" />
                         </div>
                     </div>
                     <div class="col-md-3 col-xs-12">
@@ -73,9 +75,9 @@
                         {
 
                             <tr>
-                                <td>@user.FullName</td>
-                                <td>@user.PhoneNumber</td>
-                                <td>@user.Type</td>
+                                <td>@user.FullName?.ToPersianNumbers()</td>
+                                <td>@user.PhoneNumber?.ToPersianNumbers()</td>
+                                <td>@user.Type.GetDisplayName()</td>
                                 <td>
                                     <a href="#" class="btn btn-primary">ویرایش</a>
                                     <a href="#" class="btn btn-warning">مدیریت دسترسی ها</a>
@@ -94,15 +96,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="page">
-            <ul class="pagination">
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-            </ul>
-        </div>
+        @Html.Partial("~/Views/Shared/_Pagination.cshtml", Model.Data)
     </div>
 </div>
 

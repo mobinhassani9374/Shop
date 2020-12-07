@@ -20,7 +20,16 @@ namespace Shop.Services
 
         public PaginationDto<UserDto> GetUsers(SearchUserDto dto)
         {
-            var query = _dbContext.Users.AsQueryable();
+            var query = _dbContext.Users.Where(c => c.Type != Domain.Enumeration.UserType.Programmer);
+
+            if (!string.IsNullOrEmpty(dto.PhoneNumber))
+                query = query.Where(c => c.PhoneNumber.Contains(dto.PhoneNumber));
+
+            if (!string.IsNullOrEmpty(dto.FullName))
+                query = query.Where(c => c.FullName.Contains(dto.FullName));
+
+            if (dto.Type.HasValue && dto.Type != 0)
+                query = query.Where(c => c.Type == dto.Type.Value);
 
             return query.ToPaginated(dto).ToDto();
         }

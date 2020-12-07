@@ -12,6 +12,6 @@ namespace Shop.Mvc.Models.UserManagement
         public string FullName { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime RegisterDate { get; set; }
-        public UserType Type { get; set; }
+        public Enums.UserType Type { get; set; }
     }
 }

@@ -7,6 +7,8 @@ namespace Shop.Mvc.Models.UserManagement
     {
         public string FullName { get; set; }
 
+        public string PhoneNumber { get; set; }
+
         [SelectItem()]
         public UserType Type { get; set; } = UserType.All;
     }

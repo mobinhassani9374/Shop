@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Shop.Database.Identity.Entities;
+using Shop.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,7 +22,7 @@ namespace Shop.Database
 
             user
                 .Property(c => c.FullName)
-                .HasMaxLength(500)
+                .HasMaxLength(Constants.User_FullName_Length)
                 .IsRequired(true);
         }
     }
