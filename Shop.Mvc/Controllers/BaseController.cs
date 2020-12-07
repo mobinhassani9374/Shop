@@ -31,7 +31,7 @@ namespace Shop.Mvc.Controllers
                 return userClaim?.Value;
             }
         }
-        protected IActionResult View<T>(ServiceResult serviceResult, T model)
+        protected IActionResult View_Post<T>(ServiceResult serviceResult, T model)
         {
             if (!serviceResult.IsSuccess)
             {
@@ -45,7 +45,7 @@ namespace Shop.Mvc.Controllers
                 return RedirectToAction(this.ControllerContext.ActionDescriptor.ActionName);
             }
         }
-        protected IActionResult View<TSearch, TModel>(TSearch search, TModel model)
+        protected IActionResult View_Search<TSearch, TModel>(TSearch search, TModel model)
         {
             var selectItemProperties = search.GetType().GetProperties()
                 .Where(c => c.CustomAttributes
@@ -65,6 +65,16 @@ namespace Shop.Mvc.Controllers
             }
 
             return View(new Models.SearchModel<TSearch, TModel>(search, model));
+        }
+        protected IActionResult View_Get<TModel>(ServiceResult serviceResult, TModel model, string redirectToAction)
+        {
+            if (!serviceResult.IsSuccess)
+            {
+                Swal(false, serviceResult.Errors.FirstOrDefault());
+                return RedirectToAction(redirectToAction);
+            }
+
+            return View(model);
         }
     }
 }

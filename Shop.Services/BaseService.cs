@@ -1,6 +1,9 @@
 ﻿using Shop.Database;
+using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Pagination;
 using Shop.Domain.Dto.User;
+using Shop.Domain.Dto.UserAccess;
+using Shop.Domain.Enumeration;
 using Shop.Services.Mapping;
 using Shop.Utility.Extensions;
 using System;
@@ -17,7 +20,6 @@ namespace Shop.Services
         {
             _dbContext = dbContext;
         }
-
         public PaginationDto<UserDto> GetUsers(SearchUserDto dto)
         {
             var query = _dbContext.Users.Where(c => c.Type != Domain.Enumeration.UserType.Programmer);
@@ -32,6 +34,10 @@ namespace Shop.Services
                 query = query.Where(c => c.Type == dto.Type.Value);
 
             return query.ToPaginated(dto).ToDto();
+        }
+        protected User GetUser(string userId)
+        {
+            return _dbContext.Users.FirstOrDefault(c => c.Id == userId);
         }
     }
 }

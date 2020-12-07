@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Shop.Mvc.Models.UserAccess
+@model List<UserAccessGroupingViewModel>
+@{
     ViewData["Title"] = "دسترسی های کاربر - پنل مدیریتی ایمن فروش";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
@@ -15,89 +17,27 @@
     <div class="panel-heading">دسترسی کاربر</div>
     <div class="panel-body">
         <div class="row grid">
-            <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
-                <div class="admin__panel" style="box-shadow: none;">
-                    <div class="admin__panel__title">
-                        <i class="fa fa-users"></i>
-                        <div>مدیریت کاربران</div>
-                    </div>
-                    <div style="padding:5px 10px;">
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="">ایجاد نمودن کاربر جدید</label>
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
+                    <div class="admin__panel" style="box-shadow: none;">
+                        <div class="admin__panel__title">
+                            <i class="fa fa-users"></i>
+                            <div>@item.Title</div>
                         </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="">مشاهده لیست کاربران</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="">مشاهده لیست کاربران</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="">مشاهده لیست کاربران</label>
+                        <div style="padding:5px 10px;">
+                            @foreach (var access in item.Items)
+                            {
+                                <div class="checkbox">
+                                    <label><input type="checkbox" @(access.Checked ? "checked" : "") name="ids" value="@access.Id">@access.Title</label>
+                                </div>
+                            }
+
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
-                <div class="admin__panel" style="box-shadow: none;">
-                    <div class="admin__panel__title">
-                        <i class="fa fa-users"></i>
-                        <div>مدیریت کاربران</div>
-                    </div>
-                    <div style="padding:5px 10px;">
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="">ایجاد نمودن کاربر جدید</label>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
-                <div class="admin__panel" style="box-shadow: none;">
-                    <div class="admin__panel__title">
-                        <i class="fa fa-users"></i>
-                        <div>مدیریت کاربران</div>
-                    </div>
-                    <div style="padding:5px 10px;">
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="">ایجاد نمودن کاربر جدید</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="">مشاهده لیست کاربران</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
-                <div class="admin__panel" style="box-shadow: none;">
-                    <div class="admin__panel__title">
-                        <i class="fa fa-users"></i>
-                        <div>مدیریت کاربران</div>
-                    </div>
-                    <div style="padding:5px 10px;">
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="">ایجاد نمودن کاربر جدید</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="">مشاهده لیست کاربران</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
-                <div class="admin__panel" style="box-shadow: none;">
-                    <div class="admin__panel__title">
-                        <i class="fa fa-users"></i>
-                        <div>مدیریت کاربران</div>
-                    </div>
-                    <div style="padding:5px 10px;">
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="">ایجاد نمودن کاربر جدید</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="">مشاهده لیست کاربران</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
+
         </div>
     </div>
 </div>

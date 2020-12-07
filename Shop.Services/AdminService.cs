@@ -2,10 +2,13 @@
 using Shop.Database;
 using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.User;
+using Shop.Domain.Dto.UserAccess;
 using Shop.Domain.Enumeration;
 using Shop.Services.Validations;
 using Shop.Utility;
+using Shop.Utility.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -43,6 +46,43 @@ namespace Shop.Services
             }
 
             return serviceReslt;
+        }
+
+        public async Task<ServiceResult<List<UserAccessGroupingDto>>> GetGroupingAccess(string userId)
+        {
+            var serviceResult = new ServiceResult<List<UserAccessGroupingDto>>(true);
+
+            var user = GetUser(userId);
+
+            if (user == null)
+                serviceResult.AddError("کاربری یافت نشد");
+
+            else
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+
+                var result = new List<UserAccessGroupingDto>();
+
+                result.Add(new UserAccessGroupingDto
+                {
+                    Title = "مدیریت کاربران",
+                    Items = new List<UserAccessItemDto>
+                {
+                    new UserAccessItemDto
+                    {
+                          Code= AccessCode.ViewUser,
+                          Title=AccessCode.ViewUser.GetDisplayName(),
+                          Checked=roles.Any(i=>i==AccessCode.ViewUser.ToString())
+                    }
+                }
+                });
+
+                serviceResult.Data = result;
+            }
+
+
+
+            return serviceResult;
         }
     }
 }

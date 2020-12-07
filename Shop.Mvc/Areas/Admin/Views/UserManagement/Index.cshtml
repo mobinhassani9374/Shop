@@ -80,7 +80,7 @@
                                 <td>@user.Type.GetDisplayName()</td>
                                 <td>
                                     <a href="#" class="btn btn-primary">ویرایش</a>
-                                    <a href="#" class="btn btn-warning">مدیریت دسترسی ها</a>
+                                    <a asp-action="Permision" asp-route-userId="@user.Id" class="btn btn-warning">مدیریت دسترسی ها</a>
                                     <a href="#" class="btn btn-danger">حذف کاربر</a>
                                 </td>
                             </tr>

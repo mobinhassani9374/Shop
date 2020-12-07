@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shop.Domain.Dto.UserAccess;
 using Shop.Mvc.Mapping;
 using Shop.Mvc.Models.Pagination;
 using Shop.Mvc.Models.UserManagement;
 using Shop.Services;
+using Shop.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +22,7 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         public IActionResult Index(SearchUserViewModel searchModel)
         {
             var data = _adminService.GetUsers(searchModel.ToDto());
-            return View<SearchUserViewModel, PaginationViewModel<UserViewModel>>(searchModel, data.ToViewModel());
+            return View_Search(searchModel, data.ToViewModel());
         }
 
         public IActionResult Create()
@@ -33,12 +35,13 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {
             var serviceResult = await _adminService.CreateUser(model.ToDto());
-            return View(serviceResult, model);
+            return View_Post(serviceResult, model);
         }
 
-        public IActionResult Permision()
+        public async Task<IActionResult> Permision(string userId)
         {
-            return View();
+            var response = await _adminService.GetGroupingAccess(userId);
+            return View_Get(response, response.Data?.ToViewModel(), nameof(Index));
         }
     }
 }
