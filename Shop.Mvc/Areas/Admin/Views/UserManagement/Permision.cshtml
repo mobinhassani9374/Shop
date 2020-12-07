@@ -16,28 +16,37 @@
 <div class="panel panel-primary">
     <div class="panel-heading">دسترسی کاربر</div>
     <div class="panel-body">
-        <div class="row grid">
-            @foreach (var item in Model)
-            {
-                <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
-                    <div class="admin__panel" style="box-shadow: none;">
-                        <div class="admin__panel__title">
-                            <i class="fa fa-users"></i>
-                            <div>@item.Title</div>
-                        </div>
-                        <div style="padding:5px 10px;">
-                            @foreach (var access in item.Items)
-                            {
-                                <div class="checkbox">
-                                    <label><input type="checkbox" @(access.Checked ? "checked" : "") name="ids" value="@access.Id">@access.Title</label>
-                                </div>
-                            }
+        <form>
+            <div class="row grid">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
+                        <div class="admin__panel" style="box-shadow: none;">
+                            <div class="admin__panel__title">
+                                <i class="fa fa-users"></i>
+                                <div>@item.Title</div>
+                            </div>
+                            <div style="padding:5px 10px;">
+                                @foreach (var access in item.Items)
+                                {
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" @(access.Checked ? "checked" : "") name="ids"
+                                                value="@access.Id">@access.Title</label>
+                                    </div>
+                                }
 
+                            </div>
                         </div>
                     </div>
+                }
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="ladda-button btn btn-primary" data-style="zoom-in">
+                        <span class="ladda-label">ثبت اطلاعات</span>
+                    </button>
                 </div>
-            }
-
-        </div>
+            </div>
+        </form>
     </div>
 </div>
