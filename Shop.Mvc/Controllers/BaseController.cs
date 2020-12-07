@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using Shop.Utility.Extensions;
 
 namespace Shop.Mvc.Controllers
 {
@@ -56,7 +57,11 @@ namespace Shop.Mvc.Controllers
                 var enumValues = Enum.GetValues(prop.PropertyType);
                 List<SelectListItem> selectListItem = new List<SelectListItem>();
                 foreach (var value in enumValues)
-                    selectListItem.Add(new SelectListItem(value.ToString(),value.ToString()));
+                {
+                    var enumSource = (Enum)Enum.Parse(prop.PropertyType, value.ToString());
+                    selectListItem.Add(new SelectListItem(enumSource.GetDisplayName(), value.ToString(), prop.GetValue(search).ToString() == value.ToString()));
+                }
+                ViewData.Add($"{prop.Name}", selectListItem);
             }
 
             return View(new Models.SearchModel<TSearch, TModel>(search, model));

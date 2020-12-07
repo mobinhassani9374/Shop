@@ -37,11 +37,9 @@
                         </div>
                     </div>
                     <div class="col-md-3 col-xs-12">
-                        <label>جستجو بر اساس دسترسی </label>
+                        <label>جستجو بر اساس نقش </label>
                         <div class="control-group">
-                            <select class="form-control">
-                                <option>ادمین</option>
-                                <option>کاربر عادی</option>
+                            <select name="Type" asp-items="@ViewBag.Type" class="form-control">
                             </select>
                         </div>
                     </div>

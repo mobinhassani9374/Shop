@@ -8,6 +8,6 @@ namespace Shop.Mvc.Models.UserManagement
         public string FullName { get; set; }
 
         [SelectItem()]
-        public UserType Type { get; set; }
+        public UserType Type { get; set; } = UserType.All;
     }
 }
