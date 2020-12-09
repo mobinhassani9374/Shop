@@ -1,7 +1,36 @@
 ﻿@{
+
     ViewData["Title"] = "مدیریت دسته بندی ها - پنل مدیریتی ایمن فروش";
+
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+
+<!-- item template -->
+<script type="text/x-template" id="item-template">
+  <li>
+    <div
+      :class="{bold: isFolder}">
+      <span style="cursor: pointer;" v-on:click="toggle" v-if="isFolder">[{{open ? '-' : '+'}}]</span>
+      {{model.text}}
+
+      <span class="action">
+        <a href="#" class="text-primary" v-on:click="edit(model)" style="margin-right:20px">ویرایش | </a>
+        <a href="#" class="text-warning">اضافه نمودن زیر دسته | </a>
+        <a href="#" class="text-success">مدیریت متادیتاها | </a>
+        <a href="#" class="text-danger">حذف</a>
+      </span>
+
+    </div>
+    <ul v-show="open" v-if="isFolder">
+      <item
+        class="item"
+        v-for="model in model.children"
+        :model="model">
+      </item>
+    </ul>
+  </li>
+</script>
+
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -12,75 +41,70 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">مدیریت دسته بندی ها</div>
-    <div class="panel-body" id="app">
-        <div class="row flex-center">
-            <div class="col-md-6 col-xs-12">
-                <div id="tree"></div>
-            </div>
-            <div class="col-md-6 col-xs-12">
-                <a class="btn btn-warning" id="btnSaveCategory">اضافه نمودن زیر دسته</a>
-                <a class="btn btn-primary" id="btnEdit">ویرایش</a>
-                <a class="btn btn-danger" id="btnRemove">حذف</a>
-                <a class="btn btn-success" id="btnMeta">مدیریت متادیتا</a>
-            </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <ul id="app" class="tree-admin">
+                    <item class="item" :model="treeData">
+                    </item>
+                </ul>
+            </div>            
         </div>
     </div>
 </div>
 
 <script>
+    Vue.component('item', {
+        template: '#item-template',
+        props: {
+            model: Object
+        },
+        data: function () {
+            return {
+                open: false
+            }
+        },
+        computed: {
+            isFolder: function () {
+                return this.model.children &&
+                    this.model.children.length
+            }
+        },
+        methods: {
+            toggle: function () {
+                if (this.isFolder) {
+                    this.open = !this.open
+                }
+            },
+            edit : function(model) {
+                console.log('edit',model);
+            }
+        }
+    })
+
     var app = new Vue({
         el: '#app',
         data: {
-            id: null
-        },
-        methods: {
-            loadTree: function () {
-                var me = this;
-                $(function () {
-                    $.ajax({
-                        url: '/Admin/CategoryManagement/Get',
-                        success: function (result) {
-                            var tree = $('#tree').tree({
-                                primaryKey: 'id',
-                                uiLibrary: 'bootstrap',
-                                dataSource: result,
-                                checkboxes: false,
-                            })
-                            $('#btnRemove').on('click', function () {
-                                me.id = tree.getSelections();
-                                if (me.id.length === 0) {
-                                    return alert('آیتمی انتخاب نکردید');
-                                }
-                                alert(me.id);
-                            });
-                            $('#btnEdit').on('click', function () {
-                                me.id = tree.getSelections();
-                                if (me.id.length === 0) {
-                                    return alert('آیتمی انتخاب نکردید');
-                                }
-                                alert(me.id);
-                            });
-                            $('#btnMeta').on('click', function () {
-                                me.id = tree.getSelections();
-                                if (me.id.length === 0) {
-                                    return alert('آیتمی انتخاب نکردید');
-                                }
-                                alert(me.id);
-                            });
-                            $('#btnSaveCategory').on('click', function () {
-                                me.id = tree.getSelections();
-                                if (me.id.length === 0) {
-                                    return alert('آیتمی انتخاب نکردید');
-                                }
-                                alert(me.id);
-                            });
-                        }
-                    })
-                })
-            },            
-        },
-        created: function () {
-            this.loadTree();
+            treeData: {},
+            loading : true
         }
-    })    
+    })  
+
+    $(function(){
+        $.ajax({
+            url: '/Admin/CategoryManagement/Get',
+            success: function(result) {
+                let tree = {};
+                if(result[0]) {
+                    tree = {
+                        text : result[0].text,
+                        id : result[0].id,
+                        canInsert : result[0].canInsert,
+                        children : result[0].children
+                    }
+                }
+                app.treeData = tree;
+            }
+        })
+    }) 
 </script>
