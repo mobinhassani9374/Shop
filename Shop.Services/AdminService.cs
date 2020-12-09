@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Category;
@@ -102,6 +103,11 @@ namespace Shop.Services
             }
 
             return serviceResult;
+        }
+        public List<CategoryDto> GetAllCategories()
+        {
+            var data = _dbContext.Categories.Include(c => c.Children).ToList();
+            return data.ToDto();
         }
     }
 }

@@ -31,12 +31,8 @@ namespace Shop.Mvc.Areas.Admin.Controllers
 
         public IActionResult Get()
         {
-            var data = new List<Models.CategoryManagement.CategoryViewModel>();
-            data.Add(new Models.CategoryManagement.CategoryViewModel
-            {
-
-            });
-            return Json(data);
+            var data = _adminService.GetAllCategories();
+            return Json(data.ToViewModel());
         }
     }
 }

@@ -24,14 +24,24 @@ namespace Shop.Mvc.Mapping
             {
                 Id = source.Id,
                 ParentId = source.ParentId,
-                Title = source.Title
+                Title = source.Title,
+                Parent = source.Parent?.ToViewModel(),
+                Children = source.Children?.ToList().ToViewModel()
             };
+
+        }
+        public static List<CategoryViewModel> ToViewModel(this List<CategoryDto> sources)
+        {
+            var result = new List<CategoryViewModel>();
+            foreach (var source in sources)
+                result.Add(source.ToViewModel());
+            return result;
         }
 
         public static ServiceResult<CategoryViewModel> ToViewModel(this ServiceResult<CategoryDto> source)
         {
-            return 
-                new ServiceResult<CategoryViewModel>(source.IsSuccess, 
+            return
+                new ServiceResult<CategoryViewModel>(source.IsSuccess,
                 source.Data.ToViewModel());
         }
     }
