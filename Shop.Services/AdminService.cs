@@ -143,16 +143,20 @@ namespace Shop.Services
             if (entity == null)
                 serviceResult.AddError("دسته بندی یافت نشد");
 
-            entity.Title = dto.Title;
-
-            if (_dbContext.SaveChanges() > 0)
-            {
-
-            }
             else
             {
-                serviceResult.AddError("در انجام عملیات خطایی رخ داد");
+                entity.Title = dto.Title;
+
+                if (_dbContext.SaveChanges() > 0)
+                {
+
+                }
+                else
+                {
+                    serviceResult.AddError("در انجام عملیات خطایی رخ داد");
+                }
             }
+            
             return serviceResult;
         }
     }
