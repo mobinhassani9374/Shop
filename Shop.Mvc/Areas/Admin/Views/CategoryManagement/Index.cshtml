@@ -72,7 +72,6 @@
 </div>
 
 <script>
-
     var app = new Vue({
         el: '#app',
         data: {
@@ -96,30 +95,28 @@
             save : function() {
                 if(this.title==='') {
                     return toastr.error('عنوان نمی تواند خالی باشد');
-                }
-                if(this.mode==='add') {
-                    var me = this;
-                    let body =  {
-                        Title:this.title,
-                        ParentId:this.id
-                    }                    
-                    $.ajax({
-                        url:'/Admin/CategoryManagement/Create',
-                        method : 'POST',
-                        data: body,
-                        success : function(result) {
-                            console.log(result)
-                            if(result.isSuccess) {
-                                me.loadTree();
-                                $('#editModal').modal('hide');
-                                toastr.info('عملیات با موفقیت انجام شد ');
-                            }
-                            else {
-                                toastr.error(result.error[0]);
-                            }
-                        }
-                    })
+                }              
+                let action = this.mode =='add' ? 'Create' : 'Update';              
+                var me = this;
+                let body =  {
+                    Title:this.title,
+                    ParentId:this.id
                 }                    
+                $.ajax({
+                    url:'/Admin/CategoryManagement/'+action,
+                    method : 'POST',
+                    data: body,
+                    success : function(result) {
+                        if(result.isSuccess) {
+                            me.loadTree();
+                            $('#editModal').modal('hide');
+                            toastr.info('عملیات با موفقیت انجام شد ');
+                        }
+                        else {
+                            toastr.error(result.error[0]);
+                        }
+                    }
+                })                   
             }
         },
         created : function(){
@@ -159,7 +156,7 @@
                 });
             },
             edit : function(model) {                
-                app.title = model.text;            
+                app.title = model.title;            
                 app.id = model.id;
                 app.mode='edit';            
                 $('#editModal').modal({
@@ -173,6 +170,8 @@
                     method:'POST',
                     success : function (result) {
                         console.log(result);
+                        app.loadTree();
+                        toastr.info('عملیات با موفقیت انجام شد ');
                     }
                 })
             }
