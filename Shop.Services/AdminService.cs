@@ -107,8 +107,8 @@ namespace Shop.Services
         public List<CategoryDto> GetAllCategories()
         {
             var data = _dbContext.Categories
+                .ToList()
                 .Where(c => !c.ParentId.HasValue)
-                .Include(c => c.Children)
                 .ToList();
 
             return data.ToDto();
