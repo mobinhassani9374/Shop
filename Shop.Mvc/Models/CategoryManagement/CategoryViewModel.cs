@@ -11,6 +11,5 @@ namespace Shop.Mvc.Models.CategoryManagement
         public int? ParentId { get; set; }
         public string Title { get; set; }
         public List<CategoryViewModel> Children { get; set; }
-        public CategoryViewModel Parent { get; set; }
     }
 }

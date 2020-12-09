@@ -25,7 +25,6 @@ namespace Shop.Mvc.Mapping
                 Id = source.Id,
                 ParentId = source.ParentId,
                 Title = source.Title,
-                Parent = source.Parent?.ToViewModel(),
                 Children = source.Children?.ToList().ToViewModel()
             };
 

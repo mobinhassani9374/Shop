@@ -106,7 +106,11 @@ namespace Shop.Services
         }
         public List<CategoryDto> GetAllCategories()
         {
-            var data = _dbContext.Categories.Include(c => c.Children).ToList();
+            var data = _dbContext.Categories
+                .Where(c => !c.ParentId.HasValue)
+                .Include(c => c.Children)
+                .ToList();
+
             return data.ToDto();
         }
         public ServiceResult DeleteCategory(int id)

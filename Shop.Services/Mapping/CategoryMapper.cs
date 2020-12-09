@@ -25,7 +25,6 @@ namespace Shop.Services.Mapping
                 Id = source.Id,
                 ParentId = source.ParentId,
                 Title = source.Title,
-                Parent = source.Parent?.ToDto(),
                 Children = source.Children?.ToList().ToDto()
             };
         }
