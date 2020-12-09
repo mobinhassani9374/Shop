@@ -5,10 +5,10 @@ $(function () {
     "closeButton": true,
     "debug": false,
     "progressBar": true,
-    "positionClass": "toast-bottom-right",
+    "positionClass": "toast-bottom-left",
     "preventDuplicates": false,
     "onclick": null,
-    "timeOut": "5000",
+    "timeOut": "7000",
   }
 
 
