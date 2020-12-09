@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace Shop.Mvc.Models.CategoryManagement
+namespace Shop.Domain.Dto.Category
 {
-    public class CategoryViewModel
+    public class CategoryDto
     {
         public int Id { get; set; }
         public int? ParentId { get; set; }

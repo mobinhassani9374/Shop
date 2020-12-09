@@ -49,6 +49,11 @@ namespace Shop.Utility
         {
             IsSuccess = issucess;
         }
+        public ServiceResult(bool issucess, T data)
+        {
+            IsSuccess = issucess;
+            Data = data;
+        }
         public T Data { get; set; }
         public static ServiceResult<T> Okay(T data)
         {

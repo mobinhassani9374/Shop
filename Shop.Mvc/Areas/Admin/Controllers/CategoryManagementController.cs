@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shop.Mvc.Mapping;
+using Shop.Mvc.Models.CategoryManagement;
+using Shop.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +11,19 @@ namespace Shop.Mvc.Areas.Admin.Controllers
 {
     public class CategoryManagementController : AdminBaseController
     {
+        private readonly AdminService _adminService;
+        public CategoryManagementController(AdminService adminService)
+        {
+            _adminService = adminService;
+        }
+
+        [HttpPost]
+        public IActionResult Create(CreateCategoryViewModel model)
+        {
+            var sericeResult = _adminService.CreateCategory(model.ToDto());
+            return Json(sericeResult.ToViewModel());
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -18,34 +34,7 @@ namespace Shop.Mvc.Areas.Admin.Controllers
             var data = new List<Models.CategoryManagement.CategoryViewModel>();
             data.Add(new Models.CategoryManagement.CategoryViewModel
             {
-                Id = 1,
-                Text = "سیستم های حفاظتی و ایمنی",
-                Children = new List<Models.CategoryManagement.CategoryViewModel>()
-                   {
-                    new Models.CategoryManagement.CategoryViewModel
-                    {
-                        Id=2,
-                         Text="دزدگیر اماکن",
-                          Children=new List<Models.CategoryManagement.CategoryViewModel>
-                          {
-                          new Models.CategoryManagement.CategoryViewModel
-                          {
-                              Id=5,
-                               Text="پکیچ های آماده نصب"
-                          },
-                          new Models.CategoryManagement.CategoryViewModel
-                          {
-                           Text="دستگاه های دزدگیر مرکزی",
-                            Id=6
-                          },
-                          new Models.CategoryManagement.CategoryViewModel
-                          {
-                           Id=7,
-                            Text="سنسورها"
-                          }
-                          }
-                    }
-                   }
+
             });
             return Json(data);
         }

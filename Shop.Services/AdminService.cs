@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
+using Shop.Domain.Dto.Category;
 using Shop.Domain.Dto.User;
 using Shop.Domain.Dto.UserAccess;
 using Shop.Domain.Enumeration;
+using Shop.Services.Mapping;
 using Shop.Services.Validations;
 using Shop.Utility;
 using Shop.Utility.Extensions;
@@ -81,6 +83,23 @@ namespace Shop.Services
             }
 
 
+
+            return serviceResult;
+        }
+
+        public ServiceResult<CategoryDto> CreateCategory(CreateCategoryDto dto)
+        {
+            var serviceResult = new ServiceResult<CategoryDto>(false);
+            var entity = dto.ToEntity();
+            _dbContext.Categories.Add(entity);
+            if (_dbContext.SaveChanges() > 0)
+            {
+                serviceResult.Data = entity.ToDto();
+            }
+            else
+            {
+                serviceResult.AddError("در انجام عملیات خطایی رخ داد");
+            }
 
             return serviceResult;
         }
