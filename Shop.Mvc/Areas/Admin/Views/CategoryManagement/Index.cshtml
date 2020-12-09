@@ -11,7 +11,7 @@
     <div
       :class="{bold: isFolder}">
       <span style="cursor: pointer;" v-on:click="toggle" v-if="isFolder">[{{open ? '-' : '+'}}]</span>
-      {{model.text}}
+      {{model.title}}
 
       <span class="action">
         <a href="#" class="text-primary" v-on:click="edit(model)" style="margin-right:20px">ویرایش | </a>
@@ -44,7 +44,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12 col-xs-12">
-                <ul class="tree-admin">
+                <ul class="tree-admin" v-if="tree.length!=0">
                     <item class="item" :model="treeData">
                     </item>
                 </ul>
@@ -81,9 +81,10 @@
         el: '#app',
         data: {
             treeData: {},
+            tree : [],
             loading : true,
             title:'mahdi hassani',
-            id : '',
+            id : null,
             mode :''
         },
         methods : {
@@ -102,6 +103,7 @@
                             }
                         }
                         me.treeData = tree;
+                        me.tree = result;
                     }
                 })
             },
@@ -110,10 +112,27 @@
                     return toastr.error('عنوان نمی تواند خالی باشد');
                 }
                 if(this.mode==='add') {
-                    this.loadTree();
-                }    
-                $('#editModal').modal('hide');
-                toastr.info('عملیات با موفقیت انجام شد ');
+                    let body =  {
+                        Title:this.title,
+                        ParentId:this.id
+                    }                    
+                    $.ajax({
+                        url:'/Admin/CategoryManagement/Create',
+                        method : 'POST',
+                        data: body,
+                        success : function(result) {
+                            console.log(result)
+                            if(result.isSuccess) {
+                                this.loadTree();
+                                $('#editModal').modal('hide');
+                                toastr.info('عملیات با موفقیت انجام شد ');
+                            }
+                            else {
+                                toastr.error(result.message);
+                            }
+                        }
+                    })
+                }                    
             }
         },
         created : function(){
