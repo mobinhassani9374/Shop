@@ -37,12 +37,19 @@ namespace Shop.Mvc.Mapping
                 result.Add(source.ToViewModel());
             return result;
         }
-
         public static ServiceResult<CategoryViewModel> ToViewModel(this ServiceResult<CategoryDto> source)
         {
             return
                 new ServiceResult<CategoryViewModel>(source.IsSuccess,
                 source.Data.ToViewModel());
+        }
+        public static UpdateCategoryDto ToDto(this UpdateCategoryViewModel source)
+        {
+            return new UpdateCategoryDto
+            {
+                Title = source.Title,
+                Id = source.Id
+            };
         }
     }
 }

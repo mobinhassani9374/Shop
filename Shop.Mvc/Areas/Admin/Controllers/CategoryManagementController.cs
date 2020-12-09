@@ -24,6 +24,20 @@ namespace Shop.Mvc.Areas.Admin.Controllers
             return Json(sericeResult.ToViewModel());
         }
 
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var serviceResult = _adminService.DeleteCategory(id);
+            return Json(serviceResult);
+        }
+
+        [HttpPost]
+        public IActionResult Update(UpdateCategoryViewModel model)
+        {
+            var serviceResult = _adminService.UpdateCategory(model.ToDto());
+            return Json(serviceResult);
+        }
+
         public IActionResult Index()
         {
             return View();

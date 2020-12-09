@@ -109,5 +109,47 @@ namespace Shop.Services
             var data = _dbContext.Categories.Include(c => c.Children).ToList();
             return data.ToDto();
         }
+        public ServiceResult DeleteCategory(int id)
+        {
+            var serviceResult = new ServiceResult(true);
+
+            var entity = _dbContext.Categories.Find(id);
+
+            if (entity == null)
+                serviceResult.AddError("دسته بندی یافت نشد");
+
+            _dbContext.Categories.Remove(entity);
+
+            if (_dbContext.SaveChanges() > 0)
+            {
+
+            }
+            else
+            {
+                serviceResult.AddError("در انجام عملیات خطایی رخ داد");
+            }
+            return serviceResult;
+        }
+        public ServiceResult UpdateCategory(UpdateCategoryDto dto)
+        {
+            var serviceResult = new ServiceResult(true);
+
+            var entity = _dbContext.Categories.Find(dto.Id);
+
+            if (entity == null)
+                serviceResult.AddError("دسته بندی یافت نشد");
+
+            entity.Title = dto.Title;
+
+            if (_dbContext.SaveChanges() > 0)
+            {
+
+            }
+            else
+            {
+                serviceResult.AddError("در انجام عملیات خطایی رخ داد");
+            }
+            return serviceResult;
+        }
     }
 }
