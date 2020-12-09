@@ -11,5 +11,7 @@ namespace Shop.Domain.Entities
         public ICollection<Category> Children { get; set; }
         public Category Parent { get; set; }
         public int? ParentId { get; set; }
+
+        public ICollection<Product> Products { get; set; }
     }
 }

@@ -15,6 +15,7 @@ namespace Shop.Database
         {
         }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -37,6 +38,22 @@ namespace Shop.Database
             category.HasOne(c => c.Parent)
                 .WithMany(c => c.Children)
                 .HasForeignKey(c => c.ParentId);
+
+            var product = builder.Entity<Product>();
+
+            product.HasKey(c => c.Id);
+
+            product.Property(c => c.Description).HasMaxLength(10000).IsRequired(true);
+
+            product.Property(c => c.Title).HasMaxLength(500).IsRequired(true);
+
+            product.Property(c => c.PrimaryImage).HasMaxLength(500).IsRequired(true);
+
+            product.HasOne(c => c.Category)
+                .WithMany(c => c.Products)
+                .HasForeignKey(c => c.CategoryId)
+                .OnDelete(DeleteBehavior
+                .Cascade);
         }
     }
 }
