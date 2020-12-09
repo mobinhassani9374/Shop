@@ -15,7 +15,7 @@
 
       <span class="action">
         <a href="#" class="text-primary" v-on:click="edit(model)" style="margin-right:20px">ویرایش | </a>
-        <a href="#" class="text-warning">اضافه نمودن زیر دسته | </a>
+        <a href="#" class="text-warning" v-on:click="add(model)">اضافه نمودن زیر دسته | </a>
         <a href="#" class="text-success">مدیریت متادیتاها | </a>
         <a href="#" class="text-danger">حذف</a>
       </span>
@@ -39,21 +39,88 @@
     </ol>
 </nav>
 
-<div class="panel panel-primary">
+<div class="panel panel-primary" id="app">
     <div class="panel-heading">مدیریت دسته بندی ها</div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12 col-xs-12">
-                <ul id="app" class="tree-admin">
+                <ul class="tree-admin">
                     <item class="item" :model="treeData">
                     </item>
                 </ul>
             </div>            
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="editModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">اضافه نمودن / ویرایش</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="required">عنوان زیر دسته را وارد کنید </label>
+                <input v-model="title" type="text" placeholder="عنوان زیر دسته" class="form-control">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" v-on:click="save" class="btn btn-default">ثبت</button>
+        </div>
+        </div>
+    </div>
+    </div>
 </div>
 
 <script>
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            treeData: {},
+            loading : true,
+            title:'mahdi hassani',
+            id : '',
+            mode :''
+        },
+        methods : {
+            loadTree : function () {
+                var me = this;
+                $.ajax({
+                    url: '/Admin/CategoryManagement/Get',
+                    success: function(result) {
+                        let tree = {};
+                        if(result[0]) {
+                            tree = {
+                                text : result[0].text,
+                                id : result[0].id,
+                                canInsert : result[0].canInsert,
+                                children : result[0].children
+                            }
+                        }
+                        me.treeData = tree;
+                    }
+                })
+            },
+            save : function() {
+                if(this.title==='') {
+                    return toastr.error('عنوان نمی تواند خالی باشد');
+                }
+                if(this.mode==='add') {
+                    this.loadTree();
+                }    
+                $('#editModal').modal('hide');
+                toastr.info('عملیات با موفقیت انجام شد ');
+            }
+        },
+        created : function(){
+           this.loadTree();
+        }
+    }) 
+
     Vue.component('item', {
         template: '#item-template',
         props: {
@@ -61,7 +128,7 @@
         },
         data: function () {
             return {
-                open: false
+                open: false,             
             }
         },
         computed: {
@@ -76,35 +143,24 @@
                     this.open = !this.open
                 }
             },
-            edit : function(model) {
-                console.log('edit',model);
+            add : function(model) {                
+                app.title = '';            
+                app.id = '';
+                app.mode='add';            
+                $('#editModal').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+            },
+            edit : function(model) {                
+                app.title = model.text;            
+                app.id = model.id;
+                app.mode='edit';            
+                $('#editModal').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
             }
         }
-    })
-
-    var app = new Vue({
-        el: '#app',
-        data: {
-            treeData: {},
-            loading : true
-        }
-    })  
-
-    $(function(){
-        $.ajax({
-            url: '/Admin/CategoryManagement/Get',
-            success: function(result) {
-                let tree = {};
-                if(result[0]) {
-                    tree = {
-                        text : result[0].text,
-                        id : result[0].id,
-                        canInsert : result[0].canInsert,
-                        children : result[0].children
-                    }
-                }
-                app.treeData = tree;
-            }
-        })
     }) 
 </script>

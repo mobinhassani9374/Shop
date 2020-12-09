@@ -47,7 +47,7 @@ ul.bt-list-bootstrap li [data-role="display"] {
     font-weight: 600;
 }
 
-.tree-admin > li > ul,
+.tree-admin  ul,
 ul.tree-admin {
     list-style: none;
     margin: 0px;
@@ -60,9 +60,10 @@ ul.tree-admin a {
     font-size: 16px;
 }
 
-/* .tree li.item .action {
-    display: none;
+.modal {
+    direction: rtl;
 }
-.tree li.item:hover .action {
-    display: inline;
-} */
+
+.modal-header .close {
+    outline: 0 !important;
+}
