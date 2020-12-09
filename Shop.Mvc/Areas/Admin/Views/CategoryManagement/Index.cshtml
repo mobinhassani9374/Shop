@@ -1,7 +1,5 @@
 ﻿@{
-
     ViewData["Title"] = "مدیریت دسته بندی ها - پنل مدیریتی ایمن فروش";
-
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -15,11 +13,9 @@
 
       <span class="action">
         <a href="#" class="text-primary" v-on:click="edit(model)" style="margin-right:20px">ویرایش | </a>
-        <a href="#" class="text-warning" v-on:click="add(model)">اضافه نمودن زیر دسته | </a>
-        <a href="#" class="text-success">مدیریت متادیتاها | </a>
-        <a href="#" class="text-danger">حذف</a>
+        <a href="#" class="text-warning" v-on:click="add(model)">اضافه نمودن زیر دسته | </a>        
+        <a href="#" class="text-danger" v-on:click="deleteCategory(model)">حذف</a>
       </span>
-
     </div>
     <ul v-show="open" v-if="isFolder">
       <item
@@ -44,8 +40,8 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12 col-xs-12">
-                <ul class="tree-admin" v-if="tree.length!=0">
-                    <item class="item" :model="treeData">
+                <ul class="tree-admin">
+                    <item class="item" v-for="item in treeData" :model="item">
                     </item>
                 </ul>
             </div>            
@@ -93,17 +89,7 @@
                 $.ajax({
                     url: '/Admin/CategoryManagement/Get',
                     success: function(result) {
-                        let tree = {};
-                        if(result[0]) {
-                            tree = {
-                                text : result[0].text,
-                                id : result[0].id,
-                                canInsert : result[0].canInsert,
-                                children : result[0].children
-                            }
-                        }
-                        me.treeData = tree;
-                        me.tree = result;
+                        me.treeData = result;                       
                     }
                 })
             },
@@ -112,6 +98,7 @@
                     return toastr.error('عنوان نمی تواند خالی باشد');
                 }
                 if(this.mode==='add') {
+                    var me = this;
                     let body =  {
                         Title:this.title,
                         ParentId:this.id
@@ -123,12 +110,12 @@
                         success : function(result) {
                             console.log(result)
                             if(result.isSuccess) {
-                                this.loadTree();
+                                me.loadTree();
                                 $('#editModal').modal('hide');
                                 toastr.info('عملیات با موفقیت انجام شد ');
                             }
                             else {
-                                toastr.error(result.message);
+                                toastr.error(result.error[0]);
                             }
                         }
                     })
@@ -164,7 +151,7 @@
             },
             add : function(model) {                
                 app.title = '';            
-                app.id = '';
+                app.id = model.id;
                 app.mode='add';            
                 $('#editModal').modal({
                     backdrop: 'static',
@@ -179,6 +166,15 @@
                     backdrop: 'static',
                     keyboard: false
                 });
+            }, 
+            deleteCategory : function (model) {
+                $.ajax({
+                    url:'/Admin/CategoryManagement/Delete/'+model.id,
+                    method:'POST',
+                    success : function (result) {
+                        console.log(result);
+                    }
+                })
             }
         }
     }) 
