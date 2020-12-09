@@ -10,6 +10,5 @@ namespace Shop.Mvc.Models.CategoryManagement
     {
         public int? ParentId { get; set; }
         public string Title { get; set; }
-
     }
 }

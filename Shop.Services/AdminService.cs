@@ -89,7 +89,7 @@ namespace Shop.Services
 
         public ServiceResult<CategoryDto> CreateCategory(CreateCategoryDto dto)
         {
-            var serviceResult = new ServiceResult<CategoryDto>(false);
+            var serviceResult = new ServiceResult<CategoryDto>(true);
             var entity = dto.ToEntity();
             _dbContext.Categories.Add(entity);
             if (_dbContext.SaveChanges() > 0)
