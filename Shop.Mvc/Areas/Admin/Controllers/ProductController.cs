@@ -45,7 +45,8 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         [ValidateAntiForgeryToken()]
         public IActionResult Edit(UpdateProductViewModel model)
         {
-            return View();
+            var serviceResult = _adminService.UpdateProduct(model.ToDto());
+            return View_Post(serviceResult, model);
         }
     }
 }
