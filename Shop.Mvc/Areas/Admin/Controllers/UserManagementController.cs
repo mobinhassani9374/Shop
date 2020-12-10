@@ -41,7 +41,7 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         public async Task<IActionResult> Permision(string userId)
         {
             var response = await _adminService.GetGroupingAccess(userId);
-            return View_Get(response, response.Data?.ToViewModel(), nameof(Index));
+            return View_Delete(response, response.Data?.ToViewModel(), nameof(Index));
         }
     }
 }

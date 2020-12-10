@@ -34,5 +34,18 @@ namespace Shop.Mvc.Areas.Admin.Controllers
             var sericeResult = _adminService.CreateProduct(model.ToDto());
             return View_Post(sericeResult, model);
         }
+
+        public IActionResult Edit(int id)
+        {
+            var data = _adminService.GetProduct(id);
+            return View_Get(data?.ToViewModel(), nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        public IActionResult Edit(UpdateProductViewModel model)
+        {
+            return View();
+        }
     }
 }
