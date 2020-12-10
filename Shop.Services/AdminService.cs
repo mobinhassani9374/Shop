@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Category;
+using Shop.Domain.Dto.Product;
 using Shop.Domain.Dto.User;
 using Shop.Domain.Dto.UserAccess;
 using Shop.Domain.Enumeration;
@@ -20,8 +23,8 @@ namespace Shop.Services
     public class AdminService : BaseService
     {
         private readonly UserManager<User> _userManager;
-        public AdminService(AppDbContext dbContext,
-            UserManager<User> userManager) : base(dbContext)
+        public AdminService(AppDbContext dbContext, IHostingEnvironment env,
+            UserManager<User> userManager) : base(dbContext, env)
         {
             _userManager = userManager;
         }
@@ -156,7 +159,22 @@ namespace Shop.Services
                     serviceResult.AddError("در انجام عملیات خطایی رخ داد");
                 }
             }
-            
+
+            return serviceResult;
+        }
+        public ServiceResult CreateProduct(CreateProductDto dto)
+        {
+            var serviceResult = new ServiceResult(true);
+            var category = _dbContext.Categories.FirstOrDefault();
+            dto.ImageName = Upload(dto.ImageFile, FileType.ProductImage);
+            var entity = dto.ToEntity();
+            entity.CategoryId = category.Id;
+            _dbContext.Products.Add(entity);
+            if (_dbContext.SaveChanges() > 0)
+            {
+
+            }
+            else serviceResult.AddError("در انجام عملیات خطایی رخ داد");
             return serviceResult;
         }
     }

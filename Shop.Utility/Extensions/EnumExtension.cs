@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Domain.Enumeration;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -24,6 +25,14 @@ namespace Shop.Utility.Extensions
             var value = attr.ConstructorArguments.Select(c => c.Value).FirstOrDefault();
 
             return value.ToString();
+        }
+
+        public static string GetFolderName(this FileType fileType)
+        {
+            if (fileType == FileType.ProductImage)
+                return "Images";
+
+            return "";
         }
     }
 }

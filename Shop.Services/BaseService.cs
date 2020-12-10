@@ -1,10 +1,13 @@
-﻿using Shop.Database;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Shop.Database;
 using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Pagination;
 using Shop.Domain.Dto.User;
 using Shop.Domain.Dto.UserAccess;
 using Shop.Domain.Enumeration;
 using Shop.Services.Mapping;
+using Shop.Utility;
 using Shop.Utility.Extensions;
 using System;
 using System.Collections.Generic;
@@ -16,9 +19,12 @@ namespace Shop.Services
     public abstract class BaseService
     {
         protected AppDbContext _dbContext;
-        public BaseService(AppDbContext dbContext)
+        private readonly IHostingEnvironment _env;
+        public BaseService(AppDbContext dbContext,
+            IHostingEnvironment env)
         {
             _dbContext = dbContext;
+            _env = env;
         }
         public PaginationDto<UserDto> GetUsers(SearchUserDto dto)
         {
@@ -38,6 +44,22 @@ namespace Shop.Services
         protected User GetUser(string userId)
         {
             return _dbContext.Users.FirstOrDefault(c => c.Id == userId);
+        }
+        protected string Upload(IFormFile imageFile, FileType fileType)
+        {
+            var extension = System.IO.Path.GetExtension(imageFile.FileName);
+            var fileName = $"{Guid.NewGuid()}{extension}";
+
+            var path = System.IO.Path.Combine(_env.WebRootPath, "Files", fileType.GetFolderName(), fileName);
+
+            var fileStream = new System.IO.FileStream(path,
+                System.IO.FileMode.Create);
+
+            imageFile.CopyTo(fileStream);
+
+            fileStream.Close();
+
+            return fileName;
         }
     }
 }

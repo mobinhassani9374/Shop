@@ -28,4 +28,8 @@
     <ProjectReference Include="..\Shop.Utility\Shop.Utility.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Files\Images\" />
+  </ItemGroup>
+
 </Project>
