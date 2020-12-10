@@ -14,6 +14,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
+        <li class="breadcrumb-item active" aria-current="page">مدیریت محصولات</li>
         <li class="breadcrumb-item active" aria-current="page">لیست محصولات</li>
     </ol>
 </nav>
@@ -53,6 +54,7 @@
                         <th>عنوان</th>
                         <th>قیمت</th>
                         <th>تعداد</th>
+                        <th>عملیات</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,23 +65,22 @@
 
                             <tr>
                                 <td>
-                                    <img src="~/Files/Images/@item.PrimaryImage" style="width:50px;height:50px;" />
+                                    <img src="~/Files/Images/@item.PrimaryImage" class="img-responsive img-thumbnail" style="max-width:60px" />
                                 </td>
                                 <td>@item.Title.ToPersianNumbers()</td>
                                 <td>@item.Price.ToString("#,##").ToPersianNumbers() تومان</td>
                                 <td>@item.Count.ToPersianNumbers()</td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@(item.Id)" class="btn btn-primary">ویرایش</a>
-                                    <a asp-action="Delete" asp-route-id="@(item.Id)" class="btn btn-danget">حذف</a>
+                                    <a data-role="confirm" asp-action="Delete" asp-route-id="@(item.Id)" class="btn btn-danger">حذف</a>
                                 </td>
                             </tr>
-
                         }
                     }
                     else
                     {
                         <tr>
-                            <td colspan="6">محصولی یافت نشد</td>
+                            <td colspan="5">محصولی یافت نشد</td>
                         </tr>
                     }
                 </tbody>
