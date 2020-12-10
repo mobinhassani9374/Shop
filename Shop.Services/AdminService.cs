@@ -189,5 +189,35 @@ namespace Shop.Services
 
             return query.ToPaginated(dto).ToDto();
         }
+        public ProductDto GetProduct(int id)
+        {
+            var data = _dbContext.Products.FirstOrDefault(c => c.Id == id);
+            return data?.ToDto();
+        }
+        public ServiceResult UpdateProduct(UpdateProductDto dto)
+        {
+            var serviceResult = new ServiceResult(true);
+
+            var entity = _dbContext.Categories.Find(dto.Id);
+
+            if (entity == null)
+                serviceResult.AddError("دسته بندی یافت نشد");
+
+            else
+            {
+                entity.Title = dto.Title;
+
+                if (_dbContext.SaveChanges() > 0)
+                {
+
+                }
+                else
+                {
+                    serviceResult.AddError("در انجام عملیات خطایی رخ داد");
+                }
+            }
+
+            return serviceResult;
+        }
     }
 }

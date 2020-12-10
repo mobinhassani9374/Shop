@@ -66,11 +66,21 @@ namespace Shop.Mvc.Controllers
 
             return View(new Models.SearchModel<TSearch, TModel>(search, model));
         }
-        protected IActionResult View_Get<TModel>(ServiceResult serviceResult, TModel model, string redirectToAction)
+        protected IActionResult View_Delete<TModel>(ServiceResult serviceResult, TModel model, string redirectToAction)
         {
             if (!serviceResult.IsSuccess)
             {
                 Swal(false, serviceResult.Errors.FirstOrDefault());
+                return RedirectToAction(redirectToAction);
+            }
+
+            return View(model);
+        }
+        protected IActionResult View_Get<TModel>(TModel model, string redirectToAction)
+        {
+            if (model == null)
+            {
+                Swal(false, "شناسه ارسالی نامعتبر است");
                 return RedirectToAction(redirectToAction);
             }
 
