@@ -5,10 +5,6 @@
 }
 
 <!-- item template -->
-<script>
-    var categoryId = '@(Model.CategoryId)';
-    alert(categoryId);
-</script>
 <script type="text/x-template" id="item-template">
   <li>
     <div
@@ -16,7 +12,7 @@
       <span style="cursor: pointer;" v-on:click="toggle" v-if="isFolder">[{{open ? '-' : '+'}}]</span>
       {{model.title}}
 
-      <a v-if="!isFolder" v-on:click="addItem(model)" style="margin-right:15px" href="#" class="text-success">انتخاب</a>
+      <a v-if="!isFolder" v-on:click="addItem(model)" style="margin-right:15px;cursor: pointer;" class="text-success">انتخاب</a>
     </div>
     <ul v-show="open" v-if="isFolder">
       <item
@@ -59,11 +55,10 @@
                 <div class="col-md-4 col-xs-12">
                     <div class="form-group">
                         <label class="required" style="display:block">
-                            قیمت محصول را وارد کنید <span id="price-seperator"
-                                                          style="float: left;"></span>
+                            قیمت محصول را وارد کنید <span id="price-seperator" style="float: left;"></span>
                         </label>
                         <input asp-for="Price" onkeyup="numberWithCommas()" required type="number"
-                               placeholder="قیمت محصول" class="form-control">
+                            placeholder="قیمت محصول" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-4 col-xs-12">
@@ -95,7 +90,7 @@
                     <div class="form-group">
                         <label class="required">توضیحات محصول را وارد کنید </label>
                         <textarea asp-for="Description" id="editor" placeholder="توضیحات محصول"
-                                  class="form-control"></textarea>
+                            class="form-control"></textarea>
                     </div>
                 </div>
 
@@ -117,7 +112,7 @@
         data: {
             treeData: [],
             title: '',
-            id: '',
+            id: @(Model.CategoryId)
         },
         methods: {
             loadTree: function () {
@@ -126,8 +121,16 @@
                     url: '/Admin/CategoryManagement/Get',
                     success: function (result) {
                         me.treeData = result;
+                        me.title = me.findItemNested(me.treeData, me.id, "children").title;
                     }
                 })
+            },
+            findItemNested: function (arr, itemId, nestingKey) {
+                return arr.reduce((a, item) => {
+                    if (a) return a;
+                    if (item.id === itemId) return item;
+                    if (item[nestingKey]) return findItemNested(item[nestingKey], itemId, nestingKey)
+                }, null)
             }
         },
         created: function () {

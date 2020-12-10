@@ -12,7 +12,7 @@
       <span style="cursor: pointer;" v-on:click="toggle" v-if="isFolder">[{{open ? '-' : '+'}}]</span>
       {{model.title}}
 
-      <a v-if="!isFolder" v-on:click="addItem(model)" style="margin-right:15px" href="#" class="text-success">انتخاب</a>
+      <a v-if="!isFolder" v-on:click="addItem(model)" style="margin-right:15px;cursor: pointer;" class="text-success">انتخاب</a>
     </div>
     <ul v-show="open" v-if="isFolder">
       <item
