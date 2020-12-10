@@ -86,5 +86,13 @@ namespace Shop.Mvc.Controllers
 
             return View(model);
         }
+        protected IActionResult View_Get(ServiceResult serviceResult, string redirectToAction)
+        {
+            if (serviceResult.IsSuccess)
+                Swal(true, "عملیات با موفقت انجام شد");
+            else Swal(false, serviceResult.Errors.FirstOrDefault());
+
+            return RedirectToAction(redirectToAction);
+        }
     }
 }

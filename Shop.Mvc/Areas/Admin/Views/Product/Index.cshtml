@@ -70,6 +70,7 @@
                                 <td>@item.Count.ToPersianNumbers()</td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@(item.Id)" class="btn btn-primary">ویرایش</a>
+                                    <a asp-action="Delete" asp-route-id="@(item.Id)" class="btn btn-danget">حذف</a>
                                 </td>
                             </tr>
 
@@ -78,7 +79,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="4">کاربری یافت نشد</td>
+                            <td colspan="6">محصولی یافت نشد</td>
                         </tr>
                     }
                 </tbody>

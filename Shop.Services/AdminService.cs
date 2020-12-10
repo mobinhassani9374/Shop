@@ -231,5 +231,33 @@ namespace Shop.Services
 
             return serviceResult;
         }
+
+        public ServiceResult DeleteProduct(int id)
+        {
+            var serviceResult = new ServiceResult(true);
+
+            var entity = _dbContext.Products.Find(id);
+
+            if (entity == null)
+                serviceResult.AddError("محصولی یافت نشد");
+
+            else
+            {
+                DeleteFile(entity.PrimaryImage, FileType.ProductImage);
+
+                _dbContext.Products.Remove(entity);
+
+                if (_dbContext.SaveChanges() > 0)
+                {
+
+                }
+                else
+                {
+                    serviceResult.AddError("در انجام عملیات خطایی رخ داد");
+                }
+            }
+
+            return serviceResult;
+        }
     }
 }
