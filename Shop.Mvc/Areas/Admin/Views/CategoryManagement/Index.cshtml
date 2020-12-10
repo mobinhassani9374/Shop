@@ -36,38 +36,45 @@
 </nav>
 
 <div class="panel panel-primary" id="app">
-    <div class="panel-heading">مدیریت دسته بندی ها</div>
+    <div class="panel-heading">مدیریت دسته بندی ها
+        <i v-if="loading" style="font-size: 20px;float:left;color:#fff" class="fa fa-spin fa-spinner"></i>
+    </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12 col-xs-12">
+                <a class="btn btn-warning" v-on:click="addMain()" style="margin-bottom:0px">اضافه نمودن لایه اصلی</a>
+                <hr style="clear:both" />
                 <ul class="tree-admin">
                     <item class="item" v-for="item in treeData" :model="item">
                     </item>
                 </ul>
-            </div>            
+            </div>
         </div>
     </div>
 
     <!-- Modal -->
     <div id="editModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">اضافه نمودن / ویرایش</h4>
-        </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label class="required">عنوان زیر دسته را وارد کنید </label>
-                <input v-model="title" type="text" placeholder="عنوان زیر دسته" class="form-control">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">اضافه نمودن / ویرایش</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="required">عنوان زیر دسته را وارد کنید </label>
+                        <input v-model="title" type="text" placeholder="عنوان زیر دسته" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button :disabled="load" type="button" v-on:click="save" class="btn btn-primary flex-center">
+                        <span>ثبت</span>
+                        <i v-if="load" style="margin-right:10px" class="fa fa-spin fa-spinner"></i>
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" v-on:click="save" class="btn btn-default">ثبت</button>
-        </div>
-        </div>
-    </div>
     </div>
 </div>
 
@@ -75,45 +82,49 @@
     var app = new Vue({
         el: '#app',
         data: {
-            treeData: {},
-            tree : [],
-            loading : true,
-            title:'mahdi hassani',
-            id : null,
-            mode :''
+            treeData: [],
+            loading: true,
+            title: '',
+            id: null,
+            mode: '',
+            load: false
         },
-        methods : {
-            loadTree : function () {
+        methods: {
+            loadTree: function () {
                 var me = this;
+                me.loading = true;
                 $.ajax({
                     url: '/Admin/CategoryManagement/Get',
-                    success: function(result) {
-                        me.treeData = result;                       
+                    success: function (result) {
+                        me.treeData = result;
+                        me.loading = false;
                     }
                 })
             },
-            save : function() {
-                if(this.title==='') {
+            save: function () {
+                if (this.title === '') {
                     return toastr.error('عنوان نمی تواند خالی باشد');
-                }              
-                let action = this.mode =='add' ? 'Create' : 'Update';                         
+                }
+                let action = this.mode == 'add' ? 'Create' : 'Update';
                 var me = this;
-                let body =  {
-                    Title:this.title,
-                } 
-                if(this.mode=='add') {                    
+                let body = {
+                    Title: this.title,
+                }
+                if (this.mode == 'add') {
                     body.ParentId = this.id
-                }  
+                }
                 else {
-                     body.Id = this.id
-                }                 
+                    body.Id = this.id
+                }
+                this.load = true;
                 $.ajax({
-                    url:'/Admin/CategoryManagement/'+action,
-                    method : 'POST',
+                    url: '/Admin/CategoryManagement/' + action,
+                    method: 'POST',
                     data: body,
-                    success : function(result) {
-                        if(result.isSuccess) {
+                    success: function (result) {
+                        if (result.isSuccess) {
                             me.loadTree();
+                            me.load = false;
                             $('#editModal').modal('hide');
                             toastr.info('عملیات با موفقیت انجام شد ');
                         }
@@ -121,13 +132,22 @@
                             toastr.error(result.error[0]);
                         }
                     }
-                })                   
+                })
+            },
+            addMain: function () {
+                this.title = '';
+                this.id = null;
+                this.mode = 'add';
+                $('#editModal').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
             }
         },
-        created : function(){
-           this.loadTree();
+        created: function () {
+            this.loadTree();
         }
-    }) 
+    })
 
     Vue.component('item', {
         template: '#item-template',
@@ -136,7 +156,7 @@
         },
         data: function () {
             return {
-                open: false,             
+                open: false,
             }
         },
         computed: {
@@ -151,34 +171,35 @@
                     this.open = !this.open
                 }
             },
-            add : function(model) {                
-                app.title = '';            
+            add: function (model) {
+                app.title = '';
                 app.id = model.id;
-                app.mode='add';            
+                app.mode = 'add';
                 $('#editModal').modal({
                     backdrop: 'static',
                     keyboard: false
                 });
             },
-            edit : function(model) {                
-                app.title = model.title;            
+            edit: function (model) {
+                app.title = model.title;
                 app.id = model.id;
-                app.mode='edit';            
+                app.mode = 'edit';
                 $('#editModal').modal({
                     backdrop: 'static',
                     keyboard: false
                 });
-            }, 
-            deleteCategory : function (model) {
-                $.ajax({
-                    url:'/Admin/CategoryManagement/Delete/'+model.id,
-                    method:'POST',
-                    success : function (result) {
-                        console.log(result);
-                        app.loadTree();
-                        toastr.info('عملیات با موفقیت انجام شد ');
-                    }
-                })
+            },
+            deleteCategory: function (model) {
+                if (confirm('آیا مطمئن هستید ؟؟')) {
+                    $.ajax({
+                        url: '/Admin/CategoryManagement/Delete/' + model.id,
+                        method: 'POST',
+                        success: function (result) {
+                            app.loadTree();
+                            toastr.info('عملیات با موفقیت انجام شد ');
+                        }
+                    })
+                }
             }
         }
     }) 
