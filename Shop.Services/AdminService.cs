@@ -198,14 +198,26 @@ namespace Shop.Services
         {
             var serviceResult = new ServiceResult(true);
 
-            var entity = _dbContext.Categories.Find(dto.Id);
+            var entity = _dbContext.Products.Find(dto.Id);
 
             if (entity == null)
-                serviceResult.AddError("دسته بندی یافت نشد");
+                serviceResult.AddError("محصولی یافت نشد");
 
             else
             {
+                if (dto.ImageFile != null)
+                {
+                    var deletedImageFileName = entity.PrimaryImage;
+                    entity.PrimaryImage = Upload(dto.ImageFile, FileType.ProductImage);
+                    DeleteFile(deletedImageFileName, FileType.ProductImage);
+                }
                 entity.Title = dto.Title;
+                entity.Description = dto.Description;
+                entity.Count = dto.Count;
+                entity.CategoryId = _dbContext.Categories.FirstOrDefault().Id;
+                entity.Price = dto.Price;
+
+                _dbContext.Products.Update(entity);
 
                 if (_dbContext.SaveChanges() > 0)
                 {

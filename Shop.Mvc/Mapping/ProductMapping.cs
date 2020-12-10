@@ -66,5 +66,19 @@ namespace Shop.Mvc.Mapping
                 Description = source.Description
             };
         }
+
+        public static UpdateProductDto ToDto(this UpdateProductViewModel source)
+        {
+            return new UpdateProductDto
+            {
+                CategoryId = source.CategoryId,
+                Count = source.Count,
+                Description = source.Description,
+                Id = source.Id,
+                ImageFile = source.ImageFile,
+                Price = source.Price,
+                Title = source.Title
+            };
+        }
     }
 }

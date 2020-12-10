@@ -61,5 +61,14 @@ namespace Shop.Services
 
             return fileName;
         }
+        protected ServiceResult DeleteFile(string fileName, FileType fileType)
+        {
+            var servieResult = new ServiceResult(true);
+            var path = System.IO.Path.Combine(_env.WebRootPath, "Files", fileType.GetFolderName(), fileName);
+            if (System.IO.File.Exists(path))
+                System.IO.File.Delete(path);
+            else servieResult.AddError("فایلی یافت نشد");
+            return servieResult;
+        }
     }
 }
