@@ -53,8 +53,8 @@
                 </div>
                 <div class="col-md-4 col-xs-12">
                     <div class="form-group">
-                        <label class="required">قیمت محصول را وارد کنید </label>
-                        <input asp-for="Price" required type="number" placeholder="قیمت محصول" class="form-control">
+                        <label class="required" style="display:block">قیمت محصول را وارد کنید <span id="price-seperator" style="float: left;"></span></label>
+                        <input asp-for="Price" onkeyup="numberWithCommas()" required type="number" placeholder="قیمت محصول" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-4 col-xs-12">
@@ -85,7 +85,7 @@
                 <div class="col-md-12 col-xs-12">
                     <div class="form-group">
                         <label class="required">توضیحات محصول را وارد کنید </label>
-                        <textarea asp-for="Description" placeholder="توضیحات محصول" class="form-control"></textarea>
+                        <textarea asp-for="Description" id="editor" placeholder="توضیحات محصول" class="form-control"></textarea>
                     </div>
                 </div>
 
@@ -155,7 +155,7 @@
     }) 
 
     $(function(){
-         $('form').on('submit', function (e) {
+        $('form').on('submit', function (e) {
             e.preventDefault();
             var l = Ladda.create(document.querySelector('.ladda-button'));
             if(app.id!=='') {
@@ -172,5 +172,21 @@
                 return toastr.error('دسته بندی را انتخاب نکرده اید');
             }
         })
+
+        initSample();
+        if (CKEDITOR.config) {
+            CKEDITOR.config.height = 400;
+            CKEDITOR.config.resize_enabled = true;
+        }
     })
+</script>
+
+<script>
+    function numberWithCommas() {           
+        var x = document.getElementById('Price').value;
+        var pattern = /(-?\d+)(\d{3})/;
+        while (pattern.test(x))
+                x = x.replace(pattern, "$1,$2");
+        return document.getElementById('price-seperator').innerText = x + ' تومان ';
+    }
 </script>
