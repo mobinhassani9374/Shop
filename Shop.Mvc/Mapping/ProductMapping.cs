@@ -1,4 +1,6 @@
-﻿using Shop.Domain.Dto.Product;
+﻿using Shop.Domain.Dto.Pagination;
+using Shop.Domain.Dto.Product;
+using Shop.Mvc.Models.Pagination;
 using Shop.Mvc.Models.Product;
 using System;
 using System.Collections.Generic;
@@ -19,6 +21,48 @@ namespace Shop.Mvc.Mapping
                 Price = source.Price,
                 Title = source.Title,
                 ImageFile = source.ImageFile
+            };
+        }
+
+        public static ProductSearchDto ToDto(this ProductSearchViewModel source)
+        {
+            return new ProductSearchDto
+            {
+                PageNumber = source.PageNumber,
+                PageSize = source.PageSize,
+                Title = source.Title
+            };
+        }
+
+        public static PaginationViewModel<ProductViewModel> ToViewModel(this PaginationDto<ProductDto> source)
+        {
+            return new PaginationViewModel<ProductViewModel>
+            {
+                PageSize = source.PageSize,
+                Count = source.Count,
+                PageCount = source.PageCount,
+                PageNumber = source.PageNumber,
+                Data = source.Data.ToViewModel()
+            };
+        }
+
+        public static List<ProductViewModel> ToViewModel(this List<ProductDto> sources)
+        {
+            var result = new List<ProductViewModel>();
+            foreach (var source in sources)
+                result.Add(source.ToViewModel());
+            return result;
+        }
+
+        public static ProductViewModel ToViewModel(this ProductDto source)
+        {
+            return new ProductViewModel
+            {
+                Title = source.Title,
+                Count = source.Count,
+                Id = source.Id,
+                Price = source.Price,
+                PrimaryImage = source.PrimaryImage
             };
         }
     }

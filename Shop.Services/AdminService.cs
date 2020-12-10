@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Category;
+using Shop.Domain.Dto.Pagination;
 using Shop.Domain.Dto.Product;
 using Shop.Domain.Dto.User;
 using Shop.Domain.Dto.UserAccess;
@@ -176,6 +177,17 @@ namespace Shop.Services
             }
             else serviceResult.AddError("در انجام عملیات خطایی رخ داد");
             return serviceResult;
+        }
+        public PaginationDto<ProductDto> GetProducts(ProductSearchDto dto)
+        {
+            var query = _dbContext.Products
+                .Include(c => c.Category)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(dto.Title))
+                query = query.Where(c => c.Title.Contains(dto.Title));
+
+            return query.ToPaginated(dto).ToDto();
         }
     }
 }
