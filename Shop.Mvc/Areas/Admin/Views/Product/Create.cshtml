@@ -85,7 +85,7 @@
                 <div class="col-md-12 col-xs-12">
                     <div class="form-group">
                         <label class="required">توضیحات محصول را وارد کنید </label>
-                        <textarea asp-for="Description" placeholder="توضیحات محصول" class="form-control"></textarea>
+                        <textarea asp-for="Description" id="editor" placeholder="توضیحات محصول" class="form-control"></textarea>
                     </div>
                 </div>
 
@@ -155,7 +155,7 @@
     }) 
 
     $(function(){
-         $('form').on('submit', function (e) {
+        $('form').on('submit', function (e) {
             e.preventDefault();
             var l = Ladda.create(document.querySelector('.ladda-button'));
             if(app.id!=='') {
@@ -172,5 +172,11 @@
                 return toastr.error('دسته بندی را انتخاب نکرده اید');
             }
         })
+
+        initSample();
+        if (CKEDITOR.config) {
+            CKEDITOR.config.height = 400;
+            CKEDITOR.config.resize_enabled = true;
+        }
     })
 </script>
