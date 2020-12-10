@@ -96,12 +96,17 @@
                 if(this.title==='') {
                     return toastr.error('عنوان نمی تواند خالی باشد');
                 }              
-                let action = this.mode =='add' ? 'Create' : 'Update';              
+                let action = this.mode =='add' ? 'Create' : 'Update';                         
                 var me = this;
                 let body =  {
                     Title:this.title,
-                    ParentId:this.id
-                }                    
+                } 
+                if(this.mode=='add') {                    
+                    body.ParentId = this.id
+                }  
+                else {
+                     body.Id = this.id
+                }                 
                 $.ajax({
                     url:'/Admin/CategoryManagement/'+action,
                     method : 'POST',
