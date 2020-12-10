@@ -63,7 +63,9 @@ namespace Shop.Mvc.Mapping
                 Id = source.Id,
                 Price = source.Price,
                 PrimaryImage = source.PrimaryImage,
-                Description = source.Description
+                Description = source.Description,
+                Category = source.Category?.ToViewModel(),
+                CategoryId = source.CategoryId
             };
         }
 

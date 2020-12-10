@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Mvc.Models.CategoryManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,5 +14,7 @@ namespace Shop.Mvc.Models.Product
         public int Count { get; set; }
         public string PrimaryImage { get; set; }
         public string Description { get; set; }
+        public int CategoryId { get; set; }
+        public CategoryViewModel Category { get; set; }
     }
 }

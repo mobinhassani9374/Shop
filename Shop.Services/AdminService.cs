@@ -191,7 +191,7 @@ namespace Shop.Services
         }
         public ProductDto GetProduct(int id)
         {
-            var data = _dbContext.Products.FirstOrDefault(c => c.Id == id);
+            var data = _dbContext.Products.Include(c => c.Category).FirstOrDefault(c => c.Id == id);
             return data?.ToDto();
         }
         public ServiceResult UpdateProduct(UpdateProductDto dto)
