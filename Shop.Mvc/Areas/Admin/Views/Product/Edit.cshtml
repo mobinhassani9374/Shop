@@ -4,6 +4,26 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+<!-- item template -->
+<script type="text/x-template" id="item-template">
+  <li>
+    <div
+      :class="{bold: isFolder}">
+      <span style="cursor: pointer;" v-on:click="toggle" v-if="isFolder">[{{open ? '-' : '+'}}]</span>
+      {{model.title}}
+
+      <a v-if="!isFolder" v-on:click="addItem(model)" style="margin-right:15px" href="#" class="text-success">انتخاب</a>
+    </div>
+    <ul v-show="open" v-if="isFolder">
+      <item
+        class="item"
+        v-for="model in model.children"
+        :model="model">
+      </item>
+    </ul>
+  </li>
+</script>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
@@ -14,10 +34,10 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">ویرایش محصول</div>
-    <div class="panel-body">
+    <div class="panel-body" id="app">
         <div class="row">
             <form method="post" enctype="multipart/form-data">
-                <input type="hidden" asp-for="Id"/>
+                <input type="hidden" asp-for="Id" />
                 <div class="col-md-12 col-xs-12">
                     <div class="form-group">
                         @Html.Partial("_ServiceResult")
@@ -26,34 +46,50 @@
 
                 @Html.AntiForgeryToken()
 
-                <div class="col-md-6 col-xs-12">
+                <div class="col-md-4 col-xs-12">
                     <div class="form-group">
                         <label class="required">عنوان محصول را وارد کنید </label>
                         <input asp-for="Title" required type="text" placeholder="عنوان محصول" class="form-control">
                     </div>
                 </div>
-                <div class="col-md-6 col-xs-12">
+                <div class="col-md-4 col-xs-12">
                     <div class="form-group">
-                        <label class="required">قیمت محصول را وارد کنید </label>
-                        <input asp-for="Price" required type="number" placeholder="قیمت محصول" class="form-control">
+                        <label class="required" style="display:block">قیمت محصول را وارد کنید <span id="price-seperator"
+                                style="float: left;"></span></label>
+                        <input asp-for="Price" onkeyup="numberWithCommas()" required type="number"
+                            placeholder="قیمت محصول" class="form-control">
                     </div>
                 </div>
-                <div class="col-md-6 col-xs-12">
+                <div class="col-md-4 col-xs-12">
+                    <div class="form-group">
+                        <label class="required">تعداد را وارد کنید </label>
+                        <input asp-for="Count" required type="number" placeholder="تعداد محصول" class="form-control">
+                    </div>
+                </div>
+                <hr style="clear: both;" />
+                <div class="col-md-12 col-xs-12">
                     <div class="form-group">
                         <label>عکس محصول را وارد کنید </label>
                         <input type="file" name="ImageFile" />
                     </div>
                 </div>
-                <div class="col-md-6 col-xs-12">
+                <hr style="clear: both;" />
+                <div class="col-md-12 col-xs-12">
                     <div class="form-group">
-                        <label class="required">تعداد را وارد کنید </label>
-                        <input asp-for="Count" required type="number" placeholder="تعدادرمز عبور" class="form-control">
+                        <label class="required">دسته بندی محصول رو انتخاب کنید</label>
+                        <input type="text" required style="margin-right:10px" disabled v-model="title" />
+                        <ul class="tree-admin">
+                            <item class="item" v-for="item in treeData" :model="item">
+                            </item>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-6 col-xs-12">
+                <hr style="clear: both;" />
+                <div class="col-md-12 col-xs-12">
                     <div class="form-group">
                         <label class="required">توضیحات محصول را وارد کنید </label>
-                        <textarea asp-for="Description" placeholder="توضیحات محصول" class="form-control"></textarea>
+                        <textarea asp-for="Description" id="editor" placeholder="توضیحات محصول"
+                            class="form-control"></textarea>
                     </div>
                 </div>
 
@@ -68,3 +104,96 @@
     </div>
 </div>
 
+<script>
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            treeData: [],
+            title: '',
+            id: '',
+        },
+        methods: {
+            loadTree: function () {
+                var me = this;
+                $.ajax({
+                    url: '/Admin/CategoryManagement/Get',
+                    success: function (result) {
+                        me.treeData = result;
+                    }
+                })
+            }
+        },
+        created: function () {
+            this.loadTree();
+        }
+    })
+
+    Vue.component('item', {
+        template: '#item-template',
+        props: {
+            model: Object
+        },
+        data: function () {
+            return {
+                open: false,
+            }
+        },
+        computed: {
+            isFolder: function () {
+                return this.model.children &&
+                    this.model.children.length
+            }
+        },
+        methods: {
+            toggle: function () {
+                if (this.isFolder) {
+                    this.open = !this.open
+                }
+            },
+            addItem: function (model) {
+                app.id = model.id;
+                app.title = model.title;
+            }
+        }
+    })
+
+    $(function () {
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+            var l = Ladda.create(document.querySelector('.ladda-button'));
+            if (app.id !== '') {
+
+                l.start();
+                $("<input />").attr("type", "hidden")
+                    .attr("name", "CategoryId")
+                    .attr("value", app.id)
+                    .appendTo("#form");
+                $('form').unbind('submit').submit();
+            }
+            else {
+                l.stop();
+                return toastr.error('دسته بندی را انتخاب نکرده اید');
+            }
+        })
+
+        initSample();
+        if (CKEDITOR.config) {
+            CKEDITOR.config.height = 400;
+            CKEDITOR.config.resize_enabled = true;
+            CKEDITOR.config.contentsLangDirection = 'rtl';
+        }
+
+
+
+        numberWithCommas();
+    })
+
+    function numberWithCommas() {
+        var x = document.getElementById('Price').value;
+        var pattern = /(-?\d+)(\d{3})/;
+        while (pattern.test(x))
+            x = x.replace(pattern, "$1,$2");
+        return document.getElementById('price-seperator').innerText = x + ' تومان ';
+    }
+</script>

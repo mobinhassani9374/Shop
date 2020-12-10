@@ -67,3 +67,7 @@ ul.tree-admin a {
 .modal-header .close {
     outline: 0 !important;
 }
+
+.admin .admin__panel .admin__panel__title i {
+    color: #e52b52;
+}
