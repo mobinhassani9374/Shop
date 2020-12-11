@@ -15,7 +15,7 @@
       <a v-if="!isFolder" v-on:click="addItem(model)" style="margin-right:15px;cursor: pointer;" class="text-success">انتخاب</a>
     </div>
     <ul v-show="open" v-if="isFolder">
-      <itemئت
+      <item
         class="item"
         v-for="model in model.children"
         :model="model">
