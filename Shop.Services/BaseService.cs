@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Pagination;
@@ -44,6 +45,19 @@ namespace Shop.Services
         protected User GetUser(string userId)
         {
             return _dbContext.Users.FirstOrDefault(c => c.Id == userId);
+        }
+        protected ServiceResult Save(string succesMessage)
+        {
+            var result = new ServiceResult(true);
+            if (_dbContext.SaveChanges() > 0)
+                result.Message = string.IsNullOrEmpty(succesMessage) ? "عملیات با موفقیت صورت گرفت" : succesMessage;
+            else result.AddError("در انجام عملیات خطایی رخ داد");
+            return result;
+        }
+        protected T Insert<T>(T entity)
+        {
+            _dbContext.Entry(entity).State = EntityState.Added;
+            return entity;
         }
         protected string Upload(IFormFile imageFile, FileType fileType)
         {

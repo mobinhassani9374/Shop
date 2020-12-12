@@ -19,6 +19,16 @@ namespace Shop.Mvc.Areas.Admin.Controllers
 
         public IActionResult Index(ProductSearchViewModel searchModel)
         {
+
+            _adminService.CreateProduct(new Domain.Dto.Product.CreateProductDto
+            {
+                CategoryId = 1,
+                Count = 12,
+                Description = "توضیحات",
+                Price = 1200,
+                Title = ""
+            });
+
             var data = _adminService.GetProducts(searchModel.ToDto());
             return View_Search(searchModel, data.ToViewModel());
         }
