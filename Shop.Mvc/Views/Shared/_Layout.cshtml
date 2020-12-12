@@ -1,10 +1,12 @@
 ﻿<!DOCTYPE html>
 
 <html>
+
 <head>
     <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
-    <meta name="description" content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
+    <meta name="description"
+        content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
     <meta name="keywords" content="دزدگیر خانه , دزدگیر مغازه , دزدگیر اماکن , دوربین مداربسته , دوربین مداربسته بیسیم , دوربین بیبی کم , دوربین لامپی ,
         دوربین پانوراما , دوربین ۳۶۰ , رایاکالا , ردیاب شخصی , ردیاب خودرو , جی پی اس , GPS,
         شنود , دوربین مخفی , سنسور , دی وی آر , DVR,NVR,دوربین تحت شبکه , دیجیکالا">
@@ -45,8 +47,21 @@
     <script src="~/js/isotope.pkgd.min.js"></script>
     <script src="~/js/script.js"></script>
 </head>
+
 <body dir="rtl">
     <!-- menu -->
+    <div class="loading">
+        <div class="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -86,7 +101,8 @@
                         </div>
                         <div class="col-md-8 col-sm-8 col-xs-hide">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="جستجو در محصولات ایمن فروش " name="search" autocomplete="off">
+                                <input type="text" class="form-control" placeholder="جستجو در محصولات ایمن فروش "
+                                    name="search" autocomplete="off">
                                 <div class="input-group-btn">
                                     <button class="btn btn-danger" type="submit">
                                         <i class="glyphicon glyphicon-search"></i>
@@ -241,6 +257,7 @@
         gtag('config', 'G-N5JP3Z6HC3');
     </script>
 </body>
+
 </html>
 
 @Html.Partial("_Swal.cshtml")

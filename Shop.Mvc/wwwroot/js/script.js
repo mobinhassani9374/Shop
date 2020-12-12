@@ -1,6 +1,11 @@
 $(function () {
   // $('#bootstrap-touch-slider').bsTouchSlider();
 
+
+  window.onload = (event) => {
+    $('.loading').hide();
+  };
+
   toastr.options = {
     "closeButton": true,
     "debug": false,
