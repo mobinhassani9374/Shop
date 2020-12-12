@@ -165,17 +165,13 @@ namespace Shop.Services
         }
         public ServiceResult CreateProduct(CreateProductDto dto)
         {
-            var serviceResult = new ServiceResult(true);
-            var category = _dbContext.Categories.FirstOrDefault();
-            dto.ImageName = Upload(dto.ImageFile, FileType.ProductImage);
-            var entity = dto.ToEntity();
-            entity.CategoryId = category.Id;
-            _dbContext.Products.Add(entity);
-            if (_dbContext.SaveChanges() > 0)
+            var serviceResult = dto.IsValid();
+            if (serviceResult.IsSuccess)
             {
-
+                dto.ImageName = Upload(dto.ImageFile, FileType.ProductImage);
+                Insert(dto.ToEntity());
+                Save("یک محصول با موفقیت ایجاد شد");
             }
-            else serviceResult.AddError("در انجام عملیات خطایی رخ داد");
             return serviceResult;
         }
         public PaginationDto<ProductDto> GetProducts(ProductSearchDto dto)

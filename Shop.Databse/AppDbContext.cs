@@ -43,11 +43,11 @@ namespace Shop.Database
 
             product.HasKey(c => c.Id);
 
-            product.Property(c => c.Description).HasMaxLength(10000).IsRequired(true);
+            product.Property(c => c.Description).HasMaxLength(Constants.Product_Description_Length).IsRequired(true);
 
-            product.Property(c => c.Title).HasMaxLength(500).IsRequired(true);
+            product.Property(c => c.Title).HasMaxLength(Constants.Product_Title_Length).IsRequired(true);
 
-            product.Property(c => c.PrimaryImage).HasMaxLength(500).IsRequired(true);
+            product.Property(c => c.PrimaryImage).HasMaxLength(Constants.Product_PrimaryImage_Length).IsRequired(true);
 
             product.HasOne(c => c.Category)
                 .WithMany(c => c.Products)
