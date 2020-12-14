@@ -27,7 +27,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
-        <li class="breadcrumb-item"><a href="/Admin/Product/Index">نمایش محصولات</a></li>
+        <li class="breadcrumb-item"><a href="/Admin/Product/Index">مدیریت محصولات</a></li>
         <li class="breadcrumb-item active" aria-current="page">ایجاد محصول جدید</li>
     </ol>
 </nav>
@@ -35,6 +35,9 @@
 <div class="panel panel-primary" id="app">
     <div class="panel-heading">ایجاد محصول جدید</div>
     <div class="panel-body">
+        <div class="alert alert-warning">
+            <p>عکس اصلی برای محصول نباید بیش از 500 کیلو بایت باشد</p>
+        </div>
         <div class="row">
             <form id="form" method="post" enctype="multipart/form-data">
                 <div class="col-md-12 col-xs-12">
@@ -53,8 +56,10 @@
                 </div>
                 <div class="col-md-4 col-xs-12">
                     <div class="form-group">
-                        <label class="required" style="display:block">قیمت محصول را وارد کنید <span id="price-seperator" style="float: left;"></span></label>
-                        <input asp-for="Price" onkeyup="numberWithCommas()" required type="number" placeholder="قیمت محصول" class="form-control">
+                        <label class="required" style="display:block">قیمت محصول را وارد کنید <span id="price-seperator"
+                                style="float: left;"></span></label>
+                        <input asp-for="Price" onkeyup="numberWithCommas()" required type="number"
+                            placeholder="قیمت محصول" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-4 col-xs-12">
@@ -85,7 +90,8 @@
                 <div class="col-md-12 col-xs-12">
                     <div class="form-group">
                         <label class="required">توضیحات محصول را وارد کنید </label>
-                        <textarea asp-for="Description" id="editor" placeholder="توضیحات محصول" class="form-control"></textarea>
+                        <textarea asp-for="Description" id="editor" placeholder="توضیحات محصول"
+                            class="form-control"></textarea>
                     </div>
                 </div>
 
