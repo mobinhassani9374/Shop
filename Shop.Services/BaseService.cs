@@ -11,6 +11,7 @@ using Shop.Services.Mapping;
 using Shop.Utility;
 using Shop.Utility.Extensions;
 using System;
+using DNTPersianUtils.Core;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -59,7 +60,7 @@ namespace Shop.Services
             _dbContext.Entry(entity).State = EntityState.Added;
             return entity;
         }
-        protected string Upload(IFormFile imageFile, FileType fileType)
+        protected ServiceResult<string> Upload(IFormFile imageFile, FileType fileType)
         {
             var extension = System.IO.Path.GetExtension(imageFile.FileName);
             var fileName = $"{Guid.NewGuid()}{extension}";
@@ -73,7 +74,15 @@ namespace Shop.Services
 
             fileStream.Close();
 
-            return fileName;
+            return new ServiceResult<string>(true, fileName);
+        }
+        protected ServiceResult<string> Upload(IFormFile imageFile, FileType fileType, long length)
+        {
+            var serviceResult = new ServiceResult<string>();
+            if (imageFile.Length > length)
+                serviceResult.AddError($"حجم {fileType.GetDisplayName()} نمی تواند بیش از {(length / 1024).ToPersianNumbers()} کیلوبایت باشد");
+            else serviceResult = Upload(imageFile, fileType);
+            return serviceResult;
         }
         protected ServiceResult DeleteFile(string fileName, FileType fileType)
         {

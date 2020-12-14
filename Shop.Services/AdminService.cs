@@ -168,9 +168,16 @@ namespace Shop.Services
             var serviceResult = dto.IsValid();
             if (serviceResult.IsSuccess)
             {
-                dto.ImageName = Upload(dto.ImageFile, FileType.ProductImage);
-                Insert(dto.ToEntity());
-                Save("یک محصول با موفقیت ایجاد شد");
+                var uploadService = Upload(dto.ImageFile, FileType.ProductImage, 500 * 1024);
+                if (uploadService.IsSuccess)
+                {
+                    dto.ImageName = uploadService.Data;
+                    Insert(dto.ToEntity());
+                    serviceResult = Save("یک محصول با موفقیت ایجاد شد");
+                    if (!serviceResult.IsSuccess)
+                        DeleteFile(dto.ImageName, FileType.ProductImage);
+                }
+                else serviceResult.AddError(uploadService.Errors.FirstOrDefault());
             }
             return serviceResult;
         }
@@ -204,7 +211,7 @@ namespace Shop.Services
                 if (dto.ImageFile != null)
                 {
                     var deletedImageFileName = entity.PrimaryImage;
-                    entity.PrimaryImage = Upload(dto.ImageFile, FileType.ProductImage);
+                    //entity.PrimaryImage = Upload(dto.ImageFile, FileType.ProductImage);
                     DeleteFile(deletedImageFileName, FileType.ProductImage);
                 }
                 entity.Title = dto.Title;

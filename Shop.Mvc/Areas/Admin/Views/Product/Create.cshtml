@@ -27,7 +27,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
-        <li class="breadcrumb-item" aria-current="/UserManagement/Index">مدیریت محصولات</li>
+        <li class="breadcrumb-item"><a href="/Admin/Product/Index">نمایش محصولات</a></li>
         <li class="breadcrumb-item active" aria-current="page">ایجاد محصول جدید</li>
     </ol>
 </nav>
@@ -69,17 +69,17 @@
                         <label class="required">عکس محصول را وارد کنید </label>
                         <input type="file" required name="@Html.NameFor(c=>c.ImageFile)" />
                     </div>
-                </div> 
-                <hr style="clear: both;" />               
+                </div>
+                <hr style="clear: both;" />
                 <div class="col-md-12 col-xs-12">
                     <div class="form-group">
                         <label class="required">دسته بندی محصول رو انتخاب کنید</label>
-                        <input type="text" required style="margin-right:10px" disabled v-model="title" /> 
+                        <input type="text" required style="margin-right:10px" disabled v-model="title" />
                         <ul class="tree-admin">
                             <item class="item" v-for="item in treeData" :model="item">
                             </item>
-                        </ul>                        
-                    </div>                    
+                        </ul>
+                    </div>
                 </div>
                 <hr style="clear: both;" />
                 <div class="col-md-12 col-xs-12">
@@ -104,26 +104,26 @@
 <script>
     var app = new Vue({
         el: '#app',
-        data: {           
-            treeData : [],            
-            title:'',
-            id : '',
+        data: {
+            treeData: [],
+            title: '',
+            id: '',
         },
-        methods : {
-            loadTree : function () {
+        methods: {
+            loadTree: function () {
                 var me = this;
                 $.ajax({
                     url: '/Admin/CategoryManagement/Get',
-                    success: function(result) {
-                        me.treeData = result;                       
+                    success: function (result) {
+                        me.treeData = result;
                     }
                 })
             }
         },
-        created : function(){
-           this.loadTree();
+        created: function () {
+            this.loadTree();
         }
-    }) 
+    })
 
     Vue.component('item', {
         template: '#item-template',
@@ -132,7 +132,7 @@
         },
         data: function () {
             return {
-                open: false,             
+                open: false,
             }
         },
         computed: {
@@ -146,25 +146,25 @@
                 if (this.isFolder) {
                     this.open = !this.open
                 }
-            },  
-            addItem : function(model){
-                app.id=model.id;
+            },
+            addItem: function (model) {
+                app.id = model.id;
                 app.title = model.title;
-            }                    
+            }
         }
-    }) 
+    })
 
-    $(function(){
+    $(function () {
         $('form').on('submit', function (e) {
             e.preventDefault();
             var l = Ladda.create(document.querySelector('.ladda-button'));
-            if(app.id!=='') {
-               
-                l.start();  
+            if (app.id !== '') {
+
+                l.start();
                 $("<input />").attr("type", "hidden")
-                .attr("name", "CategoryId")
-                .attr("value", app.id)
-                .appendTo("#form");              
+                    .attr("name", "CategoryId")
+                    .attr("value", app.id)
+                    .appendTo("#form");
                 $('form').unbind('submit').submit();
             }
             else {
@@ -183,11 +183,11 @@
 </script>
 
 <script>
-    function numberWithCommas() {           
+    function numberWithCommas() {
         var x = document.getElementById('Price').value;
         var pattern = /(-?\d+)(\d{3})/;
         while (pattern.test(x))
-                x = x.replace(pattern, "$1,$2");
+            x = x.replace(pattern, "$1,$2");
         return document.getElementById('price-seperator').innerText = x + ' تومان ';
     }
 </script>

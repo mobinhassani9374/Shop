@@ -43,8 +43,14 @@ namespace Shop.Services.Validations
         {
             if (property.PropertyType == typeof(String))
             {
-                if (string.IsNullOrEmpty(value.ToString()))
+                if (value == null)
                     serviceResult.AddError(attribute.NamedArguments.Select(c => c.TypedValue.Value.ToString()).FirstOrDefault());
+
+                else
+                {
+                    if (string.IsNullOrEmpty(value.ToString()))
+                        serviceResult.AddError(attribute.NamedArguments.Select(c => c.TypedValue.Value.ToString()).FirstOrDefault());
+                }
             }
 
             if (property.PropertyType == typeof(IFormFile))
@@ -63,13 +69,13 @@ namespace Shop.Services.Validations
 
             if (property.PropertyType == typeof(String))
             {
-                if (value.ToString().Length > length)
+                if (value != null && value.ToString().Length > length)
                     errorMessage = attribute.NamedArguments.Select(c => c.TypedValue.Value.ToString()).FirstOrDefault();
             }
 
             if (property.PropertyType == typeof(IFormFile))
             {
-                if (((IFormFile)value).Length > length)
+                if (value != null && ((IFormFile)value).Length > length)
                     errorMessage = attribute.NamedArguments.Select(c => c.TypedValue.Value.ToString()).FirstOrDefault();
             }
 
