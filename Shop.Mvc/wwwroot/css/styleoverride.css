@@ -169,3 +169,8 @@ ul.tree-admin a {
         transform: rotate(360deg);
     }
 }
+
+.alert {
+    font-size: 15px;
+    font-weight: 600;
+}
