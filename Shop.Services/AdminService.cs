@@ -9,6 +9,7 @@ using Shop.Domain.Dto.Pagination;
 using Shop.Domain.Dto.Product;
 using Shop.Domain.Dto.User;
 using Shop.Domain.Dto.UserAccess;
+using Shop.Domain.Entities;
 using Shop.Domain.Enumeration;
 using Shop.Services.Mapping;
 using Shop.Services.Validations;
@@ -190,7 +191,10 @@ namespace Shop.Services
             if (!string.IsNullOrEmpty(dto.Title))
                 query = query.Where(c => c.Title.Contains(dto.Title));
 
-            return query.ToPaginated(dto).ToDto();
+            IOrderedQueryable<Product> orderedQery =
+                query.OrderByDescending(c => c.Id);
+
+            return orderedQery.ToPaginated(dto).ToDto();
         }
         public ProductDto GetProduct(int id)
         {

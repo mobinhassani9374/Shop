@@ -6,7 +6,7 @@
 
 @model SearchModel<ProductSearchViewModel, PaginationViewModel<ProductViewModel>>
 @{
-    ViewData["Title"] = "لیست محصولات - پنل مدیریتی ایمن فروش";
+    ViewData["Title"] = " نمایش محصولات - پنل مدیریتی ایمن فروش";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -14,12 +14,12 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
-        <li class="breadcrumb-item active" aria-current="page">مدیریت محصولات</li>       
+        <li class="breadcrumb-item active" aria-current="page">نمایش محصولات</li>       
     </ol>
 </nav>
 
 <div class="panel panel-primary">
-    <div class="panel-heading">لیست محصولات</div>
+    <div class="panel-heading">نمایش محصولات</div>
     <div class="panel-body">
         <fieldset>
             <legend>جستجوی محصولات</legend>
@@ -37,6 +37,12 @@
                             <button class="ladda-button btn btn-primary btn-block" data-style="zoom-in">
                                 <span class="ladda-label">جستجو</span>
                             </button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-12">
+                        <div class="control-group">
+                           <a href="/Admin/Product/Index" class="btn btn-danger btn-block">حذف فیلترها</a>
                         </div>
                     </div>
                 </div>
