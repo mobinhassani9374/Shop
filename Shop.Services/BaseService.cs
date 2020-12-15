@@ -60,6 +60,11 @@ namespace Shop.Services
             _dbContext.Entry(entity).State = EntityState.Added;
             return entity;
         }
+        protected T Update<T>(T entity)
+        {
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            return entity;
+        }
         protected ServiceResult<string> Upload(IFormFile imageFile, FileType fileType)
         {
             var extension = System.IO.Path.GetExtension(imageFile.FileName);

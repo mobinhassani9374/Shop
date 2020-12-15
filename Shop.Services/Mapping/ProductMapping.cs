@@ -22,6 +22,20 @@ namespace Shop.Services.Mapping
             };
         }
 
+        public static Product ToEntity(this UpdateProductDto source)
+        {
+            return new Product
+            {
+                CategoryId = source.CategoryId,
+                Id = source.Id,
+                Count = source.Count,
+                Description = source.Description,
+                Price = source.Price,
+                PrimaryImage = source.ImageName,
+                Title = source.Title
+            };
+        }
+
         public static PaginationDto<ProductDto> ToDto(this PaginationDto<Product> source)
         {
             return new PaginationDto<ProductDto>()
