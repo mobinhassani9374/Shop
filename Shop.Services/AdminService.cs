@@ -207,7 +207,10 @@ namespace Shop.Services
 
             if (serviceResult.IsSuccess)
             {
-                var entity = _dbContext.Products.Find(dto.Id);
+                var entity = _dbContext
+                    .Products
+                    .AsNoTracking()
+                    .FirstOrDefault(c => c.Id == dto.Id);
 
                 if (entity == null)
                     serviceResult.AddError("محصولی یافت نشد");
