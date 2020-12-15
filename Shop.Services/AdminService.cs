@@ -100,13 +100,12 @@ namespace Shop.Services
             if (serviceResult.IsSuccess)
             {
                 var entity = Insert(dto.ToEntity());
-                serviceResult.SetResult(Save("عملیات با موفقیت صورت گرفت").Result);
-                serviceResult.Data = new CategoryDto
+                serviceResult = Save("عملیات با موفقیت صورت گرفت").AddData<CategoryDto>(new CategoryDto
                 {
-                    Id = entity.Id,
+                    ParentId = entity.ParentId,
                     Title = entity.Title,
-                    ParentId = entity.ParentId
-                };
+                    Id = entity.Id
+                });
             }
 
             return serviceResult;
