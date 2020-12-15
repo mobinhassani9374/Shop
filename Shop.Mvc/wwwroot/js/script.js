@@ -33,13 +33,23 @@ $(function () {
     l.start();
   })
 
+  $('[data-role="confirm"]').on('click', function (event) {
+    var l = Ladda.create(this);
+    if (confirm('آیا مطمئن هستید ؟؟')) {
+      l.start();
+      return true;
+    }
+    else {
+      setTimeout(function () {
+        l.stop();
+      }, 100)
+      return false;
+    }
+  })
+
   $('a.ladda-button').on('click', function () {
     var l = Ladda.create(this);
     l.start();
-  })
-
-  $('[data-role="confirm"]').on('click', function () {
-    return confirm('آیا مطمئن هستید ؟؟');
   })
 
   var elements = document.getElementsByTagName("INPUT");

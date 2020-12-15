@@ -198,8 +198,13 @@
                         url: '/Admin/CategoryManagement/Delete/' + model.id,
                         method: 'POST',
                         success: function (result) {
-                            app.loadTree();
-                            toastr.info('عملیات با موفقیت انجام شد ');
+                            if (result.isSuccess) {
+                                app.loadTree();
+                                toastr.info('عملیات با موفقیت انجام شد ');
+                            }
+                            else {
+                                toastr.error(result.errors[0]);
+                            }
                             app.loading = false;
                         },
                         error: function (error) {
