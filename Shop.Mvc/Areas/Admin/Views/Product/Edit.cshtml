@@ -71,14 +71,19 @@
                         <input asp-for="Count" required type="number" placeholder="تعداد محصول" class="form-control">
                     </div>
                 </div>
-                <hr style="clear: both;" />
-                <div class="col-md-12 col-xs-12">
+                <hr style="clear: both;" />                
+                <div class="col-md-3 col-xs-12">
+                    <img
+                    class="img-responsive img-thumbnail"
+                        src="https://dkstatics-public.digikala.com/digikala-products/111553611.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_90" />
+                </div>
+                <div class="col-md-12 col-xs-12" style="margin-top:15px">
                     <div class="form-group">
-                        <label>عکس محصول را وارد کنید </label>
+                        <label>عکس محصول را اگه دوست دارید تغییر دهید </label>
                         <input type="file" name="ImageFile" />
                     </div>
                 </div>
-                <hr style="clear: both;" />
+                <hr style="clear: both" />
                 <div class="col-md-12 col-xs-12">
                     <div class="form-group">
                         <label class="required">دسته بندی محصول رو انتخاب کنید</label>
@@ -123,7 +128,7 @@
                 var me = this;
                 $.ajax({
                     url: '/Admin/CategoryManagement/Get',
-                    success: function (result) {                      
+                    success: function (result) {
                         me.treeData = result;
                         me.title = findItemNested(me.treeData, me.id, "children").title;
                     }
