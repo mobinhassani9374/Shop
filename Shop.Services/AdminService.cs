@@ -95,16 +95,18 @@ namespace Shop.Services
 
         public ServiceResult<CategoryDto> CreateCategory(CreateCategoryDto dto)
         {
-            var serviceResult = new ServiceResult<CategoryDto>(true);
-            var entity = dto.ToEntity();
-            _dbContext.Categories.Add(entity);
-            if (_dbContext.SaveChanges() > 0)
+            var serviceResult = dto.IsValid().AddData<CategoryDto>(null);
+
+            if (serviceResult.IsSuccess)
             {
-                serviceResult.Data = entity.ToDto();
-            }
-            else
-            {
-                serviceResult.AddError("در انجام عملیات خطایی رخ داد");
+                var entity = Insert(dto.ToEntity());
+                serviceResult.SetResult(Save("عملیات با موفقیت صورت گرفت").Result);
+                serviceResult.Data = new CategoryDto
+                {
+                    Id = entity.Id,
+                    Title = entity.Title,
+                    ParentId = entity.ParentId
+                };
             }
 
             return serviceResult;

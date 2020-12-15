@@ -38,6 +38,22 @@ namespace Shop.Utility
             IsSuccess = false;
             Errors.Add(errorMessage);
         }
+        public ServiceResult<T> AddData<T>(T data)
+        {
+            return new ServiceResult<T>() { Data = data, Errors = this.Errors, IsSuccess = this.IsSuccess, Message = this.Message };
+        }
+        public ServiceResult Result
+        {
+            get
+            {
+                return this;
+            }
+        }
+
+        public ServiceResult SetResult(ServiceResult serviceResult)
+        {
+            return serviceResult;
+        }
     }
     public class ServiceResult<T> : ServiceResult
     {
