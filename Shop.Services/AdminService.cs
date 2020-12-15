@@ -142,27 +142,22 @@ namespace Shop.Services
         }
         public ServiceResult UpdateCategory(UpdateCategoryDto dto)
         {
-            var serviceResult = new ServiceResult(true);
+            var serviceResult = dto.IsValid();
 
-            var entity = _dbContext.Categories.Find(dto.Id);
-
-            if (entity == null)
-                serviceResult.AddError("دسته بندی یافت نشد");
-
-            else
+            if (serviceResult.IsSuccess)
             {
-                entity.Title = dto.Title;
+                var entity = _dbContext.Categories
+                    .AsNoTracking()
+                    .FirstOrDefault(c => c.Id == dto.Id);
 
-                if (_dbContext.SaveChanges() > 0)
-                {
-
-                }
+                if (entity == null)
+                    serviceResult.AddError("دسته بندی یافت نشد");
                 else
                 {
-                    serviceResult.AddError("در انجام عملیات خطایی رخ داد");
+                    Update(dto.ToEntity(entity.ParentId));
+                    serviceResult = Save("عملیات با موفقیت صورت گرفت");
                 }
             }
-
             return serviceResult;
         }
         public ServiceResult CreateProduct(CreateProductDto dto)

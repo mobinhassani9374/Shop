@@ -18,6 +18,16 @@ namespace Shop.Services.Mapping
             };
         }
 
+        public static Category ToEntity(this UpdateCategoryDto source, int? parentId)
+        {
+            return new Category
+            {
+                Id = source.Id,
+                Title = source.Title,
+                ParentId = parentId
+            };
+        }
+
         public static CategoryDto ToDto(this Category source)
         {
             return new CategoryDto
