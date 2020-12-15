@@ -65,6 +65,11 @@ namespace Shop.Services
             _dbContext.Update(entity);
             return entity;
         }
+        protected T Remove<T>(T entity)
+        {
+            _dbContext.Remove(entity);
+            return entity;
+        }
         protected ServiceResult<string> Upload(IFormFile imageFile, FileType fileType)
         {
             var extension = System.IO.Path.GetExtension(imageFile.FileName);

@@ -250,16 +250,9 @@ namespace Shop.Services
             {
                 DeleteFile(entity.PrimaryImage, FileType.ProductImage);
 
-                _dbContext.Products.Remove(entity);
+                Remove(entity);
 
-                if (_dbContext.SaveChanges() > 0)
-                {
-
-                }
-                else
-                {
-                    serviceResult.AddError("در انجام عملیات خطایی رخ داد");
-                }
+                serviceResult = Save("یک محصول با موفقیت حذف شد");
             }
 
             return serviceResult;
