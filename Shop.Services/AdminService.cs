@@ -128,16 +128,18 @@ namespace Shop.Services
             if (entity == null)
                 serviceResult.AddError("دسته بندی یافت نشد");
 
-            _dbContext.Categories.Remove(entity);
-
-            if (_dbContext.SaveChanges() > 0)
-            {
-
-            }
             else
             {
-                serviceResult.AddError("در انجام عملیات خطایی رخ داد");
+                // آیا زیرگروه دارد؟
+                if (_dbContext.Categories.Any(c => c.ParentId == id))
+                    serviceResult.AddError("امکان حذف دسته بندی وجود ندارد زیرا دارای چندین زیردسته می باشد");
+                else
+                {
+                    if (_dbContext.Products.Any(c => c.CategoryId == id))
+                        serviceResult.AddError("امکان حذف دسته بندی وجود ندارد زیرا دارای چندین محصول می باشد");
+                }
             }
+
             return serviceResult;
         }
         public ServiceResult UpdateCategory(UpdateCategoryDto dto)
