@@ -180,7 +180,7 @@
 <!-- slick product  -->
 @foreach (var item in Model.ProductCategries)
 {
-    <div class="container" data-role="mobin">
+    <div class="container" data-role="@(item.Id)">
         <div class="row">
             <div class="slick">
                 <div class="slick__title">
@@ -204,9 +204,9 @@
                                 </div>
                                 <div class="slick__product__item__price">
                                     @* <div>
-                                        <span class="badge">15 %</span>
-                                        <del>@product.Price</del>
-                                    </div> *@
+                                            <span class="badge">15 %</span>
+                                            <del>@product.Price</del>
+                                        </div> *@
                                     <div>
                                         <span style="margin-left: 10px;">تومان</span><span>
                                             @product.Price
@@ -226,7 +226,7 @@
 }
 
 <script>
-    $(function(){
+    $(function () {
 
     })
 </script>
