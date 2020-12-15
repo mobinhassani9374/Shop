@@ -203,38 +203,33 @@ namespace Shop.Services
         }
         public ServiceResult UpdateProduct(UpdateProductDto dto)
         {
-            var serviceResult = new ServiceResult(true);
+            var serviceResult = dto.IsValid();
 
-            var entity = _dbContext.Products.Find(dto.Id);
-
-            if (entity == null)
-                serviceResult.AddError("محصولی یافت نشد");
-
-            else
+            if (serviceResult.IsSuccess)
             {
-                if (dto.ImageFile != null)
-                {
-                    var deletedImageFileName = entity.PrimaryImage;
-                    //entity.PrimaryImage = Upload(dto.ImageFile, FileType.ProductImage);
-                    DeleteFile(deletedImageFileName, FileType.ProductImage);
-                }
-                entity.Title = dto.Title;
-                entity.Description = dto.Description;
-                entity.Count = dto.Count;
-                entity.CategoryId = _dbContext.Categories.FirstOrDefault().Id;
-                entity.Price = dto.Price;
+                var entity = _dbContext.Products.Find(dto.Id);
 
-                _dbContext.Products.Update(entity);
-
-                if (_dbContext.SaveChanges() > 0)
-                {
-
-                }
+                if (entity == null)
+                    serviceResult.AddError("محصولی یافت نشد");
                 else
                 {
-                    serviceResult.AddError("در انجام عملیات خطایی رخ داد");
+                    if (dto.ImageFile != null)
+                    {
+                        var uploadServiceResult = Upload(dto.ImageFile, FileType.ProductImage, 500 * 1024);
+                        if (uploadServiceResult.IsSuccess)
+                        {
+                            dto.ImageName = uploadServiceResult.Data;
+                            DeleteFile(entity.PrimaryImage, FileType.ProductImage);
+                        }
+                        else serviceResult.AddError(uploadServiceResult.Errors.FirstOrDefault());
+                    }
+                    else dto.ImageName = entity.PrimaryImage;
+
+                    Update(dto.ToEntity());
+                    serviceResult = Save("محصول با موفقیت ویرایش شد");
                 }
             }
+
 
             return serviceResult;
         }
