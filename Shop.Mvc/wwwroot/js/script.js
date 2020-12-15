@@ -33,6 +33,11 @@ $(function () {
     l.start();
   })
 
+  $('a.ladda-button').on('click', function () {
+    var l = Ladda.create(this);
+    l.start();
+  })
+
   $('[data-role="confirm"]').on('click', function () {
     return confirm('آیا مطمئن هستید ؟؟');
   })

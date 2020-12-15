@@ -14,7 +14,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
-        <li class="breadcrumb-item active" aria-current="page">نمایش محصولات</li>       
+        <li class="breadcrumb-item active" aria-current="page">نمایش محصولات</li>
     </ol>
 </nav>
 
@@ -28,7 +28,8 @@
                     <div class="col-md-3 col-xs-12">
                         <div class="control-group">
                             <label>جستجو بر اساس عنوان </label>
-                            <input name="Title" value="@Model?.Search?.Title" type="text" class="form-control" placeholder="عنوان محصول" />
+                            <input name="Title" value="@Model?.Search?.Title" type="text" class="form-control"
+                                placeholder="عنوان محصول" />
                         </div>
                     </div>
 
@@ -42,7 +43,10 @@
 
                     <div class="col-md-3 col-xs-12">
                         <div class="control-group">
-                           <a href="/Admin/Product/Index" class="btn btn-danger btn-block">حذف فیلترها</a>
+                            <a href="/Admin/Product/Index" class="btn btn-danger btn-block ladda-button"
+                                data-style="zoom-in">
+                                <span class="ladda-label">حذف فیلترها</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -70,14 +74,16 @@
 
                             <tr>
                                 <td>
-                                    <img src="~/Files/Images/@item.PrimaryImage" class="img-responsive img-thumbnail" style="max-width:60px" />
+                                    <img src="~/Files/Images/@item.PrimaryImage" class="img-responsive img-thumbnail"
+                                        style="max-width:60px" />
                                 </td>
                                 <td>@item.Title.ToPersianNumbers()</td>
                                 <td>@item.Price.ToString("#,##").ToPersianNumbers() تومان</td>
                                 <td>@item.Count.ToPersianNumbers()</td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@(item.Id)" class="btn btn-primary">ویرایش</a>
-                                    <a data-role="confirm" asp-action="Delete" asp-route-id="@(item.Id)" class="btn btn-danger">حذف</a>
+                                    <a data-role="confirm" asp-action="Delete" asp-route-id="@(item.Id)"
+                                        class="btn btn-danger">حذف</a>
                                 </td>
                             </tr>
                         }
@@ -94,5 +100,3 @@
         @Html.Partial("~/Views/Shared/_Pagination.cshtml", Model.Data)
     </div>
 </div>
-
-
