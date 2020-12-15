@@ -139,9 +139,11 @@ $(function () {
   $('[data-role="slick-left"]').on('click', function () {
     $('.slick__product').slick('slickPrev');
   })
+  
   $('[data-role="slick-right"]').on('click', function () {
     $('.slick__product').slick('slickNext');
   })
+
   $('.offer__product').slick({
     infinite: false,
     centerMode: false,
