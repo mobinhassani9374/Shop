@@ -3,84 +3,91 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="admin__box">
-            <div>
-                <i class="fa fa-users amin__box__icon"></i>
+<fieldset>
+    <legend>آمار کلی سایت</legend>
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="admin__box">
+                <div>
+                    <i class="fa fa-users amin__box__icon"></i>
+                </div>
+                <div>
+                    <div class="amin__box__title">تعداد بازدید کنندگان امروز </div>
+                    <div class="amin__box__title">140 نفر</div>
+                </div>
             </div>
-            <div>
-                <div class="amin__box__title">تعداد بازدید کنندگان امروز </div>
-                <div class="amin__box__title">140 نفر</div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="admin__box admin__box-primary">
+                <div>
+                    <i class="fa fa-users amin__box__icon"></i>
+                </div>
+                <div>
+                    <div class="amin__box__title">تعداد بازدید کنندگان امروز </div>
+                    <div class="amin__box__title">140 نفر</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="admin__box admin__box-success">
+                <div>
+                    <i class="fa fa-users amin__box__icon"></i>
+                </div>
+                <div>
+                    <div class="amin__box__title">تعداد بازدید کنندگان امروز </div>
+                    <div class="amin__box__title">140 نفر</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="admin__box admin__box-warning">
+                <div>
+                    <i class="fa fa-users amin__box__icon"></i>
+                </div>
+                <div>
+                    <div class="amin__box__title">تعداد بازدید کنندگان امروز </div>
+                    <div class="amin__box__title">140 نفر</div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="admin__box admin__box-primary">
-            <div>
-                <i class="fa fa-users amin__box__icon"></i>
-            </div>
-            <div>
-                <div class="amin__box__title">تعداد بازدید کنندگان امروز </div>
-                <div class="amin__box__title">140 نفر</div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="admin__box admin__box-success">
-            <div>
-                <i class="fa fa-users amin__box__icon"></i>
-            </div>
-            <div>
-                <div class="amin__box__title">تعداد بازدید کنندگان امروز </div>
-                <div class="amin__box__title">140 نفر</div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="admin__box admin__box-warning">
-            <div>
-                <i class="fa fa-users amin__box__icon"></i>
-            </div>
-            <div>
-                <div class="amin__box__title">تعداد بازدید کنندگان امروز </div>
-                <div class="amin__box__title">140 نفر</div>
-            </div>
-        </div>
-    </div>
-</div>
+</fieldset>
 
-<div class="row grid">
-    <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
-        <div class="admin__panel">
-            <div class="admin__panel__title">
-                <i class="fa fa-users"></i>
-                <div>مدیریت کاربران</div>
-            </div>
-            <a class="admin__panel__link" href="/Admin/UserManagement/Create">اضافه نمودن کاربر جدید</a>
-            <a class="admin__panel__link" href="/Admin/UserManagement/Index">لیست کاربران</a>
-            @* <a class="admin__panel__link" href="/Admin/UserManagement/Permision">صفحه دسترسی ها</a> *@
-        </div>
-    </div>
+<fieldset>
+    <legend>کارتابل مدیریتی</legend>
 
-    <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
-        <div class="admin__panel">
-            <div class="admin__panel__title">
-                <i class="fa fa-folder-open"></i>
-                <div>مدیریت دسته بندی</div>
+    <div class="row grid">
+        <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
+            <div class="admin__panel">
+                <div class="admin__panel__title">
+                    <i class="fa fa-users"></i>
+                    <div>مدیریت کاربران</div>
+                </div>
+                <a class="admin__panel__link" href="/Admin/UserManagement/Create">اضافه نمودن کاربر جدید</a>
+                <a class="admin__panel__link" href="/Admin/UserManagement/Index">لیست کاربران</a>
+                @* <a class="admin__panel__link" href="/Admin/UserManagement/Permision">صفحه دسترسی ها</a> *@
             </div>
-            <a class="admin__panel__link" href="/Admin/CategoryManagement/Index">مدیریت دسته بندی</a>
         </div>
-    </div>
 
-    <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
-        <div class="admin__panel">
-            <div class="admin__panel__title">
-                <i class="fa fa-shopping-cart"></i>
-                <div>مدیریت محصولات</div>
+        <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
+            <div class="admin__panel">
+                <div class="admin__panel__title">
+                    <i class="fa fa-folder-open"></i>
+                    <div>مدیریت دسته بندی</div>
+                </div>
+                <a class="admin__panel__link" href="/Admin/CategoryManagement/Index">مدیریت دسته بندی</a>
             </div>
-            <a class="admin__panel__link" href="/Admin/Product/Index">نمایش محصولات</a>
-            <a class="admin__panel__link" href="/Admin/Product/Create">اضافه نمودن محصول جدید</a>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
+            <div class="admin__panel">
+                <div class="admin__panel__title">
+                    <i class="fa fa-shopping-cart"></i>
+                    <div>مدیریت محصولات</div>
+                </div>
+                <a class="admin__panel__link" href="/Admin/Product/Index">نمایش محصولات</a>
+                <a class="admin__panel__link" href="/Admin/Product/Create">اضافه نمودن محصول جدید</a>
+            </div>
         </div>
     </div>
-</div>
+</fieldset>

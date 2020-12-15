@@ -13,7 +13,7 @@ $(function () {
     "positionClass": "toast-bottom-left",
     "preventDuplicates": false,
     "onclick": null,
-    "timeOut": "7000",
+    "timeOut": "8000",
   }
 
 

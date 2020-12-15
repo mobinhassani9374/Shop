@@ -180,3 +180,23 @@ ul.tree-admin a {
     padding: 0;
     list-style: none;
 }
+
+.toast-message {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+fieldset {
+    direction: rtl;
+    padding: 0.35em 0.625em 0.75em;
+    margin: 0 2px;
+    border: 1px solid silver;
+    border-radius: 5px;
+}
+legend {
+    font-weight: 600;
+    font-size: 16px;
+    border: none !important;
+    margin: 0 !important;
+    width: auto;
+}
