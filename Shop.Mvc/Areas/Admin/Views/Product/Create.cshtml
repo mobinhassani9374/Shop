@@ -113,7 +113,7 @@
         data: {
             treeData: [],
             title: '',
-            id: '',
+            id: @(Model?.CategoryId) ? @(Model?.CategoryId) : ''
         },
         methods: {
             loadTree: function () {
@@ -122,6 +122,7 @@
                     url: '/Admin/CategoryManagement/Get',
                     success: function (result) {
                         me.treeData = result;
+                        me.title = findItemNested(me.treeData, me.id, "children").title;
                     }
                 })
             }
@@ -194,5 +195,13 @@
         while (pattern.test(x))
             x = x.replace(pattern, "$1,$2");
         return document.getElementById('price-seperator').innerText = x + ' تومان ';
+    }
+
+    function findItemNested(arr, itemId, nestingKey) {
+        return arr.reduce((a, item) => {
+            if (a) return a;
+            if (item.id === itemId) return item;
+            if (item[nestingKey]) return findItemNested(item[nestingKey], itemId, nestingKey)
+        }, null)
     }
 </script>

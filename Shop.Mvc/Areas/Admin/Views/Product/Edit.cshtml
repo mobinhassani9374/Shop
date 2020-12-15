@@ -40,7 +40,7 @@
             <p>اگر عکس محصول را دوباره انتخاب کنید جایگزین عکس قبلی می شود</p>
         </div>
         <div class="row">
-            <form method="post" enctype="multipart/form-data">
+            <form id="form" method="post" enctype="multipart/form-data">
                 <input type="hidden" asp-for="Id" />
                 <div class="col-md-12 col-xs-12">
                     <div class="form-group">
@@ -123,8 +123,7 @@
                 var me = this;
                 $.ajax({
                     url: '/Admin/CategoryManagement/Get',
-                    success: function (result) {
-                        debugger
+                    success: function (result) {                      
                         me.treeData = result;
                         me.title = findItemNested(me.treeData, me.id, "children").title;
                     }
