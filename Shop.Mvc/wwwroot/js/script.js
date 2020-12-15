@@ -95,55 +95,6 @@ $(function () {
     // Options will go here
   });
 
-  $('.slick__product').slick({
-    infinite: false,
-    centerMode: false,
-    centerPadding: '60px',
-    slidesToShow: 5,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    focusOnSelect: false,
-    accessibility: false,
-    responsive: [
-      {
-        breakpoint: 900,
-        settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: '60px',
-          slidesToShow: 3
-        }
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: '60px',
-          slidesToShow: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: '40px',
-          slidesToShow: 1
-        }
-      }
-    ]
-  });
-
-  $('[data-role="slick-left"]').on('click', function () {
-    $('.slick__product').slick('slickPrev');
-  })
-  
-  $('[data-role="slick-right"]').on('click', function () {
-    $('.slick__product').slick('slickNext');
-  })
-
   $('.offer__product').slick({
     infinite: false,
     centerMode: false,

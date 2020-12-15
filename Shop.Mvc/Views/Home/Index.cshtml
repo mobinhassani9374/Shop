@@ -180,7 +180,7 @@
 <!-- slick product  -->
 @foreach (var item in Model.ProductCategries)
 {
-    <div class="container" data-role="@(item.Id)">
+    <div class="container">
         <div class="row">
             <div class="slick">
                 <div class="slick__title">
@@ -188,10 +188,10 @@
                     <a href="#">نمایش بیشتر <i class="fa fa-plus"></i></a>
                 </div>
                 <div class="slick__arrow">
-                    <i data-role="slick-right" class="fa fa-angle-right slick__arrow__right"></i>
-                    <i data-role="slick-left" class="fa fa-angle-left slick__arrow__left"></i>
+                    <i data-role="slick-right_slick_@(item.Id)" class="fa fa-angle-right slick__arrow__right"></i>
+                    <i data-role="slick-left_slick_@(item.Id)" class="fa fa-angle-left slick__arrow__left"></i>
                 </div>
-                <div class="slick__product">
+                <div class="slick__product" id="slick_@(item.Id)">
                     @foreach (var product in item.Products)
                     {
                         <div class="slick__product__item">
@@ -227,7 +227,58 @@
 
 <script>
     $(function () {
+        $('[id*="slick"]').map(function(index,item){            
+            var id = $(item).attr('id');
+            console.log(id);
+                $('#'+id).slick({
+                    infinite: false,
+                    centerMode: false,
+                    centerPadding: '60px',
+                    slidesToShow: 5,
+                    arrows: false,
+                    autoplay: true,
+                    autoplaySpeed: 3000,
+                    focusOnSelect: false,
+                    accessibility: false,
+                    responsive: [
+                        {
+                            breakpoint: 900,
+                            settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '60px',
+                            slidesToShow: 3
+                            }
+                        },
+                        {
+                            breakpoint: 768,
+                            settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '60px',
+                            slidesToShow: 2
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '40px',
+                            slidesToShow: 1
+                            }
+                        }
+                ]
+            });
 
+            $('[data-role="slick-left_'+id+'"]').on('click', function () {
+                $('#'+id).slick('slickPrev');
+            })
+            
+            $('[data-role="slick-right_'+id+'"]').on('click', function () {
+                $('#'+id).slick('slickNext');
+            })        
+        })
     })
 </script>
 
