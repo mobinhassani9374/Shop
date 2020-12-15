@@ -71,7 +71,6 @@
                     {
                         foreach (var item in Model.Data.Data)
                         {
-
                             <tr>
                                 <td>
                                     <img src="~/Files/Images/@item.PrimaryImage" class="img-responsive img-thumbnail"
@@ -80,10 +79,15 @@
                                 <td>@item.Title.ToPersianNumbers()</td>
                                 <td>@item.Price.ToString("#,##").ToPersianNumbers() تومان</td>
                                 <td>@item.Count.ToPersianNumbers()</td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@(item.Id)" class="btn btn-primary">ویرایش</a>
-                                    <a data-role="confirm" asp-action="Delete" asp-route-id="@(item.Id)"
-                                        class="btn btn-danger">حذف</a>
+                                <td>                                    
+                                    <a asp-action="Edit" asp-route-id="@(item.Id)"
+                                        class="btn btn-primary ladda-button" data-style="zoom-in">
+                                        <span class="ladda-label">ویرایش</span>
+                                    </a>    
+                                    <a asp-action="Delete" data-role="confirm" asp-route-id="@(item.Id)"
+                                        class="btn btn-danger" data-style="zoom-in">
+                                        <span class="ladda-label">حذف </span>
+                                    </a>
                                 </td>
                             </tr>
                         }
