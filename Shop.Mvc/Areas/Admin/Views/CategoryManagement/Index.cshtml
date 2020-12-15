@@ -43,11 +43,13 @@
         <div class="row">
             <div class="col-md-12 col-xs-12">
                 <a class="btn btn-warning" v-on:click="addMain()" style="margin-bottom:0px">اضافه نمودن لایه اصلی</a>
-                <hr style="clear:both" />
-                <ul class="tree-admin">
-                    <item class="item" v-for="item in treeData" :model="item">
-                    </item>
-                </ul>
+                <fieldset style="margin-top:10px">
+                    <legend>دسته بندی ها </legend>
+                    <ul class="tree-admin">
+                        <item class="item" v-for="item in treeData" :model="item">
+                        </item>
+                    </ul>
+                </fieldset>
             </div>
         </div>
     </div>
@@ -189,7 +191,7 @@
                     keyboard: false
                 });
             },
-            deleteCategory: function (model) {               
+            deleteCategory: function (model) {
                 if (confirm('آیا مطمئن هستید ؟؟')) {
                     app.loading = true;
                     $.ajax({
@@ -200,7 +202,7 @@
                             toastr.info('عملیات با موفقیت انجام شد ');
                             app.loading = false;
                         },
-                        error : function(error) {
+                        error: function (error) {
                             toastr.error('سرور با خطا مواجه شد');
                             app.loading = false;
                         }
