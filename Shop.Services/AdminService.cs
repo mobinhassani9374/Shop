@@ -207,7 +207,10 @@ namespace Shop.Services
 
             if (serviceResult.IsSuccess)
             {
-                var entity = _dbContext.Products.Find(dto.Id);
+                var entity = _dbContext
+                    .Products
+                    .AsNoTracking()
+                    .FirstOrDefault(c => c.Id == dto.Id);
 
                 if (entity == null)
                     serviceResult.AddError("محصولی یافت نشد");
@@ -247,16 +250,9 @@ namespace Shop.Services
             {
                 DeleteFile(entity.PrimaryImage, FileType.ProductImage);
 
-                _dbContext.Products.Remove(entity);
+                Remove(entity);
 
-                if (_dbContext.SaveChanges() > 0)
-                {
-
-                }
-                else
-                {
-                    serviceResult.AddError("در انجام عملیات خطایی رخ داد");
-                }
+                serviceResult = Save("یک محصول با موفقیت حذف شد");
             }
 
             return serviceResult;

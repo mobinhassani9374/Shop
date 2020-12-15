@@ -62,7 +62,12 @@ namespace Shop.Services
         }
         protected T Update<T>(T entity)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.Update(entity);
+            return entity;
+        }
+        protected T Remove<T>(T entity)
+        {
+            _dbContext.Remove(entity);
             return entity;
         }
         protected ServiceResult<string> Upload(IFormFile imageFile, FileType fileType)
