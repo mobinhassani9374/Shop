@@ -207,10 +207,11 @@
                                             <span class="badge">15 %</span>
                                             <del>@product.Price</del>
                                         </div> *@
-                                    <div>
-                                        <span style="margin-left: 10px;">تومان</span><span>
+                                    <div class="price">                                        
+                                        <span data-role="seperator">
                                             @product.Price
                                         </span>
+                                        <span style="margin-right: 8px;">تومان</span>
                                     </div>
                                 </div>
                                 <div class="slick__product__item__btn">
@@ -228,8 +229,7 @@
 <script>
     $(function () {
         $('[id*="slick"]').map(function(index,item){            
-            var id = $(item).attr('id');
-            console.log(id);
+            var id = $(item).attr('id');        
                 $('#'+id).slick({
                     infinite: false,
                     centerMode: false,
@@ -269,7 +269,7 @@
                             }
                         }
                 ]
-            });
+            })
 
             $('[data-role="slick-left_'+id+'"]').on('click', function () {
                 $('#'+id).slick('slickPrev');
@@ -279,7 +279,7 @@
                 $('#'+id).slick('slickNext');
             })        
         })
+
+        $('.slick__product__item__title').matchHeight();
     })
 </script>
-
-

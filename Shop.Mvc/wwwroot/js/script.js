@@ -145,4 +145,12 @@ $(function () {
   $('[data-role="scroll-top"]').on('click', function () {
     $("html, body").animate({ scrollTop: 0 }, "slow");
   })
+
+  $('[data-role="seperator"]').map(function (index, item) {
+    var value = Number($(item).html());
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(value))
+      value = value.toString().replace(pattern, "$1,$2");
+    $(item).html(value);
+  })
 })

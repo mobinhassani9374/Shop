@@ -200,3 +200,11 @@ legend {
     margin: 0 !important;
     width: auto;
 }
+
+
+.price {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row-reverse;
+}
