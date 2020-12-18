@@ -22,9 +22,6 @@
             <form id="form" method="post" enctype="multipart/form-data" asp-action="AddNewImage">
                 <input type="hidden" value="@ViewBag.Id" name="id" />
                 @Html.AntiForgeryToken()
-
-
-
                 <div class="col-md-12 col-xs-12">
                     <div class="form-group">
                         <label class="required">عکس محصول را وارد کنید </label>
@@ -39,18 +36,18 @@
                 </div>
             </form>
         </div>
-        @if (Model.Count > 0)
-        {
-            foreach (var item in Model)
+        <hr />
+        <div class="row">
+            @if (Model.Count > 0)
             {
-                <div class="row">
-                    <img src="~/Files/Images/@item" style="width:50px;height:50px;"/>
-                    <p><a href="#">حذف عکس</a></p>
-                </div>
+                foreach (var item in Model)
+                {
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="~/Files/Images/@item" class="im-responsive img-thumnail" />
+                        <p><a href="#" class="btn btn-danger btn-block">حذف عکس</a></p>
+                    </div>
+                }
             }
-
-        }
-
+        </div>
     </div>
 </div>
-
