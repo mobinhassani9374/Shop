@@ -307,5 +307,26 @@ namespace Shop.Services
             }
             return serviceResult;
         }
+        public ServiceResult DeleteImageForProduct(int id, Guid imageGuid)
+        {
+            var serviceResult = new ServiceResult(true);
+            var entity = _dbContext.Products.Find(id);
+            if (entity == null)
+                serviceResult.AddError("محصولی یافت نشد");
+            else
+            {
+                var imageList = JsonConvert.DeserializeObject<List<string>>(entity.ImagesJson);
+                if (imageList.Any(c => c == imageList.ToString()))
+                {
+                    imageList.Remove(imageList.ToString());
+                    DeleteFile(imageList.ToString(), FileType.ProductImage);
+                    entity.ImagesJson = JsonConvert.SerializeObject(imageList);
+                    Update(entity);
+                    serviceResult = Save("");
+                }
+                else serviceResult.AddError("عکسی یافت نشد");
+            }
+            return serviceResult;
+        }
     }
 }
