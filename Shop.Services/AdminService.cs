@@ -307,7 +307,7 @@ namespace Shop.Services
             }
             return serviceResult;
         }
-        public ServiceResult DeleteImageForProduct(int id, Guid imageGuid)
+        public ServiceResult DeleteImageForProduct(int id, string imageGuid)
         {
             var serviceResult = new ServiceResult(true);
             var entity = _dbContext.Products.Find(id);
@@ -316,13 +316,14 @@ namespace Shop.Services
             else
             {
                 var imageList = JsonConvert.DeserializeObject<List<string>>(entity.ImagesJson);
-                if (imageList.Any(c => c == imageList.ToString()))
+                if (imageList.Any(c => c == imageGuid))
                 {
-                    imageList.Remove(imageList.ToString());
-                    DeleteFile(imageList.ToString(), FileType.ProductImage);
+                    imageList.Remove(imageGuid);
                     entity.ImagesJson = JsonConvert.SerializeObject(imageList);
                     Update(entity);
-                    serviceResult = Save("");
+                    serviceResult = Save("یک عکس با موفقیت حذف شد");
+                    if (serviceResult.IsSuccess)
+                        DeleteFile(imageList.ToString(), FileType.ProductImage);
                 }
                 else serviceResult.AddError("عکسی یافت نشد");
             }

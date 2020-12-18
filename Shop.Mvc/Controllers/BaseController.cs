@@ -89,7 +89,7 @@ namespace Shop.Mvc.Controllers
         protected IActionResult View_Get(ServiceResult serviceResult, string redirectToAction)
         {
             if (serviceResult.IsSuccess)
-                Swal(true, "عملیات با موفقت انجام شد");
+                Swal(true, serviceResult.Message);
             else Swal(false, serviceResult.Errors.FirstOrDefault());
 
             return RedirectToAction(redirectToAction);
