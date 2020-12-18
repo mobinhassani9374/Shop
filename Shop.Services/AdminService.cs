@@ -293,5 +293,19 @@ namespace Shop.Services
             }
             return serviceResult;
         }
+        public ServiceResult<List<string>> GetAllImagesForProduct(int id)
+        {
+            var serviceResult = new ServiceResult<List<string>>(true);
+            var entity = _dbContext.Products.Find(id);
+            if (entity == null)
+                serviceResult.AddError("محصولی یافت نشد");
+            else
+            {
+                if (!entity.ImagesJson.IsNullOrEmpty())
+                    serviceResult.Data = JsonConvert.DeserializeObject<List<string>>(entity.ImagesJson);
+                else serviceResult.Data = new List<string>();
+            }
+            return serviceResult;
+        }
     }
 }

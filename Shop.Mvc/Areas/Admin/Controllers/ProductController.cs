@@ -59,7 +59,8 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         public IActionResult Images(int id)
         {
             ViewBag.Id = id;
-            return View();
+            var serviceResult = _adminService.GetAllImagesForProduct(id);
+            return View_Get(serviceResult.Data, nameof(Index));
         }
 
         [HttpPost]
@@ -67,7 +68,7 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         public IActionResult AddNewImage(int id, IFormFile image)
         {
             var serviceResult = _adminService.AddNewImage(id, image);
-            return View_Get(serviceResult, nameof(Index));
+            return View_Get(serviceResult, $"/Admin/Product/{nameof(Images)}/{id}");
         }
     }
 }
