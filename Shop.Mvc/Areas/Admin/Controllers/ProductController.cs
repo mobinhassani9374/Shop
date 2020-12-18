@@ -68,7 +68,7 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         public IActionResult AddNewImage(int id, IFormFile image)
         {
             var serviceResult = _adminService.AddNewImage(id, image);
-            return View_Get(serviceResult, $"/Admin/Product/{nameof(Images)}/{id}");
+            return View_Get(serviceResult, $"{nameof(Images)}/{id}");
         }
     }
 }
