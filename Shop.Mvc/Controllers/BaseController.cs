@@ -41,7 +41,7 @@ namespace Shop.Mvc.Controllers
             }
             else
             {
-                Swal(true, "عملیات با موفقیت صورت گرفت");
+                Swal(true, serviceResult.Message);
                 return RedirectToAction(this.ControllerContext.ActionDescriptor.ActionName);
             }
         }
