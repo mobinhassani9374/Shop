@@ -79,13 +79,17 @@
                                 <td>@item.Title.ToPersianNumbers()</td>
                                 <td>@item.Price.ToString("#,##").ToPersianNumbers() تومان</td>
                                 <td>@item.Count.ToPersianNumbers()</td>
-                                <td>                                    
+                                <td>
+                                    <a asp-action="Images" asp-route-id="@(item.Id)"
+                                       class="btn btn-success ladda-button" data-style="zoom-in">
+                                        <span class="ladda-label">عکس های بیشتر</span>
+                                    </a>
                                     <a asp-action="Edit" asp-route-id="@(item.Id)"
-                                        class="btn btn-primary ladda-button" data-style="zoom-in">
+                                       class="btn btn-primary ladda-button" data-style="zoom-in">
                                         <span class="ladda-label">ویرایش</span>
-                                    </a>    
+                                    </a>
                                     <a asp-action="Delete" data-role="confirm" asp-route-id="@(item.Id)"
-                                        class="btn btn-danger ladda-button" data-style="zoom-in">
+                                       class="btn btn-danger ladda-button" data-style="zoom-in">
                                         <span class="ladda-label">حذف </span>
                                     </a>
                                 </td>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Shop.Mvc.Mapping;
 using Shop.Mvc.Models.Product;
 using Shop.Services;
@@ -52,6 +53,20 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         public IActionResult Delete(int id)
         {
             var serviceResult = _adminService.DeleteProduct(id);
+            return View_Get(serviceResult, nameof(Index));
+        }
+
+        public IActionResult Images(int id)
+        {
+            ViewBag.Id = id;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        public IActionResult AddNewImage(int id, IFormFile image)
+        {
+            var serviceResult = _adminService.AddNewImage(id, image);
             return View_Get(serviceResult, nameof(Index));
         }
     }

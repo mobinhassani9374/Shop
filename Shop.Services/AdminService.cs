@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Category;
@@ -253,6 +254,43 @@ namespace Shop.Services
                 serviceResult = Save("یک محصول با موفقیت حذف شد");
             }
 
+            return serviceResult;
+        }
+        public ServiceResult AddNewImage(int productId, IFormFile image)
+        {
+            var serviceResult = new ServiceResult(true);
+
+            if (image == null)
+                serviceResult.AddError("عکس نمی تواند فاقد مقدار باشد");
+            else
+            {
+                var entity = _dbContext
+                    .Products
+                    .AsNoTracking()
+                    .FirstOrDefault(c => c.Id == productId);
+
+                if (entity == null)
+                    serviceResult.AddError("محصولی یافت نشد");
+
+                else
+                {
+                    var uploadService = Upload(image, FileType.ProductImage, 500 * 1024);
+
+                    if (uploadService.IsSuccess)
+                    {
+                        var imageList = new List<string>();
+                        if (!entity.ImagesJson.IsNullOrEmpty())
+                            imageList = JsonConvert.DeserializeObject<List<string>>(entity.ImagesJson);
+                        imageList.Add(uploadService.Data);
+                        entity.ImagesJson = JsonConvert.SerializeObject(imageList);
+                        Update(entity);
+                        serviceResult = Save("یک عکس با موفقیت اضافه شد");
+                        if (!serviceResult.IsSuccess)
+                            DeleteFile(entity.ImagesJson, FileType.ProductImage);
+                    }
+                    else serviceResult.AddError(uploadService.Errors.FirstOrDefault());
+                }
+            }
             return serviceResult;
         }
     }

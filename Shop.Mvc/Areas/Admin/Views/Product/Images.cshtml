@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "عکس های بیشتر از محصول - پنل مدیریتی ایمن فروش";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
+        <li class="breadcrumb-item"><a href="/Admin/Product/Index">نمایش محصولات</a></li>
+        <li class="breadcrumb-item active" aria-current="page">عکس بیشتر</li>
+    </ol>
+</nav>
+
+<div class="panel panel-primary" id="app">
+    <div class="panel-heading">عکس بیشتر</div>
+    <div class="panel-body">
+        <div class="alert alert-warning">
+            <p>عکس برای محصول نباید بیش از 500 کیلو بایت باشد</p>
+        </div>
+        <div class="row">
+            <form id="form" method="post" enctype="multipart/form-data" asp-action="AddNewImage">
+                <input type="hidden" value="@ViewBag.Id" name="id"/>
+                @Html.AntiForgeryToken()
+
+
+
+                <div class="col-md-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="required">عکس محصول را وارد کنید </label>
+                        <input type="file" required name="image" />
+                    </div>
+                </div>
+
+                <div class="col-xs-12">
+                    <button type="submit" class="ladda-button btn btn-primary" data-style="zoom-in">
+                        <span class="ladda-label">ثبت اطلاعات</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
