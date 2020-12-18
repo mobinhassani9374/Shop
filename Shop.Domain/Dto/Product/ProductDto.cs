@@ -13,6 +13,7 @@ namespace Shop.Domain.Dto.Product
         public long Price { get; set; }
         public int Count { get; set; }
         public string PrimaryImage { get; set; }
+        public List<string> MoreImages { get; set; }
         public int CategoryId { get; set; }
         public CategoryDto Category { get; set; }
     }

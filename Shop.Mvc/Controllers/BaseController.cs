@@ -81,7 +81,11 @@ namespace Shop.Mvc.Controllers
             if (model == null)
             {
                 Swal(false, "شناسه ارسالی نامعتبر است");
-                return RedirectToAction(redirectToAction);
+
+                if (redirectToAction == "/")
+                    return RedirectPermanent(redirectToAction);
+
+                else return RedirectToAction(redirectToAction);
             }
 
             return View(model);
@@ -92,6 +96,8 @@ namespace Shop.Mvc.Controllers
                 Swal(true, serviceResult.Message);
             else Swal(false, serviceResult.Errors.FirstOrDefault());
 
+            if (redirectToAction == "/")
+                return RedirectPermanent(redirectToAction);
             return RedirectToAction(redirectToAction);
         }
     }

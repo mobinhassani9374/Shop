@@ -195,7 +195,7 @@
                     @foreach (var product in item.Products)
                     {
                         <div class="slick__product__item">
-                            <a href="#">
+                            <a asp-action="Detail" asp-controller="Product" asp-route-id="@(product.Id)">
                                 <div class="slick__product__item__img">
                                     <img alt="ایمن فروش" src="/Files/Images/@product.PrimaryImage" class="img-responsive" />
                                 </div>

@@ -15,6 +15,8 @@ using DNTPersianUtils.Core;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Shop.Domain.Dto.Product;
+using Newtonsoft.Json;
 
 namespace Shop.Services
 {
@@ -54,6 +56,21 @@ namespace Shop.Services
                 result.Message = string.IsNullOrEmpty(succesMessage) ? "عملیات با موفقیت صورت گرفت" : succesMessage;
             else result.AddError("در انجام عملیات خطایی رخ داد");
             return result;
+        }
+        public ServiceResult<ProductDto> GetProductDetail(int id)
+        {
+            var serviceResult = new ServiceResult<ProductDto>(true);
+            var entity = _dbContext.Products.Find(id);
+            if (entity == null)
+                serviceResult.AddError("محصولی یافت نشد");
+            else
+            {
+                serviceResult.Data = entity.ToDto();
+                serviceResult.Data.MoreImages = new List<string>();
+                if (!entity.ImagesJson.IsNullOrEmpty())
+                    serviceResult.Data.MoreImages = JsonConvert.DeserializeObject<List<string>>(entity.ImagesJson);
+            }
+            return serviceResult;
         }
         protected T Insert<T>(T entity)
         {
