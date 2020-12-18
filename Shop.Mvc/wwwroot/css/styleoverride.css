@@ -201,10 +201,22 @@ legend {
     width: auto;
 }
 
-
 .price {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     flex-direction: row-reverse;
+}
+
+.zoom {
+    display: inline-block;
+    position: relative;
+}
+
+.zoom img {
+    display: block;
+}
+
+.zoom img::selection {
+    background-color: transparent;
 }
