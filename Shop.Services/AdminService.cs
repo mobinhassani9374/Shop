@@ -138,6 +138,11 @@ namespace Shop.Services
                 {
                     if (_dbContext.Products.Any(c => c.CategoryId == id))
                         serviceResult.AddError("امکان حذف دسته بندی وجود ندارد زیرا دارای چندین محصول می باشد");
+                    else
+                    {
+                        Remove(entity);
+                        serviceResult = Save("دسته بندی با موفقیت حذف شد");
+                    }
                 }
             }
 
