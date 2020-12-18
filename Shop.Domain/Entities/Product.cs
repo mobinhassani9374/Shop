@@ -12,6 +12,7 @@ namespace Shop.Domain.Entities
         public long Price { get; set; }
         public int Count { get; set; }
         public string PrimaryImage { get; set; }
+        public string ImagesJson { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
     }
