@@ -220,3 +220,7 @@ legend {
 .zoom img::selection {
     background-color: transparent;
 }
+
+.scroll-top {
+    border-top: 3px solid #232f3e;
+}
