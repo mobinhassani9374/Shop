@@ -29,19 +29,22 @@
                 <form method="post">
                     @Html.AntiForgeryToken()
                     <div class="form-group">
-                        <label> شماره همراه خود را وارد کنید</label>
-                        <input required="" type="text" class="form-control" placeholder="نام کاربری یا شماره همراه"
+                        <label class="required"> شماره همراه خود را وارد کنید</label>
+                        <input required="" type="text" class="form-control" placeholder="شماره همراه"
                                id="PhoneNumber"
                                asp-for="PhoneNumber">
                     </div>
                     <div class="form-group">
-                        <label>رمز عبور خود را وارد کنید</label>
+                        <label class="required">رمز عبور خود را وارد کنید</label>
                         <input required="" type="password" class="form-control" placeholder="رمز عبور" id="Password" asp-for="Password">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="ladda-button btn btn-primary btn-block" data-style="zoom-in">
                             <span class="ladda-label">ورود به پنل</span>
                         </button>
+                    </div>
+                    <div class="form-group">
+                        <a style="font-size: 16px;" href="/Account/Register">هنوز ثبت نام نکرده ام </a>
                     </div>
                 </form>
             </div>
