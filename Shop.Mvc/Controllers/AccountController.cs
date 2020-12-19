@@ -69,6 +69,11 @@ namespace Shop.Mvc.Controllers
             return View(model);
         }
 
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         /// sync
         public IActionResult Sync()
         {
