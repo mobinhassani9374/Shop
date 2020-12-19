@@ -42,9 +42,15 @@
             {
                 foreach (var item in Model)
                 {
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <img src="~/Files/Images/@item" class="img-responsive img-thumnail" />
-                        <p style=""><a asp-action="DeleteImage" asp-route-id="@ViewBag.Id" asp-route-imageGuid="@(item)" class="btn btn-danger btn-block">حذف عکس</a></p>
+                    <div class="col-md-3 col-sm-6 col-xs-12 grid-item">
+                        <div class="admin__panel" style="border-top: 0;">
+                            <div>
+                                <img src="~/Files/Images/@item" class="img-responsive img-thumnail"
+                                    style="height:150px;margin:auto" />
+                            </div>
+                            <a asp-action="DeleteImage" asp-route-id="@ViewBag.Id" asp-route-imageGuid="@(item)"
+                                class="btn btn-danger btn-block">حذف عکس</a>
+                        </div>
                     </div>
                 }
             }
