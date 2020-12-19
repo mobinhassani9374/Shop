@@ -12,9 +12,9 @@
       {{model.title}}
 
       <span class="action">
-        <a href="#" class="text-primary" v-on:click="edit(model)" style="margin-right:20px">ویرایش | </a>
-        <a href="#" class="text-warning" v-on:click="add(model)">اضافه نمودن زیر دسته | </a>        
-        <a href="#" class="text-danger" v-on:click="deleteCategory(model)">حذف</a>
+        <a class="text-primary" v-on:click="edit(model)" style="margin-right:20px;cursor:pointer">ویرایش | </a>
+        <a class="text-warning" v-on:click="add(model)" style="cursor:pointer">اضافه نمودن زیر دسته | </a>        
+        <a class="text-danger" v-on:click="deleteCategory(model)" style="cursor:pointer">حذف</a>
       </span>
     </div>
     <ul v-show="open" v-if="isFolder">

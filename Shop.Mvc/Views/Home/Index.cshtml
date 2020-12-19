@@ -215,7 +215,7 @@
                                     </div>
                                 </div>
                                 <div class="slick__product__item__btn">
-                                    <a v-on:click="addCart" class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                                    <a asp-action="Detail" asp-controller="Product" asp-route-id="@(product.Id)" class="btn btn-danger btn-block">افزودن به سبد خرید</a>
                                 </div>
                             </a>
                         </div>

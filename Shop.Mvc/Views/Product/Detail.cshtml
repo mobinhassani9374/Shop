@@ -1,17 +1,137 @@
 ﻿@model Shop.Mvc.Models.Product.ProductViewModel
 @{
-    ViewData["Title"] = "Detail";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = Model.Title + "- ایمن فروش";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detail</h2>
-<p>قیمت : @Model.Price</p>
-<p>عنوان : @Model.Title</p>
-<p>توضیحات : @Model.Description</p>
-<p>عکس  : <img src="~/Files/Images/@(Model.PrimaryImage)" style="width:50px;height:50px;" /></p>
-<p>عکس های بیشتر : </p>
-@foreach (var item in Model.MoreImages)
-{
-    <p><img src="~/Files/Images/@(item)" style="width:50px;height:50px;" /></p>
-}
+<script src="~/js/jquery.zoom.js"></script>
 
+<div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">ایمن فروش</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.Title</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="detail">
+            <div class="col-md-4 col-xs-12">
+                <div class="detail__img">
+                    <span class='zoom' id='zoom'>
+                        <img src="~/Files/Images/@(Model.PrimaryImage)" alt="@Model.Title - ایمن فروش"
+                            class="img-responsive" />
+                    </span>
+                </div>
+                <div class="detail__img-detail">
+                    <div class="row">
+                        @foreach (var item in Model.MoreImages)
+                        {
+                            <div class="col-xs-3">
+                                <a data-fancybox="gallery" href="~/Files/Images/@(item)">
+                                    <img src="~/Files/Images/@(item)" alt="@Model.Title - ایمن فروش"
+                                        class="img-responsive img-thumbnail" />
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-xs-12">
+                <h1 class="detail__title">@Model.Title</h1>
+                @* <div>
+                    <span class="badge">15 %</span>
+                    <del>4,284,000</del>
+                    </div> *@
+                <div class="detail__desc">
+                    دسته بندی : دوربین های مدار بسته
+                </div>
+                <div class="detail__desc">
+                    <div class="form-group">
+                        <label>تعداد را مشخص کنید : </label>
+                        <input class="form-control" style="width:200px" type="number" value="1" min="1" max="10" />
+                    </div>
+                </div>
+                <div class="detail__price price">
+                    <span data-role="seperator">@Model.Price</span>
+                    <span style="margin-right:10px">تومان</span>
+                </div>
+                <div>
+                    <a class="btn btn-danger">افزودن به سبد خرید</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="detail-tab">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#desc">بررسی اجمالی</a></li>
+                <li><a data-toggle="tab" href="#comments">نظرات کاربران</a></li>
+                <li><a data-toggle="tab" href="#addcomment">افزودن کاربر</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="desc" class="tab-pane fade in active">
+                    @Html.Raw(Model.Description)
+                </div>
+                <div id="comments" class="tab-pane fade">
+                    <div class="detail-tap__comment">
+                        <img src="~/img/user.png" />
+                        <div>
+                            <p class="text-primary">مهدی حسنی</p>
+                            <p>خیلی محصول خوبی بود واقعا راضی هستیم ممنون از سایت فروشگاهی خوبتون //</p>
+                        </div>
+                    </div>
+                    <div class="detail-tap__comment">
+                        <img src="~/img/user.png" />
+                        <div>
+                            <p class="text-primary">مهدی حسنی</p>
+                            <p>خیلی محصول خوبی بود واقعا راضی هستیم ممنون از سایت فروشگاهی خوبتون //</p>
+                        </div>
+                    </div>
+                    <div class="detail-tap__comment">
+                        <img src="~/img/user.png" />
+                        <div>
+                            <p class="text-primary">مهدی حسنی</p>
+                            <p>خیلی محصول خوبی بود واقعا راضی هستیم ممنون از سایت فروشگاهی خوبتون //</p>
+                        </div>
+                    </div>
+                    <div class="detail-tap__comment">
+                        <img src="~/img/user.png" />
+                        <div>
+                            <p class="text-primary">مهدی حسنی</p>
+                            <p>خیلی محصول خوبی بود واقعا راضی هستیم ممنون از سایت فروشگاهی خوبتون //</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="addcomment" class="tab-pane fade">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="alert alert-danger">برای ثبت نظر باید وارد سایت شوید</div>
+                            <div class="form-group">
+                                <label>لطفا نظر خود را وارد کنید </label>
+                                <textarea class="form-control" rows="5" placeholder="نظر خود را وارد کنید"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-danger btn-block">ثبت نظر </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#zoom').zoom();
+    });
+</script>
