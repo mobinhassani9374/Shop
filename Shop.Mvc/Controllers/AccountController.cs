@@ -34,13 +34,11 @@ namespace Shop.Mvc.Controllers
             _userService = userService;
         }
 
-        [Route("login")]
         public IActionResult Login()
         {
             return View();
         }
 
-        [Route("login")]
         [HttpPost]
         [ValidateAntiForgeryToken()]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -97,6 +95,13 @@ namespace Shop.Mvc.Controllers
 
             }
             return View_Post(serviceResult, model);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            if (User.Identity.IsAuthenticated)
+                await _signInManager.SignOutAsync();
+            return RedirectPermanent("/");
         }
 
         /// sync

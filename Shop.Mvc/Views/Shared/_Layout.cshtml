@@ -85,16 +85,28 @@
                         <li><a href="#">تماس با ما</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a asp-action="Register" asp-controller="Account">
-                                <span class="glyphicon glyphicon-user"></span> ثبت نام
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-action="Login" asp-controller="Account">
-                                <span class="glyphicon glyphicon-log-in"></span> ورود
-                            </a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <a asp-action="Logout" asp-controller="Account">
+                                    <span class="glyphicon glyphicon-log-out"></span> خروج
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-action="Register" asp-controller="Account">
+                                    <span class="glyphicon glyphicon-user"></span> ثبت نام
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-action="Login" asp-controller="Account">
+                                    <span class="glyphicon glyphicon-log-in"></span> ورود
+                                </a>
+                            </li>
+                        }
+
                     </ul>
                 </div>
             </div>
