@@ -36,6 +36,11 @@ namespace Shop.Mvc.Controllers
 
         public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                Swal(false, "نمی توانید به صفحه ورود دسترسی داشته باشید");
+                return RedirectPermanent("/");
+            }
             return View();
         }
 
@@ -74,6 +79,12 @@ namespace Shop.Mvc.Controllers
 
         public IActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                Swal(false, "نمی توانید به صفحه ثبت نام دسترسی داشته باشید");
+                return RedirectPermanent("/");
+            }
+
             return View();
         }
 
