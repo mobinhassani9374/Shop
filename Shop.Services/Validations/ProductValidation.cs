@@ -33,6 +33,15 @@ namespace Shop.Services.Validations
 
                     if (attribute.AttributeType == typeof(MaxLengthAttribute))
                         MaxLengthAttribute(serviceResult, value, property, attribute);
+
+                    if (attribute.AttributeType == typeof(MinLengthAttribute))
+                        MinLengthAttribute(serviceResult, value, property, attribute);
+
+                    if (attribute.AttributeType == typeof(CompareAttribute))
+                        CompareAttribute(serviceResult, value, property, attribute, properties, dto);
+
+                    if (attribute.AttributeType == typeof(PhoneAttribute))
+                        Phone(serviceResult, value, attribute);
                 }
             }
 
@@ -83,6 +92,45 @@ namespace Shop.Services.Validations
 
             if (!string.IsNullOrEmpty(errorMessage))
                 serviceResult.AddError(errorMessage);
+
+            return serviceResult;
+        }
+
+        private static ServiceResult MinLengthAttribute(ServiceResult serviceResult, object value, PropertyInfo property, CustomAttributeData attribute)
+        {
+            int length = (int)attribute.ConstructorArguments.Select(c => c.Value).FirstOrDefault();
+            var errorMessage = "";
+
+            if (property.PropertyType == typeof(String))
+            {
+                if (value != null && value.ToString().Length < length)
+                    errorMessage = attribute.NamedArguments.Select(c => c.TypedValue.Value.ToString()).FirstOrDefault();
+            }
+
+            errorMessage = errorMessage.Replace("@", length.ToPersianNumbers());
+
+            if (!string.IsNullOrEmpty(errorMessage))
+                serviceResult.AddError(errorMessage);
+
+            return serviceResult;
+        }
+
+        private static ServiceResult CompareAttribute(ServiceResult serviceResult, object value, PropertyInfo property, CustomAttributeData attribute, List<PropertyInfo> properties, object source)
+        {
+            var comparePropertyName = attribute.ConstructorArguments.Select(c => c.Value).FirstOrDefault();
+            var compareProperty = properties.Where(c => c.Name == (string)comparePropertyName).FirstOrDefault();
+            var compareValue = compareProperty.GetValue(source)?.ToString();
+
+            if (compareValue != value.ToString())
+                serviceResult.AddError(attribute.NamedArguments.Select(c => c.TypedValue.Value.ToString()).FirstOrDefault());
+
+            return serviceResult;
+        }
+
+        private static ServiceResult Phone(ServiceResult serviceResult, object value, CustomAttributeData attribute)
+        {
+            if (!value.ToString().IsValidIranianMobileNumber())
+                serviceResult.AddError(attribute.NamedArguments.Select(c => c.TypedValue.Value.ToString()).FirstOrDefault());
 
             return serviceResult;
         }

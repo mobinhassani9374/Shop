@@ -1,4 +1,5 @@
 ﻿using Shop.Database.Identity.Entities;
+using Shop.Domain.Dto.Account;
 using Shop.Domain.Dto.Pagination;
 using Shop.Domain.Dto.User;
 using System;
@@ -38,6 +39,16 @@ namespace Shop.Services.Mapping
                 RegisterDate = source.RegisterDate,
                 Type = source.Type,
                 PhoneNumber = source.PhoneNumber
+            };
+        }
+
+        public static User ToEntity(this RegisterDto source)
+        {
+            return new User
+            {
+                FullName = source.FullName,
+                PhoneNumber = source.PhoneNumber,
+                UserName = source.PhoneNumber
             };
         }
     }

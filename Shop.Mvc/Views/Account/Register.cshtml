@@ -27,6 +27,13 @@
                 </div>
 
                 <form method="post">
+
+                    <div class="col-md-12 col-xs-12">
+                        <div class="form-group">
+                            @Html.Partial("_ServiceResult")
+                        </div>
+                    </div>
+
                     @Html.AntiForgeryToken()
                     <div class="form-group">
                         <label> شماره همراه خود را وارد کنید</label>

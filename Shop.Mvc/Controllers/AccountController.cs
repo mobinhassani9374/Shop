@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
+using Shop.Mvc.Mapping;
 using Shop.Mvc.Models.Account;
+using Shop.Services;
 using Shop.Utility;
 using System;
 using System.Collections.Generic;
@@ -17,16 +19,19 @@ namespace Shop.Mvc.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<User> _signInManager;
         private readonly AppDbContext _dbContext;
+        private readonly UserService _userService;
 
         public AccountController(UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager,
             SignInManager<User> signInManager,
-            AppDbContext dbContext)
+            AppDbContext dbContext,
+            UserService userService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
             _dbContext = dbContext;
+            _userService = userService;
         }
 
         [Route("login")]
@@ -72,6 +77,14 @@ namespace Shop.Mvc.Controllers
         public IActionResult Register()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            var serviceResult = await _userService.Register(model.ToDto());
+            return View_Post(serviceResult, model);
         }
 
         /// sync
