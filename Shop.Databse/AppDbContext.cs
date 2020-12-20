@@ -16,6 +16,7 @@ namespace Shop.Database
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Cart> Carts { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -52,6 +53,16 @@ namespace Shop.Database
             product.HasOne(c => c.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(c => c.CategoryId)
+                .OnDelete(DeleteBehavior
+                .Cascade);
+
+            var cart = builder.Entity<Cart>();
+
+            cart.HasKey(c => c.Id);
+
+            cart.HasOne(c => c.Product)
+                .WithMany(c => c.Carts)
+                .HasForeignKey(c => c.ProductId)
                 .OnDelete(DeleteBehavior
                 .Cascade);
         }
