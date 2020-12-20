@@ -87,6 +87,14 @@
                     <ul class="nav navbar-nav navbar-right">
                         @if (User.Identity.IsAuthenticated)
                         {
+                            if (User.IsInRole("Admin"))
+                            {
+                                <li>
+                                    <a href="/admin">
+                                        <span class="glyphicon glyphicon-log-in"></span> پنل ادمین
+                                    </a>
+                                </li>
+                            }
                             <li>
                                 <a asp-action="Logout" asp-controller="Account">
                                     <span class="glyphicon glyphicon-log-out"></span> خروج
