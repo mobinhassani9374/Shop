@@ -43,7 +43,10 @@ namespace Shop.Services
             if (dto.Type.HasValue && dto.Type != 0)
                 query = query.Where(c => c.Type == dto.Type.Value);
 
-            return query.ToPaginated(dto).ToDto();
+            IOrderedQueryable<User> orderedQery =
+               query.OrderByDescending(c => c.RegisterDate);
+
+            return orderedQery.ToPaginated(dto).ToDto();
         }
         protected User GetUser(string userId)
         {

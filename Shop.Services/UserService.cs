@@ -5,6 +5,7 @@ using Shop.Database;
 using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Account;
 using Shop.Domain.Dto.Home;
+using Shop.Domain.Enumeration;
 using Shop.Services.Mapping;
 using Shop.Services.Validations;
 using Shop.Utility;
@@ -36,6 +37,7 @@ namespace Shop.Services
                 {
                     var user = dto.ToEntity();
                     user.RegisterDate = DateTime.Now;
+                    user.Type = UserType.Manual;
                     var identityResult = await _userManager.CreateAsync(user, dto.Password);
                     if (identityResult.Succeeded)
                         serviceResult.Message = "یک کاربر با موفقیت ثبت نام شد";
