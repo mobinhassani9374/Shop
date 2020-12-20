@@ -90,14 +90,14 @@
                         {
                             <li>
                                 <a href="/user">
-                                    <span class="glyphicon glyphicon-user"></span> خوش آمدید @User.GetFullName() عزیز
+                                    <span class="glyphicon glyphicon-user"></span> @User.GetFullName() /  پنل کاربری
                                 </a>
                             </li>
                             if (User.IsInRole("Admin"))
                             {
                                 <li>
                                     <a href="/admin">
-                                        <span class="glyphicon glyphicon-user"></span> پنل ادمین
+                                        <span class="glyphicon glyphicon-cog"></span> پنل ادمین
                                     </a>
                                 </li>
                             }
