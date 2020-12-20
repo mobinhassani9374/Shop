@@ -84,6 +84,18 @@ namespace Shop.Mvc.Controllers
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             var serviceResult = await _userService.Register(model.ToDto());
+            if (serviceResult.IsSuccess)
+            {
+                var signInResult = await _signInManager
+                   .PasswordSignInAsync(model.PhoneNumber, model.Password, true, false);
+
+                if (signInResult.Succeeded)
+                {
+                    Swal(true, $"خوش آمدید {model.FullName} عزیز");
+                    return RedirectPermanent("/");
+                }
+
+            }
             return View_Post(serviceResult, model);
         }
 
