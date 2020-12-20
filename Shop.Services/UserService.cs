@@ -37,7 +37,9 @@ namespace Shop.Services
                     var user = dto.ToEntity();
                     user.RegisterDate = DateTime.Now;
                     var identityResult = await _userManager.CreateAsync(user, dto.Password);
-                    if (!identityResult.Succeeded)
+                    if (identityResult.Succeeded)
+                        serviceResult.Message = "یک کاربر با موفقیت ثبت نام شد";
+                    else
                     {
                         identityResult.Errors.ToList().ForEach(c =>
                         {

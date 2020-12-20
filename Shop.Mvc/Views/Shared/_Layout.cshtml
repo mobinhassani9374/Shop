@@ -6,7 +6,7 @@
     <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
     <meta name="description"
-        content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
+          content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
     <meta name="keywords" content="دزدگیر خانه , دزدگیر مغازه , دزدگیر اماکن , دوربین مداربسته , دوربین مداربسته بیسیم , دوربین بیبی کم , دوربین لامپی ,
         دوربین پانوراما , دوربین ۳۶۰ , رایاکالا , ردیاب شخصی , ردیاب خودرو , جی پی اس , GPS,
         شنود , دوربین مخفی , سنسور , دی وی آر , DVR,NVR,دوربین تحت شبکه , دیجیکالا">
@@ -85,10 +85,16 @@
                         <li><a href="#">تماس با ما</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a asp-action="Register" asp-controller="Account"><span
-                                    class="glyphicon glyphicon-user"></span> ثبت نام </a></li>
-                        <li><a asp-action="Login" asp-controller="Account"><span
-                                    class="glyphicon glyphicon-log-in"></span> ورود </a></li>
+                        <li>
+                            <a asp-action="Register" asp-controller="Account">
+                                <span class="glyphicon glyphicon-user"></span> ثبت نام
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="Login" asp-controller="Account">
+                                <span class="glyphicon glyphicon-log-in"></span> ورود
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -106,7 +112,7 @@
                             <div class="col-md-8 col-sm-8 col-xs-hide">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="جستجو در محصولات ایمن فروش "
-                                        name="search" autocomplete="off">
+                                           name="search" autocomplete="off">
                                     <div class="input-group-btn">
                                         <button class="btn btn-danger" type="submit">
                                             <i class="glyphicon glyphicon-search"></i>
@@ -271,7 +277,7 @@
             // Initialized CedarMap
             var map = window.L.cedarmaps.map('map_09kgdf', 'https://api.cedarmaps.com/v1/tiles/cedarmaps.streets.json?access_token=98e76563900bde072e3e71b2e62a31bc4334cf66', cm_options);
             // Markers options
-            var markers = [{ "popupContent": "ایمن فروش", "center": { "lat": 35.7479198 , "lng": 51.5474939 }, "iconOpts": { "iconUrl": "https://api.cedarmaps.com/v1/markers/marker-default.png", "iconRetinaUrl": "https://api.cedarmaps.com/v1/markers/marker-default@2x.png", "iconSize": [82, 98] } }];
+            var markers = [{ "popupContent": "ایمن فروش", "center": { "lat": 35.7479198, "lng": 51.5474939 }, "iconOpts": { "iconUrl": "https://api.cedarmaps.com/v1/markers/marker-default.png", "iconRetinaUrl": "https://api.cedarmaps.com/v1/markers/marker-default@2x.png", "iconSize": [82, 98] } }];
             var markersLeaflet = [];
             var _marker = null;
 
@@ -315,7 +321,6 @@
 
 </html>
 
-@Html.Partial("_Swal.cshtml")
 
 <script src="~/js/vue.js"></script>
 <script>
@@ -332,3 +337,5 @@
         }
     })
 </script>
+
+@Html.Partial("_Swal.cshtml")
