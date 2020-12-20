@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Account;
+using Shop.Domain.Dto.Cart;
 using Shop.Domain.Dto.Home;
 using Shop.Domain.Enumeration;
 using Shop.Services.Mapping;
@@ -81,6 +82,23 @@ namespace Shop.Services
             }).ToList();
 
             return result;
+        }
+        public ServiceResult AddToCart(AddToCartDto dto)
+        {
+            var entity = dto.ToEntity();
+            entity.Date = DateTime.Now;
+            Insert(entity);
+            return Save("یک محصول با موفقیت به سبد خرید اضافه شد");
+        }
+        public List<CartDto> GetCarts(string userId)
+        {
+            var carts = _dbContext
+                 .Carts
+                 .Include(c => c.Product)
+                 .Where(c => c.UserId == userId)
+                 .ToList();
+
+            return carts.ToDto();
         }
     }
 }
