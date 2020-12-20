@@ -22,7 +22,7 @@
                 <div class="login__desc">از این قسمت می توانید در سایت ایمن فروش عضو شوید</div>
                 <div class="text-center">
                     <div class="login__icon">
-                        <i class="fa fa-unlock-alt"></i>
+                        <i class="fa fa-user"></i>
                     </div>
                 </div>
 
@@ -36,29 +36,32 @@
 
                     @Html.AntiForgeryToken()
                     <div class="form-group">
-                        <label> شماره همراه خود را وارد کنید</label>
-                        <input required="" type="text" class="form-control" placeholder="نام کاربری یا شماره همراه"
+                        <label class="required"> شماره همراه خود را وارد کنید</label>
+                        <input required="" type="text" class="form-control" placeholder="شماره همراه"
                                id="PhoneNumber"
                                asp-for="PhoneNumber">
                     </div>
                     <div class="form-group">
-                        <label> نام و نام خانوادگی خود را وارد کنید</label>
+                        <label class="required"> نام و نام خانوادگی خود را وارد کنید</label>
                         <input required="" type="text" class="form-control" placeholder="نام و نام خانوادگی"
                                id="PhoneNumber"
                                asp-for="FullName">
                     </div>
                     <div class="form-group">
-                        <label>رمز عبور خود را وارد کنید</label>
+                        <label class="required">رمز عبور خود را وارد کنید</label>
                         <input required="" type="password" class="form-control" placeholder="رمز عبور" id="Password" asp-for="Password">
                     </div>
                     <div class="form-group">
-                        <label>رمز عبور خود را مجددا وارد کنید</label>
+                        <label class="required">رمز عبور خود را مجددا وارد کنید</label>
                         <input required="" type="password" class="form-control" placeholder="تکرار رمز عبور" id="Password" asp-for="ConfirmPasswprd">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="ladda-button btn btn-primary btn-block" data-style="zoom-in">
                             <span class="ladda-label">ثبت نام</span>
                         </button>
+                    </div>
+                    <div class="form-group">
+                        <a style="font-size: 16px;" href="/login">قبلا ثبت نام کرده ام</a>
                     </div>
                 </form>
             </div>
