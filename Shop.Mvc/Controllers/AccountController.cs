@@ -61,7 +61,7 @@ namespace Shop.Mvc.Controllers
 
                     if (signInResult.Succeeded)
                     {
-                        return RedirectPermanent("/admin");
+                        return RedirectPermanent("/");
                     }
                 }
                 else serviceResult.AddError("کاربری یافت نشد");
