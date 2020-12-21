@@ -225,6 +225,14 @@ legend {
     border-top: 3px solid #232f3e;
 }
 
+.detail .detail__title {
+    font-size: 26px;
+}
+
+.text-danger {
+    color: #E52B52;
+}
+
 .swal2-title {
     font-size: 24px !important;
 }

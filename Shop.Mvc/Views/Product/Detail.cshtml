@@ -23,8 +23,8 @@
             <div class="col-md-4 col-xs-12">
                 <div class="detail__img">
                     <span class='zoom' id='zoom'>
-                        <img src="~/Files/Images/@(Model.PrimaryImage)" height="200" width="230" alt="@Model.Title - ایمن فروش"
-                            class="img-responsive" />
+                        <img src="~/Files/Images/@(Model.PrimaryImage)" height="200" width="230"
+                            alt="@Model.Title - ایمن فروش" class="img-responsive" />
                     </span>
                 </div>
                 <div class="detail__img-detail">
@@ -51,10 +51,8 @@
                     دسته بندی : دوربین های مدار بسته
                 </div>
                 <div class="detail__desc">
-                    <div class="form-group">
-                        <label>تعداد را مشخص کنید : </label>
-                        <input class="form-control" style="width:200px" type="number" value="1" min="1" max="10" />
-                    </div>
+                    <span>تعداد باقی مانده از این محصول : </span>
+                    <span class="text-danger">@Model.Count عدد</span>
                 </div>
                 <div class="detail__price price">
                     <span data-role="seperator">@Model.Price</span>

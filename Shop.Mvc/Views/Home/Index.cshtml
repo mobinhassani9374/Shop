@@ -197,7 +197,8 @@
                         <div class="slick__product__item">
                             <a asp-action="Detail" asp-controller="Product" asp-route-id="@(product.Id)">
                                 <div class="slick__product__item__img">
-                                    <img alt="ایمن فروش" src="/Files/Images/@product.PrimaryImage" class="img-responsive" />
+                                    <img alt="ایمن فروش" alt="@product.Title - ایمن فروش"
+                                     src="/Files/Images/@product.PrimaryImage" class="img-responsive" />
                                 </div>
                                 <div class="slick__product__item__title">
                                     @product.Title
