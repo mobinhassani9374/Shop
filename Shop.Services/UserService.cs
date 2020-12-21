@@ -120,7 +120,22 @@ namespace Shop.Services
                  .Where(c => c.UserId == userId)
                  .ToList();
 
-            return carts.ToDto();
+            var result = new List<CartDto>();
+
+            var groupingCart = carts.GroupBy(c => c.ProductId).ToList();
+
+            groupingCart.ForEach(c =>
+            {
+                result.Add(new CartDto
+                {
+                    ProductId = c.Key,
+                    Count = c.Count(),
+                    Price = c.First().Product.Price,
+                    ProductTitle = c.First().Product.Title
+                });
+            });
+
+            return result;
         }
     }
 }
