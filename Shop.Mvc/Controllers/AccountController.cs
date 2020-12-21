@@ -68,7 +68,8 @@ namespace Shop.Mvc.Controllers
 
                     if (signInResult.Succeeded)
                     {
-                        return RedirectPermanent("/");
+                        AddToCart(model.ReturnUrl);
+                        return RedirectPermanent(model.ReturnUrl);
                     }
                 }
                 else serviceResult.AddError("کاربری یافت نشد");
@@ -103,7 +104,8 @@ namespace Shop.Mvc.Controllers
                 if (signInResult.Succeeded)
                 {
                     Swal(true, $"خوش آمدید {model.FullName} عزیز");
-                    return RedirectPermanent("/");
+                    AddToCart(model.ReturnUrl);
+                    return RedirectPermanent(model.ReturnUrl);
                 }
 
             }
