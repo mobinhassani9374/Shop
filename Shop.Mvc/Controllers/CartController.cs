@@ -30,5 +30,10 @@ namespace Shop.Mvc.Controllers
             }
             return Json(serviceResult);
         }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }
