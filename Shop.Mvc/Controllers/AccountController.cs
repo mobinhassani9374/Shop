@@ -72,6 +72,8 @@ namespace Shop.Mvc.Controllers
                     if (signInResult.Succeeded)
                     {
                         AddToCart(model.ReturnUrl);
+                        if (model.ReturnUrl.ToLower().Contains("addtocart"))
+                            model.ReturnUrl = "/";
                         return RedirectPermanent(model.ReturnUrl);
                     }
                 }
@@ -111,6 +113,8 @@ namespace Shop.Mvc.Controllers
                 {
                     Swal(true, $"خوش آمدید {model.FullName} عزیز");
                     AddToCart(model.ReturnUrl);
+                    if (model.ReturnUrl.ToLower().Contains("addtocart"))
+                        model.ReturnUrl = "/";
                     return RedirectPermanent(model.ReturnUrl);
                 }
 
@@ -130,8 +134,7 @@ namespace Shop.Mvc.Controllers
             returnUrl = returnUrl.ToLower();
             if (returnUrl.Contains("addtocart"))
             {
-                returnUrl.IndexOf("addtocart=");
-                var productIdStr = returnUrl.Substring(returnUrl.IndexOf("addtocart="), 10);
+                var productIdStr = returnUrl.Remove(returnUrl.IndexOf("addtocart="), 10);
                 int productId = 0;
                 int.TryParse(productIdStr, out productId);
                 if (productId > 0)
