@@ -1,4 +1,16 @@
 ﻿@using Shop.Utility.Extensions
+@using Shop.Mvc.Mapping
+@using DNTPersianUtils.Core
+
+@inject Shop.Services.UserService _userService
+@{
+    var cart = new List<Shop.Mvc.Models.Cart.CartViewModel>();
+    if (User.Identity.IsAuthenticated)
+    {
+        cart = _userService.GetCarts(User.GetUserId()).ToViewModel();
+    }
+
+}
 <!DOCTYPE html>
 
 <html>
@@ -7,7 +19,7 @@
     <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
     <meta name="description"
-        content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
+          content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
     <meta name="keywords" content="دزدگیر خانه , دزدگیر مغازه , دزدگیر اماکن , دوربین مداربسته , دوربین مداربسته بیسیم , دوربین بیبی کم , دوربین لامپی ,
         دوربین پانوراما , دوربین ۳۶۰ , رایاکالا , ردیاب شخصی , ردیاب خودرو , جی پی اس , GPS,
         شنود , دوربین مخفی , سنسور , دی وی آر , DVR,NVR,دوربین تحت شبکه , دیجیکالا">
@@ -138,7 +150,7 @@
                             <div class="col-md-8 col-sm-8 col-xs-hide">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="جستجو در محصولات ایمن فروش "
-                                        name="search" autocomplete="off">
+                                           name="search" autocomplete="off">
                                     <div class="input-group-btn">
                                         <button class="btn btn-danger" type="submit">
                                             <i class="glyphicon glyphicon-search"></i>
@@ -155,7 +167,7 @@
                         </a>
                         <a class="btn btn-primary header__btn-cart" href="/cart">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i> سبد خرید
-                            <span class="badge">{{countCart}}</span>
+                            <span class="badge">@cart.Count.ToPersianNumbers()</span>
                         </a>
                     </div>
                 </div>
@@ -371,12 +383,12 @@
                             icon: "error",
                             title: "هشدار",
                             text: 'برای افزودن محصول به سبد خریدتان ابتدا باید عضو سایت باشید',
-                            confirmButtonText: 'عضویت در سایت',  
-                            footer: '<a href="/Account/Login">اگر قبلا عضو سایت شدید از اینجا وارد شوید</a>'                         
-                        }).then(function (result) {                            
-                            if(result.value) {
-                                window.location='/Account/Register';
-                            }                            
+                            confirmButtonText: 'عضویت در سایت',
+                            footer: '<a href="/Account/Login">اگر قبلا عضو سایت شدید از اینجا وارد شوید</a>'
+                        }).then(function (result) {
+                            if (result.value) {
+                                window.location = '/Account/Register';
+                            }
                         })
                     }
                 })

@@ -13,5 +13,11 @@ namespace Shop.Utility.Extensions
             var claim = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.GivenName);
             return claim?.Value;
         }
+
+        public static string GetUserId(this ClaimsPrincipal claimsPrincipal)
+        {
+            var userClaim = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+            return userClaim.Value;
+        }
     }
 }
