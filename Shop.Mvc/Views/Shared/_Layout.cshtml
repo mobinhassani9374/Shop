@@ -156,17 +156,10 @@
                             پیشنهادات شگفت انگیز
                             <span class=" badge">100</span>
                         </a>                        
-                        <span class="dropdown">
-                            <a href="/Cart" class="btn btn-primary dropdown-toggle header__btn-cart" data-toggle="dropdown">
+                        <a href="/Cart" class="btn btn-primary header__btn-cart">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i> سبد خرید
-                                <span class="badge">6</span>
+                                <span class="badge">{{countCart}}</span>
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">HTML</a></li>
-                                <li><a href="#">CSS</a></li>
-                                <li><a href="#">JavaScript</a></li>
-                            </ul>
-                        </span>
                     </div>
                 </div>
             </div>
@@ -363,7 +356,9 @@
     var app = new Vue({
         el: '#app',
         data: {
-            countCart: 0
+            countCart: 0, 
+            cart:[],
+            price: 0
         },
         methods: {
             addCart: function (productId) {
@@ -390,7 +385,36 @@
                         })
                     }
                 })
-            }
+            },
+            getCart : function(){
+                var me = this;
+                $.ajax({
+                    url: '/Cart/Get',
+                    method: 'post',                  
+                }).then(function (response) {                    
+                    me.cart = response;
+                    me.countCart = response.length;
+                    me.computedPrice();                    
+                })
+            },
+            seperator : function(price) {               
+                var pattern = /(-?\d+)(\d{3})/;
+                while (pattern.test(price))
+                price = price.toString().replace(pattern, "$1,$2");
+                return price;
+            },  
+            computedPrice : function () {
+                this.price = 0 ;
+                var me = this;
+                me.price = 0;               
+                me.cart.map(function(item){
+                    me.price += item.price * item.count;
+                })
+            },           
+
+        },
+        created : function(){
+            this.getCart();
         }
     })
 </script>

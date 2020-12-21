@@ -230,24 +230,11 @@ legend {
 }
 
 .text-danger {
-    color: #E52B52;
+    color: #e52b52;
 }
 
-.swal2-footer a , .login a {
+.swal2-footer a,
+.login a {
     font-size: 16px;
     font-weight: 600;
-}
-
-
-
-.swal2-title {
-    font-size: 24px !important;
-}
-
-.swal2-content {
-    font-size: 18px !important;
-}
-
-.swal2-actions {
-    font-size: 13px !important;
 }

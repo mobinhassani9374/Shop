@@ -16,7 +16,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="cart">
+        <div class="cart" v-if="cart.length!==0">
             <div class="cart__title">سبد خرید شما </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -30,41 +30,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr v-for="item in cart" :key="item.productId">
                             <td>
-                                <img src="./img/product1.jpg" class="img-responsive img-thumbnail" />
+                                <img v-bind:src="'/Files/Images/' + item.productImage"
+                                    class="img-responsive img-thumbnail" />
                             </td>
-                            <td>دوربین مدار بسته</td>
-                            <td>45,000 تومان</td>
+                            <td>{{item.productTitle}}</td>
                             <td>
-                                <input style="width:130px;display: inline-block;" class="form-control" type="number"
-                                    value="2" min="1" max="10" />
+                                <div class="quantity">
+                                    <input type="number" v-model="item.count" step="1" v-on:change="computedPrice"
+                                        min="1" :max="item.productCount">
+                                </div>
                             </td>
-                            <td>90,000 تومان</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="./img/product3.jpg" class="img-responsive img-thumbnail" />
-                            </td>
-                            <td>دوربین مدار بسته</td>
-                            <td>45,000 تومان</td>
-                            <td>
-                                <input style="width:130px;display: inline-block;" class="form-control" type="number"
-                                    value="2" min="1" max="10" />
-                            </td>
-                            <td>90,000 تومان</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="./img/product2.jpg" class="img-responsive img-thumbnail" />
-                            </td>
-                            <td>دوربین مدار بسته</td>
-                            <td>45,000 تومان</td>
-                            <td>
-                                <input style="width:130px;display: inline-block;" class="form-control" type="number"
-                                    value="2" min="1" max="10" />
-                            </td>
-                            <td>90,000 تومان</td>
+                            <td><span>{{seperator(item.price)}}</span> تومان</td>
+                            <td><span>{{seperator(item.price * item.count)}}</span> تومان</td>
                         </tr>
                     </tbody>
                 </table>
@@ -73,11 +52,15 @@
                 <div class="col-md-4 col-xs-12 pull-right">
                     <div class="cart__price">
                         <div>مجموعا به تومان : </div>
-                        <div class="text-success">180,000 </div>
+                        <div class="text-success">{{seperator(price)}} تومان</div>
                     </div>
                     <a class="btn btn-danger btn-block">ادامه فرآیند خرید</a>
                 </div>
             </div>
+        </div>
+        <div class="cart" v-else>
+            <div class="cart__title">سبد خرید شما </div>
+            <div class="alert alert-danger text-center">سبد خرید شما خالی است</div>
         </div>
     </div>
 </div>
