@@ -224,3 +224,15 @@ legend {
 .scroll-top {
     border-top: 3px solid #232f3e;
 }
+
+.swal2-title {
+    font-size: 24px !important;
+}
+
+.swal2-content {
+    font-size: 18px !important;
+}
+
+.swal2-actions {
+    font-size: 13px !important;
+}

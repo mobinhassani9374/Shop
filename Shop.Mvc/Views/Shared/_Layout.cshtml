@@ -7,7 +7,7 @@
     <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
     <meta name="description"
-          content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
+        content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
     <meta name="keywords" content="دزدگیر خانه , دزدگیر مغازه , دزدگیر اماکن , دوربین مداربسته , دوربین مداربسته بیسیم , دوربین بیبی کم , دوربین لامپی ,
         دوربین پانوراما , دوربین ۳۶۰ , رایاکالا , ردیاب شخصی , ردیاب خودرو , جی پی اس , GPS,
         شنود , دوربین مخفی , سنسور , دی وی آر , DVR,NVR,دوربین تحت شبکه , دیجیکالا">
@@ -90,7 +90,7 @@
                         {
                             <li>
                                 <a href="/user">
-                                    <span class="glyphicon glyphicon-user"></span> @User.GetFullName() /  پنل کاربری
+                                    <span class="glyphicon glyphicon-user"></span> @User.GetFullName() / پنل کاربری
                                 </a>
                             </li>
                             if (User.IsInRole("Admin"))
@@ -138,7 +138,7 @@
                             <div class="col-md-8 col-sm-8 col-xs-hide">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="جستجو در محصولات ایمن فروش "
-                                           name="search" autocomplete="off">
+                                        name="search" autocomplete="off">
                                     <div class="input-group-btn">
                                         <button class="btn btn-danger" type="submit">
                                             <i class="glyphicon glyphicon-search"></i>
@@ -353,12 +353,32 @@
     var app = new Vue({
         el: '#app',
         data: {
-            message: 'hello',
             countCart: 0
         },
         methods: {
-            addCart: function () {
-                this.countCart++
+            addCart: function (productId) {
+                var me = this;
+                $.ajax({
+                    url: '/Cart/Add',
+                    method: 'post',
+                    data: { ProductId: productId }
+                }).then(function (response) {
+                    me.countCart = response.data.length;
+                    toastr.info(response.message);
+                }).fail(function (error) {
+                    if (error.status === 401) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "هشدار",
+                            text: 'برای افزودن محصول به سبد خریدتان ابتدا باید عضو سایت باشید',
+                            confirmButtonText: 'عضویت در سایت',                           
+                        }).then(function (result) {                            
+                            if(result.value) {
+                                window.location='/Account/Register';
+                            }                            
+                        })
+                    }
+                })
             }
         }
     })
