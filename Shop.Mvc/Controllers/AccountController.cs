@@ -35,13 +35,14 @@ namespace Shop.Mvc.Controllers
             _userService = userService;
         }
 
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
             {
                 Swal(false, "نمی توانید به صفحه ورود دسترسی داشته باشید");
                 return RedirectPermanent("/");
             }
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -78,14 +79,14 @@ namespace Shop.Mvc.Controllers
             return View(model);
         }
 
-        public IActionResult Register()
+        public IActionResult Register(string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
             {
                 Swal(false, "نمی توانید به صفحه ثبت نام دسترسی داشته باشید");
                 return RedirectPermanent("/");
             }
-
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 

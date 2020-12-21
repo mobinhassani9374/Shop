@@ -27,7 +27,7 @@
                 </div>
 
                 <form method="post">
-
+                    <input type="hidden" name="@Html.NameFor(c=>c.ReturnUrl)" value="@ViewBag.ReturnUrl" />
                     <div class="col-md-12 col-xs-12">
                         <div class="form-group">
                             @Html.Partial("_ServiceResult")

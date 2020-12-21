@@ -11,5 +11,6 @@ namespace Shop.Mvc.Models.Account
         public string FullName { get; set; }
         public string Password { get; set; }
         public string ConfirmPasswprd { get; set; }
+        public string ReturnUrl { get; set; }
     }
 }
