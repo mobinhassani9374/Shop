@@ -9,6 +9,6 @@ namespace Shop.Mvc.Models.Account
     {
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
-        public string ReturnUrl { get; set; } = "/";
+        public string ReturnUrl { get; set; }
     }
 }

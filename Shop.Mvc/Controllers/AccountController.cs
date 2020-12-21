@@ -50,6 +50,9 @@ namespace Shop.Mvc.Controllers
         [ValidateAntiForgeryToken()]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            if (string.IsNullOrEmpty(model.ReturnUrl))
+                model.ReturnUrl = "/";
+
             var serviceResult = new ServiceResult(true);
 
             var user = _dbContext.Users.FirstOrDefault(c => c.PhoneNumber == model.PhoneNumber);
@@ -95,6 +98,9 @@ namespace Shop.Mvc.Controllers
         [ValidateAntiForgeryToken()]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            if (string.IsNullOrEmpty(model.ReturnUrl))
+                model.ReturnUrl = "/";
+
             var serviceResult = await _userService.Register(model.ToDto());
             if (serviceResult.IsSuccess)
             {
