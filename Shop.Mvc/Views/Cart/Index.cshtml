@@ -1,8 +1,83 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+    ViewData["Title"] = "سبد خرید - ایمن فروش";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">ایمن فروش</a></li>
+                <li class="breadcrumb-item active" aria-current="page">سبد خرید</li>
+            </ol>
+        </nav>
+    </div>
+</div>
 
+<div class="container">
+    <div class="row">
+        <div class="cart">
+            <div class="cart__title">سبد خرید شما </div>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>عکس محصول</th>
+                            <th>نام محصول</th>
+                            <th>تعداد</th>
+                            <th>قیمت</th>
+                            <th>مجموع</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="./img/product1.jpg" class="img-responsive img-thumbnail" />
+                            </td>
+                            <td>دوربین مدار بسته</td>
+                            <td>45,000 تومان</td>
+                            <td>
+                                <input style="width:130px;display: inline-block;" class="form-control" type="number"
+                                    value="2" min="1" max="10" />
+                            </td>
+                            <td>90,000 تومان</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="./img/product3.jpg" class="img-responsive img-thumbnail" />
+                            </td>
+                            <td>دوربین مدار بسته</td>
+                            <td>45,000 تومان</td>
+                            <td>
+                                <input style="width:130px;display: inline-block;" class="form-control" type="number"
+                                    value="2" min="1" max="10" />
+                            </td>
+                            <td>90,000 تومان</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="./img/product2.jpg" class="img-responsive img-thumbnail" />
+                            </td>
+                            <td>دوربین مدار بسته</td>
+                            <td>45,000 تومان</td>
+                            <td>
+                                <input style="width:130px;display: inline-block;" class="form-control" type="number"
+                                    value="2" min="1" max="10" />
+                            </td>
+                            <td>90,000 تومان</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-xs-12 pull-right">
+                    <div class="cart__price">
+                        <div>مجموعا به تومان : </div>
+                        <div class="text-success">180,000 </div>
+                    </div>
+                    <a class="btn btn-danger btn-block">ادامه فرآیند خرید</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
