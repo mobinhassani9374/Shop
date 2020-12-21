@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
+using Shop.Domain.Dto.Cart;
 using Shop.Mvc.Mapping;
 using Shop.Mvc.Models.Account;
 using Shop.Services;
@@ -113,6 +114,20 @@ namespace Shop.Mvc.Controllers
             if (User.Identity.IsAuthenticated)
                 await _signInManager.SignOutAsync();
             return RedirectPermanent("/");
+        }
+
+        private void AddToCart(string returnUrl)
+        {
+            returnUrl = returnUrl.ToLower();
+            if (returnUrl.Contains("addtocart"))
+            {
+                returnUrl.IndexOf("addtocart=");
+                var productIdStr = returnUrl.Substring(returnUrl.IndexOf("addtocart="), 10);
+                int productId = 0;
+                int.TryParse(productIdStr, out productId);
+                if (productId > 0)
+                    _userService.AddToCart(new AddToCartDto { ProductId = productId, UserId = UserId });
+            }
         }
 
         /// sync
