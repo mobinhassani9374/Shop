@@ -19,7 +19,7 @@
     <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
     <meta name="description"
-          content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
+        content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
     <meta name="keywords" content="دزدگیر خانه , دزدگیر مغازه , دزدگیر اماکن , دوربین مداربسته , دوربین مداربسته بیسیم , دوربین بیبی کم , دوربین لامپی ,
         دوربین پانوراما , دوربین ۳۶۰ , رایاکالا , ردیاب شخصی , ردیاب خودرو , جی پی اس , GPS,
         شنود , دوربین مخفی , سنسور , دی وی آر , DVR,NVR,دوربین تحت شبکه , دیجیکالا">
@@ -150,7 +150,7 @@
                             <div class="col-md-8 col-sm-8 col-xs-hide">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="جستجو در محصولات ایمن فروش "
-                                           name="search" autocomplete="off">
+                                        name="search" autocomplete="off">
                                     <div class="input-group-btn">
                                         <button class="btn btn-danger" type="submit">
                                             <i class="glyphicon glyphicon-search"></i>
@@ -164,11 +164,18 @@
                         <a class="btn btn-danger header__btn-cart col-xs-hide">
                             پیشنهادات شگفت انگیز
                             <span class=" badge">100</span>
-                        </a>
-                        <a class="btn btn-primary header__btn-cart" href="/cart">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> سبد خرید
-                            <span class="badge">@cart.Count.ToPersianNumbers()</span>
-                        </a>
+                        </a>                        
+                        <span class="dropdown">
+                            <a href="/Cart" class="btn btn-primary dropdown-toggle header__btn-cart" data-toggle="dropdown">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> سبد خرید
+                                <span class="badge">@cart.Count</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">HTML</a></li>
+                                <li><a href="#">CSS</a></li>
+                                <li><a href="#">JavaScript</a></li>
+                            </ul>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -384,10 +391,10 @@
                             title: "هشدار",
                             text: 'برای افزودن محصول به سبد خریدتان ابتدا باید عضو سایت باشید',
                             confirmButtonText: 'عضویت در سایت',
-                            footer: '<a href="/Account/Login?returnUrl=addToCart='+productId+'">اگر قبلا عضو سایت شدید از اینجا وارد شوید</a>'
+                            footer: '<a href="/Account/Login?returnUrl=addToCart=' + productId + '">اگر قبلا عضو سایت شدید از اینجا وارد شوید</a>'
                         }).then(function (result) {
-                            if (result.value) {                               
-                                window.location = '/Account/Register?returnUrl=addToCart='+productId;
+                            if (result.value) {
+                                window.location = '/Account/Register?returnUrl=addToCart=' + productId;
                             }
                         })
                     }
