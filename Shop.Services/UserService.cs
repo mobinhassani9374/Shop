@@ -131,7 +131,8 @@ namespace Shop.Services
                     ProductId = c.Key,
                     Count = c.Count(),
                     Price = c.First().Product.Price,
-                    ProductTitle = c.First().Product.Title
+                    ProductTitle = c.First().Product.Title,
+                    ProductImage = c.First().Product.PrimaryImage
                 });
             });
 

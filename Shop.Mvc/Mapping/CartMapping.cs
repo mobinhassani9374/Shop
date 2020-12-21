@@ -33,7 +33,8 @@ namespace Shop.Mvc.Mapping
                 Count = source.Count,
                 Price = source.Price,
                 ProductId = source.ProductId,
-                ProductTitle = source.ProductTitle
+                ProductTitle = source.ProductTitle,
+                ProductImage = source.ProductImage
             };
         }
     }
