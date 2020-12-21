@@ -85,10 +85,32 @@ namespace Shop.Services
         }
         public ServiceResult AddToCart(AddToCartDto dto)
         {
-            var entity = dto.ToEntity();
-            entity.Date = DateTime.Now;
-            Insert(entity);
-            return Save("یک محصول با موفقیت به سبد خرید اضافه شد");
+            var serviceResult = new ServiceResult(true);
+
+            var product = _dbContext.Products.FirstOrDefault(c => c.Id == dto.ProductId);
+
+            if (product == null)
+                serviceResult.AddError("محصولی یافت نشد");
+            else
+            {
+                if (product.Count == 0)
+                    serviceResult.AddError("کالا ناموجود است");
+                else
+                {
+                    if (!_dbContext.Users.Any(c => c.Id == dto.UserId))
+                        serviceResult.AddError("کاربری یافت نشد");
+                    else
+                    {
+                        var entity = dto.ToEntity();
+                        entity.Date = DateTime.Now;
+                        Insert(entity);
+                        serviceResult = Save("یک کالا با موفقیت به سبد خرید اضافه شد");
+                    }
+                }
+            }
+
+
+            return serviceResult;
         }
         public List<CartDto> GetCarts(string userId)
         {
