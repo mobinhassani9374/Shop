@@ -384,10 +384,10 @@
                             title: "هشدار",
                             text: 'برای افزودن محصول به سبد خریدتان ابتدا باید عضو سایت باشید',
                             confirmButtonText: 'عضویت در سایت',
-                            footer: '<a href="/Account/Login">اگر قبلا عضو سایت شدید از اینجا وارد شوید</a>'
+                            footer: '<a href="/Account/Login?returnUrl=addToCart='+productId+'">اگر قبلا عضو سایت شدید از اینجا وارد شوید</a>'
                         }).then(function (result) {
-                            if (result.value) {
-                                window.location = '/Account/Register';
+                            if (result.value) {                               
+                                window.location = '/Account/Register?returnUrl=addToCart='+productId;
                             }
                         })
                     }
