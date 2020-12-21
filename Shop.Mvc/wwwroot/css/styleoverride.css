@@ -233,6 +233,13 @@ legend {
     color: #E52B52;
 }
 
+.swal2-footer a , .login a {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+
 .swal2-title {
     font-size: 24px !important;
 }
