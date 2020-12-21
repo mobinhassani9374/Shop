@@ -1,16 +1,7 @@
 ﻿@using Shop.Utility.Extensions
-@using Shop.Mvc.Mapping
-@using DNTPersianUtils.Core
 
-@inject Shop.Services.UserService _userService
-@{
-    var cart = new List<Shop.Mvc.Models.Cart.CartViewModel>();
-    if (User.Identity.IsAuthenticated)
-    {
-        cart = _userService.GetCarts(User.GetUserId()).ToViewModel();
-    }
 
-}
+
 <!DOCTYPE html>
 
 <html>
@@ -168,7 +159,7 @@
                         <span class="dropdown">
                             <a href="/Cart" class="btn btn-primary dropdown-toggle header__btn-cart" data-toggle="dropdown">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i> سبد خرید
-                                <span class="badge">@cart.Count</span>
+                                <span class="badge">6</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">HTML</a></li>
