@@ -17,6 +17,7 @@ namespace Shop.Mvc.Controllers
         {
             _userService = userService;
         }
+
         [HttpPost]
         [Authorize()]
         public IActionResult Add(AddToCartViewModel model)
@@ -29,6 +30,13 @@ namespace Shop.Mvc.Controllers
                 return Json(cartServiceResult);
             }
             return Json(serviceResult);
+        }
+
+        [HttpPost]
+        [Authorize()]
+        public IActionResult Get()
+        {
+            return Json(_userService.GetCarts(UserId).ToViewModel());
         }
 
         public IActionResult Index()
