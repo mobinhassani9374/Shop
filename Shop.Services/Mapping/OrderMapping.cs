@@ -1,4 +1,5 @@
 ﻿using Shop.Domain.Dto.Cart;
+using Shop.Domain.Dto.Order;
 using Shop.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,29 @@ namespace Shop.Services.Mapping
                 order.TotalPrice += (dto.Price * dto.Count);
             }
             return order;
+        }
+
+        public static List<OrderDto> ToDto(this List<Order> sources)
+        {
+            var result = new List<OrderDto>();
+            foreach (var source in sources)
+                result.Add(source.ToDto());
+            return result;
+        }
+
+        public static OrderDto ToDto(this Order source)
+        {
+            return new OrderDto
+            {
+                Date = source.Date,
+                Description = source.Description,
+                Id = source.Id,
+                IsFinal = source.IsFinal,
+                IsPaid = source.IsPaid,
+                PaymentDate = source.PaymentDate,
+                TotalPrice = source.TotalPrice,
+                UserId = source.UserId
+            };
         }
     }
 }

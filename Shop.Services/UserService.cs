@@ -6,6 +6,7 @@ using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Account;
 using Shop.Domain.Dto.Cart;
 using Shop.Domain.Dto.Home;
+using Shop.Domain.Dto.Order;
 using Shop.Domain.Enumeration;
 using Shop.Services.Mapping;
 using Shop.Services.Validations;
@@ -212,6 +213,11 @@ namespace Shop.Services
                 serviceResult = Save("عملیات با موفقیت انجام شد");
             }
             return serviceResult;
+        }
+        public List<OrderDto> GetMyOrders(string userId)
+        {
+            var data = _dbContext.Orders.Include(c => c.Details).ToList();
+            return data.ToDto();
         }
     }
 }
