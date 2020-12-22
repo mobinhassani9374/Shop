@@ -53,6 +53,20 @@ namespace Shop.Mvc.Controllers
             return Json(serviceResult);
         }
 
+        [HttpPost]
+        [Authorize()]
+        public IActionResult Increase(IncreaseViewModel model)
+        {
+            var serviceResult = _userService.AddToCart(model.ToDto(UserId));
+            if (serviceResult.IsSuccess)
+            {
+                var carts = _userService.GetCarts(UserId).ToViewModel();
+                var cartServiceResult = serviceResult.AddData<List<CartViewModel>>(carts);
+                return Json(cartServiceResult);
+            }
+            return Json(serviceResult);
+        }
+
         public IActionResult Index()
         {
             return View();

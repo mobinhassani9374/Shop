@@ -47,5 +47,13 @@ namespace Shop.Mvc.Mapping
                 ProductId = source.ProductId
             };
         }
+        public static AddToCartDto ToDto(this IncreaseViewModel source, string userId)
+        {
+            return new AddToCartDto
+            {
+                ProductId = source.ProductId,
+                UserId = userId
+            };
+        }
     }
 }
