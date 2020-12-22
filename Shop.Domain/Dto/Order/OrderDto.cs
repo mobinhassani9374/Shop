@@ -14,5 +14,6 @@ namespace Shop.Domain.Dto.Order
         public string Description { get; set; }
         public bool IsPaid { get; set; }
         public DateTime? PaymentDate { get; set; }
+        public List<OrderDetailDto> Details { get; set; }
     }
 }

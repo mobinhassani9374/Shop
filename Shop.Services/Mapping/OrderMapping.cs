@@ -65,7 +65,28 @@ namespace Shop.Services.Mapping
                 IsPaid = source.IsPaid,
                 PaymentDate = source.PaymentDate,
                 TotalPrice = source.TotalPrice,
-                UserId = source.UserId
+                UserId = source.UserId,
+                Details = source.Details?.ToList()?.ToDto()
+            };
+        }
+        public static List<OrderDetailDto> ToDto(this List<OrderDetail> sources)
+        {
+            var result = new List<OrderDetailDto>();
+            foreach (var source in sources)
+                result.Add(source.ToDto());
+            return result;
+        }
+
+        public static OrderDetailDto ToDto(this OrderDetail source)
+        {
+            return new OrderDetailDto
+            {
+                Count = source.Count,
+                Id = source.Id,
+                OrderId = source.OrderId,
+                Price = source.Price,
+                Product = source.Product?.ToDto(),
+                ProductId = source.ProductId
             };
         }
     }

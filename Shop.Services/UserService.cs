@@ -216,7 +216,12 @@ namespace Shop.Services
         }
         public List<OrderDto> GetMyOrders(string userId)
         {
-            var data = _dbContext.Orders.Include(c => c.Details).ToList();
+            var data = _dbContext.Orders
+                .Include(c => c.Details)
+                .ThenInclude(c => c.Product)
+                .OrderByDescending(c => c.Id)
+                .ToList();
+
             return data.ToDto();
         }
     }

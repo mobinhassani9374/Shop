@@ -20,6 +20,7 @@ namespace Shop.Mvc.Controllers
         public IActionResult Index()
         {
             var myOrders = _userService.GetMyOrders(UserId).ToViewModel();
+            ViewBag.MyOrders = myOrders;
             return View();
         }
     }

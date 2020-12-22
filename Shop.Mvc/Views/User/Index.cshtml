@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "ناحیه کاربری کاربر - ایمن فروش";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var muOrders = (List<Shop.Mvc.Models.Order.OrderViewModel>)ViewBag.MyOrders;
 }
 
 <div class="container">
@@ -28,50 +29,71 @@
         <div class="col-md-8 col-xs-12">
             <div class="cart">
                 <div class="cart__title">لیست سفارشات</div>
-                <div class="main__box">
-                    <div class="main__box__item">
-                        <div>
-                            <p>شماره سفارش : 12345 </p>
-                            <p>قیمت سفارش : 123,000 تومان</p>
-                        </div>
-                        <div>
-                            <p>تاریخ سفارش : 23 آدر 99</p>
-                            <p>وضعیت : <span class="text-success">پرداخت شده </span> <span class="text-danger">پرداخت نشده </span></p>
-                        </div>
-                        <div data-toggle="collapse" data-target="#item1" class="main__box__item__more collapsed"
-                            aria-expanded="false"><i data-toggle="tooltip" title="" class="fa fa-angle-double-down"
-                                data-original-title="جزییات بیشتر"></i></div>
-                    </div>
-                    <div id="item1" class="collapse" aria-expanded="false" style="height: 0px;">
-                        <div class="wrapper__main__box__detail">
+                @foreach (var order in muOrders)
+                {
+                    <div class="main__box">
+                        <div class="main__box__item">
                             <div>
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>عکس محصول</th>
-                                                <th>نام محصول</th>
-                                                <th>تعداد محصول</th>
-                                                <th>قیمت محصول</th>
-                                                <th>مجکوع</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>50%</td>
-                                                <td>55%</td>
-                                                <td>70%</td>
-                                                <td>80%</td>
-                                                <td>80%</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <p>شماره سفارش : @order.Id </p>
+                                <p>مبلغ کل سفارش : @order.TotalPrice تومان</p>
+                            </div>
+                            <div>
+                                <p>تاریخ سفارش : @order.Date</p>
+
+                                <p>
+                                    وضعیت :
+                                    @if (order.IsPaid)
+                                    {
+                                        <span class="text-success">پرداخت شده </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-danger">پرداخت نشده </span>
+                                    }
+                                </p>
+                            </div>
+                            <div data-toggle="collapse" data-target="#item@(order.Id)" class="main__box__item__more collapsed"
+                                 aria-expanded="false">
+                                <i data-toggle="tooltip" title="" class="fa fa-angle-double-down"
+                                   data-original-title="جزییات بیشتر"></i>
+                            </div>
+                        </div>
+                        <div id="item@(order.Id)" class="collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="wrapper__main__box__detail">
+                                <div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>عکس محصول</th>
+                                                    <th>نام محصول</th>
+                                                    <th>تعداد محصول</th>
+                                                    <th>قیمت محصول</th>
+                                                    <th>مجموع</th>
+                                                </tr>
+                                            </thead>
+                                            @foreach (var detail in order.Details)
+                                            {
+                                                <tbody>
+                                                    <tr>
+                                                        <td><img src="~/Files/Images/@(detail.Product.PrimaryImage)" /></td>
+                                                        <td>@detail.Product.Title</td>
+                                                        <td>@detail.Count</td>
+                                                        <td>@detail.Price</td>
+                                                        <td>@(detail.Price * detail.Count)</td>
+                                                    </tr>
+                                                </tbody>
+                                            }
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
             </div>
+
+
         </div>
     </div>
 </div>
