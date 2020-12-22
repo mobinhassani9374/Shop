@@ -80,6 +80,13 @@ namespace Shop.Services
             _dbContext.Entry(entity).State = EntityState.Added;
             return entity;
         }
+        protected List<T> Insert<T>(List<T> entities)
+        {
+            foreach (var entity in entities)
+                Insert(entity);
+
+            return entities;
+        }
         protected T Update<T>(T entity)
         {
             _dbContext.Update(entity);
@@ -89,6 +96,12 @@ namespace Shop.Services
         {
             _dbContext.Remove(entity);
             return entity;
+        }
+        protected List<T> Remove<T>(List<T> entities)
+        {
+            foreach (var entity in entities)
+                Remove(entity);
+            return entities;
         }
         protected ServiceResult<string> Upload(IFormFile imageFile, FileType fileType)
         {

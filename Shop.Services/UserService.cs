@@ -167,5 +167,51 @@ namespace Shop.Services
 
             return Save("عملیات با موفقیت صورت گرفت");
         }
+        public ServiceResult<int> ConvertCartToOrder(string userId)
+        {
+            var serviceResult = new ServiceResult<int>(true);
+
+            var carts = _dbContext
+                 .Carts
+                 .Include(c => c.Product)
+                 .Where(c => c.UserId == userId)
+                 .ToList();
+
+            var orderEntity = carts.ToEntity();
+            orderEntity.Date = DateTime.Now;
+            orderEntity.UserId = userId;
+            Insert(orderEntity);
+            var saveResult = Save("عملیات با موفقیت صورت گرفت");
+            if (saveResult.IsSuccess)
+            {
+                foreach (var detail in orderEntity.Details)
+                    detail.OrderId = orderEntity.Id;
+
+                Insert(orderEntity.Details.ToList());
+                Remove(carts);
+                Save("عملیات با موفقیت صورت گرفت");
+
+                serviceResult.Data = orderEntity.Id;
+            }
+
+            else serviceResult.AddError(saveResult.Errors.FirstOrDefault());
+            return serviceResult;
+        }
+        public ServiceResult SuccessPayment(int orderId)
+        {
+            var serviceResult = new ServiceResult(true);
+            var order = _dbContext.Orders.Find(orderId);
+            if (order == null)
+                serviceResult.AddError("شناسه نا معتبر");
+            else
+            {
+                order.IsPaid = true;
+                order.PaymentDate = DateTime.Now;
+
+                Update(order);
+                serviceResult = Save("عملیات با موفقیت انجام شد");
+            }
+            return serviceResult;
+        }
     }
 }
