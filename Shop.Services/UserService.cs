@@ -232,6 +232,7 @@ namespace Shop.Services
                 .Include(c => c.Details)
                 .ThenInclude(c => c.Product)
                 .OrderByDescending(c => c.Id)
+                .Where(c => c.UserId == userId)
                 .ToList();
 
             return data.ToDto();
