@@ -270,14 +270,15 @@ legend {
 .cart__link {
     display: block;
     text-align: right;
-    padding: 10px 0;
+    padding: 10px 5px;
     border-bottom: 1px solid #ccc;
     font-size: 16px;
     font-weight: 600;
+    cursor: pointer;
 }
 
-.cart__link:hover {
-    background-color: #eee;
+.cart__link:hover , .cart__link.active {
+    background-color: #f7f7f7;
 }
 
 .m-l-10-md {
