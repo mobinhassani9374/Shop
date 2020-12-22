@@ -1,8 +1,63 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+    ViewData["Title"] = "ناحیه کاربری کاربر - ایمن فروش";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">ایمن فروش</a></li>
+                <li class="breadcrumb-item active" aria-current="page">ناحیه کاربری کاربر</li>
+            </ol>
+        </nav>
+    </div>
+</div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="cart">
+                <div class="cart__title" style="margin-bottom:0">ناحیه کاربری</div>
+                <a href="#" class="cart__link">لیست سفارشات</a>
+                <a href="#" class="cart__link">ویرایش پروفایل</a>
+                <a href="#" class="cart__link">تغییر رمز عبور</a>
+                <a href="#" class="cart__link">خروج</a>
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-12">
+            <div class="cart">
+                <div class="cart__title">لیست سفارشات</div>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>عکس محصول</th>
+                                <th>نام محصول</th>
+                                <th>تعداد</th>
+                                <th>قیمت</th>
+                                <th>مجموع</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

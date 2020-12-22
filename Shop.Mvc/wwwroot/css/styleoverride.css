@@ -266,3 +266,20 @@ legend {
     color: #fff;
     font-size: 60px;
 }
+
+.cart__link {
+    display: block;
+    text-align: right;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.cart__link:hover {
+    background-color: #eee;
+}
+
+.m-l-10-md {
+    margin-left: 15px;
+}
