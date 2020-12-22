@@ -358,7 +358,8 @@
         data: {
             countCart: 0,
             cart: [],
-            price: 0
+            price: 0,
+            loading: false
         },
         methods: {
             addCart: function (productId) {
@@ -388,6 +389,7 @@
             },
             getCart: function () {
                 var me = this;
+                me.loading = true;
                 $.ajax({
                     url: '/Cart/Get',
                     method: 'post',
@@ -395,6 +397,9 @@
                     me.cart = response;
                     me.countCart = response.length;
                     me.computedPrice();
+                    me.loading = false;
+                }).fail(function () {
+                    me.loading = false;
                 })
             },
             seperator: function (price) {
@@ -413,6 +418,7 @@
             },
             increase: function (productId) {
                 var me = this;
+                me.loading = true;
                 $.ajax({
                     url: '/Cart/Increase',
                     method: 'post',
@@ -421,11 +427,13 @@
                     me.countCart = response.data.length;
                     me.cart = response.data;
                     toastr.info(response.message);
-                    me.computedPrice()
+                    me.computedPrice();
+                    me.loading = false;
                 });
             },
             reduce: function (productId) {
                 var me = this;
+                me.loading = true;
                 $.ajax({
                     url: '/Cart/Reduce',
                     method: 'post',
@@ -434,11 +442,13 @@
                     me.countCart = response.data.length;
                     me.cart = response.data;
                     toastr.info(response.message);
-                    me.computedPrice()
+                    me.computedPrice();
+                    me.loading = false;
                 });
             },
             deleteCart: function (productId) {
                 var me = this;
+                me.loading = true;
                 $.ajax({
                     url: '/Cart/Delete',
                     method: 'post',
@@ -447,7 +457,8 @@
                     me.countCart = response.data.length;
                     me.cart = response.data;
                     toastr.info(response.message);
-                    me.computedPrice()
+                    me.computedPrice();
+                    me.loading = false;
                 });
             },
         },

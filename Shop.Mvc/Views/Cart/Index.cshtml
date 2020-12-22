@@ -16,57 +16,64 @@
 
 <div class="container">
     <div class="row">
-        <div class="cart" v-if="cart.length!==0">
-            <div class="cart__title">سبد خرید شما </div>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>عکس محصول</th>
-                            <th>نام محصول</th>
-                            <th>تعداد</th>
-                            <th>قیمت</th>
-                            <th>مجموع</th>
-                            <th>حذف</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="item in cart" :key="item.productId">
-                            <td>
-                                <img v-bind:src="'/Files/Images/' + item.productImage"
-                                    class="img-responsive img-thumbnail" />
-                            </td>
-                            <td>{{item.productTitle}}</td>
-                            <td>
-                                <div class="quantity">
-                                    <input style="width:60px;text-align:center"
-                                        type="number" v-model="item.count" step="1" v-on:change="computedPrice()"
-                                        min="1" :max="item.productCount" disabled>
+        <div class="cart">
+            <div v-if="cart.length!==0">
+                <div class="cart__title">سبد خرید شما </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>عکس محصول</th>
+                                <th>نام محصول</th>
+                                <th>تعداد</th>
+                                <th>قیمت</th>
+                                <th>مجموع</th>
+                                <th>حذف</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in cart" :key="item.productId">
+                                <td>
+                                    <img v-bind:src="'/Files/Images/' + item.productImage"
+                                        class="img-responsive img-thumbnail" />
+                                </td>
+                                <td>{{item.productTitle}}</td>
+                                <td>
+                                    <div class="quantity">
+                                        <input style="width:60px;text-align:center" type="number" v-model="item.count"
+                                            step="1" v-on:change="computedPrice()" min="1" :max="item.productCount"
+                                            disabled>
 
-                                        <i v-on:click="increase(item.productId)" class="fa fa-plus"></i>
-                                        <i v-on:click="reduce(item.productId)" class="fa fa-minus"></i>
-                                </div>
-                            </td>
-                            <td><span>{{seperator(item.price)}}</span> تومان</td>
-                            <td><span>{{seperator(item.price * item.count)}}</span> تومان</td>
-                            <td><a v-on:click="deleteCart(item.productId)" class="btn btn-danger">حذف</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-xs-12 pull-right">
-                    <div class="cart__price">
-                        <div>مجموعا به تومان : </div>
-                        <div class="text-success">{{seperator(price)}} تومان</div>
+                                        <button style="padding: 5px;display: inline-flex;" :disabled="item.count==item.productCount" class="btn btn-success"
+                                            v-on:click="increase(item.productId)"><i class="fa fa-plus"></i></button>
+                                        <button style="padding: 5px;display: inline-flex;" :disabled="item.count==1" class="btn btn-danger"
+                                            v-on:click="reduce(item.productId)"><i class="fa fa-minus"></i></button>
+                                    </div>
+                                </td>
+                                <td><span>{{seperator(item.price)}}</span> تومان</td>
+                                <td><span>{{seperator(item.price * item.count)}}</span> تومان</td>
+                                <td><a v-on:click="deleteCart(item.productId)" class="btn btn-danger">حذف</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-xs-12 pull-right">
+                        <div class="cart__price">
+                            <div>مجموعا به تومان : </div>
+                            <div class="text-success">{{seperator(price)}} تومان</div>
+                        </div>
+                        <a class="btn btn-danger btn-block">ادامه فرآیند خرید</a>
                     </div>
-                    <a class="btn btn-danger btn-block">ادامه فرآیند خرید</a>
                 </div>
             </div>
-        </div>
-        <div class="cart" v-else>
-            <div class="cart__title">سبد خرید شما </div>
-            <div class="alert alert-danger text-center">سبد خرید شما خالی است</div>
+            <div v-else>
+                <div class="cart__title">سبد خرید شما </div>
+                <div class="alert alert-danger text-center">سبد خرید شما خالی است</div>
+            </div>
+            <div v-if="loading" class="cart-loading">
+                <i class="fa fa-spinner fa-spin text-danger" aria-hidden="true"></i>
+            </div>
         </div>
     </div>
 </div>
