@@ -283,3 +283,28 @@ legend {
 .m-l-10-md {
     margin-left: 15px;
 }
+
+.cart-register {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.cart-register__title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.cart-register__icon {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color: #e52b52;
+    border-radius: 50%;
+    border: 3px solid #e52b52;
+    font-size: 60px;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+}
