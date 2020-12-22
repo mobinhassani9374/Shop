@@ -155,11 +155,11 @@
                         <a class="btn btn-danger header__btn-cart col-xs-hide">
                             پیشنهادات شگفت انگیز
                             <span class=" badge">100</span>
-                        </a>                        
+                        </a>
                         <a href="/Cart" class="btn btn-primary header__btn-cart">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> سبد خرید
-                                <span class="badge">{{countCart}}</span>
-                            </a>
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> سبد خرید
+                            <span class="badge">{{countCart}}</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -356,8 +356,8 @@
     var app = new Vue({
         el: '#app',
         data: {
-            countCart: 0, 
-            cart:[],
+            countCart: 0,
+            cart: [],
             price: 0
         },
         methods: {
@@ -386,34 +386,72 @@
                     }
                 })
             },
-            getCart : function(){
+            getCart: function () {
                 var me = this;
                 $.ajax({
                     url: '/Cart/Get',
-                    method: 'post',                  
-                }).then(function (response) {                    
+                    method: 'post',
+                }).then(function (response) {
                     me.cart = response;
                     me.countCart = response.length;
-                    me.computedPrice();                    
+                    me.computedPrice();
                 })
             },
-            seperator : function(price) {               
+            seperator: function (price) {
                 var pattern = /(-?\d+)(\d{3})/;
                 while (pattern.test(price))
-                price = price.toString().replace(pattern, "$1,$2");
+                    price = price.toString().replace(pattern, "$1,$2");
                 return price;
-            },  
-            computedPrice : function () {
-                this.price = 0 ;
+            },
+            computedPrice: function () {
+                this.price = 0;
                 var me = this;
-                me.price = 0;               
-                me.cart.map(function(item){
+                me.price = 0;
+                me.cart.map(function (item) {
                     me.price += item.price * item.count;
                 })
-            },           
-
+            },
+            increase: function (productId) {
+                var me = this;
+                $.ajax({
+                    url: '/Cart/Increase',
+                    method: 'post',
+                    data: { ProductId: productId }
+                }).then(function (response) {
+                    me.countCart = response.data.length;
+                    me.cart = response.data;
+                    toastr.info(response.message);
+                    me.computedPrice()
+                });
+            },
+            reduce: function (productId) {
+                var me = this;
+                $.ajax({
+                    url: '/Cart/Reduce',
+                    method: 'post',
+                    data: { ProductId: productId }
+                }).then(function (response) {
+                    me.countCart = response.data.length;
+                    me.cart = response.data;
+                    toastr.info(response.message);
+                    me.computedPrice()
+                });
+            },
+            deleteCart: function (productId) {
+                var me = this;
+                $.ajax({
+                    url: '/Cart/Delete',
+                    method: 'post',
+                    data: { ProductId: productId }
+                }).then(function (response) {
+                    me.countCart = response.data.length;
+                    me.cart = response.data;
+                    toastr.info(response.message);
+                    me.computedPrice()
+                });
+            },
         },
-        created : function(){
+        created: function () {
             this.getCart();
         }
     })

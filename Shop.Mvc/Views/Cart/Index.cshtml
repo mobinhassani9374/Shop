@@ -27,6 +27,7 @@
                             <th>تعداد</th>
                             <th>قیمت</th>
                             <th>مجموع</th>
+                            <th>حذف</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,12 +39,17 @@
                             <td>{{item.productTitle}}</td>
                             <td>
                                 <div class="quantity">
-                                    <input type="number" v-model="item.count" step="1" v-on:change="computedPrice"
-                                        min="1" :max="item.productCount">
+                                    <input style="width:60px;text-align:center"
+                                        type="number" v-model="item.count" step="1" v-on:change="computedPrice()"
+                                        min="1" :max="item.productCount" disabled>
+
+                                        <i v-on:click="increase(item.productId)" class="fa fa-plus"></i>
+                                        <i v-on:click="reduce(item.productId)" class="fa fa-minus"></i>
                                 </div>
                             </td>
                             <td><span>{{seperator(item.price)}}</span> تومان</td>
                             <td><span>{{seperator(item.price * item.count)}}</span> تومان</td>
+                            <td><a v-on:click="deleteCart(item.productId)" class="btn btn-danger">حذف</a></td>
                         </tr>
                     </tbody>
                 </table>
