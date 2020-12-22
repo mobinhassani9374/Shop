@@ -156,5 +156,16 @@ namespace Shop.Services
 
             return serviceResult;
         }
+        public ServiceResult DeleteFromCart(int productId, string userId)
+        {
+            var carts = _dbContext.Carts.Where(c => c.ProductId == productId && c.UserId == userId).ToList();
+
+            carts.ForEach(c =>
+            {
+                Remove(c);
+            });
+
+            return Save("عملیات با موفقیت صورت گرفت");
+        }
     }
 }

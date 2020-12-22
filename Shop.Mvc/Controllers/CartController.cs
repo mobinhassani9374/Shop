@@ -67,6 +67,20 @@ namespace Shop.Mvc.Controllers
             return Json(serviceResult);
         }
 
+        [HttpPost]
+        [Authorize()]
+        public IActionResult Delete(DeleteViewModel model)
+        {
+            var serviceResult = _userService.DeleteFromCart(model.ProductId, UserId);
+            if (serviceResult.IsSuccess)
+            {
+                var carts = _userService.GetCarts(UserId).ToViewModel();
+                var cartServiceResult = serviceResult.AddData<List<CartViewModel>>(carts);
+                return Json(cartServiceResult);
+            }
+            return Json(serviceResult);
+        }
+
         public IActionResult Index()
         {
             return View();
