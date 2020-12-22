@@ -201,13 +201,25 @@ namespace Shop.Services
         public ServiceResult SuccessPayment(int orderId)
         {
             var serviceResult = new ServiceResult(true);
-            var order = _dbContext.Orders.Find(orderId);
+
+            var order = _dbContext
+                .Orders
+                .Include(c => c.Details)
+                .ThenInclude(c => c.Product)
+                .FirstOrDefault(c => c.Id == orderId);
+
             if (order == null)
                 serviceResult.AddError("شناسه نا معتبر");
             else
             {
                 order.IsPaid = true;
                 order.PaymentDate = DateTime.Now;
+
+                foreach (var detail in order.Details)
+                {
+                    detail.Product.Count -= detail.Count;
+                    Update(detail.Product);
+                }
 
                 Update(order);
                 serviceResult = Save("عملیات با موفقیت انجام شد");
