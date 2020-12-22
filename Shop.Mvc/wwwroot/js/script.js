@@ -132,6 +132,8 @@ $(function () {
     $('#sidenav').css('width', '0px');
   })
 
+  $('[data-toggle="tooltip"]').tooltip();
+
   var toggler = document.getElementsByClassName("parent");
   var i;
 
