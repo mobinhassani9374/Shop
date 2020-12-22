@@ -139,5 +139,22 @@ namespace Shop.Services
 
             return result;
         }
+        public ServiceResult ReduceFromCart(ReduceDto dto)
+        {
+            var serviceResult = new ServiceResult(true);
+
+            var entity = _dbContext.Carts.LastOrDefault(c => c.ProductId == dto.ProductId && c.UserId == dto.UserId);
+
+            if (entity == null)
+                serviceResult.AddError("محصولی با این شناسه برای شما در سبد خریدتون وجود ندارد");
+            else
+            {
+                Remove(entity);
+                serviceResult = Save("عملیات با موفقیت صورت گرفت");
+            }
+
+
+            return serviceResult;
+        }
     }
 }

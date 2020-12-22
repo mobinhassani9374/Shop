@@ -38,5 +38,14 @@ namespace Shop.Mvc.Mapping
                 ProductCount = source.ProductCount
             };
         }
+
+        public static ReduceDto ToDto(this ReduceViewModel source, string userId)
+        {
+            return new ReduceDto
+            {
+                UserId = userId,
+                ProductId = source.ProductId
+            };
+        }
     }
 }

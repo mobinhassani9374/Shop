@@ -39,6 +39,20 @@ namespace Shop.Mvc.Controllers
             return Json(_userService.GetCarts(UserId).ToViewModel());
         }
 
+        [HttpPost]
+        [Authorize()]
+        public IActionResult Reduce(ReduceViewModel model)
+        {
+            var serviceResult = _userService.ReduceFromCart(model.ToDto(UserId));
+            if (serviceResult.IsSuccess)
+            {
+                var carts = _userService.GetCarts(UserId).ToViewModel();
+                var cartServiceResult = serviceResult.AddData<List<CartViewModel>>(carts);
+                return Json(cartServiceResult);
+            }
+            return Json(serviceResult);
+        }
+
         public IActionResult Index()
         {
             return View();
