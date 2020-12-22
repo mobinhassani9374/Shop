@@ -16,5 +16,6 @@ namespace Shop.Domain.Entities
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public ICollection<Cart> Carts { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
