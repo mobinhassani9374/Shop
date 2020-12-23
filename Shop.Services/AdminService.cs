@@ -8,6 +8,7 @@ using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Category;
 using Shop.Domain.Dto.Pagination;
 using Shop.Domain.Dto.Product;
+using Shop.Domain.Dto.SlideShow;
 using Shop.Domain.Dto.User;
 using Shop.Domain.Dto.UserAccess;
 using Shop.Domain.Entities;
@@ -333,6 +334,21 @@ namespace Shop.Services
                 else serviceResult.AddError("عکسی یافت نشد");
             }
             return serviceResult;
+        }
+        public ServiceResult CreateSlideShow(CreateSlideShowDto dto)
+        {
+            var servieResult = dto.IsValid();
+            if (servieResult.IsSuccess)
+            {
+                var uploadResult = Upload(dto.ImageFile, FileType.SlideShowImage, 500 * 1024);
+                if (uploadResult.IsSuccess)
+                {
+                    Insert(dto.ToEntity(uploadResult.Data));
+                    servieResult = Save("اسلایدشو با موفقیت ایجاد شد");
+                }
+                else servieResult.AddError(uploadResult.Errors.FirstOrDefault());
+            }
+            return servieResult;
         }
     }
 }

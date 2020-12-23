@@ -31,15 +31,15 @@
 
                 <div class="col-md-4 col-xs-12">
                     <div class="form-group">
-                        <label class="required">عنوان محصول را وارد کنید </label>
-                        <input asp-for="Link" required type="text" placeholder="عنوان محصول" class="form-control">
+                        <label >لینک را وارد کنید </label>
+                        <input asp-for="Link" type="text" placeholder="لینک" class="form-control">
                     </div>
                 </div>
                
                 <hr style="clear: both;" />
                 <div class="col-md-12 col-xs-12">
                     <div class="form-group">
-                        <label class="required">عکس محصول را وارد کنید </label>
+                        <label class="required">عکس را وارد کنید </label>
                         <input type="file" required name="@Html.NameFor(c=>c.ImageFile)" />
                     </div>
                 </div>

@@ -32,6 +32,9 @@ namespace Shop.Utility.Extensions
             if (fileType == FileType.ProductImage)
                 return "Images";
 
+            else if (fileType == FileType.SlideShowImage)
+                return "SlideShowImages";
+
             return "";
         }
     }

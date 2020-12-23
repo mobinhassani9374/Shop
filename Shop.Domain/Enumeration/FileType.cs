@@ -9,6 +9,9 @@ namespace Shop.Domain.Enumeration
     public enum FileType
     {
         [DisplayName("عکس فایل")]
-        ProductImage = 1
+        ProductImage = 1,
+
+        [DisplayName("عکس اسلایدشو")]
+        SlideShowImage = 2
     }
 }
