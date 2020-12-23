@@ -82,6 +82,8 @@ namespace Shop.Services
                 }).ToList()
             }).ToList();
 
+            result.SlideShows = GetAllSlideShows();
+
             return result;
         }
         public ServiceResult AddToCart(AddToCartDto dto)

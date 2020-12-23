@@ -13,7 +13,8 @@ namespace Shop.Mvc.Mapping
         {
             return new UserIndexViewModel
             {
-                ProductCategries = source.ProductCategries.ToViewModel()
+                ProductCategries = source.ProductCategries.ToViewModel(),
+                SlideShows = source.SlideShows.ToViewModel()
             };
         }
         public static List<CategoryViewModel> ToViewModel(this List<CategoryDto> sources)
