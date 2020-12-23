@@ -49,6 +49,10 @@ namespace Shop.Services
 
             return orderedQery.ToPaginated(dto).ToDto();
         }
+        public List<User> GetUsers(List<string> ids)
+        {
+            return _dbContext.Users.Where(c => ids.Any(i => i == c.Id)).ToList();
+        }
         protected User GetUser(string userId)
         {
             return _dbContext.Users.FirstOrDefault(c => c.Id == userId);

@@ -374,7 +374,20 @@ namespace Shop.Services
             IOrderedQueryable<Order> orderedQery =
                query.OrderByDescending(c => c.Id);
 
-            return orderedQery.ToPaginated(dto).ToDto();
+            var result = orderedQery.ToPaginated(dto).ToDto();
+
+            var users = GetUsers(result.Data.Select(c => c.UserId).ToList());
+
+            SetUsers(result, users);
+
+            return result;
+        }
+        private void SetUsers(PaginationDto<OrderDto> sources, List<User> users)
+        {
+            sources.Data.ForEach(c =>
+            {
+                c.User = users.FirstOrDefault(i => i.Id == c.UserId)?.ToDto();
+            });
         }
     }
 }

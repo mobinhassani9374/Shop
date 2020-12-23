@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Mvc.Models.UserManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,5 +17,6 @@ namespace Shop.Mvc.Models.Order
         public bool IsPaid { get; set; }
         public DateTime? PaymentDate { get; set; }
         public List<OrderDetailViewModel> Details { get; set; }
+        public UserViewModel User { get; set; }
     }
 }

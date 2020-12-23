@@ -31,7 +31,8 @@ namespace Shop.Mvc.Mapping
                 IsPaid = source.IsPaid,
                 PaymentDate = source.PaymentDate,
                 TotalPrice = source.TotalPrice,
-                Details = source.Details?.ToViewModel()
+                Details = source.Details?.ToViewModel(),
+                User = source.User?.ToViewModel()
             };
         }
         public static List<OrderDetailViewModel> ToViewModel(this List<OrderDetailDto> sources)

@@ -27,6 +27,7 @@
             {
                 <div class="main__box">
                     <div class="main__box__item">
+                        
                         <div>
                             <p>شماره سفارش : @order.Id </p>
                             <p>مبلغ کل سفارش : <span data-role="seperator">@order.TotalPrice</span> تومان</p>
@@ -47,9 +48,9 @@
                             </p>
                         </div>
                         <div data-toggle="collapse" data-target="#item@(order.Id)" class="main__box__item__more collapsed"
-                            aria-expanded="false">
+                             aria-expanded="false">
                             <i data-toggle="tooltip" title="" class="fa fa-angle-double-down"
-                                data-original-title="جزییات بیشتر"></i>
+                               data-original-title="جزییات بیشتر"></i>
                         </div>
                     </div>
                     <div id="item@(order.Id)" class="collapse" aria-expanded="false" style="height: 0px;">
@@ -70,8 +71,10 @@
                                         {
                                             <tbody>
                                                 <tr>
-                                                    <td><img src="~/Files/Images/@(detail.Product.PrimaryImage)"
-                                                            class="img-responsive" style="width:50px;margin:auto" /></td>
+                                                    <td>
+                                                        <img src="~/Files/Images/@(detail.Product.PrimaryImage)"
+                                                             class="img-responsive" style="width:50px;margin:auto" />
+                                                    </td>
                                                     <td>@detail.Product.Title</td>
                                                     <td>@detail.Count</td>
                                                     <td data-role="seperator">@detail.Price</td>
@@ -84,14 +87,14 @@
                             </div>
                         </div>
                     </div>
-                </div>              
+                </div>
             }
         }
         else
         {
             <div class="main__box">
                 <div class="main__box__item">
-                    داده ای یافت نشد 
+                    داده ای یافت نشد
                 </div>
             </div>
         }
