@@ -26,15 +26,13 @@
             foreach (var order in Model.Data.Data)
             {
                 <div class="main__box">
-                    <div class="main__box__item">
-                        
-                        <div>
+                    <div class="main__box__item" style="flex-direction: column;align-items: flex-start;">                        
+                        <div style="display: flex;align-items: baseline;width: 100%;justify-content: space-between;">
                             <p>شماره سفارش : @order.Id </p>
                             <p>مبلغ کل سفارش : <span data-role="seperator">@order.TotalPrice</span> تومان</p>
                         </div>
-                        <div>
+                        <div style="display: flex;align-items: baseline;width: 100%;justify-content: space-between;">
                             <p>تاریخ سفارش : @order.Date</p>
-
                             <p>
                                 وضعیت :
                                 @if (order.IsPaid)
@@ -47,6 +45,14 @@
                                 }
                             </p>
                         </div>
+                        <div style="display: flex;align-items: baseline;width: 100%;justify-content: space-between;">
+                            <p>نام کاربر سفارش دهنده : </p>
+                            <p>شماره تماس سفارش دهنده : </p>
+                        </div>
+                         <div style="display: flex;align-items: baseline;width: 100%;justify-content: space-between;">
+                            <p> آدرس سفارش دهنده : </p>                           
+                        </div>
+                         
                         <div data-toggle="collapse" data-target="#item@(order.Id)" class="main__box__item__more collapsed"
                              aria-expanded="false">
                             <i data-toggle="tooltip" title="" class="fa fa-angle-double-down"
