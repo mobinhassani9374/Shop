@@ -1,0 +1,109 @@
+﻿@using Shop.Mvc.Models
+@using Shop.Mvc.Models.Order
+@using Shop.Mvc.Models.Pagination
+@using DNTPersianUtils.Core
+@using Shop.Utility.Extensions
+
+@model SearchModel<OrderSearchViewModel, PaginationViewModel<OrderViewModel>>
+@{
+    ViewData["Title"] = "سفارشات کاربران - پنل مدیریتی ایمن فروش";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
+        <li class="breadcrumb-item active" aria-current="page">سفارشات کاربران</li>
+    </ol>
+</nav>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">سفارشات کاربران</div>
+    <div class="panel-body">
+        @*<fieldset>
+                <legend>جستجوی کاربران</legend>
+                <form>
+                    <div class="row flex-center" style="align-items: flex-end;">
+                        <div class="col-md-3 col-xs-12">
+                            <div class="control-group">
+                                <label>جستجو بر اساس نام و نام خانوادگی </label>
+                                <input name="FullName" value="@Model?.Search?.FullName" type="text" class="form-control" placeholder="نام و نام خانوادگی" />
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <div class="control-group">
+                                <label>جستجو بر اساس شماره تلفن </label>
+                                <input name="PhoneNumber" value="@Model?.Search?.PhoneNumber" type="text" class="form-control" placeholder="شماره تلفن" />
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <label>جستجو بر اساس نقش </label>
+                            <div class="control-group">
+                                <select name="Type" asp-items="@ViewBag.Type" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <div class="control-group">
+                                <button class="ladda-button btn btn-primary btn-block" data-style="zoom-in">
+                                    <span class="ladda-label">جستجو</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+
+            <hr />*@
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>شماره سفارش</th>
+                        <th>مبلغ کل سفارش</th>
+                        <th>وضعیت پرداخت</th>
+                        <th>تاریخ ثبت سفارش</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Data.Count > 0)
+                    {
+                        foreach (var order in Model.Data.Data)
+                        {
+
+                            <tr>
+                                <td>@order.Id</td>
+                                <td>@order.TotalPrice</td>
+                                <td>
+                                    @if(order.IsPaid)
+                                    {
+                                        <span>پرداخت شده</span>
+                                    }
+                                    else
+                                    {
+                                        <span>پرداخت نشده</span>
+                                    }
+                                </td>
+                                <td>
+                                    @order.Date
+                                </td>
+                            </tr>
+
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4"> سفارشی یافت نشد</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @Html.Partial("~/Views/Shared/_Pagination.cshtml", Model.Data)
+    </div>
+</div>
+
+

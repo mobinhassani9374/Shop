@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DNTPersianUtils.Core;
+using Shop.Mvc.Models.Pagination;
+using Shop.Domain.Dto.Pagination;
 
 namespace Shop.Mvc.Mapping
 {
@@ -17,7 +19,6 @@ namespace Shop.Mvc.Mapping
                 result.Add(source.ToViewModel());
             return result;
         }
-
         public static OrderViewModel ToViewModel(this OrderDto source)
         {
             return new OrderViewModel
@@ -50,6 +51,25 @@ namespace Shop.Mvc.Mapping
                 Price = source.Price,
                 Product = source.Product?.ToViewModel(),
                 ProductId = source.ProductId
+            };
+        }
+        public static OrderSearchDto ToDto(this OrderSearchViewModel source)
+        {
+            return new OrderSearchDto
+            {
+                PageNumber = source.PageNumber,
+                PageSize = source.PageSize
+            };
+        }
+        public static PaginationViewModel<OrderViewModel> ToViewModel(this PaginationDto<OrderDto> source)
+        {
+            return new PaginationViewModel<OrderViewModel>
+            {
+                PageSize = source.PageSize,
+                Count = source.Count,
+                PageCount = source.PageCount,
+                PageNumber = source.PageNumber,
+                Data = source.Data.ToViewModel()
             };
         }
     }

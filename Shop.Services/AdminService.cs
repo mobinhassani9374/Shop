@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Category;
+using Shop.Domain.Dto.Order;
 using Shop.Domain.Dto.Pagination;
 using Shop.Domain.Dto.Product;
 using Shop.Domain.Dto.SlideShow;
@@ -362,6 +363,18 @@ namespace Shop.Services
                 serviceResult = Save("اسلایدشو با موفقت حذف شد");
             }
             return serviceResult;
+        }
+        public PaginationDto<OrderDto> GetOrders(OrderSearchDto dto)
+        {
+            var query = _dbContext.Orders
+                  .Include(c => c.Details)
+                  .ThenInclude(c => c.Product)
+                  .AsQueryable();
+
+            IOrderedQueryable<Order> orderedQery =
+               query.OrderByDescending(c => c.Id);
+
+            return orderedQery.ToPaginated(dto).ToDto();
         }
     }
 }

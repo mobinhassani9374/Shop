@@ -1,5 +1,7 @@
-﻿using Shop.Domain.Dto.Cart;
+﻿using Shop.Database.Identity.Entities;
+using Shop.Domain.Dto.Cart;
 using Shop.Domain.Dto.Order;
+using Shop.Domain.Dto.Pagination;
 using Shop.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -87,6 +89,18 @@ namespace Shop.Services.Mapping
                 Price = source.Price,
                 Product = source.Product?.ToDto(),
                 ProductId = source.ProductId
+            };
+        }
+
+        public static PaginationDto<OrderDto> ToDto(this PaginationDto<Order> source)
+        {
+            return new PaginationDto<OrderDto>
+            {
+                Count = source.Count,
+                Data = source.Data.ToDto(),
+                PageCount = source.PageCount,
+                PageNumber = source.PageNumber,
+                PageSize = source.PageSize
             };
         }
     }
