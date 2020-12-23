@@ -17,6 +17,7 @@ using System.Linq;
 using System.Text;
 using Shop.Domain.Dto.Product;
 using Newtonsoft.Json;
+using Shop.Domain.Dto.SlideShow;
 
 namespace Shop.Services
 {
@@ -135,6 +136,15 @@ namespace Shop.Services
                 System.IO.File.Delete(path);
             else servieResult.AddError("فایلی یافت نشد");
             return servieResult;
+        }
+        public List<SlideShowDto> GetAllSlideShows()
+        {
+            var data = _dbContext
+                .SlideShows
+                .OrderByDescending(c => c.Id)
+                .ToList();
+
+            return data.ToDto();
         }
     }
 }

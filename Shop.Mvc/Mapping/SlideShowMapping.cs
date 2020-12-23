@@ -17,5 +17,22 @@ namespace Shop.Mvc.Mapping
                 ImageFile = source.ImageFile
             };
         }
+        public static List<SlideShowViewModel> ToViewModel(this List<SlideShowDto> sources)
+        {
+            var result = new List<SlideShowViewModel>();
+            foreach (var source in sources)
+                result.Add(source.ToViewModel());
+            return result;
+        }
+
+        public static SlideShowViewModel ToViewModel(this SlideShowDto source)
+        {
+            return new SlideShowViewModel
+            {
+                Id = source.Id,
+                ImageName = source.ImageName,
+                Link = source.Link
+            };
+        }
     }
 }

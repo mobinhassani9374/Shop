@@ -16,5 +16,23 @@ namespace Shop.Services.Mapping
                 ImageName = imageName
             };
         }
+
+        public static List<SlideShowDto> ToDto(this List<SlideShow> sources)
+        {
+            var result = new List<SlideShowDto>();
+            foreach (var source in sources)
+                result.Add(source.ToDto());
+            return result;
+        }
+
+        public static SlideShowDto ToDto(this SlideShow source)
+        {
+            return new SlideShowDto
+            {
+                Id = source.Id,
+                ImageName = source.ImageName,
+                Link = source.Link
+            };
+        }
     }
 }
