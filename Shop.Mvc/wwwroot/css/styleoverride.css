@@ -277,7 +277,8 @@ legend {
     cursor: pointer;
 }
 
-.cart__link:hover , .cart__link.active {
+.cart__link:hover,
+.cart__link.active {
     background-color: #f7f7f7;
 }
 
@@ -341,4 +342,12 @@ legend {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+
+.count-0 {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid #e52b52;
+    border-radius: 5px;
 }

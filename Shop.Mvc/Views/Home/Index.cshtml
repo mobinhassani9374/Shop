@@ -216,9 +216,14 @@
                                     </div>
                                 </div>
                                 <div class="slick__product__item__btn">
-                                    <a v-on:click="addCart(@product.Id)" id="addcart@(product.Id)" type="submit" class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
-                                        <span class="ladda-label">افزودن به سبد خرید</span>
-                                    </a>                                    
+                                    @if(product.Count!=0) {
+                                         <a v-on:click="addCart(@product.Id)" id="addcart@(product.Id)" type="submit" class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
+                                            <span class="ladda-label">افزودن به سبد خرید</span>
+                                        </a>  
+                                    }
+                                    else {
+                                        <p class="text-danger count-0">ناموجود</p>
+                                    }                                                                     
                                 </div>
                             </a>
                         </div>
