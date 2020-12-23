@@ -246,6 +246,14 @@
                         </div>
                     </div>
                     <div class="footer__info">
+                        <div class="col-md-4 text-left">
+                            <img alt="ایمن فروش" src="~/img/logo.png" />
+                            <h3>ایمن فروش</h3>
+                            <p>
+                                فروش سیستم های امنیتی و نظارتی : دوربین های مداربسته با سیم و بیسیم , دزدگیر اماکن ,
+                                ردیاب های شخصی و خودرو
+                            </p>
+                        </div>
                         <div class="col-md-4">
                             <div class="footer__info__title">
                                 لینک های ایمن فروش
@@ -271,12 +279,6 @@
                             <a href="#">
                                 <img alt="ایمن فروش" class="footer__info__share" src="~/img/telegram.png" />
                             </a>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="footer__info__title">
-                                مجوزهای اخذ شذه های ایمن فروش
-                            </div>
-                            <img alt="ایمن فروش" src="~/img/enamad.png" class="img img-responsive" />
                         </div>
                     </div>
                 </div>
@@ -359,11 +361,13 @@
             countCart: 0,
             cart: [],
             price: 0,
-            loading: false
+            loading: false,
+            shippingCost: 0
         },
         methods: {
             addCart: function (productId) {
                 var me = this;
+                var l = Ladda.create(document.getElementById('addcart' + productId));
                 $.ajax({
                     url: '/Cart/Add',
                     method: 'post',
@@ -371,7 +375,9 @@
                 }).then(function (response) {
                     me.countCart = response.data.length;
                     toastr.info(response.message);
+                    l.stop();
                 }).fail(function (error) {
+                    l.stop()
                     if (error.status === 401) {
                         Swal.fire({
                             icon: "error",
@@ -415,6 +421,13 @@
                 me.cart.map(function (item) {
                     me.price += item.price * item.count;
                 })
+                if (me.price < 700000) {
+                    me.shippingCost = 20000;
+                    me.price += 20000;
+                }
+                else {
+                    me.shippingCost = 0;
+                }
             },
             increase: function (productId) {
                 var me = this;
@@ -448,19 +461,21 @@
             },
             deleteCart: function (productId) {
                 var me = this;
-                me.loading = true;
-                $.ajax({
-                    url: '/Cart/Delete',
-                    method: 'post',
-                    data: { ProductId: productId }
-                }).then(function (response) {
-                    me.countCart = response.data.length;
-                    me.cart = response.data;
-                    toastr.info(response.message);
-                    me.computedPrice();
-                    me.loading = false;
-                });
-            },
+                if (confirm('آیا مطمئن هستید ؟؟ ')) {
+                    me.loading = true;
+                    $.ajax({
+                        url: '/Cart/Delete',
+                        method: 'post',
+                        data: { ProductId: productId }
+                    }).then(function (response) {
+                        me.countCart = response.data.length;
+                        me.cart = response.data;
+                        toastr.info(response.message);
+                        me.computedPrice();
+                        me.loading = false;
+                    });
+                }
+            }
         },
         created: function () {
             this.getCart();

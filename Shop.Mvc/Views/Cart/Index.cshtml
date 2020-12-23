@@ -37,21 +37,22 @@
                                 <tr v-for="item in cart" :key="item.productId">
                                     <td>
                                         <img v-bind:src="'/Files/Images/' + item.productImage"
-                                             class="img-responsive img-thumbnail" />
+                                            class="img-responsive img-thumbnail" />
                                     </td>
                                     <td>{{item.productTitle}}</td>
                                     <td>
                                         <div class="quantity">
                                             <input style="width:60px;text-align:center" type="number" v-model="item.count"
-                                                   step="1" v-on:change="computedPrice()" min="1" :max="item.productCount"
-                                                   disabled>
+                                                step="1" v-on:change="computedPrice()" min="1" :max="item.productCount"
+                                                disabled>
 
-                                            <button style="padding: 5px;display: inline-flex;" :disabled="item.count==item.productCount" class="btn btn-success"
-                                                    v-on:click="increase(item.productId)">
+                                            <button style="padding: 5px;display: inline-flex;"
+                                                :disabled="item.count==item.productCount" class="btn btn-success"
+                                                v-on:click="increase(item.productId)">
                                                 <i class="fa fa-plus"></i>
                                             </button>
-                                            <button style="padding: 5px;display: inline-flex;" :disabled="item.count==1" class="btn btn-danger"
-                                                    v-on:click="reduce(item.productId)">
+                                            <button style="padding: 5px;display: inline-flex;" :disabled="item.count==1"
+                                                class="btn btn-danger" v-on:click="reduce(item.productId)">
                                                 <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
@@ -65,11 +66,17 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-xs-12 pull-right">
+                            <div class="alert alert-danger text-center">خرید بالای 700,000 تومان هزینه ارسالش رایگان میباشد</div>
+                            <div class="cart__price" v-if="shippingCost!==0">
+                                <div>هزینه ارسال : </div>
+                                <div class="text-success">{{seperator(shippingCost)}} تومان</div>
+                            </div>
                             <div class="cart__price">
                                 <div>مجموعا به تومان : </div>
                                 <div class="text-success">{{seperator(price)}} تومان</div>
                             </div>
-                            <a asp-action="Index" asp-controller="Payment" class="btn btn-danger btn-block">ادامه فرآیند خرید</a>
+                            <a asp-action="Index" asp-controller="Payment" class="btn btn-danger btn-block">ادامه فرآیند
+                                خرید</a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +104,7 @@
                     <p class="cart-register__title">اگر در سایت ثبت نام کرده اید از طریق لینک زیر وارد شوید</p>
                     <div class="cart-register__icon">
                         <i class="fa fa-sign-in"></i>
-                    </div>                    
+                    </div>
                     <a class="btn btn-danger" href="/Account/Login">ورود به سایت</a>
                 </div>
             </div>
