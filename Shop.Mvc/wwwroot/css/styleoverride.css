@@ -357,22 +357,37 @@ legend {
 }
 
 .box {
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     margin: 10px;
 }
 
-.box__item {   
-    color: #e52b52 ;
+.box__item {
+    color: #e52b52;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0px 0px 10px #ccc;
-    z-index: 1;    
+    z-index: 1;
     font-size: 20px;
     padding: 5px;
     font-weight: 600;
     margin: 10px;
     text-align: center;
+}
+
+.keywords {
+    color: #e52b52;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #ccc;
+    z-index: 1;
+    font-size: 13px;
+    padding: 5px;
+    font-weight: 600;
+    margin: 1px;
+    text-align: center;
+    display: inline-flex;
 }
