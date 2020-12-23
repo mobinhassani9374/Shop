@@ -246,6 +246,14 @@
                         </div>
                     </div>
                     <div class="footer__info">
+                        <div class="col-md-4 text-left">
+                            <img alt="ایمن فروش" src="~/img/logo.png" />
+                            <h3>ایمن فروش</h3>
+                            <p>
+                                فروش سیستم های امنیتی و نظارتی : دوربین های مداربسته با سیم و بیسیم , دزدگیر اماکن ,
+                                ردیاب های شخصی و خودرو
+                            </p>
+                        </div>
                         <div class="col-md-4">
                             <div class="footer__info__title">
                                 لینک های ایمن فروش
@@ -271,12 +279,6 @@
                             <a href="#">
                                 <img alt="ایمن فروش" class="footer__info__share" src="~/img/telegram.png" />
                             </a>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="footer__info__title">
-                                مجوزهای اخذ شذه های ایمن فروش
-                            </div>
-                            <img alt="ایمن فروش" src="~/img/enamad.png" class="img img-responsive" />
                         </div>
                     </div>
                 </div>
@@ -418,7 +420,7 @@
                 me.price = 0;
                 me.cart.map(function (item) {
                     me.price += item.price * item.count;
-                })                
+                })
                 if (me.price < 700000) {
                     me.shippingCost = 20000;
                     me.price += 20000;
