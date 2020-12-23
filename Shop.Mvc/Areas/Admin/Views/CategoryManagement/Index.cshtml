@@ -37,7 +37,6 @@
 
 <div class="panel panel-primary" id="app">
     <div class="panel-heading">مدیریت دسته بندی ها
-        <i v-if="loading" style="font-size: 20px;float:left;color:#fff" class="fa fa-spin fa-spinner"></i>
     </div>
     <div class="panel-body">
         <div class="row">
@@ -77,6 +76,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div v-if="loading" class="cart-loading">
+        <i class="fa fa-spinner fa-spin text-danger" aria-hidden="true"></i>
     </div>
 </div>
 
