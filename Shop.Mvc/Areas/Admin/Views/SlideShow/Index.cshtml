@@ -27,6 +27,7 @@
                     <tr>
                         <th>عکس محصول</th>
                         <th>لینک</th>
+                        <th>حذف</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,13 +37,15 @@
                         {
                             <tr>
                                 <td>
-                                    <img src="~/Files/SlideShowImages/@(item.ImageName)" class="img-responsive img-thumbnail"
-                                         style="max-width:60px" />
+                                    <a data-fancybox="gallery" href="~/Files/SlideShowImages/@(item.ImageName)">
+                                        <img style="height:70px" src="~/Files/SlideShowImages/@(item.ImageName)"
+                                            class="img-responsive img-thumbnail" />
+                                    </a>                                    
                                 </td>
                                 <td>@item.Link.ToPersianNumbers()</td>
                                 <td>
                                     <a asp-action="Delete" data-role="confirm" asp-route-id="@(item.Id)"
-                                       class="btn btn-danger ladda-button" data-style="zoom-in">
+                                        class="btn btn-danger ladda-button" data-style="zoom-in">
                                         <span class="ladda-label">حذف </span>
                                     </a>
                                 </td>
@@ -52,7 +55,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="2">داده ای یافت نشد</td>
+                            <td colspan="3">داده ای یافت نشد</td>
                         </tr>
                     }
                 </tbody>
