@@ -33,5 +33,11 @@ namespace Shop.Mvc.Areas.Admin.Controllers
             var servieResult = _adminService.CreateSlideShow(model.ToDto());
             return View_Post(servieResult, model);
         }
+
+        public IActionResult Delete(int id)
+        {
+            var serviceResult = _adminService.DeleteSlideShow(id);
+            return View_Get(serviceResult, nameof(Index));
+        }
     }
 }

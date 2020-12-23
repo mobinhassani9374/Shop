@@ -350,5 +350,18 @@ namespace Shop.Services
             }
             return servieResult;
         }
+        public ServiceResult DeleteSlideShow(int id)
+        {
+            var serviceResult = new ServiceResult(true);
+            var entity = _dbContext.SlideShows.FirstOrDefault(c => c.Id == id);
+            if (entity == null)
+                serviceResult.AddError("اسایدشو یافت نشد");
+            else
+            {
+                Remove(entity);
+                serviceResult = Save("اسلایدشو با موفقت حذف شد");
+            }
+            return serviceResult;
+        }
     }
 }
