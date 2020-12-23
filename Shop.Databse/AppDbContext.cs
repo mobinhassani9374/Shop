@@ -19,6 +19,7 @@ namespace Shop.Database
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<SlideShow> SlideShows { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -85,6 +86,11 @@ namespace Shop.Database
                 .WithMany(c => c.OrderDetails)
                 .HasForeignKey(c => c.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            var slideShow = builder.Entity<SlideShow>();
+
+            slideShow.HasKey(c => c.Id);
+            slideShow.Property(c => c.ImageName).HasMaxLength(Constants.SlideShow_ImageName_Length).IsRequired(true);
         }
     }
 }
