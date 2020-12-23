@@ -364,6 +364,7 @@
         methods: {
             addCart: function (productId) {
                 var me = this;
+                var l = Ladda.create(document.getElementById('addcart'+productId));
                 $.ajax({
                     url: '/Cart/Add',
                     method: 'post',
@@ -371,7 +372,9 @@
                 }).then(function (response) {
                     me.countCart = response.data.length;
                     toastr.info(response.message);
+                    l.stop();
                 }).fail(function (error) {
+                    l.stop()
                     if (error.status === 401) {
                         Swal.fire({
                             icon: "error",

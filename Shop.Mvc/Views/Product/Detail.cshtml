@@ -59,7 +59,10 @@
                     <span style="margin-right:10px">تومان</span>
                 </div>
                 <div>
-                    <a v-on:click="addCart(@Model.Id)" class="btn btn-danger">افزودن به سبد خرید</a>
+                    <a v-on:click="addCart(@Model.Id)" id="addcart@(Model.Id)" type="submit"
+                        class="ladda-button btn btn-danger" data-style="zoom-in">
+                        <span class="ladda-label">افزودن به سبد خرید</span>
+                    </a>                    
                 </div>
             </div>
         </div>
