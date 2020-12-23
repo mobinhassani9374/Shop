@@ -364,7 +364,7 @@
         methods: {
             addCart: function (productId) {
                 var me = this;
-                var l = Ladda.create(document.getElementById('addcart'+productId));
+                var l = Ladda.create(document.getElementById('addcart' + productId));
                 $.ajax({
                     url: '/Cart/Add',
                     method: 'post',
@@ -451,23 +451,25 @@
             },
             deleteCart: function (productId) {
                 var me = this;
-                me.loading = true;
-                $.ajax({
-                    url: '/Cart/Delete',
-                    method: 'post',
-                    data: { ProductId: productId }
-                }).then(function (response) {
-                    me.countCart = response.data.length;
-                    me.cart = response.data;
-                    toastr.info(response.message);
-                    me.computedPrice();
-                    me.loading = false;
-                });
-            },
+                if (confirm('آیا مطمئن هستید ؟؟ ')){
+                    me.loading = true;
+                    $.ajax({
+                        url: '/Cart/Delete',
+                        method: 'post',
+                        data: { ProductId: productId }
+                    }).then(function (response) {
+                        me.countCart = response.data.length;
+                        me.cart = response.data;
+                        toastr.info(response.message);
+                        me.computedPrice();
+                        me.loading = false;
+                    });
+                }
+            }
         },
-        created: function () {
-            this.getCart();
-        }
+    created: function () {
+        this.getCart();
+    }
     })
 </script>
 
