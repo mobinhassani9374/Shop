@@ -137,7 +137,6 @@
                         <div class="col-md-6 col-xs-12">
                             @if (User.Identity.IsAuthenticated)
                             {
-
                                 <form method="post" asp-action="AddComment">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="ProductId" value="@Model.Id" />
@@ -146,13 +145,19 @@
                                         <textarea name="Comment" class="form-control" rows="5" placeholder="نظر خود را وارد کنید"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <input type="submit" class="btn btn-danger btn-block" value="ثبت نظر" />
+                                        <button type="submit" class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
+                                            <span class="ladda-label">ثبت نظر</span>
+                                        </button>                                      
                                     </div>
                                 </form>
                             }
                             else
                             {
-                                <div class="alert alert-danger">برای ثبت نظر باید وارد سایت شوید</div>
+                                <div class="alert alert-danger">
+                                    <p>برای ثبت نظر باید وارد سایت شوید</p>
+                                    <p><a href="#">اگر قبلا ثبت نام کرده اید از طریق این لینک وارد شوید</a></p>
+                                    <p><a href="#">اگر قبلا ثبت نام نکرده اید از طریق این لینک وارد شوید</a></p>
+                                </div>
                             }
                         </div>
                     </div>
