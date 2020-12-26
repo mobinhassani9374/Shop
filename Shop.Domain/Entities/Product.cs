@@ -17,5 +17,6 @@ namespace Shop.Domain.Entities
         public Category Category { get; set; }
         public ICollection<Cart> Carts { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
+        public ICollection<ProductVote> Votes { get; set; }
     }
 }

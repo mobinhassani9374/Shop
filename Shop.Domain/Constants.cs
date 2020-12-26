@@ -19,5 +19,7 @@ namespace Shop.Domain
         public const int Product_PrimaryImage_Length = 500;
 
         public const int SlideShow_ImageName_Length = 500;
+
+        public const int UserId_Length = 150;
     }
 }

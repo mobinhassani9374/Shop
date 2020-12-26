@@ -91,6 +91,19 @@ namespace Shop.Database
 
             slideShow.HasKey(c => c.Id);
             slideShow.Property(c => c.ImageName).HasMaxLength(Constants.SlideShow_ImageName_Length).IsRequired(true);
+
+            var productVote = builder.Entity<ProductVote>();
+
+            productVote.HasKey(c => c.Id);
+
+            productVote.Property(c => c.UserId).HasMaxLength(Constants.UserId_Length).IsRequired(true);
+
+            productVote.Property(c => c.Comment).IsRequired(true);
+
+            productVote.HasOne(c => c.Product)
+                .WithMany(c => c.Votes)
+                .HasForeignKey(c => c.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
