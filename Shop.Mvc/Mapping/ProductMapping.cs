@@ -83,5 +83,14 @@ namespace Shop.Mvc.Mapping
                 Title = source.Title
             };
         }
+
+        public static AddProductCommentDto ToDto(this AddCommentViewModel source)
+        {
+            return new AddProductCommentDto
+            {
+                Comment = source.Comment,
+                ProductId = source.ProductId
+            };
+        }
     }
 }

@@ -7,6 +7,7 @@ using Shop.Domain.Dto.Account;
 using Shop.Domain.Dto.Cart;
 using Shop.Domain.Dto.Home;
 using Shop.Domain.Dto.Order;
+using Shop.Domain.Dto.Product;
 using Shop.Domain.Enumeration;
 using Shop.Services.Mapping;
 using Shop.Services.Validations;
@@ -72,7 +73,7 @@ namespace Shop.Services
             {
                 CategoryTitle = c.Title,
                 Id = c.Id,
-                Products = c.Products.Select(i => new ProductDto
+                Products = c.Products.Select(i => new Domain.Dto.Home.ProductDto
                 {
                     Id = i.Id,
                     Title = i.Title,
@@ -238,6 +239,24 @@ namespace Shop.Services
                 .ToList();
 
             return data.ToDto();
+        }
+        public ServiceResult AddCommentForProduct(AddProductCommentDto dto, string userId)
+        {
+            var serviceResult = dto.IsValid();
+            if (serviceResult.IsSuccess)
+            {
+                if (_dbContext.Products.Any(c => c.Id == dto.ProductId))
+                {
+                    var entity = dto.ToEntity(userId);
+                    entity.Date = DateTime.Now;
+                    entity.Stats = VoteState.Wating;
+
+                    Insert(entity);
+                    serviceResult = Save("نظر با موفقیت ثبت شد");
+                }
+                else serviceResult.AddError("محصولی یافت نشد");
+            }
+            return serviceResult;
         }
     }
 }

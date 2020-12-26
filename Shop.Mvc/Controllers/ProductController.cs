@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Shop.Mvc.Mapping;
 using Shop.Mvc.Models.Product;
 using Shop.Services;
@@ -24,9 +25,11 @@ namespace Shop.Mvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken()]
+        [Authorize()]
         public IActionResult AddComment(AddCommentViewModel model)
         {
-            return View();
+            var serviceResult = _userService.AddCommentForProduct(model.ToDto(), UserId);
+            return View_Get(serviceResult, $"{nameof(Detail)}/{model.ProductId}");
         }
     }
 }

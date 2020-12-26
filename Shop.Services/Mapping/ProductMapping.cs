@@ -70,5 +70,14 @@ namespace Shop.Services.Mapping
                 Title = source.Title
             };
         }
+        public static ProductVote ToEntity(this AddProductCommentDto source, string userId)
+        {
+            return new ProductVote
+            {
+                Comment = source.Comment,
+                ProductId = source.ProductId,
+                UserId = userId
+            };
+        }
     }
 }
