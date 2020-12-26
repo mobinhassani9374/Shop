@@ -361,6 +361,7 @@ legend {
     align-items: center;
     justify-content: center;
     margin: 10px;
+    flex-direction: row-reverse;
 }
 
 .box__item {
@@ -390,4 +391,9 @@ legend {
     margin: 1px;
     text-align: center;
     display: inline-flex;
+}
+
+.tooltip-inner {    
+    font-family: "MyriadArabic" !important;
+    font-size: 16px;
 }
