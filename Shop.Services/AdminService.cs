@@ -389,5 +389,26 @@ namespace Shop.Services
                 c.User = users.FirstOrDefault(i => i.Id == c.UserId)?.ToDto();
             });
         }
+        private void SetUsers(List<ProductVoteDto> sources, List<User> users)
+        {
+            sources.ForEach(c =>
+            {
+                c.User = users.FirstOrDefault(i => i.Id == c.UserId)?.ToDto();
+            });
+        }
+        public List<ProductVoteDto> GetAllWatingComments()
+        {
+            var data = _dbContext
+                .ProductVote
+                .Include(c=>c.Product)
+                .Where(c => c.Stats == VoteState.Wating)
+                .ToList();
+
+            var users = GetUsers(data.Select(c=>c.UserId).ToList());
+            var result = data.ToDto();
+            SetUsers(result, users);
+
+            return result;
+        }
     }
 }

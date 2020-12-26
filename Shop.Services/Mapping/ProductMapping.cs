@@ -79,5 +79,25 @@ namespace Shop.Services.Mapping
                 UserId = userId
             };
         }
+        public static List<ProductVoteDto> ToDto(this List<ProductVote> sources)
+        {
+            var result = new List<ProductVoteDto>();
+            foreach (var source in sources)
+                result.Add(source.ToDto());
+            return result;
+        }
+        public static ProductVoteDto ToDto(this ProductVote source)
+        {
+            return new ProductVoteDto
+            {
+                Comment = source.Comment,
+                Date = source.Date,
+                Id = source.Id,
+                Product = source.Product?.ToDto(),
+                ProductId = source.ProductId,
+                Stats = source.Stats,
+                UserId = source.UserId
+            };
+        }
     }
 }

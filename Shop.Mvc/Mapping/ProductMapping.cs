@@ -92,5 +92,26 @@ namespace Shop.Mvc.Mapping
                 ProductId = source.ProductId
             };
         }
+        public static List<ProductVoteViewModel> ToViewModel(this List<ProductVoteDto> sources)
+        {
+            var result = new List<ProductVoteViewModel>();
+            foreach (var source in sources)
+                result.Add(source.ToViewModel());
+            return result;
+        }
+        public static ProductVoteViewModel ToViewModel(this ProductVoteDto source)
+        {
+            return new ProductVoteViewModel
+            {
+                Comment = source.Comment,
+                Date = source.Date,
+                Id = source.Id,
+                Product = source.Product?.ToViewModel(),
+                ProductId = source.ProductId,
+                Stats = source.Stats,
+                User = source.User?.ToViewModel(),
+                UserId = source.UserId
+            };
+        }
     }
 }

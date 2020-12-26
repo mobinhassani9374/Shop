@@ -1,8 +1,64 @@
-﻿
+﻿@using Shop.Mvc.Models
+@using Shop.Mvc.Models.Product
+@using Shop.Mvc.Models.Pagination
+@using DNTPersianUtils.Core
+@using Shop.Utility.Extensions
+
+@model List<Shop.Mvc.Models.Product.ProductVoteViewModel>
 @{
-    ViewData["Title"] = "CommentWating";
+    ViewData["Title"] = " نظرات در انتظار تایید - پنل مدیریتی ایمن فروش";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>CommentWating</h2>
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
+        <li class="breadcrumb-item active" aria-current="page">نظرات در انتظار تایید</li>
+    </ol>
+</nav>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">نظرات در انتظار تایید</div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>عکس محصول</th>
+                        <th>عنوان محصول</th>
+                        <th>کاربر</th>
+                        <th>نظر</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/Files/Images/@item.Product.PrimaryImage" class="img-responsive img-thumbnail"
+                                         style="max-width:60px" />
+                                </td>
+                                <td>@item.Product.Title</td>
+                                <td>@item.User.FullName</td>
+                                <td>@item.Comment</td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5">نظری وجود ندارد</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

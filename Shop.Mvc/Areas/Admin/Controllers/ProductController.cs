@@ -79,7 +79,7 @@ namespace Shop.Mvc.Areas.Admin.Controllers
 
         public IActionResult CommentWating()
         {
-            return View();
+            return View(_adminService.GetAllWatingComments().ToViewModel());
         }
     }
 }
