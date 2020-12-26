@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Mvc.Mapping;
+using Shop.Mvc.Models.Product;
 using Shop.Services;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,13 @@ namespace Shop.Mvc.Controllers
         {
             var serviceResult = _userService.GetProductDetail(id);
             return View_Get(serviceResult.Data?.ToViewModel(), "/");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        public IActionResult AddComment(AddCommentViewModel model)
+        {
+            return View();
         }
     }
 }
