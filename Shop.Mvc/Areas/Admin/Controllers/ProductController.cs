@@ -76,5 +76,10 @@ namespace Shop.Mvc.Areas.Admin.Controllers
             var serviceResult = _adminService.DeleteImageForProduct(id, imageGuid);
             return View_Get(serviceResult, $"{nameof(Images)}/{id}");
         }
+
+        public IActionResult CommentWating()
+        {
+            return View();
+        }
     }
 }
