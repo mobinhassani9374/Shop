@@ -29,7 +29,7 @@ $(function () {
   });
 
   $('form').on('submit', function () {
-    var l = Ladda.create(document.querySelector('.ladda-button'));
+    var l = Ladda.create(document.querySelector('button.ladda-button'));
     l.start();
   })
 
