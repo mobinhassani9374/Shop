@@ -20,6 +20,10 @@ namespace Shop.Mvc.Controllers
         public IActionResult Detail(int id)
         {
             var serviceResult = _userService.GetProductDetail(id);
+            if (serviceResult.IsSuccess)
+            {
+                ViewBag.Comments = _userService.GetAllAcepteCommentForProduct(id).ToViewModel();
+            }
             return View_Get(serviceResult.Data?.ToViewModel(), "/");
         }
 

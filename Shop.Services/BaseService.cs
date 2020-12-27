@@ -18,6 +18,7 @@ using System.Text;
 using Shop.Domain.Dto.Product;
 using Newtonsoft.Json;
 using Shop.Domain.Dto.SlideShow;
+using Shop.Domain.Dto.Order;
 
 namespace Shop.Services
 {
@@ -149,6 +150,21 @@ namespace Shop.Services
                 .ToList();
 
             return data.ToDto();
+        }
+
+        protected void SetUsers(PaginationDto<OrderDto> sources, List<User> users)
+        {
+            sources.Data.ForEach(c =>
+            {
+                c.User = users.FirstOrDefault(i => i.Id == c.UserId)?.ToDto();
+            });
+        }
+        protected void SetUsers(List<ProductVoteDto> sources, List<User> users)
+        {
+            sources.ForEach(c =>
+            {
+                c.User = users.FirstOrDefault(i => i.Id == c.UserId)?.ToDto();
+            });
         }
     }
 }

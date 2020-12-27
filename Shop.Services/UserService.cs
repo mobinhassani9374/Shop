@@ -258,5 +258,19 @@ namespace Shop.Services
             }
             return serviceResult;
         }
+        public List<ProductVoteDto> GetAllAcepteCommentForProduct(int id)
+        {
+            var data = _dbContext.ProductVote
+                .Where(c => c.Stats == VoteState.Accepted && c.ProductId == id)
+                .ToList();
+
+            var result = data.ToDto();
+
+            var users = GetUsers(result.Select(c => c.UserId).ToList());
+
+            SetUsers(result, users);
+
+            return result;
+        }
     }
 }
