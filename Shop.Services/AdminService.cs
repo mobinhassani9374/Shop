@@ -382,20 +382,6 @@ namespace Shop.Services
 
             return result;
         }
-        private void SetUsers(PaginationDto<OrderDto> sources, List<User> users)
-        {
-            sources.Data.ForEach(c =>
-            {
-                c.User = users.FirstOrDefault(i => i.Id == c.UserId)?.ToDto();
-            });
-        }
-        private void SetUsers(List<ProductVoteDto> sources, List<User> users)
-        {
-            sources.ForEach(c =>
-            {
-                c.User = users.FirstOrDefault(i => i.Id == c.UserId)?.ToDto();
-            });
-        }
         public List<ProductVoteDto> GetAllWatingComments()
         {
             var data = _dbContext

@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = Model.Title + "- ایمن فروش";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var comments = (List<Shop.Mvc.Models.Product.ProductVoteViewModel>)ViewBag.Comments;
 }
 
 <script src="~/js/jquery.zoom.js"></script>
@@ -103,34 +104,23 @@
                     @Html.Raw(Model.Description)
                 </div>
                 <div id="comments" class="tab-pane fade">
-                    <div class="detail-tap__comment">
-                        <img src="~/img/user.png" />
-                        <div>
-                            <p class="text-primary">مهدی حسنی</p>
-                            <p>خیلی محصول خوبی بود واقعا راضی هستیم ممنون از سایت فروشگاهی خوبتون //</p>
-                        </div>
-                    </div>
-                    <div class="detail-tap__comment">
-                        <img src="~/img/user.png" />
-                        <div>
-                            <p class="text-primary">مهدی حسنی</p>
-                            <p>خیلی محصول خوبی بود واقعا راضی هستیم ممنون از سایت فروشگاهی خوبتون //</p>
-                        </div>
-                    </div>
-                    <div class="detail-tap__comment">
-                        <img src="~/img/user.png" />
-                        <div>
-                            <p class="text-primary">مهدی حسنی</p>
-                            <p>خیلی محصول خوبی بود واقعا راضی هستیم ممنون از سایت فروشگاهی خوبتون //</p>
-                        </div>
-                    </div>
-                    <div class="detail-tap__comment">
-                        <img src="~/img/user.png" />
-                        <div>
-                            <p class="text-primary">مهدی حسنی</p>
-                            <p>خیلی محصول خوبی بود واقعا راضی هستیم ممنون از سایت فروشگاهی خوبتون //</p>
-                        </div>
-                    </div>
+                    @if (comments.Count > 0)
+                    {
+                        foreach (var comment in comments)
+                        {
+                            <div class="detail-tap__comment">
+                                <img src="~/img/user.png" />
+                                <div>
+                                    <p class="text-primary">@comment.User.FullName</p>
+                                    <p>@comment.Comment</p>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">نظری وجود ندارد</div>
+                    }
                 </div>
                 <div id="addcomment" class="tab-pane fade">
                     <div class="row">
@@ -147,7 +137,7 @@
                                     <div class="form-group">
                                         <button type="submit" class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
                                             <span class="ladda-label">ثبت نظر</span>
-                                        </button>                                      
+                                        </button>
                                     </div>
                                 </form>
                             }
