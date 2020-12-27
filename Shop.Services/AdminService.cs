@@ -400,15 +400,55 @@ namespace Shop.Services
         {
             var data = _dbContext
                 .ProductVote
-                .Include(c=>c.Product)
+                .Include(c => c.Product)
                 .Where(c => c.Stats == VoteState.Wating)
                 .ToList();
 
-            var users = GetUsers(data.Select(c=>c.UserId).ToList());
+            var users = GetUsers(data.Select(c => c.UserId).ToList());
             var result = data.ToDto();
             SetUsers(result, users);
 
             return result;
+        }
+        public ServiceResult AcceptCommentForProduct(int id)
+        {
+            var serviceResult = new ServiceResult(true);
+            var vote = _dbContext.ProductVote.Find(id);
+            if (vote == null)
+                serviceResult.AddError("نظری یافت نشد");
+            else
+            {
+                if (vote.Stats == VoteState.Wating)
+                {
+                    vote.Stats = VoteState.Accepted;
+                    Update(vote);
+                    serviceResult = Save("عملیات با موفقیت صورت گرفت");
+                }
+                else serviceResult.AddError("نظر قبلا بررسی شده است");
+            }
+            return serviceResult;
+        }
+        public ServiceResult CancelCommentForProduct(int id)
+        {
+            var serviceResult = new ServiceResult(true);
+            var vote = _dbContext.ProductVote.Find(id);
+            if (vote == null)
+                serviceResult.AddError("نظری یافت نشد");
+            else
+            {
+                if (vote.Stats == VoteState.Wating)
+                {
+                    vote.Stats = VoteState.Cancel;
+                    Update(vote);
+                    serviceResult = Save("عملیات با موفقیت صورت گرفت");
+                }
+                else serviceResult.AddError("نظر قبلا بررسی شده است");
+            }
+            return serviceResult;
+        }
+        public int GetCommentWatingCount()
+        {
+            return _dbContext.ProductVote.Where(c => c.Stats == VoteState.Wating).Count();
         }
     }
 }

@@ -81,5 +81,17 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         {
             return View(_adminService.GetAllWatingComments().ToViewModel());
         }
+
+        public IActionResult AcceptComment(int id)
+        {
+            var serviceResult = _adminService.AcceptCommentForProduct(id);
+            return View_Get(serviceResult, nameof(CommentWating));
+        }
+
+        public IActionResult CancelComment(int id)
+        {
+            var serviceResult = _adminService.CancelCommentForProduct(id);
+            return View_Get(serviceResult, nameof(CommentWating));
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "پنل ادمین ایمن فروش";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int commentWatingCount = (int)ViewBag.CommentWatingCount;
 }
 
 <fieldset>
@@ -87,7 +88,13 @@
                 </div>
                 <a class="admin__panel__link" href="/Admin/Product/Index">نمایش محصولات</a>
                 <a class="admin__panel__link" href="/Admin/Product/Create">اضافه نمودن محصول جدید</a>
-                <a class="admin__panel__link" href="/Admin/Product/CommentWating">نظرات در انتظار تایید <span style="float:left;" class="badge">5</span></a>
+                <a class="admin__panel__link" href="/Admin/Product/CommentWating">
+                    نظرات در انتظار تایید
+                    @if (commentWatingCount > 0)
+                    {
+                        <span style="float:left;" class="badge">@commentWatingCount</span>
+                    }
+                </a>
             </div>
         </div>
 
