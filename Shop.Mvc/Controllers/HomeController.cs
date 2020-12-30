@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Mvc.Mapping;
+using Shop.Mvc.Models.Home;
 using Shop.Services;
 
 namespace Shop.Mvc.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly UserService _userService;
         public HomeController(UserService userService)
@@ -32,6 +34,20 @@ namespace Shop.Mvc.Controllers
         public IActionResult LawUs()
         {
             return View();
+        }
+
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize()]
+        public IActionResult ContactUs(ContactUsViewModel model)
+        {
+            var serviceResult = _userService.CreateContactUs(model.ToDto(UserId));
+            return View_Get(serviceResult, nameof(ContactUs));
         }
     }
 }

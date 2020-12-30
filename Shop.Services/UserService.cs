@@ -272,5 +272,17 @@ namespace Shop.Services
 
             return result;
         }
+        public ServiceResult CreateContactUs(ContactUsDto dto)
+        {
+            var serviceResult = dto.IsValid();
+            if (serviceResult.IsSuccess)
+            {
+                var entity = dto.ToEntity();
+                entity.Date = DateTime.Now;
+                Insert(entity);
+                serviceResult = Save("عملیات با موفقیت صورت گرفت");
+            }
+            return serviceResult;
+        }
     }
 }

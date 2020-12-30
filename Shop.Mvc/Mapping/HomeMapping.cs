@@ -51,5 +51,13 @@ namespace Shop.Mvc.Mapping
                 Title = source.Title
             };
         }
+        public static ContactUsDto ToDto(this ContactUsViewModel source, string userId)
+        {
+            return new ContactUsDto
+            {
+                UserId = userId,
+                Description = source.Description
+            };
+        }
     }
 }
