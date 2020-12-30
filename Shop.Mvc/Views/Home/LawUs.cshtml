@@ -1,8 +1,26 @@
 ﻿
 @{
-    ViewData["Title"] = "LawUs";
+    ViewData["Title"] = "قوانین و مقررات ایمن فروش";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Shop.Mvc.Cache.CacheData.Info.LawUs</h2>
+
+<div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">ایمن فروش</a></li>
+                <li class="breadcrumb-item active" aria-current="page">قوانین و مقررات ایمن فروش</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="detail">
+            @Html.Raw(Shop.Mvc.Cache.CacheData.Info.LawUs)
+        </div>
+    </div>
+</div>
 
