@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Shop.Database;
 using Shop.Database.Identity;
+using Shop.Mvc.Mapping;
+using Shop.Services;
 
 namespace Shop.Mvc
 {
@@ -23,7 +25,7 @@ namespace Shop.Mvc
                 options.UseSqlServer(@"Data Source=185.51.200.186\SQL2014,2014;Initial Catalog=imenForoshTest;Persist Security Info=True;User ID=mobin_imen; Password=Ju#82c8c; MultipleActiveResultSets=True");
             });
 
-            StartUp.ConfigureServices(services);
+            Database.Identity.StartUp.ConfigureServices(services);
 
             Services.StartUp.ConfigureServices(services);
 
@@ -31,7 +33,7 @@ namespace Shop.Mvc
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, AdminService  adminService)
         {
             if (env.IsDevelopment())
             {
@@ -39,6 +41,8 @@ namespace Shop.Mvc
             }
 
             app.UseStaticFiles();
+
+            Cache.CacheManager.SetInfo(adminService.GetLastInfo().ToViewModel());
 
             app.UseAuthentication();
 

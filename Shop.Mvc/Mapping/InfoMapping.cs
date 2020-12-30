@@ -26,7 +26,7 @@ namespace Shop.Mvc.Mapping
             };
         }
 
-        public static InfoViewModel ToVIewModel(this InfoDto source)
+        public static InfoViewModel ToViewModel(this InfoDto source)
         {
             return new InfoViewModel
             {

@@ -17,7 +17,7 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View(_adminService.GetLastInfo().ToVIewModel());
+            return View(_adminService.GetLastInfo().ToViewModel());
         }
 
         [HttpPost]
