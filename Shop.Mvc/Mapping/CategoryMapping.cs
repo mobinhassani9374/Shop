@@ -38,9 +38,12 @@ namespace Shop.Mvc.Mapping
         }
         public static ServiceResult<CategoryViewModel> ToViewModel(this ServiceResult<CategoryDto> source)
         {
-            return
-                new ServiceResult<CategoryViewModel>(source.IsSuccess,
+            var result = new ServiceResult<CategoryViewModel>(source.IsSuccess,
                 source.Data?.ToViewModel());
+
+            result.Errors = source.Errors;
+
+            return result;
         }
         public static UpdateCategoryDto ToDto(this UpdateCategoryViewModel source)
         {
