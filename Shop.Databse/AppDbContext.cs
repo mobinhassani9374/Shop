@@ -22,6 +22,7 @@ namespace Shop.Database
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<SlideShow> SlideShows { get; set; }
         public DbSet<Info> Infoes { get; set; }
+        public DbSet<ContactUs> ContactUs { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -108,7 +109,7 @@ namespace Shop.Database
                 .OnDelete(DeleteBehavior.Cascade);
 
             var info = builder.Entity<Info>();
-            info.HasKey(c=>c.Id);
+            info.HasKey(c => c.Id);
 
             info.Property(c => c.InstagramAccount).HasMaxLength(1000);
             info.Property(c => c.TelegramChanal).HasMaxLength(1000);
@@ -117,6 +118,10 @@ namespace Shop.Database
             info.Property(c => c.PhoneNumber3).HasMaxLength(1000);
             info.Property(c => c.PhoneNumber3).HasMaxLength(1000);
             info.Property(c => c.PhoneNumber4).HasMaxLength(1000);
+
+            var contactUs = builder.Entity<ContactUs>();
+            contactUs.HasKey(c => c.Id);
+            contactUs.Property(c => c.UserId).IsRequired(true).HasMaxLength(Constants.UserId_Length);
         }
     }
 }
