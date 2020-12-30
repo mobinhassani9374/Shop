@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shop.Mvc.Cache;
 using Shop.Mvc.Mapping;
 using Shop.Services;
 using System;
@@ -26,9 +27,9 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         {
             var serviceResult = _adminService.SaveInfo(model.ToDto());
             if (serviceResult.IsSuccess)
-            {
+                CacheManager.SetInfo(_adminService.GetLastInfo()
+                    .ToViewModel());
 
-            }
             return View_Get(serviceResult, nameof(Index));
         }
     }
