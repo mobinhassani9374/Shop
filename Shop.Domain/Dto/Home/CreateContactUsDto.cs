@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Shop.Domain.Dto.Home
 {
-    public class ContactUsDto
+    public class CreateContactUsDto
     {
-        public int Id { get; set; }
+        [Required(ErrorMessage = "پیشنهادات و انتقادات نمی تواند فاقد مقدار باشد")]
         public string Description { get; set; }
         public string UserId { get; set; }
-        public DateTime Date { get; set; }
     }
 }

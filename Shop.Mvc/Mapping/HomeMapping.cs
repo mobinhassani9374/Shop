@@ -1,9 +1,11 @@
 ﻿using Shop.Domain.Dto.Home;
 using Shop.Mvc.Models.Home;
+using Shop.Mvc.Models.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DNTPersianUtils.Core;
 
 namespace Shop.Mvc.Mapping
 {
@@ -51,12 +53,49 @@ namespace Shop.Mvc.Mapping
                 Title = source.Title
             };
         }
-        public static ContactUsDto ToDto(this ContactUsViewModel source, string userId)
+        public static CreateContactUsDto ToDto(this CreateContactUsViewModel source, string userId)
         {
-            return new ContactUsDto
+            return new CreateContactUsDto
             {
                 UserId = userId,
                 Description = source.Description
+            };
+        }
+        public static ContactUsSearchDto ToDto(this ContactUSSearchViewModel source)
+        {
+            return new ContactUsSearchDto
+            {
+                PageNumber = source.PageNumber,
+                PageSize = source.PageSize
+            };
+        }
+
+        public static PaginationViewModel<ContactUSViewModel> ToViewModel(this Domain.Dto.Pagination.PaginationDto<ContactUsDto> source)
+        {
+            return new PaginationViewModel<ContactUSViewModel>()
+            {
+                Count = source.Count,
+                Data = source.Data.ToViewModel(),
+                PageCount = source.PageCount,
+                PageNumber = source.PageNumber,
+                PageSize = source.PageSize
+            };
+        }
+        public static List<ContactUSViewModel> ToViewModel(this List<ContactUsDto> sources)
+        {
+            var result = new List<ContactUSViewModel>();
+            foreach (var source in sources)
+                result.Add(source.ToViewModel());
+            return result;
+        }
+        public static ContactUSViewModel ToViewModel(this ContactUsDto source)
+        {
+            return new ContactUSViewModel
+            {
+                Description = source.Description,
+                UserId = source.UserId,
+                Id = source.Id,
+                Date = source.Date.ToFriendlyPersianDateTextify()
             };
         }
     }

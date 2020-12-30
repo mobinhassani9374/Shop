@@ -272,7 +272,7 @@ namespace Shop.Services
 
             return result;
         }
-        public ServiceResult CreateContactUs(ContactUsDto dto)
+        public ServiceResult CreateContactUs(CreateContactUsDto dto)
         {
             var serviceResult = dto.IsValid();
             if (serviceResult.IsSuccess)

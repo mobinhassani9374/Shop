@@ -442,5 +442,16 @@ namespace Shop.Services
             Insert(dto.ToEntity());
             return Save("عملیات با موفقیت صورت گرفت");
         }
+
+        public PaginationDto<Domain.Dto.Home.ContactUsDto> GetContactUs(Domain.Dto.Home.ContactUsSearchDto dto)
+        {
+            var query = _dbContext.ContactUs
+                .AsQueryable();
+
+            IOrderedQueryable<ContactUs> orderedQery =
+                query.OrderByDescending(c => c.Id);
+
+            return orderedQery.ToPaginated(dto).ToDto();
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace Shop.Mvc.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize()]
-        public IActionResult ContactUs(ContactUsViewModel model)
+        public IActionResult ContactUs(CreateContactUsViewModel model)
         {
             var serviceResult = _userService.CreateContactUs(model.ToDto(UserId));
             return View_Get(serviceResult, nameof(ContactUs));

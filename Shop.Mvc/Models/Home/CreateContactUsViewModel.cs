@@ -5,11 +5,8 @@ using System.Threading.Tasks;
 
 namespace Shop.Mvc.Models.Home
 {
-    public class ContactUSViewModel
+    public class CreateContactUsViewModel
     {
-        public int Id { get; set; }
         public string Description { get; set; }
-        public string UserId { get; set; }
-        public string Date { get; set; }
     }
 }
