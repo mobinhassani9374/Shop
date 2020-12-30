@@ -21,6 +21,7 @@ namespace Shop.Database
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<SlideShow> SlideShows { get; set; }
+        public DbSet<Info> Infoes { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -105,6 +106,17 @@ namespace Shop.Database
                 .WithMany(c => c.Votes)
                 .HasForeignKey(c => c.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            var info = builder.Entity<Info>();
+            info.HasKey(c=>c.Id);
+
+            info.Property(c => c.InstagramAccount).HasMaxLength(1000);
+            info.Property(c => c.TelegramChanal).HasMaxLength(1000);
+            info.Property(c => c.PhoneNumber1).HasMaxLength(1000);
+            info.Property(c => c.PhoneNumber2).HasMaxLength(1000);
+            info.Property(c => c.PhoneNumber3).HasMaxLength(1000);
+            info.Property(c => c.PhoneNumber3).HasMaxLength(1000);
+            info.Property(c => c.PhoneNumber4).HasMaxLength(1000);
         }
     }
 }
