@@ -166,6 +166,14 @@ namespace Shop.Services
                 c.User = users.FirstOrDefault(i => i.Id == c.UserId)?.ToDto();
             });
         }
+        protected void SetUsers(PaginationDto<Domain.Dto.Home.ContactUsDto> sources, List<User> users)
+        {
+            sources.Data.ForEach(c =>
+            {
+                c.User = users.FirstOrDefault(i => i.Id == c.UserId)?.ToDto();
+            });
+        }
+
         public InfoDto GetLastInfo()
         {
             var info = _dbContext.Infoes.LastOrDefault();

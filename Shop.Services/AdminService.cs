@@ -451,7 +451,13 @@ namespace Shop.Services
             IOrderedQueryable<ContactUs> orderedQery =
                 query.OrderByDescending(c => c.Id);
 
-            return orderedQery.ToPaginated(dto).ToDto();
+            var data = orderedQery.ToPaginated(dto).ToDto();
+
+            var users = GetUsers(data.Data.Select(c => c.UserId).ToList());
+
+            SetUsers(data, users);
+
+            return data;
         }
     }
 }

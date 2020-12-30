@@ -39,7 +39,7 @@
                         {
                             <tr>
                                 
-                                <td>@item.UserId</td>
+                                <td>@item.User?.FullName</td>
                                 <td>@item.Description</td>
                                 <td>@item.Date</td>
                                 
@@ -49,7 +49,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="5">محصولی یافت نشد</td>
+                            <td colspan="3">داده ای یافت نشد</td>
                         </tr>
                     }
                 </tbody>

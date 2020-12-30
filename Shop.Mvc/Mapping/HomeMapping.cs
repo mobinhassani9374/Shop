@@ -95,7 +95,8 @@ namespace Shop.Mvc.Mapping
                 Description = source.Description,
                 UserId = source.UserId,
                 Id = source.Id,
-                Date = source.Date.ToFriendlyPersianDateTextify()
+                Date = source.Date.ToFriendlyPersianDateTextify(),
+                User = source.User?.ToViewModel()
             };
         }
     }
