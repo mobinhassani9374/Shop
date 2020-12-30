@@ -40,7 +40,7 @@ namespace Shop.Mvc.Mapping
         {
             return
                 new ServiceResult<CategoryViewModel>(source.IsSuccess,
-                source.Data.ToViewModel());
+                source.Data?.ToViewModel());
         }
         public static UpdateCategoryDto ToDto(this UpdateCategoryViewModel source)
         {

@@ -103,13 +103,23 @@ namespace Shop.Services
 
             if (serviceResult.IsSuccess)
             {
-                var entity = Insert(dto.ToEntity());
-                serviceResult = Save("عملیات با موفقیت صورت گرفت").AddData<CategoryDto>(new CategoryDto
+                if(dto.ParentId.HasValue)
                 {
-                    ParentId = entity.ParentId,
-                    Title = entity.Title,
-                    Id = entity.Id
-                });
+                    if (_dbContext.Products.Any(c => c.CategoryId == dto.ParentId.Value))
+                        serviceResult.AddError("امکان اضافه نمودن زیردسته نیست زیرا گروه دارای محصول می باشد");
+                }
+               
+                if(serviceResult.IsSuccess)
+                {
+                    var entity = Insert(dto.ToEntity());
+                    serviceResult = Save("عملیات با موفقیت صورت گرفت").AddData<CategoryDto>(new CategoryDto
+                    {
+                        ParentId = entity.ParentId,
+                        Title = entity.Title,
+                        Id = entity.Id
+                    });
+                }
+             
             }
 
             return serviceResult;
