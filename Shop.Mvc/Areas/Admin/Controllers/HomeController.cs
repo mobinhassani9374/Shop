@@ -16,6 +16,11 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.CountViewToday = _adminService.CountViewToday();
+            ViewBag.CountViewLastWeek = _adminService.CountViewLastWeek();
+            ViewBag.CountViewTwoLastWeek = _adminService.CountViewTwoLastWeek();
+            ViewBag.CountViewLastMonth = _adminService.CountViewLastMonth();
+
             ViewBag.CommentWatingCount = _adminService.GetCommentWatingCount();
             return View();
         }

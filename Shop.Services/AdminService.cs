@@ -469,5 +469,54 @@ namespace Shop.Services
 
             return data;
         }
+
+        public int CountViewToday()
+        {
+            var nowDate = DateTime.Now.Date;
+
+            var count = _dbContext.LogServices.Where(c => c.CreateDate.Date == nowDate)
+                .GroupBy(c => c.IpAddress)
+                .Select(c => c.Key)
+                .Count();
+
+            return count;
+        }
+        public int CountViewLastWeek()
+        {
+            var maxDate = DateTime.Now.Date;
+            var minDate = maxDate.AddDays(-7);
+
+            var count = _dbContext.LogServices.Where(c => c.CreateDate.Date >= minDate && c.CreateDate.Date <= maxDate)
+                .GroupBy(c => new { c.IpAddress, c.CreateDate.Date })
+                .Select(c => c.Key)
+                .Count();
+
+            return count;
+        }
+
+        public int CountViewTwoLastWeek()
+        {
+            var maxDate = DateTime.Now.Date;
+            var minDate = maxDate.AddDays(-14);
+
+            var count = _dbContext.LogServices.Where(c => c.CreateDate.Date >= minDate && c.CreateDate.Date <= maxDate)
+                .GroupBy(c => new { c.IpAddress, c.CreateDate.Date })
+                .Select(c => c.Key)
+                .Count();
+
+            return count;
+        }
+        public int CountViewLastMonth()
+        {
+            var maxDate = DateTime.Now.Date;
+            var minDate = maxDate.AddMonths(-1);
+
+            var count = _dbContext.LogServices.Where(c => c.CreateDate.Date >= minDate && c.CreateDate.Date <= maxDate)
+                .GroupBy(c => new { c.IpAddress, c.CreateDate.Date })
+                .Select(c => c.Key)
+                .Count();
+
+            return count;
+        }
     }
 }
