@@ -1,21 +1,106 @@
 ﻿@model Shop.Mvc.Models.Info.InfoViewModel
 @{
-    ViewData["Title"] = "";
+    ViewData["Title"] = "مدیریت ابنفوها - پنل مدیریتی ایمن فروش";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<form method="post">
-    @Html.AntiForgeryToken()
-    <p>InstagramAccount : <input type="text" asp-for="InstagramAccount" /></p>
-    <p>TelegramChanal : <input type="text" asp-for="TelegramChanal" /></p>
-    <p>PhoneNumber1 : <input type="text" asp-for="PhoneNumber1" /></p>
-    <p>PhoneNumber2 : <input type="text" asp-for="PhoneNumber2" /></p>
-    <p>PhoneNumber3 : <input type="text" asp-for="PhoneNumber3" /></p>
-    <p>PhoneNumber4 : <input type="text" asp-for="PhoneNumber4" /></p>
-    <p>Address : <textarea asp-for="Address"></textarea></p>
-    <p>AboutUs : <textarea asp-for="AboutUs"></textarea></p>
-    <p>قوانین و مقررات : <textarea asp-for="LawUs"></textarea></p>
-    <p>راهنمای خرید : <textarea asp-for="HelpForBuy"></textarea></p>
-    <input type="submit" value="ثبت" />
-</form>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
+        <li class="breadcrumb-item active" aria-current="page">مدیریت اینفوها</li>
+    </ol>
+</nav>
 
+<div class="panel panel-primary">
+    <div class="panel-heading">مدیریت اینفوها</div>
+    <div class="panel-body">
+        <form method="post">
+            @Html.AntiForgeryToken()
+
+            <fieldset>
+                <legend>شبکه های اجتماعی</legend>
+                <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                        <div class="form-group">
+                            <label>اینستاگرام</label>
+                            <input type="text" class="form-control" asp-for="InstagramAccount" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <div class="form-group">
+                            <label>کانال تلگرام</label>
+                            <input type="text" class="form-control" asp-for="TelegramChanal" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset style="margin-top:15px">
+                <legend>شماره تماس ها</legend>
+                <div class="row">
+                    <div class="col-md-3 col-xs-12">
+                        <div class="form-group">
+                            <label>شماره تماس 1</label>
+                            <input type="text" class="form-control" asp-for="PhoneNumber1" />
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                        <div class="form-group">
+                            <label>شماره تماس 2</label>
+                            <input type="text" class="form-control" asp-for="PhoneNumber2" />
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                        <div class="form-group">
+                            <label>شماره تماس 3</label>
+                            <input type="text" class="form-control" asp-for="PhoneNumber3" />
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                        <div class="form-group">
+                            <label>شماره تمس 4</label>
+                            <input type="text" class="form-control" asp-for="PhoneNumber4" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset style="margin-top:15px">
+                <legend>آدرس</legend>
+                <div class="form-group">
+                    <textarea asp-for="Address" class="form-control"></textarea>
+                </div>
+            </fieldset>
+            <fieldset style="margin-top:15px">
+                <legend>درباره ما </legend>
+                <textarea asp-for="AboutUs" class="editor"></textarea>
+            </fieldset>
+            <fieldset style="margin-top:15px">
+                <legend>قوانین و مقررات</legend>
+                <textarea asp-for="LawUs" class="editor"></textarea>
+            </fieldset>
+            <fieldset style="margin-top:15px">
+                <legend>راهنمای خرید</legend>
+                <textarea asp-for="HelpForBuy" class="editor"></textarea>
+            </fieldset>
+            <div class="form-group" style="margin-top:15px">
+                <button type="submit" class="ladda-button btn btn-primary" data-style="zoom-in">
+                    <span class="ladda-label">ثبت اطلاعات</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    initSample();
+    if (CKEDITOR.config) {
+        CKEDITOR.config.height = 400;
+        CKEDITOR.config.resize_enabled = true;
+        CKEDITOR.config.contentsLangDirection = 'rtl';
+    }
+
+    $(function () {
+        $('.editor').each(function (e) {
+            CKEDITOR.replace(this.id, { customConfig: '/jblog/ckeditor/config_Large.js' });
+        });
+    })
+</script>
