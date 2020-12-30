@@ -18,5 +18,21 @@ namespace Shop.Mvc.Models.Info
         public string AboutUs { get; set; }
         public string LawUs { get; set; }
         public string HelpForBuy { get; set; }
+        public string PhoneNumbers
+        {
+            get
+            {
+                var result = "";
+                if (!string.IsNullOrEmpty(PhoneNumber1))
+                    result += PhoneNumber1;
+                if (!string.IsNullOrEmpty(PhoneNumber2))
+                    result +=" - " + PhoneNumber2;
+                if (!string.IsNullOrEmpty(PhoneNumber3))
+                    result +=" - " + PhoneNumber3;
+                if (!string.IsNullOrEmpty(PhoneNumber4))
+                    result +=" - " + PhoneNumber4;
+                return result;
+            }
+        }
     }
 }
