@@ -10,7 +10,7 @@
     <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
     <meta name="description"
-          content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
+        content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
     <meta name="keywords" content="دزدگیر خانه , دزدگیر مغازه , دزدگیر اماکن , دوربین مداربسته , دوربین مداربسته بیسیم , دوربین بیبی کم , دوربین لامپی ,
         دوربین پانوراما , دوربین ۳۶۰ , رایاکالا , ردیاب شخصی , ردیاب خودرو , جی پی اس , GPS,
         شنود , دوربین مخفی , سنسور , دی وی آر , DVR,NVR,دوربین تحت شبکه , دیجیکالا">
@@ -83,10 +83,10 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="javascript:void(0)" data-role="category">دسته بندی ها </a></li>
-                        <li><a asp-action="HelpForBuy">راهنمای خرید </a></li>
-                        <li><a asp-action="LawUs">قوانین و مقررات</a></li>
-                        <li><a asp-action="AboutUs">درباره ما</a></li>
-                        <li><a asp-action="ContactUs">تماس با ما</a></li>
+                        <li><a asp-controller="Home" asp-action="HelpForBuy">راهنمای خرید </a></li>
+                        <li><a asp-controller="Home" asp-action="LawUs">قوانین و مقررات</a></li>
+                        <li><a asp-controller="Home" asp-action="AboutUs">درباره ما</a></li>
+                        <li><a asp-controller="Home" asp-action="ContactUs">تماس با ما</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @if (User.Identity.IsAuthenticated)
@@ -141,7 +141,7 @@
                             <div class="col-md-8 col-sm-8 col-xs-hide">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="جستجو در محصولات ایمن فروش "
-                                           name="search" autocomplete="off">
+                                        name="search" autocomplete="off">
                                     <div class="input-group-btn">
                                         <button class="btn btn-danger" type="submit">
                                             <i class="glyphicon glyphicon-search"></i>
@@ -257,11 +257,11 @@
                         <div class="col-md-4">
                             <div class="footer__info__title">
                                 لینک های ایمن فروش
-                            </div>
-                            <a href="#" class="footer__info__link">تماس با ما</a>
-                            <a href="#" class="footer__info__link">درباره ما </a>
-                            <a href="#" class="footer__info__link">راهنمای خرید</a>
-                            <a href="#" class="footer__info__link">قوانین و مقررات</a>
+                            </div>                           
+                            <a class="footer__info__link" asp-controller="Home" asp-action="HelpForBuy">راهنمای خرید </a>
+                            <a class="footer__info__link" asp-controller="Home" asp-action="LawUs">قوانین و مقررات</a>
+                            <a class="footer__info__link" asp-controller="Home" asp-action="AboutUs">درباره ما</a>
+                            <a class="footer__info__link" asp-controller="Home" asp-action="ContactUs">تماس با ما</a>
                         </div>
                         <div class="col-md-4 text-left">
                             <div class="footer__info__title">
