@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Shop.Database;
 using Shop.Database.Identity;
 using Shop.Mvc.Mapping;
+using Shop.Mvc.Middleware;
 using Shop.Services;
 
 namespace Shop.Mvc
@@ -43,6 +44,8 @@ namespace Shop.Mvc
             app.UseStaticFiles();
 
             Cache.CacheManager.SetInfo(adminService.GetLastInfo().ToViewModel());
+
+            app.UseMiddleware<LogServiceMiddleware>();
 
             app.UseAuthentication();
 
