@@ -19,5 +19,19 @@ namespace Shop.Mvc.Controllers
         {
             return View(_userService.GetUserIndexData().ToViewModel());
         }
+
+        public IActionResult HelpForBuy()
+        {
+            return View();
+        }
+
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+        public IActionResult LawUs()
+        {
+            return View();
+        }
     }
 }
