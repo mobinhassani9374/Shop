@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Category;
+using Shop.Domain.Dto.Info;
 using Shop.Domain.Dto.Order;
 using Shop.Domain.Dto.Pagination;
 using Shop.Domain.Dto.Product;
@@ -435,6 +436,11 @@ namespace Shop.Services
         public int GetCommentWatingCount()
         {
             return _dbContext.ProductVote.Where(c => c.Stats == VoteState.Wating).Count();
+        }
+        public ServiceResult SaveInfo(InfoDto dto)
+        {
+            Insert(dto.ToEntity());
+            return Save("عملیات با موفقیت صورت گرفت");
         }
     }
 }
