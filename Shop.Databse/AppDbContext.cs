@@ -23,6 +23,7 @@ namespace Shop.Database
         public DbSet<SlideShow> SlideShows { get; set; }
         public DbSet<Info> Infoes { get; set; }
         public DbSet<ContactUs> ContactUs { get; set; }
+        public DbSet<LogService> LogServices { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -122,6 +123,13 @@ namespace Shop.Database
             var contactUs = builder.Entity<ContactUs>();
             contactUs.HasKey(c => c.Id);
             contactUs.Property(c => c.UserId).IsRequired(true).HasMaxLength(Constants.UserId_Length);
+
+            var logService = builder.Entity<LogService>();
+
+            logService.HasKey(c => c.Id);
+
+            logService.Property(c => c.Method).HasMaxLength(50);
+            logService.Property(c => c.IpAddress).HasMaxLength(100);
         }
     }
 }
