@@ -62,6 +62,7 @@ namespace Shop.Mvc.Controllers
             {
                 var carts = _userService.GetCarts(UserId).ToViewModel();
                 var cartServiceResult = serviceResult.AddData<List<CartViewModel>>(carts);
+                cartServiceResult.Message = "عملیات با موفقیت انجام شد";
                 return Json(cartServiceResult);
             }
             return Json(serviceResult);
