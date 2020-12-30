@@ -121,7 +121,7 @@
                 else {
                     body.Id = this.id
                 }
-                this.load = true;
+                this.load = true;              
                 $.ajax({
                     url: '/Admin/CategoryManagement/' + action,
                     method: 'POST',
@@ -134,7 +134,8 @@
                             toastr.info('عملیات با موفقیت انجام شد ');
                         }
                         else {
-                            toastr.error(result.error[0]);
+                            me.load = false;
+                            toastr.error(result.error[0]);                            
                         }
                     }
                 })
