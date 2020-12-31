@@ -67,5 +67,16 @@ namespace Shop.Mvc.Mapping
                 PhoneNumber = source.PhoneNumber
             };
         }
+
+        public static ChangePasswordDto ToDto(this ChangePasswordModel source, string userId)
+        {
+            return new ChangePasswordDto
+            {
+                ConfirmNewPassword = source.ConfirmNewPassword,
+                NewPassword = source.NewPassword,
+                OldPassword = source.OldPassword,
+                UserId = userId
+            };
+        }
     }
 }

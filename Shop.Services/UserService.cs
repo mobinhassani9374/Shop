@@ -8,6 +8,7 @@ using Shop.Domain.Dto.Cart;
 using Shop.Domain.Dto.Home;
 using Shop.Domain.Dto.Order;
 using Shop.Domain.Dto.Product;
+using Shop.Domain.Dto.User;
 using Shop.Domain.Enumeration;
 using Shop.Services.Mapping;
 using Shop.Services.Messaging.FarazSms;
@@ -316,6 +317,28 @@ namespace Shop.Services
                 entity.Date = DateTime.Now;
                 Insert(entity);
                 serviceResult = Save("عملیات با موفقیت صورت گرفت");
+            }
+            return serviceResult;
+        }
+        public async Task<ServiceResult> ChangePassword(ChangePasswordDto dto)
+        {
+            var serviceResult = dto.IsValid();
+            if (serviceResult.IsSuccess)
+            {
+                var errorKeys = new Dictionary<string, string>();
+                errorKeys.Add("PasswordMismatch", "رمز عبور قبلی صحیح نمی باشد");
+
+                var user = GetUser(dto.UserId);
+                if (user != null)
+                {
+                    var identityResult = await _userManager.ChangePasswordAsync(user, dto.OldPassword, dto.NewPassword);
+                    if (!identityResult.Succeeded)
+                    {
+                        var error = errorKeys.Where(c => c.Key == identityResult.Errors.Select(i => i.Code).FirstOrDefault()).FirstOrDefault();
+                        serviceResult.AddError(error.Value);
+                    }
+                }
+                else serviceResult.AddError("کاربری یافت نشد");
             }
             return serviceResult;
         }
