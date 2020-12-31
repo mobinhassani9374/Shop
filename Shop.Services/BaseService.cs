@@ -20,6 +20,7 @@ using Newtonsoft.Json;
 using Shop.Domain.Dto.SlideShow;
 using Shop.Domain.Dto.Order;
 using Shop.Domain.Dto.Info;
+using Shop.Services.Messaging.FarazSms;
 
 namespace Shop.Services
 {
@@ -27,11 +28,14 @@ namespace Shop.Services
     {
         protected AppDbContext _dbContext;
         private readonly IHostingEnvironment _env;
+        protected readonly SmsService _smsService;
         public BaseService(AppDbContext dbContext,
-            IHostingEnvironment env)
+            IHostingEnvironment env,
+            SmsService smsService)
         {
             _dbContext = dbContext;
             _env = env;
+            _smsService = smsService;
         }
         public PaginationDto<UserDto> GetUsers(SearchUserDto dto)
         {
@@ -58,6 +62,12 @@ namespace Shop.Services
         protected User GetUser(string userId)
         {
             return _dbContext.Users.FirstOrDefault(c => c.Id == userId);
+        }
+        protected List<User> GetAdminUsers()
+        {
+            return _dbContext.Users
+                .Where(c => c.Type == UserType.Admin || c.Type == UserType.Programmer)
+                .ToList();
         }
         protected ServiceResult Save(string succesMessage)
         {

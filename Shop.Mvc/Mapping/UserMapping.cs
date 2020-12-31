@@ -67,5 +67,24 @@ namespace Shop.Mvc.Mapping
                 PhoneNumber = source.PhoneNumber
             };
         }
+
+        public static ChangePasswordDto ToDto(this ChangePasswordModel source, string userId)
+        {
+            return new ChangePasswordDto
+            {
+                ConfirmNewPassword = source.ConfirmNewPassword,
+                NewPassword = source.NewPassword,
+                OldPassword = source.OldPassword,
+                UserId = userId
+            };
+        }
+        public static EditProfileDto ToDto(this EditProfileViewModel source, string userId)
+        {
+            return new EditProfileDto
+            {
+                UserId = userId,
+                FullName = source.FullName
+            };
+        }
     }
 }

@@ -8,8 +8,11 @@ using Shop.Domain.Dto.Cart;
 using Shop.Domain.Dto.Home;
 using Shop.Domain.Dto.Order;
 using Shop.Domain.Dto.Product;
+using Shop.Domain.Dto.User;
 using Shop.Domain.Enumeration;
 using Shop.Services.Mapping;
+using Shop.Services.Messaging.FarazSms;
+using Shop.Services.Messaging.FarazSms.Models;
 using Shop.Services.Validations;
 using Shop.Utility;
 using System;
@@ -25,7 +28,8 @@ namespace Shop.Services
         private readonly UserManager<User> _userManager;
         public UserService(AppDbContext dbContext,
             IHostingEnvironment env,
-            UserManager<User> userManager) : base(dbContext, env)
+            UserManager<User> userManager,
+             SmsService smsService) : base(dbContext, env, smsService)
         {
             _userManager = userManager;
         }
@@ -201,7 +205,7 @@ namespace Shop.Services
             else serviceResult.AddError(saveResult.Errors.FirstOrDefault());
             return serviceResult;
         }
-        public ServiceResult SuccessPayment(int orderId)
+        public async Task<ServiceResult> SuccessPayment(int orderId)
         {
             var serviceResult = new ServiceResult(true);
 
@@ -226,6 +230,38 @@ namespace Shop.Services
 
                 Update(order);
                 serviceResult = Save("عملیات با موفقیت انجام شد");
+
+                if (serviceResult.IsSuccess)
+                {
+                    var user = GetUser(order.UserId);
+
+                    await _smsService.SendSmsForConsomerOrder(new ConsumerOrderModel
+                    {
+                        toNum = user.PhoneNumber,
+                        inputData = new List<InputDataForConsumerOrder>()
+                        {
+                          new InputDataForConsumerOrder
+                          {
+                            code=order.Id,
+                            name=user.FullName
+                         }
+                     }
+                    });
+
+                    var adminUsers = GetAdminUsers();
+
+                    foreach (var adminUser in adminUsers)
+                    {
+                        await _smsService.SendSmsForAdminOrder(new AdminOrderModel()
+                        {
+                            toNum = adminUser.PhoneNumber,
+                            inputData = new List<InputDataForAdminOrder>
+                          {
+                           new InputDataForAdminOrder{  code=order.Id , name=adminUser.FullName}
+                          }
+                        });
+                    }
+                }
             }
             return serviceResult;
         }
@@ -281,6 +317,46 @@ namespace Shop.Services
                 entity.Date = DateTime.Now;
                 Insert(entity);
                 serviceResult = Save("عملیات با موفقیت صورت گرفت");
+            }
+            return serviceResult;
+        }
+        public async Task<ServiceResult> ChangePassword(ChangePasswordDto dto)
+        {
+            var serviceResult = dto.IsValid();
+            if (serviceResult.IsSuccess)
+            {
+                var errorKeys = new Dictionary<string, string>();
+                errorKeys.Add("PasswordMismatch", "رمز عبور قبلی صحیح نمی باشد");
+
+                var user = GetUser(dto.UserId);
+                if (user != null)
+                {
+                    var identityResult = await _userManager.ChangePasswordAsync(user, dto.OldPassword, dto.NewPassword);
+                    if (!identityResult.Succeeded)
+                    {
+                        var error = errorKeys.Where(c => c.Key == identityResult.Errors.Select(i => i.Code).FirstOrDefault()).FirstOrDefault();
+                        serviceResult.AddError(error.Value);
+                    }
+                }
+                else serviceResult.AddError("کاربری یافت نشد");
+            }
+            return serviceResult;
+        }
+
+        public ServiceResult EditProfile(EditProfileDto dto)
+        {
+            var serviceResult = dto.IsValid();
+            if (serviceResult.IsSuccess)
+            {
+                var user = GetUser(dto.UserId);
+                if (user == null)
+                    serviceResult.AddError("کاربری یافت نشد");
+                else
+                {
+                    user.FullName = dto.FullName;
+                    Update(user);
+                    serviceResult = Save("عملیات با موفقیت صورت گرفت");
+                }
             }
             return serviceResult;
         }

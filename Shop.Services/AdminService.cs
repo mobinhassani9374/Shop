@@ -16,6 +16,7 @@ using Shop.Domain.Dto.UserAccess;
 using Shop.Domain.Entities;
 using Shop.Domain.Enumeration;
 using Shop.Services.Mapping;
+using Shop.Services.Messaging.FarazSms;
 using Shop.Services.Validations;
 using Shop.Utility;
 using Shop.Utility.Extensions;
@@ -30,7 +31,8 @@ namespace Shop.Services
     {
         private readonly UserManager<User> _userManager;
         public AdminService(AppDbContext dbContext, IHostingEnvironment env,
-            UserManager<User> userManager) : base(dbContext, env)
+            UserManager<User> userManager,
+             SmsService smsService) : base(dbContext, env, smsService)
         {
             _userManager = userManager;
         }
@@ -103,13 +105,13 @@ namespace Shop.Services
 
             if (serviceResult.IsSuccess)
             {
-                if(dto.ParentId.HasValue)
+                if (dto.ParentId.HasValue)
                 {
                     if (_dbContext.Products.Any(c => c.CategoryId == dto.ParentId.Value))
                         serviceResult.AddError("امکان اضافه نمودن زیردسته نیست زیرا گروه دارای محصول می باشد");
                 }
-               
-                if(serviceResult.IsSuccess)
+
+                if (serviceResult.IsSuccess)
                 {
                     var entity = Insert(dto.ToEntity());
                     serviceResult = Save("عملیات با موفقیت صورت گرفت").AddData<CategoryDto>(new CategoryDto
@@ -119,7 +121,7 @@ namespace Shop.Services
                         Id = entity.Id
                     });
                 }
-             
+
             }
 
             return serviceResult;
