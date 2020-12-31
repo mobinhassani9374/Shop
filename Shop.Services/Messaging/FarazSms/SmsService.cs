@@ -38,5 +38,18 @@ namespace Shop.Services.Messaging.FarazSms
 
             var responseStr = await response.Content.ReadAsStringAsync();
         }
+
+        public async Task SendSmsForAdminOrder(Models.AdminOrderModel model)
+        {
+            Init();
+
+            _request.Content = new StringContent(JsonConvert.SerializeObject(model),
+                Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            response = await client.SendAsync(_request);
+
+            var responseStr = await response.Content.ReadAsStringAsync();
+        }
     }
 }

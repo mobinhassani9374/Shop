@@ -63,6 +63,12 @@ namespace Shop.Services
         {
             return _dbContext.Users.FirstOrDefault(c => c.Id == userId);
         }
+        protected List<User> GetAdminUsers()
+        {
+            return _dbContext.Users
+                .Where(c => c.Type == UserType.Admin || c.Type == UserType.Programmer)
+                .ToList();
+        }
         protected ServiceResult Save(string succesMessage)
         {
             var result = new ServiceResult(true);

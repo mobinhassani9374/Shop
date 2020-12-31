@@ -246,6 +246,20 @@ namespace Shop.Services
                          }
                      }
                     });
+
+                    var adminUsers = GetAdminUsers();
+
+                    foreach (var adminUser in adminUsers)
+                    {
+                        await _smsService.SendSmsForAdminOrder(new AdminOrderModel()
+                        {
+                            toNum = adminUser.PhoneNumber,
+                            inputData = new List<InputDataForAdminOrder>
+                          {
+                           new InputDataForAdminOrder{  code=order.Id , name=adminUser.FullName}
+                          }
+                        });
+                    }
                 }
             }
             return serviceResult;
