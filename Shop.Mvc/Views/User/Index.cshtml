@@ -19,7 +19,7 @@
             <div class="cart">
                 <div class="cart__title" style="margin-bottom:0">ناحیه کاربری</div>
                 <a class="cart__link active">سفارش های من</a>
-                <a class="cart__link">ویرایش پروفایل</a>
+                <a class="cart__link" asp-action="EditProfile">ویرایش پروفایل</a>
                 <a class="cart__link" asp-action="ChangePassword">تغییر رمز عبور</a>
                 <a href="/Account/Logout" class="cart__link">خروج</a>
             </div>
@@ -51,9 +51,9 @@
                                 </p>
                             </div>
                             <div data-toggle="collapse" data-target="#item@(order.Id)"
-                                class="main__box__item__more collapsed" aria-expanded="false">
+                                 class="main__box__item__more collapsed" aria-expanded="false">
                                 <i data-toggle="tooltip" title="" class="fa fa-angle-double-down"
-                                    data-original-title="جزییات بیشتر"></i>
+                                   data-original-title="جزییات بیشتر"></i>
                             </div>
                         </div>
                         <div id="item@(order.Id)" class="collapse" aria-expanded="false" style="height: 0px;">
@@ -74,8 +74,10 @@
                                             {
                                                 <tbody>
                                                     <tr>
-                                                        <td><img src="~/Files/Images/@(detail.Product.PrimaryImage)"
-                                                                class="img-responsive" style="width:50px;margin:auto" /></td>
+                                                        <td>
+                                                            <img src="~/Files/Images/@(detail.Product.PrimaryImage)"
+                                                                 class="img-responsive" style="width:50px;margin:auto" />
+                                                        </td>
                                                         <td>@detail.Product.Title</td>
                                                         <td>@detail.Count</td>
                                                         <td data-role="seperator">@detail.Price</td>

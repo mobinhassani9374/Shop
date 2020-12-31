@@ -342,5 +342,23 @@ namespace Shop.Services
             }
             return serviceResult;
         }
+
+        public ServiceResult EditProfile(EditProfileDto dto)
+        {
+            var serviceResult = dto.IsValid();
+            if (serviceResult.IsSuccess)
+            {
+                var user = GetUser(dto.UserId);
+                if (user == null)
+                    serviceResult.AddError("کاربری یافت نشد");
+                else
+                {
+                    user.FullName = dto.FullName;
+                    Update(user);
+                    serviceResult = Save("عملیات با موفقیت صورت گرفت");
+                }
+            }
+            return serviceResult;
+        }
     }
 }

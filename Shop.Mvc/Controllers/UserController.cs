@@ -35,5 +35,22 @@ namespace Shop.Mvc.Controllers
             var serviceResult = await _userService.ChangePassword(model.ToDto(UserId));
             return View_Post(serviceResult, model);
         }
+
+        public IActionResult EditProfile()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        public IActionResult EditProfile(EditProfileViewModel model)
+        {
+            var serviceResult = _userService.EditProfile(model.ToDto(UserId));
+            if(serviceResult.IsSuccess)
+            {
+
+            }
+            return View_Post(serviceResult, model);
+        }
     }
 }

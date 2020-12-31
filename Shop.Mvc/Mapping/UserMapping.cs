@@ -78,5 +78,13 @@ namespace Shop.Mvc.Mapping
                 UserId = userId
             };
         }
+        public static EditProfileDto ToDto(this EditProfileViewModel source, string userId)
+        {
+            return new EditProfileDto
+            {
+                UserId = userId,
+                FullName = source.FullName
+            };
+        }
     }
 }

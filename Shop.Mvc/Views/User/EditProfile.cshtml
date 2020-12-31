@@ -1,0 +1,18 @@
+﻿@model Shop.Mvc.Models.UserManagement.EditProfileViewModel
+@{
+    ViewData["Title"] = "EditProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EditProfile</h2>
+<form method="post">
+    <div class="col-md-12 col-xs-12">
+        <div class="form-group">
+            @Html.Partial("_ServiceResult")
+        </div>
+    </div>
+    @Html.AntiForgeryToken()
+    <p><input type="text" asp-for="FullName" /></p>
+    <input type="submit" value="subnmit" />
+</form>
+
