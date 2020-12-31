@@ -10,6 +10,8 @@ using Shop.Domain.Dto.Order;
 using Shop.Domain.Dto.Product;
 using Shop.Domain.Enumeration;
 using Shop.Services.Mapping;
+using Shop.Services.Messaging.FarazSms;
+using Shop.Services.Messaging.FarazSms.Models;
 using Shop.Services.Validations;
 using Shop.Utility;
 using System;
@@ -25,7 +27,8 @@ namespace Shop.Services
         private readonly UserManager<User> _userManager;
         public UserService(AppDbContext dbContext,
             IHostingEnvironment env,
-            UserManager<User> userManager) : base(dbContext, env)
+            UserManager<User> userManager,
+             SmsService smsService) : base(dbContext, env, smsService)
         {
             _userManager = userManager;
         }
@@ -201,7 +204,7 @@ namespace Shop.Services
             else serviceResult.AddError(saveResult.Errors.FirstOrDefault());
             return serviceResult;
         }
-        public ServiceResult SuccessPayment(int orderId)
+        public async Task<ServiceResult> SuccessPayment(int orderId)
         {
             var serviceResult = new ServiceResult(true);
 
@@ -226,6 +229,24 @@ namespace Shop.Services
 
                 Update(order);
                 serviceResult = Save("عملیات با موفقیت انجام شد");
+
+                if (serviceResult.IsSuccess)
+                {
+                    var user = GetUser(order.UserId);
+
+                    await _smsService.SendSmsForConsomerOrder(new ConsumerOrderModel
+                    {
+                        toNum = user.PhoneNumber,
+                        inputData = new List<InputDataForConsumerOrder>()
+                        {
+                          new InputDataForConsumerOrder
+                          {
+                            code=order.Id,
+                            name=user.FullName
+                         }
+                     }
+                    });
+                }
             }
             return serviceResult;
         }

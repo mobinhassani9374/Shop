@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Shop.Mvc.Controllers
@@ -20,9 +17,9 @@ namespace Shop.Mvc.Controllers
             return View(serviceResult.Data);
         }
 
-        public IActionResult Success(int id)
+        public async Task<IActionResult> Success(int id)
         {
-            _userService.SuccessPayment(id);
+            await _userService.SuccessPayment(id);
             return RedirectPermanent("/");
         }
     }
