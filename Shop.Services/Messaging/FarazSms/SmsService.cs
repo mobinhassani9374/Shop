@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Shop.Services.Messaging.FarazSms.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -40,6 +41,19 @@ namespace Shop.Services.Messaging.FarazSms
         }
 
         public async Task SendSmsForAdminOrder(Models.AdminOrderModel model)
+        {
+            Init();
+
+            _request.Content = new StringContent(JsonConvert.SerializeObject(model),
+                Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            response = await client.SendAsync(_request);
+
+            var responseStr = await response.Content.ReadAsStringAsync();
+        }
+
+        public async Task SendSmsForForgotPassword(ForgotPasswordModel model)
         {
             Init();
 

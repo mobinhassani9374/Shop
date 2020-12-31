@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
@@ -358,6 +359,37 @@ namespace Shop.Services
                     serviceResult = Save("عملیات با موفقیت صورت گرفت");
                 }
             }
+            return serviceResult;
+        }
+        public async Task<ServiceResult> ForgotPassword(string phoneNumber)
+        {
+            var serviceResult = new ServiceResult(true);
+            var user = GetUserByPhoneNumber(phoneNumber);
+            if (user == null)
+                serviceResult.AddError("کاربری یافت نشد");
+            else
+            {
+                var newPassword = "";
+                for (int i = 0; i < 6; i++)
+                {
+                    newPassword += new Random().Next(1, 9);
+                }
+
+                var hashedNewPassword = _userManager.PasswordHasher.HashPassword(user, newPassword);
+                UserStore<User> store = new UserStore<User>(_dbContext);
+                await store.SetPasswordHashAsync(user, hashedNewPassword);
+
+                await _smsService.SendSmsForForgotPassword(new ForgotPasswordModel
+                {
+                    toNum = user.PhoneNumber,
+                    inputData = new List<InputDataForForgotPassword>
+                  {
+                   new InputDataForForgotPassword{   name=user.FullName, password=newPassword}
+                  }
+                });
+
+            }
+
             return serviceResult;
         }
     }

@@ -63,6 +63,10 @@ namespace Shop.Services
         {
             return _dbContext.Users.FirstOrDefault(c => c.Id == userId);
         }
+        protected User GetUserByPhoneNumber(string phoneNumber)
+        {
+            return _dbContext.Users.FirstOrDefault(c => c.PhoneNumber == phoneNumber);
+        }
         protected List<User> GetAdminUsers()
         {
             return _dbContext.Users

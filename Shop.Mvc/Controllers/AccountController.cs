@@ -142,6 +142,29 @@ namespace Shop.Mvc.Controllers
             }
         }
 
+        public IActionResult ForgotPassword()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                Swal(false, "نمی توانید به صفحه مربوطه دسترسی داشته باشید");
+                return RedirectPermanent("/");
+            }
+
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            var serviceResult = await _userService.ForgotPassword(model.PhoneNumber);
+            if (serviceResult.IsSuccess)
+            {
+                serviceResult.Message = "رمزعبور جدید برایتان ارسال شد";
+                return RedirectToAction(nameof(Login));
+            }
+            return View_Post(serviceResult, model);
+        }
+
         /// sync
         public IActionResult Sync()
         {
