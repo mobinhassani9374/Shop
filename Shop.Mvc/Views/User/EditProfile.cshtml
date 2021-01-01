@@ -1,18 +1,55 @@
 ﻿@model Shop.Mvc.Models.UserManagement.EditProfileViewModel
 @{
-    ViewData["Title"] = "EditProfile";
+    ViewData["Title"] = "ویرایش پروفایل کاربر - ایمن فروش";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EditProfile</h2>
-<form method="post">
-    <div class="col-md-12 col-xs-12">
-        <div class="form-group">
-            @Html.Partial("_ServiceResult")
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">ایمن فروش</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> ویرایش پروفایل کاربر</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="cart">
+                <div class="cart__title" style="margin-bottom:0">ناحیه کاربری</div>
+                <a class="cart__link" asp-action="Index">سفارش های من</a>
+                <a class="cart__link active">ویرایش پروفایل</a>
+                <a class="cart__link" asp-action="ChangePassword">تغییر رمز عبور</a>
+                <a href="/Account/Logout" class="cart__link">خروج</a>
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-12">
+            <div class="cart">
+                <div class="cart__title" style="margin-bottom:0">ویرایش پروفایل کاربر</div>
+                <form method="post">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="form-group">
+                            @Html.Partial("_ServiceResult")
+                        </div>
+                    </div>
+                    @Html.AntiForgeryToken()
+                    <div class="col-md-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="required">نام خود را ویرایش کنید</label>
+                            <input type="text" placeholder="نام و نام خانوادگی" required class="form-control" asp-for="FullName" />
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+                    <div class="col-md-6 col-xs-12">
+                        <div class="form-group">
+                            <button type="submit" class="ladda-button btn btn-primary btn-block" data-style="zoom-in">
+                                <span class="ladda-label">ثبت اطلاعات</span>
+                            </button>
+                        </div>
+                    </div>                    
+                </form>
+            </div>
         </div>
     </div>
-    @Html.AntiForgeryToken()
-    <p><input type="text" asp-for="FullName" /></p>
-    <input type="submit" value="subnmit" />
-</form>
-
+</div>
