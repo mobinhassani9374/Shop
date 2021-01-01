@@ -1,8 +1,351 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+    ViewData["Title"] = "دسته بندی محصولات";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">ایمن فروش</a></li>
+                <li class="breadcrumb-item active" aria-current="page">دسته بندی محصولات</li>
+            </ol>
+        </nav>
+    </div>
+</div>
 
+<div class="container">
+    <div class="row">
+        <div class="category" style="margin-bottom: 20px;">
+            <form>
+                <div class="row">
+                    <div class="col-md-4 col-xs-12">
+                        <div class="control-group">
+                            <input type="text" class="form-control" placeholder="محصولی را جستجو کنید" />
+                        </div>
+                    </div>
+                    <div class="col-md-4  col-xs-12">
+                        <div class="control-group">
+                            <select class="form-control">
+                                <option>ارزان ترن</option>
+                                <option>گران ترن</option>
+                                <option>پرفروش ترن</option>
+                                <option>پربازدید ترن</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4  col-xs-12">
+                        <div class="control-group">
+                            <button class="btn btn-primary btn-block">جستجو</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="category">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="category__item">
+                    <a href="#">
+                        <div class="category__item__img">
+                            <img src="~/img/product1.jpg" class="img-responsive" />
+                        </div>
+                        <div class="category__item__title">
+                            پکیج دوربین کوپر B2MP-C8
+                        </div>
+                        <div class="category__item__price">
+                            <div>
+                                <span class="badge">15 %</span>
+                                <del>4,284,000</del>
+                            </div>
+                            <div>
+                                <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                            </div>
+                        </div>
+                        <div class="category__item__btn">
+                            <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="category__item">
+                    <a href="#">
+                        <div class="category__item__img">
+                            <img src="~/img/product1.jpg" class="img-responsive" />
+                        </div>
+                        <div class="category__item__title">
+                            پکیج دوربین کوپر B2MP-C8
+                        </div>
+                        <div class="category__item__price">
+                            <div>
+                                <span class="badge">15 %</span>
+                                <del>4,284,000</del>
+                            </div>
+                            <div>
+                                <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                            </div>
+                        </div>
+                        <div class="category__item__btn">
+                            <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="category__item">
+                    <a href="#">
+                        <div class="category__item__img">
+                            <img src="~/img/product1.jpg" class="img-responsive" />
+                        </div>
+                        <div class="category__item__title">
+                            پکیج دوربین کوپر B2MP-C8
+                        </div>
+                        <div class="category__item__price">
+                            <div>
+                                <span class="badge">15 %</span>
+                                <del>4,284,000</del>
+                            </div>
+                            <div>
+                                <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                            </div>
+                        </div>
+                        <div class="category__item__btn">
+                            <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="category__item">
+                    <a href="#">
+                        <div class="category__item__img">
+                            <img src="~/img/product1.jpg" class="img-responsive" />
+                        </div>
+                        <div class="category__item__title">
+                            پکیج دوربین کوپر B2MP-C8
+                        </div>
+                        <div class="category__item__price">
+                            <div>
+                                <span class="badge">15 %</span>
+                                <del>4,284,000</del>
+                            </div>
+                            <div>
+                                <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                            </div>
+                        </div>
+                        <div class="category__item__btn">
+                            <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="category__item">
+                    <a href="#">
+                        <div class="category__item__img">
+                            <img src="~/img/product1.jpg" class="img-responsive" />
+                        </div>
+                        <div class="category__item__title">
+                            پکیج دوربین کوپر B2MP-C8
+                        </div>
+                        <div class="category__item__price">
+                            <div>
+                                <span class="badge">15 %</span>
+                                <del>4,284,000</del>
+                            </div>
+                            <div>
+                                <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                            </div>
+                        </div>
+                        <div class="category__item__btn">
+                            <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="category__item">
+                    <a href="#">
+                        <div class="category__item__img">
+                            <img src="~/img/product1.jpg" class="img-responsive" />
+                        </div>
+                        <div class="category__item__title">
+                            پکیج دوربین کوپر B2MP-C8
+                        </div>
+                        <div class="category__item__price">
+                            <div>
+                                <span class="badge">15 %</span>
+                                <del>4,284,000</del>
+                            </div>
+                            <div>
+                                <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                            </div>
+                        </div>
+                        <div class="category__item__btn">
+                            <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="category__item">
+                    <a href="#">
+                        <div class="category__item__img">
+                            <img src="~/img/product1.jpg" class="img-responsive" />
+                        </div>
+                        <div class="category__item__title">
+                            پکیج دوربین کوپر B2MP-C8
+                        </div>
+                        <div class="category__item__price">
+                            <div>
+                                <span class="badge">15 %</span>
+                                <del>4,284,000</del>
+                            </div>
+                            <div>
+                                <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                            </div>
+                        </div>
+                        <div class="category__item__btn">
+                            <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="category__item">
+                    <a href="#">
+                        <div class="category__item__img">
+                            <img src="~/img/product1.jpg" class="img-responsive" />
+                        </div>
+                        <div class="category__item__title">
+                            پکیج دوربین کوپر B2MP-C8
+                        </div>
+                        <div class="category__item__price">
+                            <div>
+                                <span class="badge">15 %</span>
+                                <del>4,284,000</del>
+                            </div>
+                            <div>
+                                <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                            </div>
+                        </div>
+                        <div class="category__item__btn">
+                            <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="category__item">
+                    <a href="#">
+                        <div class="category__item__img">
+                            <img src="~/img/product1.jpg" class="img-responsive" />
+                        </div>
+                        <div class="category__item__title">
+                            پکیج دوربین کوپر B2MP-C8
+                        </div>
+                        <div class="category__item__price">
+                            <div>
+                                <span class="badge">15 %</span>
+                                <del>4,284,000</del>
+                            </div>
+                            <div>
+                                <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                            </div>
+                        </div>
+                        <div class="category__item__btn">
+                            <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="category__item">
+                    <a href="#">
+                        <div class="category__item__img">
+                            <img src="~/img/product1.jpg" class="img-responsive" />
+                        </div>
+                        <div class="category__item__title">
+                            پکیج دوربین کوپر B2MP-C8
+                        </div>
+                        <div class="category__item__price">
+                            <div>
+                                <span class="badge">15 %</span>
+                                <del>4,284,000</del>
+                            </div>
+                            <div>
+                                <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                            </div>
+                        </div>
+                        <div class="category__item__btn">
+                            <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="category__item">
+                    <a href="#">
+                        <div class="category__item__img">
+                            <img src="~/img/product1.jpg" class="img-responsive" />
+                        </div>
+                        <div class="category__item__title">
+                            پکیج دوربین کوپر B2MP-C8
+                        </div>
+                        <div class="category__item__price">
+                            <div>
+                                <span class="badge">15 %</span>
+                                <del>4,284,000</del>
+                            </div>
+                            <div>
+                                <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                            </div>
+                        </div>
+                        <div class="category__item__btn">
+                            <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="category__item">
+                    <a href="#">
+                        <div class="category__item__img">
+                            <img src="~/img/product1.jpg" class="img-responsive" />
+                        </div>
+                        <div class="category__item__title">
+                            پکیج دوربین کوپر B2MP-C8
+                        </div>
+                        <div class="category__item__price">
+                            <div>
+                                <span class="badge">15 %</span>
+                                <del>4,284,000</del>
+                            </div>
+                            <div>
+                                <span style="margin-left: 10px;">تومان</span><span>4,284,000</span>
+                            </div>
+                        </div>
+                        <div class="category__item__btn">
+                            <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page">
+    <ul class="pagination">
+        <li><a href="#">1</a></li>
+        <li class="active"><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+    </ul>
+</div>
