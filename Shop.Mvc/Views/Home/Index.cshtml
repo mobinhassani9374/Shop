@@ -12,43 +12,43 @@
             <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
-                     @for (int i = 0; i < Model.SlideShows.Count; i++)
+                    @for (int i = 0; i < Model.SlideShows.Count; i++)
                     {
-                        
-                            if (i == 0)
-                            {
-                                <li data-target="#myCarousel" data-slide-to="@(i)" class="active"></li>
-                            }
-                            else
-                            {
-                                <li data-target="#myCarousel" data-slide-to="@(i)"></li>
-                            }
-                    
-                    }
-                </ol>                               
 
-            <div class="carousel-inner">
-                <!-- Wrapper for slides -->
-                @for (int i = 0; i < Model.SlideShows.Count; i++)
-                {
-                    @if (i == 0)
-                    {
-                        <div class="item active">
-                            <a target="_blank" href="@Model.SlideShows[i].Link">
-                                <img alt="ایمن فروش" src="~/Files/SlideShowImages/@(Model.SlideShows[i].ImageName)">
-                            </a>
-                        </div>
+                        if (i == 0)
+                        {
+                            <li data-target="#myCarousel" data-slide-to="@(i)" class="active"></li>
+                        }
+                        else
+                        {
+                            <li data-target="#myCarousel" data-slide-to="@(i)"></li>
+                        }
+
                     }
-                    else
+                </ol>
+
+                <div class="carousel-inner">
+                    <!-- Wrapper for slides -->
+                    @for (int i = 0; i < Model.SlideShows.Count; i++)
                     {
-                        <div class="item">
-                            <a target="_blank" href="@Model.SlideShows[i].Link">
-                                <img alt="ایمن فروش" src="~/Files/SlideShowImages/@(Model.SlideShows[i].ImageName)">
-                            </a>
-                        </div>
+                        @if (i == 0)
+                        {
+                            <div class="item active">
+                                <a target="_blank" href="@Model.SlideShows[i].Link">
+                                    <img alt="ایمن فروش" src="~/Files/SlideShowImages/@(Model.SlideShows[i].ImageName)">
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="item">
+                                <a target="_blank" href="@Model.SlideShows[i].Link">
+                                    <img alt="ایمن فروش" src="~/Files/SlideShowImages/@(Model.SlideShows[i].ImageName)">
+                                </a>
+                            </div>
+                        }
                     }
-                }
-            </div>
+                </div>
 
                 <!-- Left and right controls -->
                 <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -191,73 +191,80 @@
 <div class="bg-header">
     <h1 class="title">
         ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو
-    </h1> 
+    </h1>
     <div class="box">
         <h2 class="box__item">فروش سیستم های امنیتی و نظارتی</h2>
         <h2 class="box__item">دوربین های مداربسته با سیم و بیسیم</h2>
         <h2 class="box__item">دزدگیر اماکن</h2>
         <h2 class="box__item">ردیاب های شخصی و خودرو</h2>
-    </div>   
+    </div>
 </div>
 
 <!-- slick product  -->
-@foreach (var item in Model.ProductCategries)
+@if (Model.ProductCategries.Count > 0)
 {
-    <div class="container">
-        <div class="row">
-            <div class="slick">
-                <div class="slick__title">
-                    @item.CategoryTitle
-                    <a href="#">نمایش بیشتر <i class="fa fa-plus"></i></a>
-                </div>
-                <div class="slick__arrow">
-                    <i data-role="slick-right_slick_@(item.Id)" class="fa fa-angle-right slick__arrow__right"></i>
-                    <i data-role="slick-left_slick_@(item.Id)" class="fa fa-angle-left slick__arrow__left"></i>
-                </div>
-                <div class="slick__product" id="slick_@(item.Id)">
-                    @foreach (var product in item.Products)
-                    {
-                        <div class="slick__product__item">
-                            <a asp-action="Detail" asp-controller="Product" asp-route-id="@(product.Id)">
-                                <div class="slick__product__item__img">
-                                    <img alt="ایمن فروش" alt="@product.Title - ایمن فروش"
-                                         src="/Files/Images/@product.PrimaryImage" class="img-responsive" />
-                                </div>
-                                <div class="slick__product__item__title">
-                                    @product.Title
-                                </div>
-                                <div class="slick__product__item__price">
-                                    @* <div>
-                                            <span class="badge">15 %</span>
-                                            <del>@product.Price</del>
-                                        </div> *@
-                                    <div class="price">
-                                        <span data-role="seperator">
-                                            @product.Price
-                                        </span>
-                                        <span style="margin-right: 8px;">تومان</span>
-                                    </div>
-                                </div>
-                                <div class="slick__product__item__btn">
-                                    @if (product.Count != 0)
-                                    {
-                                        <a v-on:click="addCart(@product.Id)" id="addcart@(product.Id)" type="submit" class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
-                                            <span class="ladda-label">افزودن به سبد خرید</span>
-                                        </a>
-                                    }
-                                    else
-                                    {
-                                        <p class="text-danger count-0">ناموجود</p>
-                                    }
-                                </div>
-                            </a>
+    foreach (var item in Model.ProductCategries)
+    {
+        if (item.Products.Count > 0)
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="slick">
+                        <div class="slick__title">
+                            @item.CategoryTitle
+                            <a href="#">نمایش بیشتر <i class="fa fa-plus"></i></a>
                         </div>
-                    }
+                        <div class="slick__arrow">
+                            <i data-role="slick-right_slick_@(item.Id)" class="fa fa-angle-right slick__arrow__right"></i>
+                            <i data-role="slick-left_slick_@(item.Id)" class="fa fa-angle-left slick__arrow__left"></i>
+                        </div>
+                        <div class="slick__product" id="slick_@(item.Id)">
+                            @foreach (var product in item.Products)
+                            {
+                                <div class="slick__product__item">
+                                    <a asp-action="Detail" asp-controller="Product" asp-route-id="@(product.Id)">
+                                        <div class="slick__product__item__img">
+                                            <img alt="ایمن فروش" alt="@product.Title - ایمن فروش"
+                                                 src="/Files/Images/@product.PrimaryImage" class="img-responsive" />
+                                        </div>
+                                        <div class="slick__product__item__title">
+                                            @product.Title
+                                        </div>
+                                        <div class="slick__product__item__price">
+                                            @* <div>
+                                                    <span class="badge">15 %</span>
+                                                    <del>@product.Price</del>
+                                                </div> *@
+                                            <div class="price">
+                                                <span data-role="seperator">
+                                                    @product.Price
+                                                </span>
+                                                <span style="margin-right: 8px;">تومان</span>
+                                            </div>
+                                        </div>
+                                        <div class="slick__product__item__btn">
+                                            @if (product.Count != 0)
+                                            {
+                                                <a v-on:click="addCart(@product.Id)" id="addcart@(product.Id)" type="submit" class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
+                                                    <span class="ladda-label">افزودن به سبد خرید</span>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <p class="text-danger count-0">ناموجود</p>
+                                            }
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        }
+    }
 }
+
 
 <script>
     $(function () {

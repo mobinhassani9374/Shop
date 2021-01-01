@@ -71,22 +71,30 @@ namespace Shop.Services
             var categories = _dbContext.Categories
                  .Include(c => c.Children)
                  .Include(c => c.Products)
+                 .AsEnumerable()
                  .Where(c => !c.ParentId.HasValue)
                  .ToList();
 
-            result.ProductCategries = categories.Select(c => new CategoryDto
+            result.ProductCategries = new List<CategoryDto>();
+
+            foreach (var category in categories)
             {
-                CategoryTitle = c.Title,
-                Id = c.Id,
-                Products = c.Products.Select(i => new Domain.Dto.Home.ProductDto
+                var output = new CategoryDto();
+                output.Id = category.Id;
+                output.CategoryTitle = category.Title;
+                _product.AddRange(category.Products.ToList());
+                GetProduct(category.Children.ToList());
+                output.Products = _product.Select(i => new Domain.Dto.Home.ProductDto
                 {
                     Id = i.Id,
                     Title = i.Title,
                     Count = i.Count,
                     Price = i.Price,
                     PrimaryImage = i.PrimaryImage
-                }).ToList()
-            }).ToList();
+                }).ToList();
+                _product.Clear();
+                result.ProductCategries.Add(output);
+            }
 
             result.SlideShows = GetAllSlideShows();
 
@@ -392,5 +400,19 @@ namespace Shop.Services
 
             return serviceResult;
         }
+
+        private void GetProduct(List<Domain.Entities.Category> categories)
+        {
+            if (categories.Count > 0)
+            {
+                foreach (var cat in categories)
+                {
+                    _product.AddRange(cat.Products.ToList());
+                    List<Domain.Entities.Category> subCats = cat.Children.ToList();
+                    GetProduct(subCats);
+                }
+            }
+        }
+        List<Domain.Entities.Product> _product = new List<Domain.Entities.Product>();
     }
 }
