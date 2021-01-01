@@ -126,7 +126,7 @@ $(function () {
   })
 
   $('[data-role="category"]').on('click', function () {
-    $('#sidenav').css('width', '250px');
+    $('#sidenav').css('width', '300px');
   })
   $('[data-role="category-close"]').on('click', function () {
     $('#sidenav').css('width', '0px');

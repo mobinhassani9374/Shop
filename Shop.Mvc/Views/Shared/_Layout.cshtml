@@ -169,7 +169,7 @@
         <div id="sidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" data-role="category-close">&times;</a>
             <div class="sidenav__content">
-                <p class="sidenav__content__title">فروشگاه اینترنتی ایمن فروش</p>
+                <p class="sidenav__content__title"> ایمن فروش</p>
                 <div class="sidenav__content__img">
                     <img alt="ایمن فروش" src="~/img/logo.png" class="img-responsive" />
                 </div>
@@ -177,34 +177,10 @@
                     پیشنهادات شگفت انگیز
                     <span class=" badge">100</span>
                 </a>
-                <div class="tree">
-                    <ul id="myUL">
-                        <li>
-                            <span class="parent">دوربین های مدار بسته</span>
-                            <ul class="nested">
-                                <li>
-                                    <span class="parent">لوزام جانبی ذوربین</span>
-                                    <ul class="nested">
-                                        <li>
-                                            <a href="#">هارد و حافظه</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">بسته</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="parent">دستگاه های رکورد</span>
-                            <ul class="nested">
-                                <li><a href="#">کوچگ</a></li>
-                                <li><a href="#">بزرگ</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">در باز کن</a></li>
-                    </ul>
-                </div>
+                <ul class="tree-admin" style="margin-top:15px">
+                    <item class="item" v-for="item in category" :model="item">
+                    </item>
+                </ul>
             </div>
         </div>
 
@@ -257,8 +233,9 @@
                         <div class="col-md-4">
                             <div class="footer__info__title">
                                 لینک های ایمن فروش
-                            </div>                           
-                            <a class="footer__info__link" asp-controller="Home" asp-action="HelpForBuy">راهنمای خرید </a>
+                            </div>
+                            <a class="footer__info__link" asp-controller="Home" asp-action="HelpForBuy">راهنمای خرید
+                            </a>
                             <a class="footer__info__link" asp-controller="Home" asp-action="LawUs">قوانین و مقررات</a>
                             <a class="footer__info__link" asp-controller="Home" asp-action="AboutUs">درباره ما</a>
                             <a class="footer__info__link" asp-controller="Home" asp-action="ContactUs">تماس با ما</a>
@@ -268,7 +245,7 @@
                                 پشتیبانی
                             </div>
                             <p>
-                                شماره تماس ها :  @Shop.Mvc.Cache.CacheData.Info.PhoneNumbers
+                                شماره تماس ها : @Shop.Mvc.Cache.CacheData.Info.PhoneNumbers
                             </p>
                             <p>
                                 آدرس : @Shop.Mvc.Cache.CacheData.Info.Address
@@ -300,187 +277,28 @@
         gtag('config', 'UA-120605683-14');
     </script>
 
-    <link href='https://api.cedarmaps.com/cedarmaps.js/v1.8.0/cedarmaps.css' rel='stylesheet' />
-    <script>
-        function contactMap() {
-            // Map options
-            var cm_options = { "center": { "lat": 35.7479198, "lng": 51.5474939 }, "maptype": "light", "scrollWheelZoom": false, "zoomControl": true, "zoom": 15, "minZoom": 6, "maxZoom": 17, "legendControl": false, "attributionControl": false }
-            // Initialized CedarMap
-            var map = window.L.cedarmaps.map('map_09kgdf', 'https://api.cedarmaps.com/v1/tiles/cedarmaps.streets.json?access_token=98e76563900bde072e3e71b2e62a31bc4334cf66', cm_options);
-            // Markers options
-            var markers = [{ "popupContent": "ایمن فروش", "center": { "lat": 35.7479198, "lng": 51.5474939 }, "iconOpts": { "iconUrl": "https://api.cedarmaps.com/v1/markers/marker-default.png", "iconRetinaUrl": "https://api.cedarmaps.com/v1/markers/marker-default@2x.png", "iconSize": [82, 98] } }];
-            var markersLeaflet = [];
-            var _marker = null;
-
-            map.setView(cm_options.center, cm_options.zoom);
-            // Add Markers on Map
-            if (markers.length === 0) return;
-            markers.map(function (marker) {
-                var iconOpts = {
-                    iconUrl: marker.iconOpts.iconUrl,
-                    iconRetinaUrl: marker.iconOpts.iconRetinaUrl,
-                    iconSize: marker.iconOpts.iconSize,
-                    popupAnchor: [0, -49]
-                };
-
-                const markerIcon = {
-                    icon: window.L.icon(iconOpts)
-                };
-
-                _marker = new window.L.marker(marker.center, markerIcon);
-                markersLeaflet.push(_marker);
-                if (marker.popupContent) {
-                    _marker.bindPopup(marker.popupContent);
-                }
-                _marker.addTo(map);
-            });
-            // Bounding Map to Markers
-            if (markers.length > 1) {
-                var group = new window.L.featureGroup(markersLeaflet);
-                map.fitBounds(group.getBounds(), { padding: [30, 30] });
-            }
-        };
-
-        (function (c, e, d, a) {
-            var p = c.createElement(e);
-            p.async = 1; p.src = d;
-            p.onload = a;
-            c.body.appendChild(p);
-        })(document, 'script', 'https://api.cedarmaps.com/cedarmaps.js/v1.8.0/cedarmaps.js', contactMap);
+    <link href='https://api.cedarmaps.com/cedarmaps.js/v1.8.0/cedarmaps.css' rel='stylesheet' /> 4
+    <script src="~/js/cedarmaps.js"></script>
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/app.js"></script>
+    <script type="text/x-template" id="item-template">
+        <li>
+            <div
+                    :class="{bold: isFolder}">
+                        <span style="cursor: pointer;" v-on:click="toggle" v-if="isFolder">[{{open ? '-' : '+'}}]</span>
+                        <a :href="'/Category/Index/'+model.id">{{model.title}}</a>
+            </div>
+            <ul v-show="open" v-if="isFolder">
+                <item
+                    class="item"
+                    v-for="model in model.children"
+                    :model="model">
+                </item>
+            </ul>
+        </li>
     </script>
+
+    @Html.Partial("_Swal.cshtml")
 </body>
 
 </html>
-
-
-<script src="~/js/vue.js"></script>
-<script>
-    var app = new Vue({
-        el: '#app',
-        data: {
-            countCart: 0,
-            cart: [],
-            price: 0,
-            loading: false,
-            shippingCost: 0
-        },
-        methods: {
-            addCart: function (productId) {
-                var me = this;
-                var l = Ladda.create(document.getElementById('addcart' + productId));
-                $.ajax({
-                    url: '/Cart/Add',
-                    method: 'post',
-                    data: { ProductId: productId }
-                }).then(function (response) {
-                    me.countCart = response.data.length;
-                    toastr.info(response.message);
-                    l.stop();
-                }).fail(function (error) {
-                    l.stop()
-                    if (error.status === 401) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "هشدار",
-                            text: 'برای افزودن محصول به سبد خریدتان ابتدا باید عضو سایت باشید',
-                            confirmButtonText: 'عضویت در سایت',
-                            footer: '<a href="/Account/Login?returnUrl=addToCart=' + productId + '">اگر قبلا عضو سایت شدید از اینجا وارد شوید</a>'
-                        }).then(function (result) {
-                            if (result.value) {
-                                window.location = '/Account/Register?returnUrl=addToCart=' + productId;
-                            }
-                        })
-                    }
-                })
-            },
-            getCart: function () {
-                var me = this;
-                me.loading = true;
-                $.ajax({
-                    url: '/Cart/Get',
-                    method: 'post',
-                }).then(function (response) {
-                    me.cart = response;
-                    me.countCart = response.length;
-                    me.computedPrice();
-                    me.loading = false;
-                }).fail(function () {
-                    me.loading = false;
-                })
-            },
-            seperator: function (price) {
-                var pattern = /(-?\d+)(\d{3})/;
-                while (pattern.test(price))
-                    price = price.toString().replace(pattern, "$1,$2");
-                return price;
-            },
-            computedPrice: function () {
-                this.price = 0;
-                var me = this;
-                me.price = 0;
-                me.cart.map(function (item) {
-                    me.price += item.price * item.count;
-                })
-                if (me.price < 700000) {
-                    me.shippingCost = 20000;
-                    me.price += 20000;
-                }
-                else {
-                    me.shippingCost = 0;
-                }
-            },
-            increase: function (productId) {
-                var me = this;
-                me.loading = true;
-                $.ajax({
-                    url: '/Cart/Increase',
-                    method: 'post',
-                    data: { ProductId: productId }
-                }).then(function (response) {
-                    me.countCart = response.data.length;
-                    me.cart = response.data;
-                    toastr.info(response.message);
-                    me.computedPrice();
-                    me.loading = false;
-                });
-            },
-            reduce: function (productId) {
-                var me = this;
-                me.loading = true;
-                $.ajax({
-                    url: '/Cart/Reduce',
-                    method: 'post',
-                    data: { ProductId: productId }
-                }).then(function (response) {
-                    me.countCart = response.data.length;
-                    me.cart = response.data;
-                    toastr.info(response.message);
-                    me.computedPrice();
-                    me.loading = false;
-                });
-            },
-            deleteCart: function (productId) {
-                var me = this;
-                if (confirm('آیا مطمئن هستید ؟؟ ')) {
-                    me.loading = true;
-                    $.ajax({
-                        url: '/Cart/Delete',
-                        method: 'post',
-                        data: { ProductId: productId }
-                    }).then(function (response) {
-                        me.countCart = response.data.length;
-                        me.cart = response.data;
-                        toastr.info(response.message);
-                        me.computedPrice();
-                        me.loading = false;
-                    });
-                }
-            }
-        },
-        created: function () {
-            this.getCart();
-        }
-    })
-</script>
-
-@Html.Partial("_Swal.cshtml")
