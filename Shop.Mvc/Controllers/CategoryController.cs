@@ -15,6 +15,10 @@ namespace Shop.Mvc.Controllers
         {
             _userService = userService;
         }
+        public IActionResult Index()
+        {
+            return View();
+        }
         public IActionResult Get()
         {
             var data = _userService.GetAllCategories();
