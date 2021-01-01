@@ -129,7 +129,8 @@ namespace Shop.Services
         public List<CategoryDto> GetAllCategories()
         {
             var data = _dbContext.Categories
-                .ToList()
+                .Include(c => c.Children)
+                .AsEnumerable()
                 .Where(c => !c.ParentId.HasValue)
                 .ToList();
 

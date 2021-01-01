@@ -413,6 +413,18 @@ namespace Shop.Services
                 }
             }
         }
+
+        public List<Domain.Dto.Category.CategoryDto> GetAllCategories()
+        {
+            var data = _dbContext
+                .Categories
+                .Include(c => c.Children)
+                .AsEnumerable()
+                .Where(c => !c.ParentId.HasValue)
+                .ToList();
+
+            return data.ToDto();
+        }
         List<Domain.Entities.Product> _product = new List<Domain.Entities.Product>();
     }
 }
