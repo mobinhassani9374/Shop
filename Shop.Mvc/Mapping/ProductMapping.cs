@@ -113,5 +113,15 @@ namespace Shop.Mvc.Mapping
                 UserId = source.UserId
             };
         }
+        public static ProductUserSearchDto ToDto(this ProductUserSearchViewModel source)
+        {
+            return new ProductUserSearchDto
+            {
+                CategoryId = source.CategoryId,
+                PageNumber = source.PageNumber,
+                PageSize = source.PageSize,
+                Title = source.Title
+            };
+        }
     }
 }

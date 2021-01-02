@@ -8,14 +8,17 @@ using Shop.Domain.Dto.Account;
 using Shop.Domain.Dto.Cart;
 using Shop.Domain.Dto.Home;
 using Shop.Domain.Dto.Order;
+using Shop.Domain.Dto.Pagination;
 using Shop.Domain.Dto.Product;
 using Shop.Domain.Dto.User;
+using Shop.Domain.Entities;
 using Shop.Domain.Enumeration;
 using Shop.Services.Mapping;
 using Shop.Services.Messaging.FarazSms;
 using Shop.Services.Messaging.FarazSms.Models;
 using Shop.Services.Validations;
 using Shop.Utility;
+using Shop.Utility.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +37,7 @@ namespace Shop.Services
         {
             _userManager = userManager;
         }
+        List<Domain.Entities.Product> _product = new List<Domain.Entities.Product>();
         public async Task<ServiceResult> Register(RegisterDto dto)
         {
             var serviceResult = dto.IsValid();
@@ -425,6 +429,21 @@ namespace Shop.Services
 
             return data.ToDto();
         }
-        List<Domain.Entities.Product> _product = new List<Domain.Entities.Product>();
+        public PaginationDto<Domain.Dto.Product.ProductDto> GetProducts(ProductUserSearchDto dto)
+        {
+            var query = _dbContext.Products
+                .Include(c => c.Category)
+                .AsEnumerable()
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(dto.Title))
+                query = query.Where(c => c.Title.Contains(dto.Title));
+
+            IOrderedQueryable<Product> orderedQery =
+                query.OrderByDescending(c => c.Id);
+
+            return orderedQery.ToPaginated(dto).ToDto();
+        }
+
     }
 }
