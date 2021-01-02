@@ -19,7 +19,7 @@ namespace Shop.Mvc.Controllers
         public IActionResult Index(ProductUserSearchViewModel searchModel)
         {
             var serviceResult = _userService.GetProducts(searchModel.ToDto());
-            return View_Search(searchModel, serviceResult.Data?.ToViewModel());
+            return View_Search(searchModel, serviceResult?.ToViewModel());
         }
         public IActionResult Get()
         {

@@ -38,6 +38,7 @@ namespace Shop.Services
             _userManager = userManager;
         }
         List<Domain.Entities.Product> _product = new List<Domain.Entities.Product>();
+        List<int> _catIds = new List<int>();
         public async Task<ServiceResult> Register(RegisterDto dto)
         {
             var serviceResult = dto.IsValid();
@@ -431,9 +432,19 @@ namespace Shop.Services
         }
         public PaginationDto<Domain.Dto.Product.ProductDto> GetProducts(ProductUserSearchDto dto)
         {
-            var query = _dbContext.Products
-                .Include(c => c.Category)
+            var category = _dbContext
+                .Categories
                 .AsEnumerable()
+                .Where(c => c.Id == dto.CategoryId)
+                .ToList()
+                .FirstOrDefault();
+
+            _catIds.Add(category.Id);
+            if (category.Children.Count > 0)
+                GetCategoryIds_Recursive(category.Children.ToList());
+
+            var query = _dbContext.Products
+                .Where(c => _catIds.Any(i => i == c.CategoryId))
                 .AsQueryable();
 
             if (!string.IsNullOrEmpty(dto.Title))
@@ -445,5 +456,23 @@ namespace Shop.Services
             return orderedQery.ToPaginated(dto).ToDto();
         }
 
+        private void GetCategoryIds_Recursive(List<Category> categories)
+        {
+            if (categories.Count > 0)
+            {
+                foreach (var cat in categories)
+                {
+                    if (!_catIds.Any(c => c == cat.Id))
+                        _catIds.Add(cat.Id);
+
+                    if (cat.Children != null)
+                    {
+                        _catIds.AddRange(cat.Children.Select(c => c.Id).ToList());
+                        List<Domain.Entities.Category> subCats = cat.Children.ToList();
+                        GetCategoryIds_Recursive(subCats);
+                    }
+                }
+            }
+        }
     }
 }
