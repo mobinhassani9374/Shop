@@ -486,5 +486,20 @@ namespace Shop.Services
                 }
             }
         }
+
+        public PaginationDto<Domain.Dto.Product.ProductDto> SearchProducts(ProductUserSearchDto dto)
+        {
+            var query = _dbContext.Products
+                .Where(c => _catIds.Any(i => i == c.CategoryId))
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(dto.Title))
+                query = query.Where(c => c.Title.Contains(dto.Title));
+
+            IOrderedQueryable<Product> orderedQery =
+                query.OrderByDescending(c => c.Id);
+
+            return orderedQery.ToPaginated(dto).ToDto();
+        }
     }
 }

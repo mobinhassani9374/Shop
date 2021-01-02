@@ -35,5 +35,11 @@ namespace Shop.Mvc.Controllers
             var serviceResult = _userService.AddCommentForProduct(model.ToDto(), UserId);
             return View_Get(serviceResult, $"{nameof(Detail)}/{model.ProductId}");
         }
+
+        public IActionResult Search(ProductUserSearchViewModel searchModel)
+        {
+            var data = _userService.SearchProducts(searchModel.ToDto());
+            return View_Search(searchModel, data.ToViewModel());
+        }
     }
 }

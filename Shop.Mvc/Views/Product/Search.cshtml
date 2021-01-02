@@ -1,0 +1,97 @@
+﻿@using Shop.Mvc.Models
+@using Shop.Mvc.Models.Product
+@using Shop.Mvc.Models.Pagination
+@using DNTPersianUtils.Core
+@using Shop.Utility.Extensions
+
+@model SearchModel<ProductUserSearchViewModel, PaginationViewModel<ProductViewModel>>
+@{
+    ViewData["Title"] = "دسته بندی محصولات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">ایمن فروش</a></li>
+                <li class="breadcrumb-item active" aria-current="page">جستجو در محصولات</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="category" style="margin-bottom: 20px;">
+            <form>
+                <div class="row">
+                    <div class="col-md-8 col-xs-12">
+                        <div class="control-group">
+                            <input name="Title" value="@Model.Search?.Title" type="text" class="form-control" placeholder="محصولی را جستجو کنید" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4  col-xs-12">
+                        <div class="control-group">
+                            <button class="btn btn-primary btn-block">جستجو</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="category">
+            @if (Model.Data.Data.Count > 0)
+            {
+                @foreach (var item in Model.Data.Data)
+                {
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="category__item">
+                            <a asp-action="Detail" asp-controller="Product" asp-route-id="@(item.Id)">
+                                <div class="category__item__img">
+                                    <img src="~/Files/Images/@(item.PrimaryImage)" class="img-responsive" />
+                                </div>
+                                <div class="category__item__title">
+                                    @(item.Title)
+                                </div>
+                                <div class="category__item__price price">
+                                    <span data-role="seperator">@item.Price</span>
+                                    <span style="margin-right:10px">تومان</span>
+                                </div>
+                                @if (item.Count != 0)
+                                {
+                                    <div class="category__item__btn">
+                                        <a v-on:click="addCart(@item.Id)" id="addcart@(item.Id)"
+                                           class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
+                                            <span class="ladda-label">افزودن به سبد خرید</span>
+                                        </a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="category__item__btn">
+                                        <p style="margin-bottom:2px;" class="text-danger count-0">ناموجود</p>
+                                    </div>
+                                }
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    محصولی یافت نشد
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+@Html.Partial("~/Views/Shared/_Pagination.cshtml", Model.Data)
+
