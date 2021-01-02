@@ -24,7 +24,8 @@ namespace Shop.Mvc.Controllers
                 Swal(false, "دسته بندی یافت نشد");
                 return RedirectPermanent("/");
             }
-            return View_Search(searchModel, serviceResult.Data.ToViewModel());
+            ViewBag.CategoryName = serviceResult.Data.CategoryName;
+            return View_Search(searchModel, serviceResult.Data.Products.ToViewModel());
         }
         public IActionResult Get()
         {

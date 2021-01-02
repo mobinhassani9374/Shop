@@ -6,6 +6,7 @@ using Shop.Database;
 using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Account;
 using Shop.Domain.Dto.Cart;
+using Shop.Domain.Dto.Category;
 using Shop.Domain.Dto.Home;
 using Shop.Domain.Dto.Order;
 using Shop.Domain.Dto.Pagination;
@@ -80,11 +81,11 @@ namespace Shop.Services
                  .Where(c => !c.ParentId.HasValue)
                  .ToList();
 
-            result.ProductCategries = new List<CategoryDto>();
+            result.ProductCategries = new List<Domain.Dto.Home.CategoryDto>();
 
             foreach (var category in categories)
             {
-                var output = new CategoryDto();
+                var output = new Domain.Dto.Home.CategoryDto();
                 output.Id = category.Id;
                 output.CategoryTitle = category.Title;
                 _product.AddRange(category.Products.ToList());
@@ -430,9 +431,9 @@ namespace Shop.Services
 
             return data.ToDto();
         }
-        public ServiceResult<PaginationDto<Domain.Dto.Product.ProductDto>> GetProducts(ProductUserSearchDto dto)
+        public ServiceResult<CategoryProductsDto> GetProducts(ProductUserSearchDto dto)
         {
-            var serviceResult = new ServiceResult<PaginationDto<Domain.Dto.Product.ProductDto>>(true);
+            var serviceResult = new ServiceResult<CategoryProductsDto>(true);
 
             var category = _dbContext
                 .Categories
@@ -460,7 +461,8 @@ namespace Shop.Services
                 IOrderedQueryable<Product> orderedQery =
                     query.OrderByDescending(c => c.Id);
 
-                serviceResult.Data = orderedQery.ToPaginated(dto).ToDto();
+                serviceResult.Data.Products = orderedQery.ToPaginated(dto).ToDto();
+                serviceResult.Data.CategoryName = category.Title;
             }
             return serviceResult;
         }
