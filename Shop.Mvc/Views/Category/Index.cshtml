@@ -55,7 +55,7 @@
                         <div class="category__item">
                             <a asp-action="Detail" asp-controller="Product" asp-route-id="@(item.Id)">
                                 <div class="category__item__img">
-                                    <img src="~/Files/Images/@(item.PrimaryImage)" class="img-responsive" />
+                                    <img alt="@(item.Title) - ایمن فروش" src="~/Files/Images/@(item.PrimaryImage)" class="img-responsive" />
                                 </div>
                                 <div class="category__item__title">
                                     @(item.Title)
