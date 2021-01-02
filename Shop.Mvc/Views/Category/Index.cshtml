@@ -25,22 +25,14 @@
     <div class="row">
         <div class="category" style="margin-bottom: 20px;">
             <form>
+                <input type="hidden" name="CategoryId" value="@Model.Search?.CategoryId"/>
                 <div class="row">
-                    <div class="col-md-4 col-xs-12">
+                    <div class="col-md-8 col-xs-12">
                         <div class="control-group">
-                            <input type="text" class="form-control" placeholder="محصولی را جستجو کنید" />
+                            <input name="Title" value="@Model.Search?.Title" type="text" class="form-control" placeholder="محصولی را جستجو کنید" />
                         </div>
                     </div>
-                    <div class="col-md-4  col-xs-12">
-                        <div class="control-group">
-                            <select class="form-control">
-                                <option>ارزان ترن</option>
-                                <option>گران ترن</option>
-                                <option>پرفروش ترن</option>
-                                <option>پربازدید ترن</option>
-                            </select>
-                        </div>
-                    </div>
+                    
                     <div class="col-md-4  col-xs-12">
                         <div class="control-group">
                             <button class="btn btn-primary btn-block">جستجو</button>
