@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Mvc.Mapping;
+using Shop.Mvc.Models.Product;
 using Shop.Services;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,10 @@ namespace Shop.Mvc.Controllers
         {
             _userService = userService;
         }
-        public IActionResult Index()
+        public IActionResult Index(ProductUserSearchViewModel searchModel)
         {
-            return View();
+            var serviceResult = _userService.GetProducts(searchModel.ToDto());
+            return View_Search(searchModel, serviceResult.Data?.ToViewModel());
         }
         public IActionResult Get()
         {
