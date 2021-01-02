@@ -139,15 +139,17 @@
                                 <img alt="ایمن فروش" src="~/img/logo.png" class="img img-responsive" />
                             </div>
                             <div class="col-md-8 col-sm-8 col-xs-hide">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="جستجو در محصولات ایمن فروش "
-                                        name="search" autocomplete="off">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-danger" type="submit">
-                                            <i class="glyphicon glyphicon-search"></i>
-                                        </button>
+                                <form action="/Product/Search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control"
+                                            placeholder="جستجو در محصولات ایمن فروش " name="Title" autocomplete="off">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger" type="submit">
+                                                <i class="glyphicon glyphicon-search"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -263,7 +265,8 @@
         </footer>
 
         <div class="footer-bottom">
-            <p>تمامی حقوق مادی و معنوی این سایت متعلق به شرکت <a target="_blank" href="http://instagram.com/arshanovin021">ارشانوین</a> می باشد</p>
+            <p>تمامی حقوق مادی و معنوی این سایت متعلق به شرکت <a target="_blank"
+                    href="http://instagram.com/arshanovin021">ارشانوین</a> می باشد</p>
             طراحی و توسعه توسط <a target="_blank" href="http://mobinmahdi.ir">مهدی و مبین حسنی</a>
         </div>
     </div>
