@@ -286,7 +286,7 @@
             <div
                     :class="{bold: isFolder}">
                         <span style="cursor: pointer;" v-on:click="toggle" v-if="isFolder">[{{open ? '-' : '+'}}]</span>
-                        <a :href="'/Category/Index/'+model.id">{{model.title}}</a>
+                        <a :href="'/Category/Index?CategoryId='+model.id">{{model.title}}</a>
             </div>
             <ul v-show="open" v-if="isFolder">
                 <item
