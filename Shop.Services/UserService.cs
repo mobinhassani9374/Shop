@@ -490,7 +490,6 @@ namespace Shop.Services
         public PaginationDto<Domain.Dto.Product.ProductDto> SearchProducts(ProductUserSearchDto dto)
         {
             var query = _dbContext.Products
-                .Where(c => _catIds.Any(i => i == c.CategoryId))
                 .AsQueryable();
 
             if (!string.IsNullOrEmpty(dto.Title))
