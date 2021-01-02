@@ -430,8 +430,10 @@ namespace Shop.Services
 
             return data.ToDto();
         }
-        public PaginationDto<Domain.Dto.Product.ProductDto> GetProducts(ProductUserSearchDto dto)
+        public ServiceResult<PaginationDto<Domain.Dto.Product.ProductDto>> GetProducts(ProductUserSearchDto dto)
         {
+            var serviceResult = new ServiceResult<PaginationDto<Domain.Dto.Product.ProductDto>>(true);
+
             var category = _dbContext
                 .Categories
                 .AsEnumerable()
@@ -439,21 +441,28 @@ namespace Shop.Services
                 .ToList()
                 .FirstOrDefault();
 
-            _catIds.Add(category.Id);
-            if (category.Children !=null && category.Children.Count > 0)
-                GetCategoryIds_Recursive(category.Children.ToList());
+            if (category == null)
+                serviceResult.AddError("دسته بندی یافت نشد");
 
-            var query = _dbContext.Products
-                .Where(c => _catIds.Any(i => i == c.CategoryId))
-                .AsQueryable();
+            else
+            {
+                _catIds.Add(category.Id);
+                if (category.Children != null && category.Children.Count > 0)
+                    GetCategoryIds_Recursive(category.Children.ToList());
 
-            if (!string.IsNullOrEmpty(dto.Title))
-                query = query.Where(c => c.Title.Contains(dto.Title));
+                var query = _dbContext.Products
+                    .Where(c => _catIds.Any(i => i == c.CategoryId))
+                    .AsQueryable();
 
-            IOrderedQueryable<Product> orderedQery =
-                query.OrderByDescending(c => c.Id);
+                if (!string.IsNullOrEmpty(dto.Title))
+                    query = query.Where(c => c.Title.Contains(dto.Title));
 
-            return orderedQery.ToPaginated(dto).ToDto();
+                IOrderedQueryable<Product> orderedQery =
+                    query.OrderByDescending(c => c.Id);
+
+                serviceResult.Data = orderedQery.ToPaginated(dto).ToDto();
+            }
+            return serviceResult;
         }
 
         private void GetCategoryIds_Recursive(List<Category> categories)
