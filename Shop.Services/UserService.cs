@@ -440,7 +440,7 @@ namespace Shop.Services
                 .FirstOrDefault();
 
             _catIds.Add(category.Id);
-            if (category.Children.Count > 0)
+            if (category.Children !=null && category.Children.Count > 0)
                 GetCategoryIds_Recursive(category.Children.ToList());
 
             var query = _dbContext.Products
