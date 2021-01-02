@@ -13,6 +13,7 @@ namespace Shop.Domain.Entities
         public bool IsFinal { get; set; }
         public string Description { get; set; }
         public bool IsPaid { get; set; }
+        public string IdPay_id { get; set; }
         public DateTime? PaymentDate { get; set; }
         public ICollection<OrderDetail> Details { get; set; }
     }

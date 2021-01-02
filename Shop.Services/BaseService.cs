@@ -59,7 +59,7 @@ namespace Shop.Services
         {
             return _dbContext.Users.Where(c => ids.Any(i => i == c.Id)).ToList();
         }
-        protected User GetUser(string userId)
+        public User GetUser(string userId)
         {
             return _dbContext.Users.FirstOrDefault(c => c.Id == userId);
         }

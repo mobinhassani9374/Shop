@@ -77,6 +77,8 @@ namespace Shop.Database
 
             order.HasKey(c => c.Id);
 
+            order.Property(c => c.IdPay_id).HasMaxLength(200);
+
             order.HasMany(c => c.Details)
                 .WithOne(c => c.Order)
                 .HasForeignKey(c => c.OrderId)

@@ -54,7 +54,7 @@ namespace Shop.Services.Payment.IdPay
             {
                 get
                 {
-                    return "https://j-varesin.ir/callback";
+                    return "https://imenforosh.com/callback";
                 }
             }
 

@@ -23,6 +23,7 @@ using Shop.Utility.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,14 +32,17 @@ namespace Shop.Services
     public class UserService : BaseService
     {
         private readonly UserManager<User> _userManager;
+        private readonly IHttpClientFactory _httpClientFactory;
         public UserService(AppDbContext dbContext,
             IHostingEnvironment env,
             UserManager<User> userManager,
-             SmsService smsService) : base(dbContext, env, smsService)
+             SmsService smsService,
+             IHttpClientFactory httpClientFactory) : base(dbContext, env, smsService)
         {
             _userManager = userManager;
+            _httpClientFactory = httpClientFactory;
         }
-        List<Domain.Entities.Product> _product = new List<Domain.Entities.Product>();
+        List<Product> _product = new List<Product>();
         List<int> _catIds = new List<int>();
         public async Task<ServiceResult> Register(RegisterDto dto)
         {
@@ -190,9 +194,9 @@ namespace Shop.Services
 
             return Save("عملیات با موفقیت صورت گرفت");
         }
-        public ServiceResult<int> ConvertCartToOrder(string userId)
+        public ServiceResult<OrderDto> ConvertCartToOrder(string userId)
         {
-            var serviceResult = new ServiceResult<int>(true);
+            var serviceResult = new ServiceResult<OrderDto>(true);
 
             var carts = _dbContext
                  .Carts
@@ -214,7 +218,7 @@ namespace Shop.Services
                 Remove(carts);
                 Save("عملیات با موفقیت صورت گرفت");
 
-                serviceResult.Data = orderEntity.Id;
+                serviceResult.Data = orderEntity.ToDto();
             }
 
             else serviceResult.AddError(saveResult.Errors.FirstOrDefault());
@@ -499,6 +503,18 @@ namespace Shop.Services
                 query.OrderByDescending(c => c.Id);
 
             return orderedQery.ToPaginated(dto).ToDto();
+        }
+        public ServiceResult UpdateOrder(int orderId, string idPay_id)
+        {
+            var serviceResult = new ServiceResult(true);
+            var order = _dbContext.Orders.FirstOrDefault(c => c.Id == orderId);
+            if (order == null)
+                serviceResult.AddError("سفارشی یافت نشد");
+            else
+            {
+
+            }
+            return serviceResult;
         }
     }
 }
