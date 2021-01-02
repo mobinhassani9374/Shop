@@ -34,6 +34,7 @@ namespace Shop.Mvc
             services.AddHttpClient();
 
             services.AddScoped<SmsService>();
+            services.AddScoped<Services.Payment.IdPay.Payment>();
 
             services.AddMvc();
         }
