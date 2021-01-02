@@ -461,6 +461,7 @@ namespace Shop.Services
                 IOrderedQueryable<Product> orderedQery =
                     query.OrderByDescending(c => c.Id);
 
+                serviceResult.Data = new CategoryProductsDto();
                 serviceResult.Data.Products = orderedQery.ToPaginated(dto).ToDto();
                 serviceResult.Data.CategoryName = category.Title;
             }
