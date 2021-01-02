@@ -64,7 +64,7 @@
                         <th>نام و نام خانوادگی</th>
                         <th>شماره همراه</th>
                         <th>دسترسی</th>
-                        <th>عملیات</th>
+                        @* <th>عملیات</th> *@
                     </tr>
                 </thead>
                 <tbody>
@@ -77,11 +77,11 @@
                                 <td>@user.FullName?.ToPersianNumbers()</td>
                                 <td>@user.PhoneNumber?.ToPersianNumbers()</td>
                                 <td>@user.Type.GetDisplayName()</td>
-                                <td>
+                                @* <td>
                                     <a href="#" class="btn btn-primary">ویرایش</a>
                                     <a asp-action="Permision" asp-route-userId="@user.Id" class="btn btn-warning">مدیریت دسترسی ها</a>
                                     <a href="#" class="btn btn-danger">حذف کاربر</a>
-                                </td>
+                                </td> *@
                             </tr>
 
                         }
