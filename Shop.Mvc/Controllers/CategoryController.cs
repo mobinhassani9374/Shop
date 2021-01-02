@@ -19,7 +19,12 @@ namespace Shop.Mvc.Controllers
         public IActionResult Index(ProductUserSearchViewModel searchModel)
         {
             var serviceResult = _userService.GetProducts(searchModel.ToDto());
-            return View_Search(searchModel, serviceResult?.ToViewModel());
+            if (!serviceResult.IsSuccess)
+            {
+                Swal(false, "دسته بندی یافت نشد");
+                return RedirectPermanent("/");
+            }
+            return View_Search(searchModel, serviceResult.Data.ToViewModel());
         }
         public IActionResult Get()
         {
