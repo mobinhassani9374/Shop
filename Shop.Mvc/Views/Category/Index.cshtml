@@ -61,22 +61,32 @@
                 {
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="category__item">
-                            <a href="#">
+                            <a  asp-action="Detail" asp-controller="Product" asp-route-id="@(item.Id)">
                                 <div class="category__item__img">
                                     <img src="~/Files/Images/@(item.PrimaryImage)" class="img-responsive" />
                                 </div>
                                 <div class="category__item__title">
                                     @(item.Title)
+                                </div>                                                               
+                                <div class="category__item__price price">                                                                                                          
+                                    <span data-role="seperator">@item.Price</span> 
+                                     <span style="margin-right:10px">تومان</span>                                   
                                 </div>
-                                <div class="category__item__price">
-                                    
-                                    <div>
-                                        <span style="margin-left: 10px;">تومان</span><span>@(item.Price)</span>
+                                @if (item.Count != 0)
+                                {
+                                     <div class="category__item__btn">
+                                        <a v-on:click="addCart(@item.Id)" id="addcart@(item.Id)"
+                                            class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
+                                            <span class="ladda-label">افزودن به سبد خرید</span>
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="category__item__btn">
-                                    <a class="btn btn-danger btn-block">افزودن به سبد خرید</a>
-                                </div>
+                                }
+                                else
+                                {
+                                    <div class="category__item__btn">
+                                        <p class="text-danger count-0">ناموجود</p>
+                                    </div>                                   
+                                }                    
                             </a>
                         </div>
                     </div>
