@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <form method="post">
+                <form method="post" autocomplete="off">
                     <input type="hidden" name="@Html.NameFor(c=>c.ReturnUrl)" value="@ViewBag.ReturnUrl" />
                     <div class="col-md-12 col-xs-12">
                         <div class="form-group">
@@ -37,14 +37,12 @@
                     @Html.AntiForgeryToken()
                     <div class="form-group">
                         <label class="required"> شماره همراه خود را وارد کنید</label>
-                        <input required="" type="text" class="form-control" placeholder="شماره همراه"
-                               id="PhoneNumber"
+                        <input required="" autocomplete="off" type="text" class="form-control" placeholder="شماره همراه"                              
                                asp-for="PhoneNumber">
                     </div>
                     <div class="form-group">
                         <label class="required"> نام و نام خانوادگی خود را وارد کنید</label>
-                        <input required="" type="text" class="form-control" placeholder="نام و نام خانوادگی"
-                               id="PhoneNumber"
+                        <input required="" autocomplete="off" type="text" class="form-control" placeholder="نام و نام خانوادگی"                              
                                asp-for="FullName">
                     </div>
                     <div class="form-group">
