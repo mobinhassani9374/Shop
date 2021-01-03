@@ -23,6 +23,9 @@ namespace Shop.Mvc.Controllers
             if (serviceResult.IsSuccess)
             {
                 ViewBag.Comments = _userService.GetAllAcepteCommentForProduct(id).ToViewModel();
+                ViewBag.ProductTitle = serviceResult.Data.Title;
+                ViewBag.ProductId = serviceResult.Data.Id;
+                ViewBag.ProductImage = serviceResult.Data.PrimaryImage;
             }
             return View_Get(serviceResult.Data?.ToViewModel(), "/");
         }
