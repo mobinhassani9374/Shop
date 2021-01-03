@@ -65,22 +65,40 @@
                         </table>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 col-xs-12 pull-right">
-                            <div class="alert alert-danger text-center">خرید بالای 700,000 تومان هزینه ارسالش رایگان میباشد
+                        <form>
+                            <div class="col-md-4 col-xs-12 pull-right">
+                                <div class="alert alert-danger text-center">خرید بالای 700,000 تومان هزینه ارسالش رایگان
+                                    میباشد
+                                </div>
+                                <div class="cart__price" v-if="shippingCost!==0">
+                                    <div>هزینه ارسال : </div>
+                                    <div class="text-success">{{seperator(shippingCost)}} تومان</div>
+                                </div>
+                                <div class="cart__price">
+                                    <div>مجموعا به تومان : </div>
+                                    <div class="text-success">{{seperator(price)}} تومان</div>
+                                </div>
+                                @* <a asp-action="Index" asp-controller="Payment" class="btn btn-danger ladda-button"
+                                    data-style="zoom-in">
+                                    <span class="ladda-label">انمام فرآیند خرید</span>
+                                    </a> *@
+                                <div class="form-group">
+                                    <button type="submit" class="ladda-button btn btn-primary btn-block"
+                                        data-style="zoom-in">
+                                        <span class="ladda-label">ثبت اطلاعات و اتمام فرآیند خرید</span>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="cart__price" v-if="shippingCost!==0">
-                                <div>هزینه ارسال : </div>
-                                <div class="text-success">{{seperator(shippingCost)}} تومان</div>
+                            <div class="col-md-8 col-xs-12 pull-left">
+                                <div class="alert alert-danger text-center">اگر آدرس تحویل را وارد نکرده اید وارد کنید و اگر
+                                    می خواهید آدرس را ویرایش کنید از همین جا ویرایش کنید
+                                </div>
+                                <div class="form-group">
+                                    <label class="required">آدرس را وارد کنید</label>
+                                    <textarea class="form-control" rows="3" placeholder="آدرس را وارد کنید"></textarea>
+                                </div>
                             </div>
-                            <div class="cart__price">
-                                <div>مجموعا به تومان : </div>
-                                <div class="text-success">{{seperator(price)}} تومان</div>
-                            </div>
-                            <a asp-action="Index" asp-controller="Payment" class="btn btn-danger ladda-button"
-                                data-style="zoom-in">
-                                <span class="ladda-label">انمام فرآیند خرید</span>
-                            </a>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <div v-else>
