@@ -16,6 +16,7 @@ namespace Shop.Domain.Entities
         public string IdPay_id { get; set; }
         public DateTime? PaymentDate { get; set; }
         public long ShippingPrice { get; set; }
+        public string Address { get; set; }
         public ICollection<OrderDetail> Details { get; set; }
     }
 }
