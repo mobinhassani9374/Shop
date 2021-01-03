@@ -84,7 +84,7 @@ namespace Shop.Services
         public ServiceResult<ProductDto> GetProductDetail(int id)
         {
             var serviceResult = new ServiceResult<ProductDto>(true);
-            var entity = _dbContext.Products.Find(id);
+            var entity = _dbContext.Products.Include(c => c.Category).FirstOrDefault(c => c.Id == id);
             if (entity == null)
                 serviceResult.AddError("محصولی یافت نشد");
             else
