@@ -69,7 +69,8 @@ namespace Shop.Services.Mapping
                 TotalPrice = source.TotalPrice,
                 UserId = source.UserId,
                 ShippingPrice = source.ShippingPrice,
-                Details = source.Details?.ToList()?.ToDto()
+                Details = source.Details?.ToList()?.ToDto(),
+                Address = source.Address
             };
         }
         public static List<OrderDetailDto> ToDto(this List<OrderDetail> sources)

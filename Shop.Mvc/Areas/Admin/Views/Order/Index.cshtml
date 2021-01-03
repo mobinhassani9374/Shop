@@ -62,13 +62,13 @@
                         </div>
                         <div style="display: flex;align-items: baseline;width: 100%;justify-content: space-between;">
                             <p> آدرس سفارش دهنده : 
-                            @if(string.IsNullOrEmpty(order.User.Address))
+                            @if(string.IsNullOrEmpty(order.Address))
                             {
                                 <span style="color:red;">وارد نشده است</span>
                             }
                             else
                             {
-                                <span>@order.User.Address</span>
+                                <span>@order.Address</span>
                             }
                             </p>
                         </div>

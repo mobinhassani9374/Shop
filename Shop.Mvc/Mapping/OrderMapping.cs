@@ -33,7 +33,8 @@ namespace Shop.Mvc.Mapping
                 TotalPrice = source.TotalPrice,
                 ShippingPrice = source.ShippingPrice,
                 Details = source.Details?.ToViewModel(),
-                User = source.User?.ToViewModel()
+                User = source.User?.ToViewModel(),
+                Address = source.Address
             };
         }
         public static List<OrderDetailViewModel> ToViewModel(this List<OrderDetailDto> sources)
