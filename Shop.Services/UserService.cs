@@ -207,6 +207,12 @@ namespace Shop.Services
             var orderEntity = carts.ToEntity();
             orderEntity.Date = DateTime.Now;
             orderEntity.UserId = userId;
+            if (carts.Sum(c => c.Product.Price) < 700000)
+            {
+                orderEntity.ShippingPrice = 20000;
+                orderEntity.TotalPrice += orderEntity.ShippingPrice;
+            }
+
             Insert(orderEntity);
             var saveResult = Save("عملیات با موفقیت صورت گرفت");
             if (saveResult.IsSuccess)
