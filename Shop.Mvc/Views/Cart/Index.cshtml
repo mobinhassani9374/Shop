@@ -66,6 +66,7 @@
                     </div>
                     <div class="row">
                         <form method="post" action="/payment">
+                            @Html.AntiForgeryToken()
                             <div class="col-md-4 col-xs-12 pull-right">
                                 <div class="alert alert-danger text-center">
                                     خرید بالای 700,000 تومان هزینه ارسالش رایگان
@@ -97,7 +98,9 @@
 
                                 <div class="form-group">
                                     <label class="required">آدرس محل تحویل را وارد کنید</label>
-                                    <textarea name="address" class="form-control" rows="5" placeholder="آدرس را وارد کنید" required></textarea>
+                                    <textarea name="address" class="form-control" rows="5" placeholder="آدرس را وارد کنید" required>
+@ViewBag.Address
+</textarea>
                                 </div>
                             </div>
                         </form>

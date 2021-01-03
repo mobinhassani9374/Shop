@@ -84,6 +84,8 @@ namespace Shop.Mvc.Controllers
 
         public IActionResult Index()
         {
+            var user = _userService.GetUser(UserId);
+            ViewBag.Address = user.Address;
             return View();
         }
     }

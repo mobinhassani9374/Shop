@@ -15,9 +15,13 @@ namespace Shop.Mvc.Controllers
             _userService = userService;
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<IActionResult> Index()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        public async Task<IActionResult> Index(string address)
         {
-            var serviceResult = _userService.ConvertCartToOrder(UserId);
+            var failRes = "";
+            var serviceResult = _userService.ConvertCartToOrder(UserId, address);
             if (serviceResult.IsSuccess)
             {
                 var user = _userService.GetUser(UserId);
@@ -41,10 +45,10 @@ namespace Shop.Mvc.Controllers
                 }
                 else
                 {
-                    var failRes = ((Services.Payment.IdPay.Payment.RequestRespons_Fail)res).error_message;
+                     failRes = ((Services.Payment.IdPay.Payment.RequestRespons_Fail)res).error_message;
                 }
             }
-            return View(serviceResult.Data);
+            return Content(failRes);
         }
 
         public async Task<IActionResult> Success(int id)

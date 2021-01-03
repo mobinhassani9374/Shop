@@ -194,7 +194,7 @@ namespace Shop.Services
 
             return Save("عملیات با موفقیت صورت گرفت");
         }
-        public ServiceResult<OrderDto> ConvertCartToOrder(string userId)
+        public ServiceResult<OrderDto> ConvertCartToOrder(string userId, string address)
         {
             var serviceResult = new ServiceResult<OrderDto>(true);
 
@@ -217,6 +217,13 @@ namespace Shop.Services
             var saveResult = Save("عملیات با موفقیت صورت گرفت");
             if (saveResult.IsSuccess)
             {
+                var user = GetUser(userId);
+                if (string.IsNullOrEmpty(user.Address))
+                {
+                    user.Address = address;
+                    Update(user);
+                }
+
                 foreach (var detail in orderEntity.Details)
                     detail.OrderId = orderEntity.Id;
 
