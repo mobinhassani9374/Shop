@@ -82,10 +82,11 @@ namespace Shop.Mvc.Controllers
             return Json(serviceResult);
         }
 
+      
         public IActionResult Index()
         {
             var user = _userService.GetUser(UserId);
-            ViewBag.Address = user.Address;
+            ViewBag.Address = user?.Address;
             return View();
         }
     }
