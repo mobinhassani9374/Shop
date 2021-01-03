@@ -1,5 +1,8 @@
 ﻿@using Shop.Utility.Extensions
-
+@{
+    var actionName = @ViewContext.ActionDescriptor.RouteValues.FirstOrDefault(c => c.Key == "action");
+    var controller = @ViewContext.ActionDescriptor.RouteValues.FirstOrDefault(c => c.Key == "controller");
+}
 
 
 <!DOCTYPE html>
@@ -8,9 +11,18 @@
 
 <head>
     <title>@ViewBag.Title</title>
+
     <meta charset="utf-8" />
+    @if (actionName.Value == "Detail" && controller.Value == "Product")
+    {
+        <script>alert('جزییات هست');</script>
+    }
+    else
+    {
+        <script>alert('جزییات نیست');</script>
+    }
     <meta name="description"
-        content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
+          content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
     <meta name="keywords" content="دزدگیر خانه , دزدگیر مغازه , دزدگیر اماکن , دوربین مداربسته , دوربین مداربسته بیسیم , دوربین بیبی کم , دوربین لامپی ,
         دوربین پانوراما , دوربین ۳۶۰ , رایاکالا , ردیاب شخصی , ردیاب خودرو , جی پی اس , GPS,
         شنود , دوربین مخفی , سنسور , دی وی آر , DVR,NVR,دوربین تحت شبکه , دیجیکالا">
@@ -142,7 +154,7 @@
                                 <form action="/Product/Search">
                                     <div class="input-group">
                                         <input type="text" class="form-control"
-                                            placeholder="جستجو در محصولات ایمن فروش " name="Title" autocomplete="off">
+                                               placeholder="جستجو در محصولات ایمن فروش " name="Title" autocomplete="off">
                                         <div class="input-group-btn">
                                             <button class="btn btn-danger" type="submit">
                                                 <i class="glyphicon glyphicon-search"></i>
@@ -236,7 +248,8 @@
                             <div class="footer__info__title">
                                 لینک های ایمن فروش
                             </div>
-                            <a class="footer__info__link" asp-controller="Home" asp-action="HelpForBuy">راهنمای خرید
+                            <a class="footer__info__link" asp-controller="Home" asp-action="HelpForBuy">
+                                راهنمای خرید
                             </a>
                             <a class="footer__info__link" asp-controller="Home" asp-action="LawUs">قوانین و مقررات</a>
                             <a class="footer__info__link" asp-controller="Home" asp-action="AboutUs">درباره ما</a>
@@ -265,8 +278,10 @@
         </footer>
 
         <div class="footer-bottom">
-            <p>تمامی حقوق مادی و معنوی این سایت متعلق به شرکت <a target="_blank"
-                    href="http://instagram.com/arshanovin021">ارشانوین</a> می باشد</p>
+            <p>
+                تمامی حقوق مادی و معنوی این سایت متعلق به شرکت <a target="_blank"
+                                                                  href="http://instagram.com/arshanovin021">ارشانوین</a> می باشد
+            </p>
             طراحی و توسعه توسط <a target="_blank" href="http://mobinmahdi.ir">مهدی و مبین حسنی</a>
         </div>
     </div>
