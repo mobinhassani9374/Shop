@@ -84,14 +84,16 @@ namespace Shop.Mvc.Mapping
             return new EditProfileDto
             {
                 UserId = userId,
-                FullName = source.FullName
+                FullName = source.FullName,
+                Address = source.Address
             };
         }
         public static EditProfileViewModel ToEditProfile(this User source)
         {
             return new EditProfileViewModel
             {
-                FullName = source.FullName
+                FullName = source.FullName,
+                Address = source.Address
             };
         }
     }

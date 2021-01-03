@@ -373,6 +373,7 @@ namespace Shop.Services
                 else
                 {
                     user.FullName = dto.FullName;
+                    user.Address = dto.Address;
                     Update(user);
                     serviceResult = Save("عملیات با موفقیت صورت گرفت");
                 }

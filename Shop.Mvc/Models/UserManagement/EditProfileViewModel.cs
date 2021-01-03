@@ -8,5 +8,6 @@ namespace Shop.Mvc.Models.UserManagement
     public class EditProfileViewModel
     {
         public string FullName { get; set; }
+        public string Address { get; set; }
     }
 }

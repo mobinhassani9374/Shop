@@ -10,5 +10,6 @@ namespace Shop.Domain.Dto.User
         [Required(ErrorMessage = "نام و نام خانوادگی شما نمی تواند فاقد مقدار باشد")]
         public string FullName { get; set; }
         public string UserId { get; set; }
+        public string Address { get; set; }
     }
 }
