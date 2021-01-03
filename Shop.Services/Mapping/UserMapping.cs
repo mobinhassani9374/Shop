@@ -38,7 +38,8 @@ namespace Shop.Services.Mapping
                 Id = source.Id,
                 RegisterDate = source.RegisterDate,
                 Type = source.Type,
-                PhoneNumber = source.PhoneNumber
+                PhoneNumber = source.PhoneNumber,
+                Address = source.Address
             };
         }
 

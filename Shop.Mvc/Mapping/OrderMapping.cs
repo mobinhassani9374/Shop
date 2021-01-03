@@ -31,6 +31,7 @@ namespace Shop.Mvc.Mapping
                 IsPaid = source.IsPaid,
                 PaymentDate = source.PaymentDate,
                 TotalPrice = source.TotalPrice,
+                ShippingPrice = source.ShippingPrice,
                 Details = source.Details?.ToViewModel(),
                 User = source.User?.ToViewModel()
             };

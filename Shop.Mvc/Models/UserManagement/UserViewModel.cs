@@ -13,5 +13,6 @@ namespace Shop.Mvc.Models.UserManagement
         public string PhoneNumber { get; set; }
         public DateTime RegisterDate { get; set; }
         public Enums.UserType Type { get; set; }
+        public string Address { get; set; }
     }
 }

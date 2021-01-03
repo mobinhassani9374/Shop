@@ -68,6 +68,7 @@ namespace Shop.Services.Mapping
                 PaymentDate = source.PaymentDate,
                 TotalPrice = source.TotalPrice,
                 UserId = source.UserId,
+                ShippingPrice = source.ShippingPrice,
                 Details = source.Details?.ToList()?.ToDto()
             };
         }

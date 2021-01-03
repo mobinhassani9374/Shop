@@ -33,6 +33,17 @@
                         <div class="main__box__item">
                             <div>
                                 <p>شماره سفارش : @order.Id </p>
+                                <p>
+                                    هزینه ارسال :
+                                    @if (order.ShippingPrice == 0)
+                                    {
+                                        <span style="color:red;">ندارد</span>
+                                    }
+                                    else
+                                    {
+                                        <span data-role="seperator">@order.ShippingPrice</span> <span>تومان</span>
+                                    }
+                                </p>
                                 <p>مبلغ کل سفارش : <span data-role="seperator">@order.TotalPrice</span> تومان</p>
                             </div>
                             <div>

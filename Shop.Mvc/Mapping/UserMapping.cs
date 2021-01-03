@@ -65,7 +65,8 @@ namespace Shop.Mvc.Mapping
                 Id = source.Id,
                 RegisterDate = source.RegisterDate,
                 Type = (Enums.UserType)source.Type,
-                PhoneNumber = source.PhoneNumber
+                PhoneNumber = source.PhoneNumber,
+                Address = source.Address
             };
         }
 
