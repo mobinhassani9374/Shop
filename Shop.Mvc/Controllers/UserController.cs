@@ -38,6 +38,8 @@ namespace Shop.Mvc.Controllers
         public async Task<IActionResult> ChangePassword(ChangePasswordModel model)
         {
             var serviceResult = await _userService.ChangePassword(model.ToDto(UserId));
+            if (serviceResult.IsSuccess)
+                serviceResult.Message = "عملیات با موفقیت صورت گرفت";
             return View_Post(serviceResult, model);
         }
 
