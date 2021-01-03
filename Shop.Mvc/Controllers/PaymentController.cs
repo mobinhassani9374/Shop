@@ -25,7 +25,7 @@ namespace Shop.Mvc.Controllers
                 var payment = new Services.Payment.IdPay.Payment(_httpClientFactory.CreateClient());
 
                 var obj = new Services.Payment.IdPay.Payment.Request(serviceResult.Data.Id.ToString());
-                obj.amount = decimal.Parse(serviceResult.Data.Id.ToString());
+                obj.amount = decimal.Parse(serviceResult.Data.TotalPrice.ToString());
                 obj.name = user.FullName;
                 obj.phone = user.PhoneNumber;
                 obj.mail = "";

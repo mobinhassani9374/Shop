@@ -62,6 +62,9 @@ namespace Shop.Database.Migrations
                 name: "IX_OrderDetails_ProductId",
                 table: "OrderDetails",
                 column: "ProductId");
+
+            // Below code is for seeding the identity
+            migrationBuilder.Sql("DBCC CHECKIDENT ('Orders', RESEED, 14567)");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
