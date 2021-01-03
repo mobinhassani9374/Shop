@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Shop.Mvc.Models.Pagination;
+using Shop.Database.Identity.Entities;
 
 namespace Shop.Mvc.Mapping
 {
@@ -83,6 +84,13 @@ namespace Shop.Mvc.Mapping
             return new EditProfileDto
             {
                 UserId = userId,
+                FullName = source.FullName
+            };
+        }
+        public static EditProfileViewModel ToEditProfile(this User source)
+        {
+            return new EditProfileViewModel
+            {
                 FullName = source.FullName
             };
         }

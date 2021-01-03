@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Shop.Database.Identity.Entities;
 using Shop.Mvc.Mapping;
 using Shop.Mvc.Models.UserManagement;
 using Shop.Services;
@@ -14,9 +16,12 @@ namespace Shop.Mvc.Controllers
     public class UserController : BaseController
     {
         private readonly UserService _userService;
-        public UserController(UserService userService)
+        private readonly SignInManager<User> _signInManager;
+        public UserController(UserService userService,
+            SignInManager<User> signInManager)
         {
             _userService = userService;
+            _signInManager = signInManager;
         }
         public IActionResult Index()
         {
@@ -38,17 +43,19 @@ namespace Shop.Mvc.Controllers
 
         public IActionResult EditProfile()
         {
-            return View();
+            var currentUser = _userService.GetUser(UserId);
+            return View(currentUser.ToEditProfile());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken()]
-        public IActionResult EditProfile(EditProfileViewModel model)
+        public async Task<IActionResult> EditProfile(EditProfileViewModel model)
         {
             var serviceResult = _userService.EditProfile(model.ToDto(UserId));
-            if(serviceResult.IsSuccess)
+            if (serviceResult.IsSuccess)
             {
-
+                await _signInManager.SignOutAsync();
+                await _signInManager.SignInAsync(_userService.GetUser(UserId), true);
             }
             return View_Post(serviceResult, model);
         }
