@@ -35,6 +35,8 @@ namespace Shop.Database
                 .HasMaxLength(Constants.User_FullName_Length)
                 .IsRequired(true);
 
+            user.Property(c => c.Address).HasMaxLength(30000);
+
             var category = builder.Entity<Category>();
 
             category.HasKey(c => c.Id);

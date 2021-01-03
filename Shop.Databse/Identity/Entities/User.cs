@@ -12,5 +12,6 @@ namespace Shop.Database.Identity.Entities
         public string FullName { get; set; }
         public DateTime RegisterDate { get; set; }
         public UserType Type { get; set; }
+        public string Address { get; set; }
     }
 }
