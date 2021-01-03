@@ -13,14 +13,6 @@
 <head>
     <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
-    @if (actionName == "Detail" && controllerName == "Product")
-    {
-        <script>alert('جزییات هست');</script>
-    }
-    else
-    {
-        <script>alert('جزییات نیست');</script>
-    }
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="~/img/icon.png">
     <meta name="description"
@@ -29,11 +21,20 @@
         دوربین پانوراما , دوربین ۳۶۰ , رایاکالا , ردیاب شخصی , ردیاب خودرو , جی پی اس , GPS,
         شنود , دوربین مخفی , سنسور , دی وی آر , DVR,NVR,دوربین تحت شبکه , دیجیکالا">
 
-
-    <meta property="og:type" content="profile">
-    <meta property="og:title" content="ایمن فروش">
-    <meta property="og:url" content="https://imenforoush.com/">
-    <meta property="og:image" content="~/img/logo.png">
+    @if (actionName == "Detail" && controllerName == "Product")
+    {
+        <meta property="og:type" content="product">
+        <meta property="og:title" content="@(ViewBag.ProductTitle) - ایمن فروش">
+        <meta property="og:url" content="https://imenforoush.com/Product/Detail/@(ViewBag.ProductId)">
+        <meta property="og:image" content="~/Files/Images/@(ViewBag.ProductImage)">
+    }
+    else
+    {
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="ایمن فروش">
+        <meta property="og:url" content="https://imenforoush.com/">
+        <meta property="og:image" content="~/img/logo.png">
+    }
 
     <link rel="stylesheet" href="~/lib/font-awesome-4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.rtl.css">
