@@ -9,5 +9,6 @@ namespace Shop.Domain.Dto.Home
     {
         public List<CategoryDto> ProductCategries { get; set; }
         public List<SlideShowDto> SlideShows { get; set; }
+        public List<Domain.Dto.Product.ProductDto> ProductsAmazing { get; set; }
     }
 }

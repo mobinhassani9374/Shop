@@ -11,5 +11,6 @@ namespace Shop.Mvc.Models.Home
         public List<CategoryViewModel> ProductCategries { get; set; }
 
         public List<SlideShowViewModel> SlideShows { get; set; }
+        public List<Models.Product.ProductViewModel> ProductsAmazing { get; set; }
     }
 }

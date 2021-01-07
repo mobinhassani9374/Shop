@@ -43,6 +43,7 @@ namespace Shop.Services.Mapping
                     Price = dto.Price,
                     ProductId = dto.ProductId
                 });
+                
                 order.TotalPrice += (dto.Price * dto.Count);
             }
             return order;

@@ -15,6 +15,8 @@ namespace Shop.Domain.Entities
         public string ImagesJson { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public bool IsAmazing { get; set; }
+        public long Discount { get; set; }
         public ICollection<Cart> Carts { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
         public ICollection<ProductVote> Votes { get; set; }

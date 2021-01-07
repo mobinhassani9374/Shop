@@ -18,7 +18,9 @@ namespace Shop.Services.Mapping
                 Description = source.Description,
                 Price = source.Price,
                 PrimaryImage = source.ImageName,
-                Title = source.Title
+                Title = source.Title,
+                Discount = source.Discount,
+                IsAmazing = source.IsAmazing
             };
         }
 
@@ -32,7 +34,9 @@ namespace Shop.Services.Mapping
                 Description = source.Description,
                 Price = source.Price,
                 PrimaryImage = source.ImageName,
-                Title = source.Title
+                Title = source.Title,
+                IsAmazing = source.IsAmazing,
+                Discount = source.Discount
             };
         }
 
@@ -67,7 +71,9 @@ namespace Shop.Services.Mapping
                 Id = source.Id,
                 Price = source.Price,
                 PrimaryImage = source.PrimaryImage,
-                Title = source.Title
+                Title = source.Title,
+                IsAmazing = source.IsAmazing,
+                Discount = source.Discount
             };
         }
         public static ProductVote ToEntity(this AddProductCommentDto source, string userId)

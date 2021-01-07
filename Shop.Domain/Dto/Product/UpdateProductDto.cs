@@ -23,6 +23,9 @@ namespace Shop.Domain.Dto.Product
         public long Price { get; set; }
         public int Count { get; set; }
 
+        public bool IsAmazing { get; set; }
+        public long Discount { get; set; }
+
         public string ImageName { get; set; }
     }
 }

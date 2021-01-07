@@ -93,6 +93,7 @@ namespace Shop.Services
                 output.Id = category.Id;
                 output.CategoryTitle = category.Title;
                 _product.AddRange(category.Products.ToList());
+                _product = _product.Where(c => !c.IsAmazing).ToList();
                 GetProduct(category.Children.ToList());
                 output.Products = _product.Select(i => new Domain.Dto.Home.ProductDto
                 {
@@ -107,6 +108,12 @@ namespace Shop.Services
             }
 
             result.SlideShows = GetAllSlideShows();
+
+            result.ProductsAmazing = _dbContext
+                .Products
+                .Where(c => c.IsAmazing)
+                .ToList()
+                .ToDto();
 
             return result;
         }
@@ -479,7 +486,7 @@ namespace Shop.Services
                     GetCategoryIds_Recursive(category.Children.ToList());
 
                 var query = _dbContext.Products
-                    .Where(c => _catIds.Any(i => i == c.CategoryId))
+                    .Where(c => _catIds.Any(i => i == c.CategoryId) && !c.IsAmazing)
                     .AsQueryable();
 
                 if (!string.IsNullOrEmpty(dto.Title))

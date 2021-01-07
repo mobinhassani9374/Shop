@@ -72,6 +72,21 @@
                     </div>
                 </div>
                 <hr style="clear: both;" />
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label>آیا شگفت انگیز است  ؟</label>
+                        @Html.CheckBoxFor(c => c.IsAmazing)
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label>میزان تخفیف را وارد کنید </label>
+                        <input asp-for="Discount" type="number" placeholder="میزان تخفیف" class="form-control">
+                    </div>
+                </div>
+                <hr style="clear: both;" />
+
+                <hr style="clear: both;" />
                 <div class="col-md-3 col-xs-12">
                     <img class="img-responsive img-thumbnail"
                          src="~/Files/Images/@(Model.PrimaryImage)" />

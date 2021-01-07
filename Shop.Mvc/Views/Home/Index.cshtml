@@ -64,129 +64,58 @@
     </div>
 }
 
-
-<!-- slick product  -->
-<div class="container">
-    <div class="row">
-        <div class="offer">
-            <div class="offer__title">
-                پیشنهادات شگفت انگیز
-                <a href="#" class="btn btn-danger">پیشنهادات شگفت انگیز</a>
-            </div>
-            <div class="offer__arrow">
-                <i data-role="offer-right" class="fa fa-angle-right offer__arrow__right"></i>
-                <i data-role="offer-left" class="fa fa-angle-left offer__arrow__left"></i>
-            </div>
-            <div class="offer__product">
-                <div class="offer__product__item">
-                    <a href="#">
-                        <div class="row">
-                            <div class="col-md-4 col-xs-12 col-sm-12">
-                                <div class="offer__product__item__img">
-                                    <img alt="ایمن فروش" src="~/img/product1.jpg" class="img-responsive" />
-                                </div>
-                            </div>
-                            <div class="col-md-8 col-xs-12 col-sm-12">
-                                <div class="offer__product__item__title">
-                                    پکیج دوربین کوپر B2MP-C8
-                                </div>
-                                <div class="offer__product__item__price">
-                                    <div>
-                                        <span class="badge">15 %</span>
-                                        <del>4,284,000</del>
-                                    </div>
-                                    <div class="flex-center" style="justify-content: space-between;">
-                                        <span style="margin-left: 10px;">تومان 4,284,000</span>
-                                        <div class="countdown" data-Date='2020/12/24 23:59:59'>
-                                            <div class="running">
-                                                <timer>
-                                                    <span class="days"></span>:<span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span>
-                                                </timer>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="offer__product__item__btn">
-                                    <a v-on:click="addCart" class="btn btn-danger btn-block">افزودن به سبد خرید</a>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+@if (Model.ProductsAmazing.Count > 0)
+{
+    <!-- slick product  -->
+    <div class="container">
+        <div class="row">
+            <div class="offer">
+                <div class="offer__title">
+                    پیشنهادات شگفت انگیز
+                    <a href="#" class="btn btn-danger">پیشنهادات شگفت انگیز</a>
                 </div>
-                <div class="offer__product__item">
-                    <a href="#">
-                        <div class="row">
-                            <div class="col-md-4 col-xs-12 col-sm-12">
-                                <div class="offer__product__item__img">
-                                    <img alt="ایمن فروش" src="~/img/product1.jpg" class="img-responsive" />
-                                </div>
-                            </div>
-                            <div class="col-md-8 col-xs-12 col-sm-12">
-                                <div class="offer__product__item__title">
-                                    پکیج دوربین کوپر B2MP-C8
-                                </div>
-                                <div class="offer__product__item__price">
-                                    <div>
-                                        <span class="badge">15 %</span>
-                                        <del>4,284,000</del>
-                                    </div>
-                                    <div class="flex-center" style="justify-content: space-between;">
-                                        <span style="margin-left: 10px;">تومان 4,284,000</span>
-                                        <div class="countdown" data-Date='2020/12/24 23:59:59'>
-                                            <div class="running">
-                                                <timer>
-                                                    <span class="days"></span>:<span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span>
-                                                </timer>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="offer__product__item__btn">
-                                    <a v-on:click="addCart" class="btn btn-danger btn-block">افزودن به سبد خرید</a>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+                <div class="offer__arrow">
+                    <i data-role="offer-right" class="fa fa-angle-right offer__arrow__right"></i>
+                    <i data-role="offer-left" class="fa fa-angle-left offer__arrow__left"></i>
                 </div>
-                <div class="offer__product__item">
-                    <a href="#">
-                        <div class="row">
-                            <div class="col-md-4 col-xs-12 col-sm-12">
-                                <div class="offer__product__item__img">
-                                    <img alt="ایمن فروش" src="~/img/product1.jpg" class="img-responsive" />
-                                </div>
-                            </div>
-                            <div class="col-md-8 col-xs-12 col-sm-12">
-                                <div class="offer__product__item__title">
-                                    پکیج دوربین کوپر B2MP-C8
-                                </div>
-                                <div class="offer__product__item__price">
-                                    <div>
-                                        <span class="badge">15 %</span>
-                                        <del>4,284,000</del>
+                <div class="offer__product">
+                    @foreach (var item in Model.ProductsAmazing)
+                    {
+                        <div class="offer__product__item">
+                            <a href="#">
+                                <div class="row">
+                                    <div class="col-md-4 col-xs-12 col-sm-12">
+                                        <div class="offer__product__item__img">
+                                            <img alt="ایمن فروش" src="/Files/Images/@(item.PrimaryImage)" class="img-responsive" />
+                                        </div>
                                     </div>
-                                    <div class="flex-center" style="justify-content: space-between;">
-                                        <span style="margin-left: 10px;">تومان 4,284,000</span>
-                                        <div class="countdown" data-Date='2020/12/24 23:59:59'>
-                                            <div class="running">
-                                                <timer>
-                                                    <span class="days"></span>:<span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span>
-                                                </timer>
+                                    <div class="col-md-8 col-xs-12 col-sm-12">
+                                        <div class="offer__product__item__title">
+                                            @item.Title
+                                        </div>
+                                        <div class="offer__product__item__price">
+                                            <div>
+                                                <span class="badge">@item.Discount %</span>
+                                                <del>@item.Price</del>
                                             </div>
+                                            <div class="flex-center" style="justify-content: space-between;">
+                                                <span style="margin-left: 10px;">تومان @(item.Price - (item.Price * item.Discount / 100))</span> 
+                                            </div>
+                                        </div>
+                                        <div class="offer__product__item__btn">
+                                            <a v-on:click="addCart" class="btn btn-danger btn-block">افزودن به سبد خرید</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="offer__product__item__btn">
-                                    <a v-on:click="addCart" class="btn btn-danger btn-block">افزودن به سبد خرید</a>
-                                </div>
-                            </div>
+                            </a>
                         </div>
-                    </a>
+                    }
                 </div>
             </div>
         </div>
     </div>
-</div>
+}
+
 
 <div class="bg-header">
     <h1 class="title">
@@ -212,7 +141,7 @@
                     <div class="slick">
                         <div class="slick__title">
                             @item.CategoryTitle
-                            <a href="#">نمایش بیشتر <i class="fa fa-plus"></i></a>
+                            <a href="/Category/Index?CategoryId=@(item.Id)">نمایش بیشتر <i class="fa fa-plus"></i></a>
                         </div>
                         <div class="slick__arrow">
                             <i data-role="slick-right_slick_@(item.Id)" class="fa fa-angle-right slick__arrow__right"></i>

@@ -15,6 +15,8 @@ namespace Shop.Mvc.Models.Product
         public string PrimaryImage { get; set; }
         public string Description { get; set; }
         public int CategoryId { get; set; }
+        public bool IsAmazing { get; set; }
+        public long Discount { get; set; }
         public List<string> MoreImages { get; set; }
         public CategoryViewModel Category { get; set; }
     }

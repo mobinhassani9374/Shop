@@ -20,7 +20,9 @@ namespace Shop.Mvc.Mapping
                 Description = source.Description,
                 Price = source.Price,
                 Title = source.Title,
-                ImageFile = source.ImageFile
+                ImageFile = source.ImageFile,
+                IsAmazing = source.IsAmazing,
+                Discount = source.Discount
             };
         }
 
@@ -66,7 +68,9 @@ namespace Shop.Mvc.Mapping
                 Description = source.Description,
                 Category = source.Category?.ToViewModel(),
                 CategoryId = source.CategoryId,
-                MoreImages = source.MoreImages
+                MoreImages = source.MoreImages,
+                Discount = source.Discount,
+                IsAmazing = source.IsAmazing
             };
         }
 
@@ -80,7 +84,9 @@ namespace Shop.Mvc.Mapping
                 Id = source.Id,
                 ImageFile = source.ImageFile,
                 Price = source.Price,
-                Title = source.Title
+                Title = source.Title,
+                Discount = source.Discount,
+                IsAmazing = source.IsAmazing
             };
         }
 
