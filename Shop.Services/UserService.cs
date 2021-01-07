@@ -120,7 +120,7 @@ namespace Shop.Services
                 serviceResult.AddError("محصولی یافت نشد");
             else
             {
-                if (product.Count == 0)
+                if (product.Count <= 0)
                     serviceResult.AddError("کالا ناموجود است");
                 else
                 {
@@ -128,10 +128,18 @@ namespace Shop.Services
                         serviceResult.AddError("کاربری یافت نشد");
                     else
                     {
-                        var entity = dto.ToEntity();
-                        entity.Date = DateTime.Now;
-                        Insert(entity);
-                        serviceResult = Save("یک کالا با موفقیت به سبد خرید اضافه شد");
+                        var countCart = _dbContext.Carts.Count(c => c.UserId == dto.UserId && c.ProductId == dto.ProductId);
+
+                        if (countCart >= product.Count)
+                            serviceResult.AddError("کالا ناموجود است");
+
+                        else
+                        {
+                            var entity = dto.ToEntity();
+                            entity.Date = DateTime.Now;
+                            Insert(entity);
+                            serviceResult = Save("یک کالا با موفقیت به سبد خرید اضافه شد");
+                        }
                     }
                 }
             }
