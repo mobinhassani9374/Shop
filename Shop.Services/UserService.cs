@@ -135,26 +135,18 @@ namespace Shop.Services
                         serviceResult.AddError("کاربری یافت نشد");
                     else
                     {
-                        if (product.IsAmazing)
+
+                        var countCart = _dbContext.Carts.Count(c => c.UserId == dto.UserId && c.ProductId == dto.ProductId);
+
+                        if (countCart >= product.Count)
+                            serviceResult.AddError("کالا ناموجود است");
+
+                        else
                         {
-                            if (_dbContext.Carts.Include(c => c.Product).Any(c => c.UserId == dto.UserId && c.ProductId == dto.ProductId && c.Product.IsAmazing))
-                                serviceResult.AddError("محصول شگفت انگیز را فقط یکبار میتوانید بخرید");
-                        }
-
-                        if (serviceResult.IsSuccess)
-                        {
-                            var countCart = _dbContext.Carts.Count(c => c.UserId == dto.UserId && c.ProductId == dto.ProductId);
-
-                            if (countCart >= product.Count)
-                                serviceResult.AddError("کالا ناموجود است");
-
-                            else
-                            {
-                                var entity = dto.ToEntity();
-                                entity.Date = DateTime.Now;
-                                Insert(entity);
-                                serviceResult = Save("یک کالا با موفقیت به سبد خرید اضافه شد");
-                            }
+                            var entity = dto.ToEntity();
+                            entity.Date = DateTime.Now;
+                            Insert(entity);
+                            serviceResult = Save("یک کالا با موفقیت به سبد خرید اضافه شد");
                         }
                     }
                 }
