@@ -31,7 +31,8 @@ namespace Shop.Services.Mapping
                     Price = c.First().Product.Price,
                     ProductTitle = c.First().Product.Title,
                     ProductImage = c.First().Product.PrimaryImage,
-                    ProductCount = c.First().Product.Count
+                    ProductCount = c.First().Product.Count,
+                    DisCount = c.First().Product.IsAmazing ? c.First().Product.Discount : 0
                 });
             });
 
@@ -41,10 +42,18 @@ namespace Shop.Services.Mapping
                 {
                     Count = dto.Count,
                     Price = dto.Price,
-                    ProductId = dto.ProductId
+                    ProductId = dto.ProductId,
+                    DisCount = dto.DisCount
                 });
-                
-                order.TotalPrice += (dto.Price * dto.Count);
+
+                if (dto.DisCount > 0)
+                {
+                    var priceWithDisCount = dto.Price - (dto.Price * dto.DisCount / 100);
+                    order.TotalPrice = priceWithDisCount * dto.Count;
+                }
+                else
+                    order.TotalPrice += (dto.Price * dto.Count);
+
             }
             return order;
         }

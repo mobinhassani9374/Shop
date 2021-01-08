@@ -234,7 +234,7 @@ namespace Shop.Services
             orderEntity.Address = address;
             if (carts.Sum(c => c.Product.Price) < 700000)
             {
-                orderEntity.ShippingPrice = 0;
+                orderEntity.ShippingPrice = 20000;
                 orderEntity.TotalPrice += orderEntity.ShippingPrice;
             }
 
