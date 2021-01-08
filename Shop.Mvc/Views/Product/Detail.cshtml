@@ -44,10 +44,14 @@
             </div>
             <div class="col-md-8 col-xs-12">
                 <h1 class="detail__title">@Model.Title</h1>
-                @* <div>
-                    <span class="badge">15 %</span>
-                    <del>4,284,000</del>
-                    </div> *@
+                @if (Model.IsAmazing)
+                {
+                    <div>
+                        <span class="badge">@Model.Discount %</span>
+                        <del data-role="seperator">@Model.Price</del>
+                    </div>
+                }
+
                 <div class="detail__desc">
                     دسته بندی : @Model.Category?.Title
                 </div>
@@ -57,7 +61,17 @@
                 </div>
                 <div class="detail__price price">
                     <span style="margin-right:10px">تومان</span>
-                    <span data-role="seperator">@Model.Price</span>                   
+                    @if (Model.IsAmazing)
+                    {
+                        <span data-role="seperator">
+                            @(Model.Price - (Model.Price * Model.Discount / 100))
+                        </span>
+                    }
+                    else
+                    {
+                        <span data-role="seperator">@Model.Price</span>
+                    }
+
                 </div>
                 <div>
                     @if (Model.Count != 0)

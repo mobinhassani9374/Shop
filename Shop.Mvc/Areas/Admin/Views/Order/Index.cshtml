@@ -90,6 +90,7 @@
                                                 <th>نام محصول</th>
                                                 <th>تعداد محصول</th>
                                                 <th>قیمت محصول</th>
+                                                <td>تخفبف</td>
                                                 <th>مجموع</th>
                                             </tr>
                                         </thead>
@@ -104,7 +105,19 @@
                                                     <td>@detail.Product.Title</td>
                                                     <td>@detail.Count</td>
                                                     <td data-role="seperator">@detail.Price</td>
-                                                    <td data-role="seperator">@(detail.Price * detail.Count)</td>
+                                                    <td>
+                                                        @if(detail.DisCount==0)
+                                                        {
+                                                            <span style="color:red;">ندارد</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span>@detail.DisCount درصد</span>
+                                                        }
+                                                    </td>
+                                                    <td data-role="seperator">
+                                                        @((detail.Price - (detail.Price * detail.DisCount / 100)) * detail.Count)
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         }

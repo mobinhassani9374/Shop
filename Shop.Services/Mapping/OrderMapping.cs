@@ -100,7 +100,8 @@ namespace Shop.Services.Mapping
                 OrderId = source.OrderId,
                 Price = source.Price,
                 Product = source.Product?.ToDto(),
-                ProductId = source.ProductId
+                ProductId = source.ProductId,
+                DisCount = source.DisCount
             };
         }
 

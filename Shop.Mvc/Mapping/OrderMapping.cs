@@ -53,7 +53,8 @@ namespace Shop.Mvc.Mapping
                 OrderId = source.OrderId,
                 Price = source.Price,
                 Product = source.Product?.ToViewModel(),
-                ProductId = source.ProductId
+                ProductId = source.ProductId,
+                DisCount = source.DisCount
             };
         }
         public static OrderSearchDto ToDto(this OrderSearchViewModel source)
