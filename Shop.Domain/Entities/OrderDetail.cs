@@ -13,5 +13,6 @@ namespace Shop.Domain.Entities
         public int Count { get; set; }
         public Order Order { get; set; }
         public int OrderId { get; set; }
+        public long DisCount { get; set; }
     }
 }
