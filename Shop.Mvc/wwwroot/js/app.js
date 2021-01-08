@@ -83,7 +83,12 @@ var app = new Vue({
             }).then(function (response) {
                 me.countCart = response.data.length;
                 me.cart = response.data;
-                toastr.info(response.message);
+                if (response.isSuccess) {
+                    toastr.info(response.message);
+                }
+                else {
+                    toastr.error(response.errors[0]);
+                }
                 me.computedPrice();
                 me.loading = false;
             });
@@ -98,7 +103,12 @@ var app = new Vue({
             }).then(function (response) {
                 me.countCart = response.data.length;
                 me.cart = response.data;
-                toastr.info(response.message);
+                if (response.isSuccess) {
+                    toastr.info(response.message);
+                }
+                else {
+                    toastr.error(response.errors[0]);
+                }
                 me.computedPrice();
                 me.loading = false;
             });
