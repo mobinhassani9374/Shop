@@ -184,7 +184,8 @@ namespace Shop.Services
                     Price = c.First().Product.Price,
                     ProductTitle = c.First().Product.Title,
                     ProductImage = c.First().Product.PrimaryImage,
-                    ProductCount = c.First().Product.Count
+                    ProductCount = c.First().Product.Count,
+                    DisCount = c.First().Product.IsAmazing ? c.First().Product.Discount : 0
                 });
             });
 

@@ -13,5 +13,6 @@ namespace Shop.Mvc.Models.Cart
         public int ProductCount { get; set; }
         public long Price { get; set; }
         public int Count { get; set; }
+        public long DisCount { get; set; }
     }
 }
