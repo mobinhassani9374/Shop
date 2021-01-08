@@ -93,7 +93,7 @@ namespace Shop.Services
                 output.Id = category.Id;
                 output.CategoryTitle = category.Title;
                 _product.AddRange(category.Products.ToList());
-                _product = _product.Where(c => !c.IsAmazing).ToList();
+                _product = _product.Where(c => !c.IsAmazing || (c.IsAmazing && c.Count <= 0)).ToList();
                 GetProduct(category.Children.ToList());
                 output.Products = _product.Select(i => new Domain.Dto.Home.ProductDto
                 {
@@ -111,7 +111,7 @@ namespace Shop.Services
 
             result.ProductsAmazing = _dbContext
                 .Products
-                .Where(c => c.IsAmazing)
+                .Where(c => c.IsAmazing && c.Count > 0)
                 .ToList()
                 .ToDto();
 
@@ -135,17 +135,26 @@ namespace Shop.Services
                         serviceResult.AddError("کاربری یافت نشد");
                     else
                     {
-                        var countCart = _dbContext.Carts.Count(c => c.UserId == dto.UserId && c.ProductId == dto.ProductId);
-
-                        if (countCart >= product.Count)
-                            serviceResult.AddError("کالا ناموجود است");
-
-                        else
+                        if (product.IsAmazing)
                         {
-                            var entity = dto.ToEntity();
-                            entity.Date = DateTime.Now;
-                            Insert(entity);
-                            serviceResult = Save("یک کالا با موفقیت به سبد خرید اضافه شد");
+                            if (_dbContext.Carts.Include(c => c.Product).Any(c => c.UserId == dto.UserId && c.ProductId == dto.ProductId && c.Product.IsAmazing))
+                                serviceResult.AddError("محصول شگفت انگیز را فقط یکبار میتوانید بخرید");
+                        }
+
+                        if (serviceResult.IsSuccess)
+                        {
+                            var countCart = _dbContext.Carts.Count(c => c.UserId == dto.UserId && c.ProductId == dto.ProductId);
+
+                            if (countCart >= product.Count)
+                                serviceResult.AddError("کالا ناموجود است");
+
+                            else
+                            {
+                                var entity = dto.ToEntity();
+                                entity.Date = DateTime.Now;
+                                Insert(entity);
+                                serviceResult = Save("یک کالا با موفقیت به سبد خرید اضافه شد");
+                            }
                         }
                     }
                 }

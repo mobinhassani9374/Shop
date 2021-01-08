@@ -29,6 +29,7 @@
                                     <th>نام محصول</th>
                                     <th>تعداد</th>
                                     <th>قیمت</th>
+                                    <th>میزان تخفیف</th>
                                     <th>مجموع</th>
                                     <th>حذف</th>
                                 </tr>
@@ -59,6 +60,8 @@
                                     </td>
                                     <td><span>{{seperator(item.price)}}</span> تومان</td>
                                     <td><span>{{seperator(item.price * item.count)}}</span> تومان</td>
+                                    <td>
+                                    </td>
                                     <td><a v-on:click="deleteCart(item.productId)" class="btn btn-danger">حذف</a></td>
                                 </tr>
                             </tbody>
