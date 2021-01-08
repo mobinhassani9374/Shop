@@ -63,7 +63,12 @@ var app = new Vue({
             var me = this;
             me.price = 0;
             me.cart.map(function (item) {
-                me.price += item.price * item.count;
+                if (me.disCount !== 0) {
+                    me.price += (item.price * item.count) * (100 - item.disCount) / 100;
+                }
+                else {
+                    me.price += item.price * item.count;
+                }
             })
             if (me.price < 700000) {
                 me.shippingCost = 20000;
@@ -80,11 +85,11 @@ var app = new Vue({
                 url: '/Cart/Increase',
                 method: 'post',
                 data: { ProductId: productId }
-            }).then(function (response) {
-                me.countCart = response.data.length;
-                me.cart = response.data;
+            }).then(function (response) {               
                 if (response.isSuccess) {
                     toastr.info(response.message);
+                    me.countCart = response.data.length;
+                    me.cart = response.data;
                 }
                 else {
                     toastr.error(response.errors[0]);
@@ -100,11 +105,11 @@ var app = new Vue({
                 url: '/Cart/Reduce',
                 method: 'post',
                 data: { ProductId: productId }
-            }).then(function (response) {
-                me.countCart = response.data.length;
-                me.cart = response.data;
+            }).then(function (response) {               
                 if (response.isSuccess) {
                     toastr.info(response.message);
+                    me.countCart = response.data.length;
+                    me.cart = response.data;
                 }
                 else {
                     toastr.error(response.errors[0]);
