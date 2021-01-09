@@ -1,0 +1,46 @@
+[
+    {
+        "outputFileName": "wwwroot/css/site.min.css",
+        "inputFiles": [
+            "wwwroot/lib/font-awesome-4.7.0/css/font-awesome.min.css",
+            "wwwroot/lib/bootstrap/dist/css/bootstrap.min.rtl.css",
+            "wwwroot/fonts/font-fa.css",
+            "wwwroot/css/bootstrap-touch-slider.css",
+            "wwwroot/css/animate.css",
+            "wwwroot/lib/pe-icon-7-stroke/css/pe-icon-7-stroke.css",
+            "wwwroot/css/icons.min.css",
+            "wwwroot/lib/slick/slick.css",
+            "wwwroot/lib/toaster/toastr.min.css",
+            "wwwroot/lib/sweetalert2/sweetalert2.min.css",
+            "wwwroot/lib/fancybox/dist/jquery.fancybox.min.css",
+            "wwwroot/lib/laddaButton/ladda-themeless.min.css"       
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/js/site.min.js",
+        "inputFiles": [
+            "wwwroot/lib/jquery-3.1.1/jquery-3.1.1.min.js",
+            "wwwroot/lib/bootstrap/bootstrap.min.js",
+            "wwwroot/js/bootstrap-touch-slider-min.js",
+            "wwwroot/js/jquery.touchSwipe.min.js",
+            "wwwroot/lib/slick/slick.js",
+            "wwwroot/lib/toaster/toastr.min.js",
+            "wwwroot/lib/sweetalert2/sweetalert2.min.js",
+            "wwwroot/js/multi-countdown.js",
+            "wwwroot/lib/fancybox/dist/jquery.fancybox.min.js",
+            "wwwroot/lib/laddaButton/spin.min.js",
+            "wwwroot/lib/laddaButton/ladda.min.js",
+            "wwwroot/js/isotope.pkgd.min.js",
+            "wwwroot/js/jquery.matchHeight.js",
+            "wwwroot/js/isotope.pkgd.min.js",
+            "wwwroot/lib/ckeditor/ckeditor.js",
+            "wwwroot/lib/ckeditor/samples/js/sample.js",
+            "wwwroot/js/script.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    }
+]
