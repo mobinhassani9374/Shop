@@ -407,3 +407,9 @@ legend {
 .admin .admin__box .amin__box__title {
     font-size: 15px;
 }
+
+.bg-header {
+    margin-bottom: -23px;
+    background-color: #232f3e !important;
+    background-image: none !important;
+}
