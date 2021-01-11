@@ -17,6 +17,8 @@
     <div class="panel-body">
         <div class="alert alert-warning">
             <p>عکس برای محصول نباید بیش از 500 کیلو بایت باشد</p>
+            <p>هر عکسی که بالای 500 کیلوبایت باشد آپلود نمیشود</p>
+            <p>به دلیل انتخاب چند فایل امکان دارد عملیات زمانبر باشد لطفا صبور باشید</p>
         </div>
         <div class="row">
             <form id="form" method="post" enctype="multipart/form-data" asp-action="AddNewImage">
@@ -25,7 +27,7 @@
                 <div class="col-md-12 col-xs-12">
                     <div class="form-group">
                         <label class="required">عکس های بیشتری برای محصول وارد کنید </label>
-                        <input type="file" required name="image" />
+                        <input type="file" multiple required name="images" />
                     </div>
                 </div>
 

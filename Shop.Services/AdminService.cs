@@ -287,7 +287,6 @@ namespace Shop.Services
             {
                 var entity = _dbContext
                     .Products
-                    .AsNoTracking()
                     .FirstOrDefault(c => c.Id == productId);
 
                 if (entity == null)

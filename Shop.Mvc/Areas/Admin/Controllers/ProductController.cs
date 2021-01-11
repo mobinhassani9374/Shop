@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.Mvc.Mapping;
 using Shop.Mvc.Models.Product;
 using Shop.Services;
+using Shop.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,9 +66,15 @@ namespace Shop.Mvc.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken()]
-        public IActionResult AddNewImage(int id, IFormFile image)
+        public IActionResult AddNewImage(int id, List<IFormFile> images)
         {
-            var serviceResult = _adminService.AddNewImage(id, image);
+            foreach (var image in images)
+            {
+                _adminService.AddNewImage(id, image);
+            }
+                
+            var serviceResult = new ServiceResult(true);
+            serviceResult.Message = "عملیات با موفقیت صورت گرفت";
             return View_Get(serviceResult, $"{nameof(Images)}/{id}");
         }
 

@@ -30,6 +30,7 @@ namespace Shop.Database.Identity
                 options.LogoutPath = "/Account/Logout";
                 options.AccessDeniedPath = "/accessDenied";
                 options.SlidingExpiration = true;
+                options.ExpireTimeSpan = TimeSpan.FromDays(30);
                 options.Cookie = new CookieBuilder
                 {
                     HttpOnly = true,
