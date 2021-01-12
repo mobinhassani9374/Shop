@@ -24,8 +24,12 @@
             <div class="col-md-4 col-xs-12">
                 <div class="detail__img">
                     <span class='zoom' id='zoom'>
-                        <img src="~/Files/Images/@(Model.PrimaryImage)" height="200" width="230"
-                             alt="@Model.Title - ایمن فروش" class="img-responsive" />
+                        <a data-fancybox="gallery" href="~/Files/Images/@(Model.PrimaryImage)">
+                            <img  src="~/Files/Images/@(Model.PrimaryImage)" alt="@Model.Title - ایمن فروش"
+                                class="img-responsive img-thumbnail" />
+                        </a>
+                        @* <img src="~/Files/Images/@(Model.PrimaryImage)" height="200" width="230"
+                             alt="@Model.Title - ایمن فروش" class="img-responsive" /> *@
                     </span>
                 </div>
                 <div class="detail__img-detail">
@@ -171,8 +175,8 @@
     </div>
 </div>
 
-<script>
+@* <script>
     $(document).ready(function () {
         $('#zoom').zoom();
     });
-</script>
+</script> *@

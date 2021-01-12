@@ -76,7 +76,8 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="javascript:void(0)" data-role="category">دسته بندی ها </a></li>
-                        <li><a asp-controller="Home" asp-action="HelpForBuy">راهنمای خرید </a></li>
+                        <li><a asp-controller="Home" asp-action="Index">صفحه اصلی</a></li>
+                        <li><a asp-controller="Home" asp-action="HelpForBuy">راهنمای خرید </a></li>                        
                         <li><a asp-controller="Home" asp-action="LawUs">قوانین و مقررات</a></li>
                         <li><a asp-controller="Home" asp-action="AboutUs">درباره ما</a></li>
                         <li><a asp-controller="Home" asp-action="ContactUs">تماس با ما</a></li>
@@ -206,21 +207,14 @@
                         <div class="footer__option__item">
                             <img alt="ایمن فروش" src="~/img/payment-type.png" />
                             <div>پرداخت در محل</div>
-                        </div>
-                        <div class="footer__option__item">
-                            <img alt="ایمن فروش" src="~/img/money-return.png" />
-                            <div>7 روز ضمانت بازگشت</div>
-                        </div>
+                        </div>                       
                         <div class="footer__option__item">
                             <img alt="ایمن فروش" src="~/img/original.png" />
                             <div>ضمانت اصل بودن کالا</div>
                         </div>
                     </div>
                     <div class="footer__info">
-                        <div class="col-md-4 text-left">
-                            <a href="/">
-                                <img alt="ایمن فروش" src="~/img/logo.png" class="img-responsive" />
-                            </a>
+                        <div class="col-md-4 text-left">                            
                             <h3>ایمن فروش</h3>
                             <p>
                                 فروش سیستم های امنیتی و نظارتی : دوربین های مداربسته با سیم و بیسیم , دزدگیر اماکن ,
@@ -253,6 +247,9 @@
                             </a>
                             <a href="@Shop.Mvc.Cache.CacheData.Info.TelegramChanal" target="_blank">
                                 <img alt="ایمن فروش" class="footer__info__share" src="~/img/telegram.png" />
+                            </a>
+                            <a  href="https://web.whatsapp.com/send?phone=989129633978&amp;text&amp;app_absent=0" target="_blank">
+                                <img alt="ایمن فروش" class="footer__info__share" src="~/img/watsapp.png" />
                             </a>
                         </div>
                     </div>

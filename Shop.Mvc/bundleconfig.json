@@ -33,8 +33,6 @@
             "wwwroot/js/isotope.pkgd.min.js",
             "wwwroot/js/jquery.matchHeight.js",
             "wwwroot/js/isotope.pkgd.min.js",
-            "wwwroot/lib/ckeditor/ckeditor.js",
-            "wwwroot/lib/ckeditor/samples/js/sample.js",
             "wwwroot/js/script.js"
         ],
         "minify": {

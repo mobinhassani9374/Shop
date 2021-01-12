@@ -9,9 +9,9 @@
 <script type="text/x-template" id="item-template">
   <li>
     <div
-      :class="{bold: isFolder}">
-      <span style="cursor: pointer;" v-on:click="toggle" v-if="isFolder">[{{open ? '-' : '+'}}]</span>
-      {{model.title}}
+      class="tree-item">
+      <span style="cursor: pointer;position: relative;top:4px" v-on:click="toggle" v-if="isFolder">{{open ? '🔼' : '🔽'}}</span>
+      <span>{{model.title}}</span>
 
       <a v-if="!isFolder" v-on:click="addItem(model)" style="margin-right:15px;cursor: pointer;" class="text-success">انتخاب</a>
     </div>
