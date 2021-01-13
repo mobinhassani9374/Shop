@@ -1,4 +1,5 @@
 ﻿@using Shop.Utility.Extensions
+@using DNTPersianUtils.Core
 @{
     var actionName = @ViewContext.ActionDescriptor.RouteValues.FirstOrDefault(c => c.Key == "action").Value;
     var controllerName = @ViewContext.ActionDescriptor.RouteValues.FirstOrDefault(c => c.Key == "controller").Value;
@@ -237,7 +238,23 @@
                                 پشتیبانی
                             </div>
                             <p>
-                                شماره تماس ها : @Shop.Mvc.Cache.CacheData.Info.PhoneNumbers
+                                شماره تماس ها : 
+                                @if (!string.IsNullOrEmpty(Shop.Mvc.Cache.CacheData.Info.PhoneNumber1))
+                                {
+                                    <span>@Shop.Mvc.Cache.CacheData.Info.PhoneNumber1.ToPersianNumbers()</span><br />
+                                }
+                                @if (!string.IsNullOrEmpty(Shop.Mvc.Cache.CacheData.Info.PhoneNumber2))
+                                {
+                                    <span>@Shop.Mvc.Cache.CacheData.Info.PhoneNumber2.ToPersianNumbers()</span><br />
+                                }
+                                @if (!string.IsNullOrEmpty(Shop.Mvc.Cache.CacheData.Info.PhoneNumber3))
+                                {
+                                    <span>@Shop.Mvc.Cache.CacheData.Info.PhoneNumber3.ToPersianNumbers()</span><br />
+                                }
+                                @if (!string.IsNullOrEmpty(Shop.Mvc.Cache.CacheData.Info.PhoneNumber4))
+                                {
+                                    <span>@Shop.Mvc.Cache.CacheData.Info.PhoneNumber4.ToPersianNumbers()</span>
+                                }
                             </p>
                             <p>
                                 آدرس : @Shop.Mvc.Cache.CacheData.Info.Address
