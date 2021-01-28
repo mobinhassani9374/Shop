@@ -49,7 +49,7 @@ namespace Shop.Services.Mapping
                 if (dto.DisCount > 0)
                 {
                     var priceWithDisCount = dto.Price - (dto.Price * dto.DisCount / 100);
-                    order.TotalPrice = priceWithDisCount * dto.Count;
+                    order.TotalPrice += priceWithDisCount * dto.Count;
                 }
                 else
                     order.TotalPrice += (dto.Price * dto.Count);

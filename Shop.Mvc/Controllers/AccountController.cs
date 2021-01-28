@@ -67,7 +67,7 @@ namespace Shop.Mvc.Controllers
                 if (checkPass.Succeeded)
                 {
                     var signInResult = await _signInManager
-                     .PasswordSignInAsync(user.UserName, model.Password, true, false);
+                     .PasswordSignInAsync(user.UserName, model.Password, true, true);
 
                     if (signInResult.Succeeded)
                     {
