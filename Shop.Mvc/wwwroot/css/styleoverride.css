@@ -424,3 +424,48 @@ legend {
 .tree-item:hover {
     background-color: #efefef;
 }
+
+.header {
+    padding: 15px 10px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    font-size: 16px;
+}
+
+@media (min-width: 768px) {
+    .navbar-nav>li>a {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+.detail .detail__price {
+    padding: 5px 0;
+}
+
+.detail__desc {
+    border-bottom: 0px !important;
+}
+
+.detail .detail__price {
+    font-size: 20px;
+}
+
+.box-price {
+    background-color: #eee;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.detail .detail__img img {
+    max-height: 300px;
+}
+
+.fa.fa-star {
+    color: #e52b52;
+    font-size: 10px;
+}
+
+.detail * , .detail-tab * , .footer__info * {
+    font-size: 18px !important;
+}
