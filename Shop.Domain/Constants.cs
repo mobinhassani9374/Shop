@@ -20,6 +20,10 @@ namespace Shop.Domain
 
         public const int SlideShow_ImageName_Length = 500;
 
+        public const int Product_Garanty_Length = 500;
+
+        public const int Product_Attributes_Length = 10000;
+
         public const int UserId_Length = 150;
     }
 }
