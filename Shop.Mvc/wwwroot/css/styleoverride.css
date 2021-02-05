@@ -471,7 +471,7 @@ legend {
     font-size: 18px !important;
 }
 
-@media (max-width: 768px) {      
+@media (max-width: 900px) {      
     .offer .offer__product .offer__product__item .offer__product__item__img {
         height: 200px;
     }
