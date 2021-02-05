@@ -437,8 +437,9 @@ legend {
     .navbar-nav>li>a {
         padding-top: 20px;
         padding-bottom: 20px;
-    }
+    }   
 }
+
 .detail .detail__price {
     padding: 5px 0;
 }
@@ -468,4 +469,17 @@ legend {
 
 .detail * , .detail-tab * , .footer__info * {
     font-size: 18px !important;
+}
+
+@media (max-width: 768px) {      
+    .offer .offer__product .offer__product__item .offer__product__item__img {
+        height: 200px;
+    }
+    .offer .offer__product .offer__product__item .offer__product__item__img img {
+        max-height: 200px;
+    }
+}
+
+.offer .offer__product .offer__product__item .offer__product__item__price {
+    font-size: 15px;
 }
