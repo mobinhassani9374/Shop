@@ -92,14 +92,14 @@ $(function () {
   }
 
   $('[data-fancybox="gallery"]').fancybox({
-    // Options will go here
+    loop: true
   });
 
   $('.offer__product').slick({
     infinite: false,
     centerMode: false,
     centerPadding: '60px',
-    slidesToShow: 2,
+    slidesToShow: 3,
     arrows: false,
     autoplay: true,
     autoplaySpeed: 3000,

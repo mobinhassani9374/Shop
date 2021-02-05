@@ -94,15 +94,24 @@
                                             @item.Title
                                         </div>
                                         <div class="offer__product__item__price">
-                                            <div>
+                                            <div>                                                
                                                 <span class="badge">@item.Discount %</span>
                                                 <span>تومان</span>
                                                 <del data-role="seperator">@item.Price</del>                                                
                                             </div>
-                                            <div class="flex-center">
-                                                <span>تومان</span>
-                                                <span data-role="seperator" style="margin-left: 10px;">@(item.Price - (item.Price * item.Discount / 100))</span>                                                 
-                                            </div>
+                                            <div class="flex-center" style="justify-content: space-between;">
+                                                <div>
+                                                    <span>تومان</span>
+                                                    <span data-role="seperator" style="margin-left: 10px;">@(item.Price - (item.Price * item.Discount / 100))</span> 
+                                                </div>   
+                                                <span>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </span>                                                                                             
+                                            </div>                                           
                                         </div>
                                         <div class="offer__product__item__btn">
                                             <a v-on:click="addCart(@item.Id)" id="addcart@(item.Id)" class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
