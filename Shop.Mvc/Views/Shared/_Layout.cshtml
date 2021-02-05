@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="~/img/icon.png">
     <meta name="description"
-        content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
+          content="ایمن فروش :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو">
     <meta name="keywords" content="دزدگیر خانه , دزدگیر مغازه , دزدگیر اماکن , دوربین مداربسته , دوربین مداربسته بیسیم , دوربین بیبی کم , دوربین لامپی ,
         دوربین پانوراما , دوربین ۳۶۰ , رایاکالا , ردیاب شخصی , ردیاب خودرو , جی پی اس , GPS,
         شنود , دوربین مخفی , سنسور , دی وی آر , DVR,NVR,دوربین تحت شبکه , دیجیکالا">
@@ -42,7 +42,7 @@
     <link rel="stylesheet" href="~/css/site.min.css?v=0.0.1" />
     <link rel="stylesheet" href="~/css/styles.css?v=0.0.3" />
     <link rel="stylesheet" href="~/css/styleoverride.css?v=0.0.5" />
-   
+
     <script src="~/js/site.min.js?v=0.0.1"></script>
 
 </head>
@@ -51,17 +51,17 @@
     <div id="app">
         <!-- menu -->
         @* <div class="loading">
-            <div class="lds-roller">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div> *@
+                <div class="lds-roller">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div> *@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -78,7 +78,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="javascript:void(0)" data-role="category">دسته بندی ها </a></li>
                         <li><a asp-controller="Home" asp-action="Index">صفحه اصلی</a></li>
-                        <li><a asp-controller="Home" asp-action="HelpForBuy">راهنمای خرید </a></li>                        
+                        <li><a asp-controller="Home" asp-action="HelpForBuy">راهنمای خرید </a></li>
                         <li><a asp-controller="Home" asp-action="LawUs">قوانین و مقررات</a></li>
                         <li><a asp-controller="Home" asp-action="AboutUs">درباره ما</a></li>
                         <li><a asp-controller="Home" asp-action="ContactUs">تماس با ما</a></li>
@@ -139,7 +139,7 @@
                                 <form action="/Product/Search">
                                     <div class="input-group">
                                         <input type="text" class="form-control"
-                                            placeholder="جستجو در محصولات ایمن فروش " name="Title" autocomplete="off">
+                                               placeholder="جستجو در محصولات ایمن فروش " name="Title" autocomplete="off">
                                         <div class="input-group-btn">
                                             <button class="btn btn-danger" type="submit">
                                                 <i class="glyphicon glyphicon-search"></i>
@@ -208,13 +208,13 @@
                         <div class="footer__option__item">
                             <img alt="ایمن فروش (شرکت ارشانوین)" src="~/img/payment-type.png" />
                             <div>پرداخت در محل</div>
-                        </div>                       
+                        </div>
                         <div class="footer__option__item">
                             <img alt="ایمن فروش (شرکت ارشانوین)" src="~/img/original.png" />
                             <div>ضمانت اصل بودن کالا</div>
                         </div>
                     </div>
-                    <div class="footer__info">                       
+                    <div class="footer__info">
                         <div class="col-md-4">
                             <div class="footer__info__title">
                                 لینک های ایمن فروش (شرکت ارشانوین)
@@ -231,7 +231,8 @@
                                 پشتیبانی
                             </div>
                             <p>
-                                شماره تماس ها : 
+                                شماره تماس ها :
+                                <br />
                                 @if (!string.IsNullOrEmpty(Shop.Mvc.Cache.CacheData.Info.PhoneNumber1))
                                 {
                                     <span>@Shop.Mvc.Cache.CacheData.Info.PhoneNumber1.ToPersianNumbers()</span><br />
@@ -258,21 +259,22 @@
                             <a href="@Shop.Mvc.Cache.CacheData.Info.TelegramChanal" target="_blank">
                                 <img alt="ایمن فروش (شرکت ارشانوین)" class="footer__info__share" src="~/img/telegram.png" />
                             </a>
-                            <a  href="https://api.whatsapp.com/send?phone=989129633978" target="_blank">
+                            <a href="https://api.whatsapp.com/send?phone=989129633978" target="_blank">
                                 <img alt="ایمن فروش (شرکت ارشانوین)" class="footer__info__share" src="~/img/watsapp.png" />
                             </a>
                         </div>
-                         <div class="col-md-4 text-left">                            
+                        <div class="col-md-4 text-left">
                             <h3>ایمن فروش (شرکت ارشانوین)</h3>
                             <p>
                                 فروش سیستم های امنیتی و نظارتی : دوربین های مداربسته با سیم و بیسیم , دزدگیر اماکن ,
                                 ردیاب های شخصی و خودرو
                             </p>
                             <a referrerpolicy="origin" target="_blank"
-                             href="https://trustseal.enamad.ir/?id=202154&amp;Code=jDHuMgNvy10rkBPNTlOo">
-                             <img referrerpolicy="origin"
-                              src="https://Trustseal.eNamad.ir/logo.aspx?id=202154&amp;Code=jDHuMgNvy10rkBPNTlOo"
-                             alt="" style="cursor:pointer;border-radius: 10px;background-color: #fff;" id="jDHuMgNvy10rkBPNTlOo"></a>
+                               href="https://trustseal.enamad.ir/?id=202154&amp;Code=jDHuMgNvy10rkBPNTlOo">
+                                <img referrerpolicy="origin"
+                                     src="https://Trustseal.eNamad.ir/logo.aspx?id=202154&amp;Code=jDHuMgNvy10rkBPNTlOo"
+                                     alt="" style="cursor:pointer;border-radius: 10px;background-color: #fff;" id="jDHuMgNvy10rkBPNTlOo">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -282,7 +284,7 @@
         <div class="footer-bottom">
             <p>
                 تمامی حقوق مادی و معنوی این سایت متعلق به شرکت <a target="_blank"
-                    href="http://instagram.com/arshanovin021">ارشانوین</a> می باشد
+                                                                  href="http://instagram.com/arshanovin021">ارشانوین</a> می باشد
             </p>
             طراحی و توسعه توسط <a target="_blank" href="http://mobinmahdi.ir">مهدی و مبین حسنی</a>
         </div>
@@ -299,7 +301,7 @@
     </script>
 
     @* <link href='https://api.cedarmaps.com/cedarmaps.js/v1.8.0/cedarmaps.css' rel='stylesheet' />
-    <script src="~/js/cedarmaps.js"></script> *@
+        <script src="~/js/cedarmaps.js"></script> *@
     <script src="~/js/vue.js"></script>
     <script src="~/js/app.js?v=0.0.1"></script>
     <script type="text/x-template" id="item-template">

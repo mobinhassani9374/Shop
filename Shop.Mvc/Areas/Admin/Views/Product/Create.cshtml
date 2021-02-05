@@ -72,8 +72,15 @@
                 </div>
                 <hr style="clear: both;" />
                 <div class="col-md-4 col-xs-12">
-                    <div class="form-group">                        
-                        @Html.CheckBoxFor(c=>c.IsAmazing)
+                    <div class="form-group">
+                        <label>گارانتی را وارد کنید </label>
+                        <input asp-for="Garanty" required type="text" placeholder="گارانتی" class="form-control">
+                    </div>
+                </div>
+                <hr style="clear: both;" />
+                <div class="col-md-4 col-xs-12">
+                    <div class="form-group">
+                        @Html.CheckBoxFor(c => c.IsAmazing)
                         <label>آیا شگفت انگیز است  ؟</label>
                     </div>
                 </div>
@@ -107,6 +114,15 @@
                     <div class="form-group">
                         <label class="required">توضیحات محصول را وارد کنید </label>
                         <textarea asp-for="Description" id="editor" placeholder="توضیحات محصول"
+                                  class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <hr style="clear: both;" />
+                <div class="col-md-12 col-xs-12">
+                    <div class="form-group">
+                        <label>مشخصات محصول را وارد کنید </label>
+                        <textarea asp-for="Attributes" id="editor" placeholder="مشخصات محصول"
                                   class="form-control"></textarea>
                     </div>
                 </div>

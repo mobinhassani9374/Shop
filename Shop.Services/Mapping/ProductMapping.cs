@@ -20,7 +20,9 @@ namespace Shop.Services.Mapping
                 PrimaryImage = source.ImageName,
                 Title = source.Title,
                 Discount = source.Discount,
-                IsAmazing = source.IsAmazing
+                IsAmazing = source.IsAmazing,
+                Garanty = source.Garanty,
+                Attributes = source.Attributes
             };
         }
 
@@ -36,7 +38,9 @@ namespace Shop.Services.Mapping
                 PrimaryImage = source.ImageName,
                 Title = source.Title,
                 IsAmazing = source.IsAmazing,
-                Discount = source.Discount
+                Discount = source.Discount,
+                Attributes = source.Attributes,
+                Garanty = source.Garanty
             };
         }
 
@@ -73,7 +77,9 @@ namespace Shop.Services.Mapping
                 PrimaryImage = source.PrimaryImage,
                 Title = source.Title,
                 IsAmazing = source.IsAmazing,
-                Discount = source.Discount
+                Discount = source.Discount,
+                Attributes = source.Attributes,
+                Garanty = source.Garanty
             };
         }
         public static ProductVote ToEntity(this AddProductCommentDto source, string userId)

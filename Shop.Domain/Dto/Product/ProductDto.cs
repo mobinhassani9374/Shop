@@ -17,6 +17,8 @@ namespace Shop.Domain.Dto.Product
         public int CategoryId { get; set; }
         public bool IsAmazing { get; set; }
         public long Discount { get; set; }
+        public string Garanty { get; set; }
+        public string Attributes { get; set; }
         public CategoryDto Category { get; set; }
     }
 }

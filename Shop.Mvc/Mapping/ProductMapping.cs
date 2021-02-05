@@ -22,7 +22,9 @@ namespace Shop.Mvc.Mapping
                 Title = source.Title,
                 ImageFile = source.ImageFile,
                 IsAmazing = source.IsAmazing,
-                Discount = source.Discount
+                Discount = source.Discount,
+                Attributes = source.Attributes,
+                Garanty = source.Garanty
             };
         }
 
@@ -70,7 +72,9 @@ namespace Shop.Mvc.Mapping
                 CategoryId = source.CategoryId,
                 MoreImages = source.MoreImages,
                 Discount = source.Discount,
-                IsAmazing = source.IsAmazing
+                IsAmazing = source.IsAmazing,
+                Garanty = source.Garanty,
+                Attributes = source.Attributes
             };
         }
 
@@ -86,7 +90,9 @@ namespace Shop.Mvc.Mapping
                 Price = source.Price,
                 Title = source.Title,
                 Discount = source.Discount,
-                IsAmazing = source.IsAmazing
+                IsAmazing = source.IsAmazing,
+                Attributes = source.Attributes,
+                Garanty = source.Garanty
             };
         }
 

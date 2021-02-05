@@ -382,7 +382,8 @@ namespace Shop.Services
             var query = _dbContext.Orders
                   .Include(c => c.Details)
                   .ThenInclude(c => c.Product)
-                  .AsQueryable();
+                  .AsQueryable()
+                  .Where(c => c.IsFinal);
 
             IOrderedQueryable<Order> orderedQery =
                query.OrderByDescending(c => c.Id);

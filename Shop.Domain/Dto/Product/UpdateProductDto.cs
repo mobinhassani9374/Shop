@@ -27,5 +27,11 @@ namespace Shop.Domain.Dto.Product
         public long Discount { get; set; }
 
         public string ImageName { get; set; }
+
+        [MaxLength(Constants.Product_Garanty_Length, ErrorMessage = "تعداد کاراکترهای گارانتی نمی تواند بیش از @ کاراکتر باشد")]
+        public string Garanty { get; set; }
+
+        [MaxLength(Constants.Product_Attributes_Length, ErrorMessage = "تعداد کاراکترهای مشخصات نمی تواند بیش از @ کاراکتر باشد")]
+        public string Attributes { get; set; }
     }
 }

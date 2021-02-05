@@ -30,6 +30,7 @@ namespace Shop.Database
             var mahdiUser = userManager.FindByNameAsync("09212651629").Result;
             var mahdiUser1 = userManager.FindByNameAsync("09197572162").Result;
             var mobinUser1 = userManager.FindByNameAsync("09124363740").Result;
+            var mobinUser2 = userManager.FindByNameAsync("09124363100").Result;
             if (mobinUser == null)
             {
                 var result = userManager.CreateAsync(new User
@@ -76,6 +77,18 @@ namespace Shop.Database
                     Type = UserType.Programmer,
                     RegisterDate = DateTime.Now,
                 }, "9124363740"
+                 ).Result;
+            }
+            if (mobinUser2 == null)
+            {
+                var result = userManager.CreateAsync(new User
+                {
+                    UserName = "09124363100",
+                    PhoneNumber = "09124363100",
+                    FullName = "محمد مبین حسنی",
+                    Type = UserType.Programmer,
+                    RegisterDate = DateTime.Now,
+                }, "09124363100"
                  ).Result;
             }
         }
