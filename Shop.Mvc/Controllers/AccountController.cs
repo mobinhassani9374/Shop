@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
@@ -35,19 +36,16 @@ namespace Shop.Mvc.Controllers
             _userService = userService;
         }
 
+        [AllowAnonymous]
         public IActionResult Login(string returnUrl)
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                Swal(false, "نمی توانید به صفحه ورود دسترسی داشته باشید");
-                return RedirectPermanent("/");
-            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken()]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (string.IsNullOrEmpty(model.ReturnUrl))
@@ -85,19 +83,16 @@ namespace Shop.Mvc.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         public IActionResult Register(string returnUrl)
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                Swal(false, "نمی توانید به صفحه ثبت نام دسترسی داشته باشید");
-                return RedirectPermanent("/");
-            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken()]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (string.IsNullOrEmpty(model.ReturnUrl))
