@@ -2,9 +2,9 @@ $(function () {
   // $('#bootstrap-touch-slider').bsTouchSlider();
 
 
-  window.onload = (event) => {
-    $('.loading').hide();
-  };
+  $(window).on("load", function () {
+    $('.loading').fadeOut();
+  })
 
   toastr.options = {
     "closeButton": true,
@@ -17,6 +17,16 @@ $(function () {
   }
 
 
+  // $(".dropdown").hover(
+  //   function () {
+  //     $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, true).slideDown("400");
+  //     $(this).toggleClass('open');
+  //   },
+  //   function () {
+  //     $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, true).slideUp("400");
+  //     $(this).toggleClass('open');
+  //   }
+  // );
   // $("[data-role='date']").persianDatepicker({
   //   format: 'YYYY/MM/DD',
   //   initialValue: false,

@@ -176,3 +176,28 @@ Vue.component('item', {
         }
     }
 })
+
+Vue.component('category', {
+    template: '#category-template',
+    props: {
+        model: Object
+    },
+    data: function () {
+        return {
+            open: false,
+        }
+    },
+    computed: {
+        isFolder: function () {
+            return this.model.children &&
+                this.model.children.length
+        }
+    },
+    methods: {
+        toggle: function () {
+            if (this.isFolder) {
+                this.open = !this.open
+            }
+        }
+    }
+})

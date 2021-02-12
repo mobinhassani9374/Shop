@@ -41,16 +41,16 @@
 
     <link rel="stylesheet" href="~/css/site.min.css?v=0.0.1" />
     <link rel="stylesheet" href="~/css/styles.css?v=0.0.3" />
-    <link rel="stylesheet" href="~/css/styleoverride.css?v=0.0.5" />
+    <link rel="stylesheet" href="~/css/styleoverride.css?v=0.0.6" />
 
-    <script src="~/js/site.min.js?v=0.0.1"></script>
+    <script src="~/js/site.min.js?v=0.0.2"></script>
 
 </head>
 
 <body dir="rtl">
     <div id="app">
         <!-- menu -->
-        @* <div class="loading">
+        <div class="loading">
                 <div class="lds-roller">
                     <div></div>
                     <div></div>
@@ -61,7 +61,7 @@
                     <div></div>
                     <div></div>
                 </div>
-            </div> *@
+            </div>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -71,12 +71,17 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand btn btn-default" href="javascript:void(0)" data-role="category">
-                        دسته بندی ها
+                        دسته بندی کالاها
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="javascript:void(0)" data-role="category">دسته بندی ها </a></li>
+                        <li class="dropdown mega-dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">دسته بندی کالا ها <span class="caret"></span></a>				
+                            <ul class="dropdown-menu mega-dropdown-menu">
+                                 <category class="item" v-for="item in category" :model="item"></category>                                                                                            
+                            </ul>				
+                        </li>
                         <li><a asp-controller="Home" asp-action="Index">صفحه اصلی</a></li>
                         <li><a asp-controller="Home" asp-action="HelpForBuy">راهنمای خرید </a></li>
                         <li><a asp-controller="Home" asp-action="LawUs">قوانین و مقررات</a></li>
@@ -300,10 +305,8 @@
         gtag('config', 'UA-120605683-14');
     </script>
 
-    @* <link href='https://api.cedarmaps.com/cedarmaps.js/v1.8.0/cedarmaps.css' rel='stylesheet' />
-        <script src="~/js/cedarmaps.js"></script> *@
     <script src="~/js/vue.js"></script>
-    <script src="~/js/app.js?v=0.0.1"></script>
+    <script src="~/js/app.js?v=0.0.2"></script>
     <script type="text/x-template" id="item-template">
         <li>
             <div
@@ -319,6 +322,18 @@
                 </item>
             </ul>
         </li>
+    </script>
+    <script type="text/x-template" id="category-template">
+        <li class="col-sm-2">
+            <ul>  
+                <li class="dropdown-header">
+                    <a style="color:#ff3546" :href="'/Category/Index?CategoryId='+model.id">{{model.title}}</a>
+                </li> 
+                <li v-for="item in model.children">
+                    <a :href="'/Category/Index?CategoryId='+item.id">{{item.title}}</a>
+                </li>                                                                               
+            </ul>
+        </li>       
     </script>
 
     @Html.Partial("_Swal.cshtml")
