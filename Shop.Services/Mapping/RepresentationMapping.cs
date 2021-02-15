@@ -20,5 +20,26 @@ namespace Shop.Services.Mapping
                 WhatsAppNumber = source.WhatsAppNumber
             };
         }
+
+        public static List<RepresentationDto> ToDto(this List<Representation> sources)
+        {
+            var result = new List<RepresentationDto>();
+            foreach (var source in sources)
+                result.Add(source.ToDto());
+            return result;
+        }
+        public static RepresentationDto ToDto(this Representation source)
+        {
+            return new RepresentationDto
+            {
+                Address = source.Address,
+                FullName = source.FullName,
+                Id = source.Id,
+                InstagramAccount = source.InstagramAccount,
+                PhoneNumber = source.PhoneNumber,
+                Title = source.Title,
+                WhatsAppNumber = source.WhatsAppNumber
+            };
+        }
     }
 }

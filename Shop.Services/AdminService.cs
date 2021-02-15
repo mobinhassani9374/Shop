@@ -535,5 +535,10 @@ namespace Shop.Services
 
             return serviceReslt;
         }
+        public List<RepresentationDto> GetAllRepresentations()
+        {
+            var data = _dbContext.Representations.ToList();
+            return data.ToDto();
+        }
     }
 }

@@ -16,6 +16,12 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         {
             _adminService = adminService;
         }
+
+        public IActionResult Index()
+        {
+            var data = _adminService.GetAllRepresentations();
+            return View(data.ToViewModel());
+        }
         public IActionResult Create()
         {
             return View();

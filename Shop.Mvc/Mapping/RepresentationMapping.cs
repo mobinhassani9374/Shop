@@ -21,5 +21,25 @@ namespace Shop.Mvc.Mapping
                 Title = source.Title
             };
         }
+        public static List<RepresentationViewModel> ToViewModel(this List<RepresentationDto> sources)
+        {
+            var result = new List<RepresentationViewModel>();
+            foreach (var source in sources)
+                result.Add(source.ToViewModel());
+            return result;
+        }
+        public static RepresentationViewModel ToViewModel(this RepresentationDto source)
+        {
+            return new RepresentationViewModel
+            {
+                Address = source.Address,
+                FullName = source.FullName,
+                Id = source.Id,
+                InstagramAccount = source.InstagramAccount,
+                PhoneNumber = source.PhoneNumber,
+                Title = source.Title,
+                WhatsAppNumber = source.WhatsAppNumber
+            };
+        }
     }
 }
