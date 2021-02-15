@@ -383,7 +383,7 @@ namespace Shop.Services
                   .Include(c => c.Details)
                   .ThenInclude(c => c.Product)
                   .AsQueryable()
-                  .Where(c => c.IsFinal);
+                  .Where(c=>c.IsPaid);
 
             IOrderedQueryable<Order> orderedQery =
                query.OrderByDescending(c => c.Id);

@@ -20,6 +20,8 @@ namespace Shop.Database.Identity
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
+
+                
             })
              .AddEntityFrameworkStores<AppDbContext>()
              .AddClaimsPrincipalFactory<AppUserClaimsPrincipalFactory>();
