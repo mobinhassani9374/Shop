@@ -10,6 +10,7 @@ using Shop.Domain.Dto.Info;
 using Shop.Domain.Dto.Order;
 using Shop.Domain.Dto.Pagination;
 using Shop.Domain.Dto.Product;
+using Shop.Domain.Dto.Representations;
 using Shop.Domain.Dto.SlideShow;
 using Shop.Domain.Dto.User;
 using Shop.Domain.Dto.UserAccess;
@@ -383,7 +384,7 @@ namespace Shop.Services
                   .Include(c => c.Details)
                   .ThenInclude(c => c.Product)
                   .AsQueryable()
-                  .Where(c=>c.IsPaid);
+                  .Where(c => c.IsPaid);
 
             IOrderedQueryable<Order> orderedQery =
                query.OrderByDescending(c => c.Id);
@@ -520,6 +521,19 @@ namespace Shop.Services
                 .Count();
 
             return count;
+        }
+
+        public ServiceResult CreateRepresentation(RepresentationCreateDto dto)
+        {
+            var serviceReslt = dto.IsValid();
+
+            if (serviceReslt.IsSuccess)
+            {
+                Insert(dto.ToEntity());
+                serviceReslt = Save("عملیات با موفقیت انجام شد");
+            }
+
+            return serviceReslt;
         }
     }
 }
