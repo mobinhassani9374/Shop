@@ -25,5 +25,13 @@ namespace Shop.Domain
         public const int Product_Attributes_Length = 10000;
 
         public const int UserId_Length = 150;
+
+        public const int Representation_Title_Length = 500;
+
+        public const int PhoneNumber_Length = 50;
+
+        public const int InstagramAccount_Length = 500;
+
+        public const int Address_Length = 30000;
     }
 }

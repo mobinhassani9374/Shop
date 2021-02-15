@@ -24,6 +24,7 @@ namespace Shop.Database
         public DbSet<Info> Infoes { get; set; }
         public DbSet<ContactUs> ContactUs { get; set; }
         public DbSet<LogService> LogServices { get; set; }
+        public DbSet<Representation> Representations { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -140,6 +141,16 @@ namespace Shop.Database
 
             logService.Property(c => c.Method).HasMaxLength(50);
             logService.Property(c => c.IpAddress).HasMaxLength(100);
+
+            var representation = builder.Entity<Representation>();
+            
+            representation.HasKey(c => c.Id);
+            representation.Property(c => c.FullName).HasMaxLength(Constants.User_FullName_Length).IsRequired(true);
+            representation.Property(c => c.Address).HasMaxLength(Constants.Address_Length).IsRequired(true);
+            representation.Property(c => c.InstagramAccount).HasMaxLength(Constants.InstagramAccount_Length).IsRequired(false);
+            representation.Property(c => c.PhoneNumber).HasMaxLength(Constants.PhoneNumber_Length).IsRequired(true);
+            representation.Property(c => c.Title).HasMaxLength(Constants.Representation_Title_Length).IsRequired(true);
+            representation.Property(c => c.WhatsAppNumber).HasMaxLength(Constants.PhoneNumber_Length).IsRequired(false);
         }
     }
 }
