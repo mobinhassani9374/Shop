@@ -41,5 +41,18 @@ namespace Shop.Services.Mapping
                 WhatsAppNumber = source.WhatsAppNumber
             };
         }
+        public static Representation ToEntity(this RepresentationEditDto source)
+        {
+            return new Representation
+            {
+                Address = source.Address,
+                FullName = source.FullName,
+                Id = source.Id,
+                InstagramAccount = source.InstagramAccount,
+                PhoneNumber = source.PhoneNumber,
+                Title = source.Title,
+                WhatsAppNumber = source.WhatsAppNumber
+            };
+        }
     }
 }

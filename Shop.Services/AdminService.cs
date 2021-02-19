@@ -540,5 +540,22 @@ namespace Shop.Services
             var data = _dbContext.Representations.ToList();
             return data.ToDto();
         }
+        public RepresentationDto GetRepresentation(int id)
+        {
+            var entity = _dbContext.Representations.FirstOrDefault(c => c.Id == id);
+            return entity?.ToDto();
+        }
+        public ServiceResult EditRepresentation(RepresentationEditDto dto)
+        {
+            var serviceReslt = dto.IsValid();
+
+            if (serviceReslt.IsSuccess)
+            {
+                Update(dto.ToEntity());
+                serviceReslt = Save("عملیات با موفقیت انجام شد");
+            }
+
+            return serviceReslt;
+        }
     }
 }

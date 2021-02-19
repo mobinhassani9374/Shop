@@ -41,5 +41,32 @@ namespace Shop.Mvc.Mapping
                 WhatsAppNumber = source.WhatsAppNumber
             };
         }
+        public static RepresentationEditViewModel ToEditViewModel(this RepresentationDto source)
+        {
+            return new RepresentationEditViewModel
+            {
+                Address = source.Address,
+                FullName = source.FullName,
+                Id = source.Id,
+                InstagramAccount = source.InstagramAccount,
+                PhoneNumber = source.PhoneNumber,
+                Title = source.Title,
+                WhatsAppNumber = source.WhatsAppNumber,
+
+            };
+        }
+        public static RepresentationEditDto ToDto(this RepresentationEditViewModel source)
+        {
+            return new RepresentationEditDto
+            {
+                WhatsAppNumber = source.WhatsAppNumber,
+                Address = source.Address,
+                FullName = source.FullName,
+                Id = source.Id,
+                InstagramAccount = source.InstagramAccount,
+                PhoneNumber = source.PhoneNumber,
+                Title = source.Title
+            };
+        }
     }
 }

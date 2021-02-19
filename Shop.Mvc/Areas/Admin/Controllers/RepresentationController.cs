@@ -34,5 +34,19 @@ namespace Shop.Mvc.Areas.Admin.Controllers
             var serviceResult = _adminService.CreateRepresentation(model.ToDto());
             return View_Post(serviceResult, model);
         }
+
+        public IActionResult Edit(int id)
+        {
+            var data = _adminService.GetRepresentation(id);
+            return View_Get(data?.ToEditViewModel(), nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        public IActionResult Edit(RepresentationEditViewModel model)
+        {
+            var serviceResult = _adminService.EditRepresentation(model.ToDto());
+            return View_Post(serviceResult, model);
+        }
     }
 }

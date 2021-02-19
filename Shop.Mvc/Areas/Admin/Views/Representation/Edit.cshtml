@@ -1,0 +1,81 @@
+﻿@model Shop.Mvc.Models.Representations.RepresentationEditViewModel
+@{
+    ViewData["Title"] = "ویرایش نمایندگی  - پنل مدیریتی ایمن فروش";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
+        <li class="breadcrumb-item"><a href="/Admin/Representation/Index">نمایش نمایندگی های ثبت شده</a></li>
+        <li class="breadcrumb-item active" aria-current="page">ویرایش نمایندگی </li>
+    </ol>
+</nav>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">ویرایش نمایندگی </div>
+    <div class="panel-body">
+        <div class="row">
+            <form method="post">
+
+                <input type="hidden" asp-for="Id" />
+
+                <div class="col-md-12 col-xs-12">
+                    <div class="form-group">
+                        @Html.Partial("_ServiceResult")
+                    </div>
+                </div>
+
+                @Html.AntiForgeryToken()
+
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="required">عنوان را وارد نمایید</label>
+                        <input asp-for="Title" required type="text" placeholder="عنوان" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="required">شماره تماس را وارد کنید </label>
+                        <input asp-for="PhoneNumber" required type="text" placeholder="شماره تماس" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="required">نام و نام خانوادگی را وارد کنید </label>
+                        <input asp-for="FullName" required type="text" placeholder="نام و نام خانوادگی" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label>اکانت اینستاگرام را وارد کنید </label>
+                        <input asp-for="InstagramAccount" type="text" placeholder="اکانت اینستاگرام" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label>شماره همراه واتساپ را وارد کنید </label>
+                        <input asp-for="WhatsAppNumber" type="text" placeholder="شماره همراه واتساپ" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="required">آدرس را وارد کنید </label>
+                        <textarea rows="5" required cols="5" asp-for="Address" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <hr />
+                <div class="col-xs-12">
+                    <button type="submit" class="ladda-button btn btn-primary" data-style="zoom-in">
+                        <span class="ladda-label">ثبت اطلاعات</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

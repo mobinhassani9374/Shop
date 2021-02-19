@@ -29,6 +29,7 @@
                         <th>عنوان</th>
                         <th>شماره تماس</th>
                         <th>نام و نام خانوادگی</th>
+                        <th>عملیات</th>
                         
                         @* <th>عملیات</th> *@
                     </tr>
@@ -39,11 +40,21 @@
                         foreach (var user in Model)
                         {
 
-                            <tr>
-                                <td>@user.Title</td>
-                                <td>@user.PhoneNumber</td>
-                                <td>@user.FullName</td>
-                            </tr>
+                    <tr>
+                        <td>@user.Title</td>
+                        <td>@user.PhoneNumber</td>
+                        <td>@user.FullName</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@(user.Id)"
+                               class="btn btn-primary ladda-button" data-style="zoom-in">
+                                <span class="ladda-label">ویرایش</span>
+                            </a>
+                            <a asp-action="Delete" data-role="confirm" asp-route-id="@(user.Id)"
+                               class="btn btn-danger ladda-button" data-style="zoom-in">
+                                <span class="ladda-label">حذف </span>
+                            </a>
+                        </td>
+                    </tr>
                         }
                     }
                     else
