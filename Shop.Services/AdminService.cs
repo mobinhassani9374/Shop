@@ -31,11 +31,14 @@ namespace Shop.Services
     public class AdminService : BaseService
     {
         private readonly UserManager<User> _userManager;
+        private readonly IServiceProvider _serviceProvider;
         public AdminService(AppDbContext dbContext, IHostingEnvironment env,
             UserManager<User> userManager,
-             SmsService smsService) : base(dbContext, env, smsService)
+             SmsService smsService,
+             IServiceProvider serviceProvider) : base(dbContext, env, smsService)
         {
             _userManager = userManager;
+            _serviceProvider = serviceProvider;
         }
 
         public async Task<ServiceResult> CreateUser(CreateUserDto dto)
@@ -96,6 +99,27 @@ namespace Shop.Services
             }
 
 
+
+            return serviceResult;
+        }
+        public async Task<ServiceResult> DeleteUser(string userID)
+        {
+            var serviceResult = new ServiceResult(true);
+            var userManager = (UserManager<User>)_serviceProvider.GetService(typeof(UserManager<User>));
+
+            var user = await userManager.FindByIdAsync(userID);
+            if (user == null)
+                serviceResult.AddError("کاربری یافت نشد");
+            else
+            {
+                var identityResult = await userManager.DeleteAsync(user);
+
+                if (!identityResult.Succeeded)
+                {
+                    serviceResult.Errors = identityResult.Errors.Select(c => c.Code).ToList();
+                    serviceResult.IsSuccess = false;
+                }
+            }
 
             return serviceResult;
         }

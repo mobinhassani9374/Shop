@@ -43,5 +43,11 @@ namespace Shop.Mvc.Areas.Admin.Controllers
             var response = await _adminService.GetGroupingAccess(userId);
             return View_Delete(response, response.Data?.ToViewModel(), nameof(Index));
         }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var serviceResult = await _adminService.DeleteUser(id);
+            return View_Get(serviceResult, nameof(Index));
+        }
     }
 }
