@@ -13,12 +13,10 @@
 
     </script>
     <script>
+        if (success)
+            toastr.info(message);
+        else
+            toastr.error(message);
 
-        Swal.fire({
-            icon: success ? "success" : "error",
-            title: success ? "تبریک" : "خطا",
-            text: message,
-            confirmButtonText: 'باشه'
-        });
     </script>
 }
