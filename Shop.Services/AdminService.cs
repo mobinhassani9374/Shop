@@ -557,5 +557,20 @@ namespace Shop.Services
 
             return serviceReslt;
         }
+        public ServiceResult DeleteRepresentation(int id)
+        {
+            var serviceResult = new ServiceResult(true);
+
+            var entity = _dbContext.Representations.Find(id);
+
+            if (entity == null)
+                serviceResult.AddError("نمایندگی یافت نشد");
+
+            Remove(entity);
+
+            serviceResult = Save("یک نمایندگی با موفقیت حذف شد");
+
+            return serviceResult;
+        }
     }
 }

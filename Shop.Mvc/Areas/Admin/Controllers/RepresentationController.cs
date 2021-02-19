@@ -48,5 +48,11 @@ namespace Shop.Mvc.Areas.Admin.Controllers
             var serviceResult = _adminService.EditRepresentation(model.ToDto());
             return View_Post(serviceResult, model);
         }
+
+        public IActionResult Delete(int id)
+        {
+            var serviceResult = _adminService.DeleteRepresentation(id);
+            return View_Get(serviceResult, nameof(Index));
+        }
     }
 }
