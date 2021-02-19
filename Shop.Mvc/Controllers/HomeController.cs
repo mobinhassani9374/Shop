@@ -43,6 +43,10 @@ namespace Shop.Mvc.Controllers
         {
             return View();
         }
+        public IActionResult Representation()
+        {
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
