@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Shop.Mvc.Models.Representations.RepresentationViewModel>
+@{
     ViewData["Title"] = "نمایندگی ها - این فروش";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -18,48 +19,39 @@
     <div class="row">
         <div class="cart">
             <div class="cart__title">لیست نمایندگی های ایمن فروش</div>
-            <div class="main__box">
-                <div class="main__box__item">
-                    <div class="text-success">عنوان نمایندگی</div>
-                    <div>مدیریت : مهدی حسنی</div>
-                    <div>شماره تماس : 09197572162</div>
-                </div>
-                <div class="main__box__item">
-                    <div>آدرس : آدرس</div>
-                </div>
-                <div class="main__box__item">
-                    <div>
-                        <a href="" target="_blank">
+            @foreach (var item in Model)
+            {
+        <div class="main__box">
+            <div class="main__box__item">
+                <div class="text-success">@item.Title</div>
+                <div>مدیریت : @item.FullName</div>
+                <div>شماره تماس : @item.PhoneNumber</div>
+            </div>
+            <div class="main__box__item">
+                <div>آدرس : @item.Address</div>
+            </div>
+            <div class="main__box__item">
+                <div>
+                    @if (!string.IsNullOrEmpty(item.InstagramAccount))
+                    {
+                        <a href="@item.InstagramAccount" target="_blank">
                             <img style="width:25px" alt="ایمن فروش (شرکت ارشانوین)" class="footer__info__share" src="~/img/insta.png" />
-                        </a>                        
-                        <a href="https://api.whatsapp.com/send?phone=989129633978" target="_blank">
+                        </a>
+                    }
+
+                    @if (!string.IsNullOrEmpty(item.WhatsAppNumber))
+                    {
+                        <a href="https://api.whatsapp.com/send?phone=@(item.WhatsAppNumber)" target="_blank">
                             <img style="width:25px" alt="ایمن فروش (شرکت ارشانوین)" class="footer__info__share" src="~/img/watsapp.png" />
                         </a>
-                        <span> : شبکه های اجتماعی </span>
-                    </div>
+                    }
+
+                    <span> : شبکه های اجتماعی </span>
                 </div>
             </div>
-            <div class="main__box">
-                <div class="main__box__item">
-                    <div class="text-success">عنوان نمایندگی</div>
-                    <div>مدیریت : مهدی حسنی</div>
-                    <div>شماره تماس : 09197572162</div>
-                </div>
-                <div class="main__box__item">
-                    <div>آدرس : آدرس</div>
-                </div>
-                <div class="main__box__item">
-                    <div>
-                        <a href="" target="_blank">
-                            <img style="width:25px" alt="ایمن فروش (شرکت ارشانوین)" class="footer__info__share" src="~/img/insta.png" />
-                        </a>                        
-                        <a href="https://api.whatsapp.com/send?phone=989129633978" target="_blank">
-                            <img style="width:25px" alt="ایمن فروش (شرکت ارشانوین)" class="footer__info__share" src="~/img/watsapp.png" />
-                        </a>
-                        <span> : شبکه های اجتماعی </span>
-                    </div>
-                </div>
-            </div>
+        </div>
+            }
+            
         </div>
     </div>
 </div>

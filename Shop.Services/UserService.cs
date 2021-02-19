@@ -11,6 +11,7 @@ using Shop.Domain.Dto.Home;
 using Shop.Domain.Dto.Order;
 using Shop.Domain.Dto.Pagination;
 using Shop.Domain.Dto.Product;
+using Shop.Domain.Dto.Representations;
 using Shop.Domain.Dto.User;
 using Shop.Domain.Entities;
 using Shop.Domain.Enumeration;
@@ -547,6 +548,11 @@ namespace Shop.Services
 
             }
             return serviceResult;
+        }
+        public List<RepresentationDto> GetAllRepresentation()
+        {
+            var data = _dbContext.Representations.ToList();
+            return data.ToDto();
         }
     }
 }

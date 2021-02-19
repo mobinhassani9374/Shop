@@ -45,7 +45,8 @@ namespace Shop.Mvc.Controllers
         }
         public IActionResult Representation()
         {
-            return View();
+            var data = _userService.GetAllRepresentation();
+            return View(data.ToViewModel());
         }
 
         [HttpPost]
