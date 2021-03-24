@@ -493,6 +493,16 @@ legend {
     .navbar-inverse .navbar-nav>.active>a {
         display: none;
     }
+
+    .nav>li>a {
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 996px) {          
+    .nav>li>a {
+        padding: 10px !important;
+    }
 }
 
 .mega-dropdown {
