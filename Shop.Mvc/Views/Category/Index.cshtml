@@ -36,7 +36,7 @@
                     <div class="col-md-6 col-xs-12">
                         <button type="submit" class="ladda-button btn btn-primary btn-block" data-style="zoom-in">
                             <span class="ladda-label">جستجو</span>
-                        </button>                       
+                        </button>
                     </div>
                 </div>
             </form>
@@ -64,6 +64,14 @@
                                     <span data-role="seperator">@item.Price</span>
                                     <span style="margin-right:10px">تومان</span>
                                 </div>
+                                @if (item.IsAmazing)
+                                {
+                                    <div class="category__item__price price">
+                                        مهدی ، این محصول تخفیف داره
+                                        <p> میزان تخفیف : @item.Discount</p>
+                                        <p> قیمت محصول :  @item.Price</p>
+                                    </div>
+                                }
                                 @if (item.Count != 0)
                                 {
                                     <div class="category__item__btn">
@@ -86,11 +94,11 @@
             }
             else
             {
-               <div style="padding: 10px;">
+                <div style="padding: 10px;">
                     <div class="alert alert-danger text-center" style="margin-bottom:0px">
                         محصولی یافت نشد
                     </div>
-               </div>
+                </div>
             }
         </div>
     </div>
@@ -98,7 +106,7 @@
 @Html.Partial("~/Views/Shared/_Pagination.cshtml", Model.Data)
 
 <script>
-    $(function(){
+    $(function () {
         $('.category__item__title').matchHeight()
     })
 </script>

@@ -489,7 +489,7 @@ namespace Shop.Services
                     GetCategoryIds_Recursive(category.Children.ToList());
 
                 var query = _dbContext.Products
-                    .Where(c => _catIds.Any(i => i == c.CategoryId) && !c.IsAmazing)
+                    .Where(c => _catIds.Any(i => i == c.CategoryId))
                     .AsQueryable();
 
                 if (!string.IsNullOrEmpty(dto.Title))
