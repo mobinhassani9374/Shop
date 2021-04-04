@@ -18,6 +18,11 @@ namespace Shop.Mvc
 {
     public class Startup
     {
+        private readonly IHostingEnvironment _hostingEnvironment;
+        public Startup(IHostingEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -27,7 +32,7 @@ namespace Shop.Mvc
                 options.UseSqlServer(@"Data Source=185.51.200.186\SQL2014,2014;Initial Catalog=imenForoshTest;Persist Security Info=True;User ID=mobin_imen; Password=Ju#82c8c; MultipleActiveResultSets=True");
             });
 
-            Database.Identity.StartUp.ConfigureServices(services);
+            Database.Identity.StartUp.ConfigureServices(services,_hostingEnvironment);
 
             Services.StartUp.ConfigureServices(services);
 
