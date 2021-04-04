@@ -60,18 +60,17 @@
                                 <div class="category__item__title">
                                     @(item.Title)
                                 </div>
-                                <div class="category__item__price price">
-                                    <span data-role="seperator">@item.Price</span>
-                                    <span style="margin-right:10px">تومان</span>
+                                <div class="category__item__price price" style="height: 40px;">  
+                                    @if (item.IsAmazing)
+                                    {    
+                                        <del data-role="seperator">@item.Price</del>    
+                                        <span class="badge">@item.Discount %</span>                                                                                                                                                                                                                                                                                                                        
+                                    }
                                 </div>
-                                @if (item.IsAmazing)
-                                {
-                                    <div class="category__item__price price">
-                                        مهدی ، این محصول تخفیف داره
-                                        <p> میزان تخفیف : @item.Discount</p>
-                                        <p> قیمت محصول :  @item.Price</p>
-                                    </div>
-                                }
+                                <div class="category__item__price price">
+                                    <span data-role="seperator">@(item.Price - (item.Price * item.Discount / 100))</span>
+                                    <span style="margin-right:10px">تومان</span>
+                                </div>                                
                                 @if (item.Count != 0)
                                 {
                                     <div class="category__item__btn">
