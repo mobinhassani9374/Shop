@@ -21,6 +21,9 @@ namespace Shop.Mvc.Areas.Admin.Controllers
             ViewBag.CountViewTwoLastWeek = _adminService.CountViewTwoLastWeek();
             ViewBag.CountViewLastMonth = _adminService.CountViewLastMonth();
 
+            ViewBag.CountSuccessOrder = _adminService.CountSuccessOrder();
+            ViewBag.CountPrice = _adminService.CountPrice();
+
             ViewBag.CommentWatingCount = _adminService.GetCommentWatingCount();
             return View();
         }

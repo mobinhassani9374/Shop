@@ -475,6 +475,19 @@ namespace Shop.Services
         {
             return _dbContext.ProductVote.Where(c => c.Stats == VoteState.Wating).Count();
         }
+        public int CountSuccessOrder()
+        {
+            return _dbContext.Orders
+                    .Include(c => c.Details)
+                    .Where(c => c.IsPaid)
+                    .Sum(c => c.Details.Count());
+        }
+
+        public long CountPrice()
+        {
+            return _dbContext.Orders
+                    .Where(c => c.IsPaid).Sum(c=>c.TotalPrice);
+        }
         public ServiceResult SaveInfo(InfoDto dto)
         {
             Insert(dto.ToEntity());
