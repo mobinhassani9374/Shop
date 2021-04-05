@@ -94,7 +94,6 @@ namespace Shop.Services
                 output.Id = category.Id;
                 output.CategoryTitle = category.Title;
                 _product.AddRange(category.Products.ToList());
-                _product = _product.Where(c => !c.IsAmazing || (c.IsAmazing && c.Count <= 0)).ToList();
                 GetProduct(category.Children.ToList());
                 output.Products = _product.Select(i => new Domain.Dto.Home.ProductDto
                 {
