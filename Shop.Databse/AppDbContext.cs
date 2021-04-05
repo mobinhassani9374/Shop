@@ -25,6 +25,7 @@ namespace Shop.Database
         public DbSet<ContactUs> ContactUs { get; set; }
         public DbSet<LogService> LogServices { get; set; }
         public DbSet<Representation> Representations { get; set; }
+        public DbSet<Education> Educations { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -143,7 +144,7 @@ namespace Shop.Database
             logService.Property(c => c.IpAddress).HasMaxLength(100);
 
             var representation = builder.Entity<Representation>();
-            
+
             representation.HasKey(c => c.Id);
             representation.Property(c => c.FullName).HasMaxLength(Constants.User_FullName_Length).IsRequired(true);
             representation.Property(c => c.Address).HasMaxLength(Constants.Address_Length).IsRequired(true);
@@ -151,6 +152,13 @@ namespace Shop.Database
             representation.Property(c => c.PhoneNumber).HasMaxLength(Constants.PhoneNumber_Length).IsRequired(true);
             representation.Property(c => c.Title).HasMaxLength(Constants.Representation_Title_Length).IsRequired(true);
             representation.Property(c => c.WhatsAppNumber).HasMaxLength(Constants.PhoneNumber_Length).IsRequired(false);
+
+            var education = builder.Entity<Education>();
+
+            education.HasKey(c=>c.Id);
+            education.Property(c => c.Title).HasMaxLength(Constants.Product_Title_Length).IsRequired(true);
+            education.Property(c => c.Image).HasMaxLength(Constants.Product_PrimaryImage_Length).IsRequired(true);
+
         }
     }
 }
