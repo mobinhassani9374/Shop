@@ -36,7 +36,10 @@
                 </div>
                 <div>
                     <div class="amin__box__title">تعداد بازدید کنندگان دو هفته اخیر </div>
-                    <div class="amin__box__title">@ViewBag.CountViewTwoLastWeek نفر</div>
+                    <div class="amin__box__title">                       
+                        <span data-role="seperator">@ViewBag.CountViewTwoLastWeek</span> 
+                        <span>نفر</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,7 +50,10 @@
                 </div>
                 <div>
                     <div class="amin__box__title">تعداد بازدید کنندگان یکماه اخیر </div>
-                    <div class="amin__box__title">@ViewBag.CountViewLastMonth نفر</div>
+                    <div class="amin__box__title">
+                        <span data-role="seperator">@ViewBag.CountViewLastMonth</span> 
+                        <span>نفر</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,9 +64,9 @@
     <legend>آمار فروش سایت</legend>
     <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="admin__box admin__box-success">
+            <div class="admin__box admin__box-danger">
                 <div>
-                    <i class="fa fa-users amin__box__icon"></i>
+                    <i class="fa fa-shopping-cart  amin__box__icon"></i>
                 </div>
                 <div>
                     <div class="amin__box__title">تعداد فروش کالا </div>
@@ -69,13 +75,16 @@
             </div>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="admin__box admin__box-warning">
+            <div class="admin__box admin__box-primary">
                 <div>
-                    <i class="fa fa-users amin__box__icon"></i>
+                    <i class="fa fa-money amin__box__icon"></i>
                 </div>
                 <div>
                     <div class="amin__box__title">فروش کل </div>
-                    <div class="amin__box__title">@ViewBag.CountPrice</div>
+                    <div class="amin__box__title">
+                        <span data-role="seperator">@ViewBag.CountPrice</span>
+                        <span>تومان</span>
+                    </div>
                 </div>
             </div>
         </div>
