@@ -35,7 +35,7 @@
                     <div class="col-md-6  col-xs-12">
                         <button type="submit" class="ladda-button btn btn-primary btn-block" data-style="zoom-in">
                             <span class="ladda-label">جستجو</span>
-                        </button>  
+                        </button>
                     </div>
                 </div>
             </form>
@@ -59,17 +59,17 @@
                                 <div class="category__item__title">
                                     @(item.Title)
                                 </div>
-                                <div class="category__item__price price" style="height: 25px;">  
-                                    @if (item.IsAmazing)
-                                    {    
-                                        <del data-role="seperator">@item.Price</del>    
-                                        <span class="badge">@item.Discount %</span>                                                                                                                                                                                                                                                                                                                        
+                                <div class="category__item__price price" style="height: 25px;">
+                                    @if (item.IsAmazing && item.Discount > 0)
+                                    {
+                                        <del data-role="seperator">@item.Price</del>
+                                        <span class="badge">@item.Discount %</span>
                                     }
                                 </div>
                                 <div class="category__item__price price">
                                     <span data-role="seperator">@item.Price</span>
                                     <span style="margin-right:10px">تومان</span>
-                                </div>                                
+                                </div>
                                 @if (item.Count != 0)
                                 {
                                     <div class="category__item__btn">
@@ -96,7 +96,7 @@
                     <div class="alert alert-danger text-center" style="margin-bottom:0px">
                         محصولی یافت نشد
                     </div>
-               </div>
+                </div>
             }
         </div>
     </div>

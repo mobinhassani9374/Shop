@@ -65,7 +65,7 @@
             </div>
             <div class="col-md-4 col-xs-12">
                 <div class="box-price">
-                    @if (Model.IsAmazing)
+                    @if (Model.IsAmazing && Model.Discount > 0)
                     {
                         <div class="text-right">
                             <span class="badge">@Model.Discount %</span>
@@ -118,9 +118,9 @@
         <div class="detail-tab">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#desc">بررسی اجمالی</a></li>
-                 <li><a data-toggle="tab" href="#feature">مشخصات</a></li>
+                <li><a data-toggle="tab" href="#feature">مشخصات</a></li>
                 <li><a data-toggle="tab" href="#comments">نظرات کاربران</a></li>
-                <li><a data-toggle="tab" href="#addcomment">افزودن نظر</a></li>               
+                <li><a data-toggle="tab" href="#addcomment">افزودن نظر</a></li>
             </ul>
 
             <div class="tab-content">
@@ -133,7 +133,7 @@
                     </p>
                     <p><a href="https://imenforoush.com/">فروشگاه اینترنتی ایمن فروش (شرکت آرشانوین)</a></p>
                 </div>
-                 <div id="feature" class="tab-pane fade">
+                <div id="feature" class="tab-pane fade">
                     @Html.Raw(Model.Attributes)
                 </div>
                 <div id="comments" class="tab-pane fade">
@@ -188,7 +188,7 @@
                             }
                         </div>
                     </div>
-                </div>               
+                </div>
             </div>
         </div>
     </div>

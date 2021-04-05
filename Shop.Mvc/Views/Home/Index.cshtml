@@ -169,10 +169,15 @@
                                                 </span>
                                                 <span style="margin-right: 8px;">تومان</span>
                                             </div>
-                                            <div class="price">
-                                                <p style="color:red;">تخفیف داره مهدی خودت اوکیش کن</p>
-                                            </div>
+                                            @if (product.IsAmazing && product.Discount > 0)
+                                            {
+                                                <div class="price">
+                                                    <p style="color:red;">تخفیف داره مهدی خودت اوکیش کن</p>
+                                                </div>
+                                            }
+
                                         </div>
+                                        
                                         <div class="slick__product__item__btn">
                                             @if (product.Count > 0)
                                             {

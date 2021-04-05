@@ -101,7 +101,9 @@ namespace Shop.Services
                     Title = i.Title,
                     Count = i.Count,
                     Price = i.Price,
-                    PrimaryImage = i.PrimaryImage
+                    PrimaryImage = i.PrimaryImage,
+                    Discount = i.Discount,
+                    IsAmazing = i.IsAmazing
                 }).ToList();
                 _product.Clear();
                 result.ProductCategries.Add(output);

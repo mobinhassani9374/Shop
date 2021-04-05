@@ -51,7 +51,9 @@ namespace Shop.Mvc.Mapping
                 Count = source.Count,
                 Price = source.Price,
                 PrimaryImage = source.PrimaryImage,
-                Title = source.Title
+                Title = source.Title,
+                IsAmazing = source.IsAmazing,
+                Discount = source.Discount
             };
         }
         public static CreateContactUsDto ToDto(this CreateContactUsViewModel source, string userId)

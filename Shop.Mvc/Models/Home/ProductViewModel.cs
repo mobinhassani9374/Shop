@@ -12,5 +12,7 @@ namespace Shop.Mvc.Models.Home
         public long Price { get; set; }
         public int Count { get; set; }
         public string PrimaryImage { get; set; }
+        public bool IsAmazing { get; set; }
+        public long Discount { get; set; }
     }
 }
