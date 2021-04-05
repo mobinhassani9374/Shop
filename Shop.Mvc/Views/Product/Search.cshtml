@@ -63,6 +63,10 @@
                                     <span data-role="seperator">@item.Price</span>
                                     <span style="margin-right:10px">تومان</span>
                                 </div>
+                                @if(item.IsAmazing)
+                                {
+                                    <p style="color:red;">مهدی تخفیف داره</p>
+                                }
                                 @if (item.Count != 0)
                                 {
                                     <div class="category__item__btn">
