@@ -11,7 +11,7 @@
         <div class="row">
             <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
                 <!-- Indicators -->
-                <ol class="carousel-indicators">
+            <ol class="carousel-indicators">
                     @for (int i = 0; i < Model.SlideShows.Count; i++)
                     {
 
@@ -35,7 +35,8 @@
                         {
                             <div class="item active">
                                 <a target="_blank" href="@Model.SlideShows[i].Link">
-                                    <img alt="ایمن فروش (شرکت آرشانوین)" src="~/Files/SlideShowImages/@(Model.SlideShows[i].ImageName)">
+                                    <img alt="ایمن فروش (شرکت آرشانوین)"
+                            src="~/Files/SlideShowImages/@(Model.SlideShows[i].ImageName)">
                                 </a>
                             </div>
                         }
@@ -43,7 +44,8 @@
                         {
                             <div class="item">
                                 <a target="_blank" href="@Model.SlideShows[i].Link">
-                                    <img alt="ایمن فروش (شرکت آرشانوین)" src="~/Files/SlideShowImages/@(Model.SlideShows[i].ImageName)">
+                                    <img alt="ایمن فروش (شرکت آرشانوین)"
+                            src="~/Files/SlideShowImages/@(Model.SlideShows[i].ImageName)">
                                 </a>
                             </div>
                         }
@@ -51,7 +53,7 @@
                 </div>
 
                 <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                     <span class="sr-only">Previous</span>
                 </a>
@@ -72,7 +74,7 @@
             <div class="offer">
                 <div class="offer__title">
                     پیشنهادات شگفت انگیز
-                   
+
                 </div>
                 <div class="offer__arrow">
                     <i data-role="offer-right" class="fa fa-angle-right offer__arrow__right"></i>
@@ -86,7 +88,8 @@
                                 <div class="row">
                                     <div class="col-md-4 col-xs-12 col-sm-12">
                                         <div class="offer__product__item__img">
-                                            <img alt="ایمن فروش (شرکت آرشانوین) - @(item.Title)" src="/Files/Images/@(item.PrimaryImage)" class="img-responsive" />
+                                            <img alt="ایمن فروش (شرکت آرشانوین) - @(item.Title)"
+                                        src="/Files/Images/@(item.PrimaryImage)" class="img-responsive" />
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-xs-12 col-sm-12">
@@ -94,28 +97,30 @@
                                             @item.Title
                                         </div>
                                         <div class="offer__product__item__price">
-                                            <div>                                                
-                                                <span class="badge">@item.Discount %</span>                                                
-                                                <del data-role="seperator">@item.Price</del>                                                
+                                            <div>
+                                                <span class="badge">@item.Discount %</span>
+                                                <del data-role="seperator">@item.Price</del>
                                             </div>
                                             <div class="flex-center" style="justify-content: space-between;">
                                                 <div>
                                                     <span>تومان</span>
-                                                    <span data-role="seperator" style="margin-left: 10px;">@(item.Price - (item.Price * item.Discount / 100))</span> 
-                                                </div>   
+                                                    <span data-role="seperator" style="margin-left: 10px;">@(item.Price -
+                                                (item.Price * item.Discount / 100))</span>
+                                                </div>
                                                 <span>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
-                                                </span>                                                                                             
-                                            </div>                                           
+                                                </span>
+                                            </div>
                                         </div>
                                         <div class="offer__product__item__btn">
-                                            <a v-on:click="addCart(@item.Id)" id="addcart@(item.Id)" class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
+                                            <a v-on:click="addCart(@item.Id)" id="addcart@(item.Id)"
+                                        class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
                                                 <span class="ladda-label">افزودن به سبد خرید</span>
-                                            </a>                                           
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -153,31 +158,32 @@
                                     <a asp-action="Detail" asp-controller="Product" asp-route-id="@(product.Id)">
                                         <div class="slick__product__item__img">
                                             <img alt="@product.Title - ایمن فروش (شرکت آرشانوین)"
-                                                 src="/Files/Images/@product.PrimaryImage" class="img-responsive" />
+                                src="/Files/Images/@product.PrimaryImage" class="img-responsive" />
                                         </div>
                                         <div class="slick__product__item__title">
                                             @product.Title
                                         </div>
                                         <div class="slick__product__item__price">
-                                            <div style="height: 25px;">                                                            
+                                            <div style="height: 25px;">
                                                 @if (product.IsAmazing && product.Discount > 0)
-                                                {                                                    
+                                                {
                                                     <span class="badge">@product.Discount %</span>
-                                                    <del data-role="seperator">@product.Price</del>                                                        
+                                                    <del data-role="seperator">@product.Price</del>
                                                 }
-                                            </div> 
+                                            </div>
                                             <div class="price">
                                                 <span data-role="seperator">
                                                     @(product.Price - (product.Price * product.Discount / 100))
                                                 </span>
                                                 <span style="margin-right: 8px;">تومان</span>
-                                            </div>                                        
+                                            </div>
                                         </div>
-                                        
+
                                         <div class="slick__product__item__btn">
                                             @if (product.Count > 0)
                                             {
-                                                <a v-on:click="addCart(@product.Id)" id="addcart@(product.Id)" type="submit" class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
+                                                <a v-on:click="addCart(@product.Id)" id="addcart@(product.Id)" type="submit"
+                                class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
                                                     <span class="ladda-label">افزودن به سبد خرید</span>
                                                 </a>
                                             }
@@ -199,7 +205,8 @@
 
 <div class="bg-header">
     <h1 class="title">
-        ایمن فروش (شرکت آرشانوین) :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن - ردیاب های شخصی و خودرو
+        ایمن فروش (شرکت آرشانوین) :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن -
+        ردیاب های شخصی و خودرو
     </h1>
     <div class="box">
         <h2 class="box__item">فروش سیستم های امنیتی و نظارتی</h2>
@@ -207,12 +214,15 @@
         <h2 class="box__item">دزدگیر اماکن</h2>
         <h2 class="box__item">ردیاب های شخصی و خودرو</h2>
         <h2 class="box__item">شرکت آرشانوین</h2>
+        <h2 class="box__item">گروه صنعتی سایلکس</h2>
     </div>
 </div>
 
 <script>
-    $(function () {
-        $('[id*="slick"]').map(function (index, item) {
+    $(function ()
+    {
+        $('[id*="slick"]').map(function (index, item)
+        {
             var id = $(item).attr('id');
             $('#' + id).slick({
                 infinite: false,
@@ -255,11 +265,13 @@
                 ]
             })
 
-            $('[data-role="slick-left_' + id + '"]').on('click', function () {
+            $('[data-role="slick-left_' + id + '"]').on('click', function ()
+            {
                 $('#' + id).slick('slickPrev');
             })
 
-            $('[data-role="slick-right_' + id + '"]').on('click', function () {
+            $('[data-role="slick-right_' + id + '"]').on('click', function ()
+            {
                 $('#' + id).slick('slickNext');
             })
         })
