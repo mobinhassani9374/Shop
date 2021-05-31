@@ -71,11 +71,11 @@
                         <form method="post" action="/payment">
                             @Html.AntiForgeryToken()
                             <div class="col-md-4 col-xs-12 pull-right">
-                                <div class="alert alert-danger text-center">
+                                <!-- <div class="alert alert-danger text-center">
                                     خرید بالای 700,000 تومان هزینه ارسالش رایگان
                                     میباشد
-                                </div>
-                                <div class="cart__price" v-if="shippingCost!==0">
+                                </div> -->
+                                <div class="cart__price">
                                     <div>هزینه ارسال : </div>
                                     <div class="text-success">{{seperator(shippingCost)}} تومان</div>
                                 </div>
