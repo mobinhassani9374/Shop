@@ -227,11 +227,13 @@ namespace Shop.Services
             orderEntity.Date = DateTime.Now;
             orderEntity.UserId = userId;
             orderEntity.Address = address;
-            if (carts.Sum(c => c.Product.Price) < 700000)
-            {
-                orderEntity.ShippingPrice = 20000;
-                orderEntity.TotalPrice += orderEntity.ShippingPrice;
-            }
+            //if (carts.Sum(c => c.Product.Price) < 700000)
+            //{
+            //    orderEntity.ShippingPrice = 20000;
+            //    orderEntity.TotalPrice += orderEntity.ShippingPrice;
+            //}
+            orderEntity.ShippingPrice = 30000;
+            orderEntity.TotalPrice += orderEntity.ShippingPrice;
 
             Insert(orderEntity);
             var saveResult = Save("عملیات با موفقیت صورت گرفت");
