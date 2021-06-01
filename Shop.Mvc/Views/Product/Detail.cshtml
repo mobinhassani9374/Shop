@@ -194,8 +194,65 @@
     </div>
 </div>
 
-@* <script>
-    $(document).ready(function () {
-    $('#zoom').zoom();
-    });
-    </script> *@
+
+<script>
+    $(function ()
+    {
+        $('[id*="slick"]').map(function (index, item)
+        {
+            var id = $(item).attr('id');
+            $('#' + id).slick({
+                infinite: false,
+                centerMode: false,
+                centerPadding: '60px',
+                slidesToShow: 5,
+                arrows: false,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                focusOnSelect: false,
+                accessibility: false,
+                responsive: [
+                    {
+                        breakpoint: 900,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '60px',
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '60px',
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '40px',
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            })
+
+            $('[data-role="slick-left_' + id + '"]').on('click', function ()
+            {
+                $('#' + id).slick('slickPrev');
+            })
+
+            $('[data-role="slick-right_' + id + '"]').on('click', function ()
+            {
+                $('#' + id).slick('slickNext');
+            })
+        })
+
+        $('.slick__product__item__title').matchHeight();
+    })
+</script>

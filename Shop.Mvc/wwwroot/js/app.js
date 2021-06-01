@@ -83,8 +83,8 @@ var app = new Vue({
             // else {
             //     me.shippingCost = 0;
             // }
-            me.shippingCost = 30000;
-            me.price += 30000;
+            // me.shippingCost = 30000;
+            // me.price += 30000;
         },
         increase: function(productId) {
             var me = this;
