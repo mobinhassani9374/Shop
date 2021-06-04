@@ -12,6 +12,9 @@ namespace Shop.Domain.Enumeration
         ProductImage = 1,
 
         [DisplayName("عکس اسلایدشو")]
-        SlideShowImage = 2
+        SlideShowImage = 2,
+
+        [DisplayName("عکس اصلی آموزش")]
+        EducationImage = 3
     }
 }

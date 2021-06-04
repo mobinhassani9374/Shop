@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Category;
+using Shop.Domain.Dto.Educations;
 using Shop.Domain.Dto.Info;
 using Shop.Domain.Dto.Order;
 using Shop.Domain.Dto.Pagination;
@@ -607,6 +608,25 @@ namespace Shop.Services
 
             serviceResult = Save("یک نمایندگی با موفقیت حذف شد");
 
+            return serviceResult;
+        }
+
+        public ServiceResult CreateEducation(EducationCreateDto dto)
+        {
+            var serviceResult = dto.IsValid();
+            if (serviceResult.IsSuccess)
+            {
+                var uploadService = Upload(dto.Image, FileType.EducationImage, 500 * 1024);
+                if (uploadService.IsSuccess)
+                {
+                    dto.ImageName = uploadService.Data;
+                    Insert(dto.ToEntity());
+                    serviceResult = Save("ثبت آموزش با موفقیت انجام شد");
+                    if (!serviceResult.IsSuccess)
+                        DeleteFile(dto.ImageName, FileType.EducationImage);
+                }
+                else serviceResult.AddError(uploadService.Errors.FirstOrDefault());
+            }
             return serviceResult;
         }
     }
