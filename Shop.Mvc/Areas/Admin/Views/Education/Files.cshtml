@@ -1,0 +1,147 @@
+﻿@using Shop.Mvc.Models.Educations
+@using Shop.Domain.Enumeration
+@using DNTPersianUtils.Core
+
+@model List<EducationFileViewModel>
+@{
+    ViewData["Title"] = "Files";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var images = Model.Where(c => c.Type == EducationFileType.Image).ToList();
+    var audios = Model.Where(c => c.Type == EducationFileType.Audio).ToList();
+    var videos = Model.Where(c => c.Type == EducationFileType.Video).ToList();
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
+        <li class="breadcrumb-item" aria-current="page">فایل های آموزش</li>
+        <li class="breadcrumb-item active" aria-current="page">فایل های آموزش</li>
+    </ol>
+</nav>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">فایل های آموزش</div>
+    <div class="panel-body">
+        <p>عکس های بارگذاری شده : </p>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>عکس</th>
+                        <th>عنوان</th>
+                        <th>تعدا دانلود</th>
+                        <th>حجم</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (images.Count > 0)
+                    {
+                        foreach (var item in images)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/Files/EducationFiles/@(item.FileName)" class="img-responsive img-thumbnail"
+                                         style="max-width:60px" />
+                                </td>
+                                <td>@item.Title.ToPersianNumbers()</td>
+                                <td>@item.CountDownload.ToPersianNumbers()</td>
+                                <td>@item.Length.ToPersianNumbers()</td>
+                                <td>
+                                    <a asp-action="Delete" data-role="confirm" asp-route-id="@(item.Id)"
+                                       class="btn btn-danger ladda-button" data-style="zoom-in">
+                                        <span class="ladda-label">حذف </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5">عکسی آپلود نشده است</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <p>صوت های بارگذاری شده : </p>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>عنوان</th>
+                        <th>تعدا دانلود</th>
+                        <th>حجم</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (audios.Count > 0)
+                    {
+                        foreach (var item in audios)
+                        {
+                            <tr>
+                                <td>@item.Title.ToPersianNumbers()</td>
+                                <td>@item.CountDownload.ToPersianNumbers()</td>
+                                <td>@item.Length.ToPersianNumbers()</td>
+                                <td>
+                                    <a asp-action="Delete" data-role="confirm" asp-route-id="@(item.Id)"
+                                       class="btn btn-danger ladda-button" data-style="zoom-in">
+                                        <span class="ladda-label">حذف </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4">صوتی آپلود نشده است</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <p>ویدیوهای بارگذاری شده : </p>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>عنوان</th>
+                        <th>تعدا دانلود</th>
+                        <th>حجم</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (videos.Count > 0)
+                    {
+                        foreach (var item in videos)
+                        {
+                            <tr>
+                                <td>@item.Title.ToPersianNumbers()</td>
+                                <td>@item.CountDownload.ToPersianNumbers()</td>
+                                <td>@item.Length.ToPersianNumbers()</td>
+                                <td>
+                                    <a asp-action="Delete" data-role="confirm" asp-route-id="@(item.Id)"
+                                       class="btn btn-danger ladda-button" data-style="zoom-in">
+                                        <span class="ladda-label">حذف </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4">ویدیویی آپلود نشده است</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+

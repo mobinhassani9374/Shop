@@ -57,5 +57,11 @@ namespace Shop.Mvc.Areas.Admin.Controllers
             var serviceResult = _adminService.UploadFileForEducation(model.ToDto());
             return View_Post(serviceResult, model);
         }
+
+        public IActionResult Files(int id)
+        {
+            var data = _adminService.GetAllEducationFiles(id);
+            return View(data.ToViewModel());
+        }
     }
 }

@@ -67,5 +67,26 @@ namespace Shop.Mvc.Mapping
                 Type = source.Type
             };
         }
+        public static List<EducationFileViewModel> ToViewModel(this List<EducationFileDto> sources)
+        {
+            var list = new List<EducationFileViewModel>();
+            foreach (var source in sources)
+                list.Add(source.ToViewModel());
+            return list;
+        }
+
+        public static EducationFileViewModel ToViewModel(this EducationFileDto source)
+        {
+            return new EducationFileViewModel
+            {
+                CountDownload = source.CountDownload,
+                EducationId = source.EducationId,
+                FileName = source.FileName,
+                Id = source.Id,
+                Length = source.Length,
+                Title = source.Title,
+                Type = source.Type
+            };
+        }
     }
 }

@@ -644,7 +644,7 @@ namespace Shop.Services
             var serviceResult = dto.IsValid();
             if (serviceResult.IsSuccess)
             {
-                var uploadService = Upload(dto.File, FileType.EducationImage, 300 * 1024 * 1024);
+                var uploadService = Upload(dto.File, FileType.EducationFile, 300 * 1024 * 1024);
                 if (uploadService.IsSuccess)
                 {
                     dto.FileName = uploadService.Data;
@@ -656,6 +656,12 @@ namespace Shop.Services
                 else serviceResult.AddError(uploadService.Errors.FirstOrDefault());
             }
             return serviceResult;
+        }
+
+        public List<EducationFileDto> GetAllEducationFiles(int educationId)
+        {
+            var data = _dbContext.EducationFiles.Where(c => c.EducationId == educationId).ToList();
+            return data.ToDto();
         }
     }
 }

@@ -56,5 +56,26 @@ namespace Shop.Services.Mapping
                 EducationId = source.EducationId
             };
         }
+        public static List<EducationFileDto> ToDto(this List<EducationFile> sources)
+        {
+            var list = new List<EducationFileDto>();
+            foreach (var source in sources)
+                list.Add(source.ToDto());
+            return list;
+        }
+
+        public static EducationFileDto ToDto(this EducationFile source)
+        {
+            return new EducationFileDto
+            {
+                CountDownload = source.CountDownload,
+                EducationId = source.EducationId,
+                FileName = source.FileName,
+                Id = source.Id,
+                Length = source.Length,
+                Title = source.Title,
+                Type = source.Type
+            };
+        }
     }
 }
