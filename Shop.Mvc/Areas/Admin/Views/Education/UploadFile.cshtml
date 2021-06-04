@@ -3,6 +3,7 @@
     ViewData["Title"] = "آپلود فایل برای آموزش - پنل مدیریتی ایمن فروش";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
     var typeSelector = (List<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)ViewBag.TypeSelector;
+    var education = (Shop.Mvc.Models.Educations.EducationViewModel)ViewBag.Education;
 }
 
 
@@ -15,12 +16,12 @@
 </nav>
 
 <div class="panel panel-primary" id="app">
-    <div class="panel-heading">آپلود فایل برای آموزش</div>
+    <div class="panel-heading">آپلود فایل برای آموزش : @education.Title</div>
     <div class="panel-body">
-        
+
         <div class="row">
             <form id="form" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="EducationId" value="@ViewBag.EducationId"/>
+                <input type="hidden" name="EducationId" value="@ViewBag.EducationId" />
                 <div class="col-md-12 col-xs-12">
                     <div class="form-group">
                         @Html.Partial("_ServiceResult")
@@ -36,7 +37,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 col-xs-12">
+                <div class="col-md-4 col-xs-4">
                     <div class="form-group">
                         <label class="required">نوع فایل  را انتخاب کنید </label>
                         <select asp-for="Type" required class="form-control" asp-items="@typeSelector"></select>

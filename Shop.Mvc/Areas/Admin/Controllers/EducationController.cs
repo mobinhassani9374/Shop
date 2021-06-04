@@ -38,6 +38,12 @@ namespace Shop.Mvc.Areas.Admin.Controllers
 
         public IActionResult UploadFile(int id)
         {
+            if (!_adminService.ExistEducation(id))
+            {
+                Swal(false, "شناسه آموزش اشتباه می باشد");
+                return RedirectToAction(nameof(Index));
+            }
+
             List<SelectListItem> typeSelector = new List<SelectListItem>();
             typeSelector.Add(new SelectListItem("", ""));
             typeSelector.Add(new SelectListItem("عکس", EducationFileType.Image.ToString()));
@@ -46,6 +52,8 @@ namespace Shop.Mvc.Areas.Admin.Controllers
 
             ViewBag.TypeSelector = typeSelector;
             ViewBag.EducationId = id;
+
+            ViewBag.Education = _adminService.GetEducations(id)?.ToViewModel();
 
             return View();
         }

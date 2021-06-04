@@ -663,5 +663,14 @@ namespace Shop.Services
             var data = _dbContext.EducationFiles.Where(c => c.EducationId == educationId).ToList();
             return data.ToDto();
         }
+
+        public bool ExistEducation(int id)
+        {
+            return _dbContext.Educations.Any(c => c.Id == id);
+        }
+        public EducationDto GetEducations(int id)
+        {
+            return _dbContext.Educations.FirstOrDefault(c => c.Id == id)?.ToDto();
+        }
     }
 }
