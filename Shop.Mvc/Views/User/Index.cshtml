@@ -33,7 +33,7 @@
                         <div class="main__box__item">
                             <div>
                                 <p>شماره سفارش : @order.Id </p>
-                                <p>
+                                @*<p>
                                     هزینه ارسال :
                                     @if (order.ShippingPrice == 0)
                                     {
@@ -43,7 +43,7 @@
                                     {
                                         <span data-role="seperator">@order.ShippingPrice</span> <span>تومان</span>
                                     }
-                                </p>
+                                </p>*@
                                 <p>مبلغ کل سفارش : <span data-role="seperator">@order.TotalPrice</span> تومان</p>
                             </div>
                             <div>

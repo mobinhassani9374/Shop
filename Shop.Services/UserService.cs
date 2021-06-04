@@ -232,7 +232,7 @@ namespace Shop.Services
             //    orderEntity.ShippingPrice = 20000;
             //    orderEntity.TotalPrice += orderEntity.ShippingPrice;
             //}
-            orderEntity.ShippingPrice = 30000;
+            orderEntity.ShippingPrice = 0;
             orderEntity.TotalPrice += orderEntity.ShippingPrice;
 
             Insert(orderEntity);
