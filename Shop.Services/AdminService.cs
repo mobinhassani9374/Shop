@@ -487,7 +487,7 @@ namespace Shop.Services
         public long CountPrice()
         {
             return _dbContext.Orders
-                    .Where(c => c.IsPaid).Sum(c=>c.TotalPrice);
+                    .Where(c => c.IsPaid).Sum(c => c.TotalPrice);
         }
         public ServiceResult SaveInfo(InfoDto dto)
         {
@@ -628,6 +628,15 @@ namespace Shop.Services
                 else serviceResult.AddError(uploadService.Errors.FirstOrDefault());
             }
             return serviceResult;
+        }
+        public PaginationDto<EducationDto> GetEducations(SearchEducationDto dto)
+        {
+            var query = _dbContext.Educations.AsQueryable();
+
+            IOrderedQueryable<Education> orderedQery =
+               query.OrderByDescending(c => c.Id);
+
+            return orderedQery.ToPaginated(dto).ToDto();
         }
     }
 }
