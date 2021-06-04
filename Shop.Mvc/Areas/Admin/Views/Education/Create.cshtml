@@ -15,6 +15,9 @@
 <div class="panel panel-primary">
     <div class="panel-heading">ثبت آموزش جدید</div>
     <div class="panel-body">
+        <div class="alert alert-warning">
+            <p>عکس برای آموزش نباید بیش از 500 کیلو بایت باشد</p>
+        </div>
         <div class="row">
             <form method="post" enctype="multipart/form-data">
                 <div class="col-md-12 col-xs-12">
@@ -31,7 +34,7 @@
                         <input asp-for="Title" required type="text" placeholder="عنوان" class="form-control">
                     </div>
                 </div>
-                
+
                 <div class="col-md-12 col-xs-12">
                     <div class="form-group">
                         <label class="required">عکس  را انتخاب کنید </label>

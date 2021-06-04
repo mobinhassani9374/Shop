@@ -44,5 +44,17 @@ namespace Shop.Services.Mapping
                 Title = source.Title
             };
         }
+        public static EducationFile ToEntity(this UploadFileEducationDto source)
+        {
+            return new EducationFile
+            {
+                CountDownload = 0,
+                FileName = source.FileName,
+                Length = source.File.Length,
+                Title = source.Title,
+                Type = source.Type,
+                EducationId = source.EducationId
+            };
+        }
     }
 }

@@ -26,6 +26,7 @@ namespace Shop.Database
         public DbSet<LogService> LogServices { get; set; }
         public DbSet<Representation> Representations { get; set; }
         public DbSet<Education> Educations { get; set; }
+        public DbSet<EducationFile> EducationFiles { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -155,10 +156,18 @@ namespace Shop.Database
 
             var education = builder.Entity<Education>();
 
-            education.HasKey(c=>c.Id);
+            education.HasKey(c => c.Id);
             education.Property(c => c.Title).HasMaxLength(Constants.Product_Title_Length).IsRequired(true);
             education.Property(c => c.Image).HasMaxLength(Constants.Product_PrimaryImage_Length).IsRequired(true);
 
+
+            var educationFile = builder.Entity<EducationFile>();
+            educationFile.HasKey(c => c.Id);
+
+            educationFile.Property(c => c.Title).HasMaxLength(Constants.Product_Title_Length).IsRequired(false);
+            educationFile.Property(c => c.FileName).HasMaxLength(Constants.Product_PrimaryImage_Length).IsRequired(true);
+
+            educationFile.HasOne(c => c.Education).WithMany(c => c.Files).HasForeignKey(c => c.EducationId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

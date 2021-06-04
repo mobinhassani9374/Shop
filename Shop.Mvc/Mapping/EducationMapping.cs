@@ -57,5 +57,15 @@ namespace Shop.Mvc.Mapping
                 Title = source.Title
             };
         }
+        public static UploadFileEducationDto ToDto(this UploadFileEducationViewModel source)
+        {
+            return new UploadFileEducationDto
+            {
+                EducationId = source.EducationId,
+                File = source.File,
+                Title = source.Title,
+                Type = source.Type
+            };
+        }
     }
 }

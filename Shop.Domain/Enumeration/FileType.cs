@@ -15,6 +15,9 @@ namespace Shop.Domain.Enumeration
         SlideShowImage = 2,
 
         [DisplayName("عکس اصلی آموزش")]
-        EducationImage = 3
+        EducationImage = 3,
+
+        [DisplayName("فایل های آموزش")]
+        EducationFile =4
     }
 }

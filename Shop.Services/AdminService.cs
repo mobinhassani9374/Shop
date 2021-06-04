@@ -638,5 +638,24 @@ namespace Shop.Services
 
             return orderedQery.ToPaginated(dto).ToDto();
         }
+
+        public ServiceResult UploadFileForEducation(UploadFileEducationDto dto)
+        {
+            var serviceResult = dto.IsValid();
+            if (serviceResult.IsSuccess)
+            {
+                var uploadService = Upload(dto.File, FileType.EducationImage, 300 * 1024 * 1024);
+                if (uploadService.IsSuccess)
+                {
+                    dto.FileName = uploadService.Data;
+                    Insert(dto.ToEntity());
+                    serviceResult = Save("آپلود فایل با موفقیت انجام شد");
+                    if (!serviceResult.IsSuccess)
+                        DeleteFile(dto.FileName, FileType.EducationFile);
+                }
+                else serviceResult.AddError(uploadService.Errors.FirstOrDefault());
+            }
+            return serviceResult;
+        }
     }
 }
