@@ -31,6 +31,8 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Files\Images\" />
+    <Folder Include="wwwroot\Files\EducationImages\" />
+    <Folder Include="wwwroot\Files\EducationFiles\" />
     <Folder Include="wwwroot\Files\SlideShowImages\" />
     <Folder Include="wwwroot\Keys\" />
   </ItemGroup>

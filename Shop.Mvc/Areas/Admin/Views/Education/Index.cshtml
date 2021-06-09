@@ -1,0 +1,79 @@
+﻿@using Shop.Mvc.Models
+@using Shop.Mvc.Models.Educations
+@using Shop.Mvc.Models.Pagination
+@using DNTPersianUtils.Core
+@using Shop.Utility.Extensions
+
+@model SearchModel<EducationSearchViewModel, PaginationViewModel<EducationViewModel>>
+@{
+    ViewData["Title"] = " نمایش آموزش های ثبت شده - پنل مدیریتی ایمن فروش";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
+        <li class="breadcrumb-item active" aria-current="page">نمایش آموزش های ثبت شده</li>
+    </ol>
+</nav>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">نمایش آموزش های ثبت شده</div>
+    <div class="panel-body">
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>عکس </th>
+                        <th>عنوان</th>
+                        <th>تعداد عکس</th>
+                        <th>تعداد صوت</th>
+                        <th>تعداد ویدیو</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Data.Count > 0)
+                    {
+                        foreach (var item in Model.Data.Data)
+                        {
+                    <tr>
+                        <td>
+                            <img src="~/Files/EducationImages/@(item.Image)" class="img-responsive img-thumbnail"
+                                 style="max-width:60px" />
+                        </td>
+                        <td>@item.Title.ToPersianNumbers()</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>
+                            <a asp-action="UploadFile" asp-route-id="@(item.Id)"
+                               class="btn btn-success ladda-button" data-style="zoom-in">
+                                <span class="ladda-label">آپلود فایل</span>
+                            </a>
+                            <a asp-action="Files" asp-route-id="@(item.Id)"
+                               class="btn btn-primary ladda-button" data-style="zoom-in">
+                                <span class="ladda-label">مدیریت فایل ها</span>
+                            </a>
+                            <a asp-action="Delete" data-role="confirm" asp-route-id="@(item.Id)"
+                               class="btn btn-danger ladda-button" data-style="zoom-in">
+                                <span class="ladda-label">حذف </span>
+                            </a>
+                        </td>
+                    </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6">آموزشی یافت نشد</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @Html.Partial("~/Views/Shared/_Pagination.cshtml", Model.Data)
+    </div>
+</div>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shop.Database;
 
 namespace Shop.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210604122159_AddEntity_EducationFile_Migration")]
+    partial class AddEntity_EducationFile_Migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -275,8 +277,6 @@ namespace Shop.Database.Migrations
 
                     b.Property<int>("CountDownload");
 
-                    b.Property<int>("EducationId");
-
                     b.Property<string>("FileName")
                         .IsRequired()
                         .HasMaxLength(500);
@@ -289,8 +289,6 @@ namespace Shop.Database.Migrations
                     b.Property<int>("Type");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EducationId");
 
                     b.ToTable("EducationFiles");
                 });
@@ -600,14 +598,6 @@ namespace Shop.Database.Migrations
                     b.HasOne("Shop.Domain.Entities.Category", "Parent")
                         .WithMany("Children")
                         .HasForeignKey("ParentId");
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.EducationFile", b =>
-                {
-                    b.HasOne("Shop.Domain.Entities.Education", "Education")
-                        .WithMany("Files")
-                        .HasForeignKey("EducationId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.OrderDetail", b =>

@@ -8,7 +8,7 @@ namespace Shop.Services.Messaging.NewFolder.FarazSms.Models
     {
         public string op { get; } = "pattern";
         public string user { get; } = "09197572162";
-        public string pass { get; } = "0018684297";
+        public string pass { get; } = "Mahdi23974";
         public string fromNum { get; } = "3000505";
         public string toNum { get; set; }
         public string patternCode { get; protected set; }

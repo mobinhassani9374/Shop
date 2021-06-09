@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Shop.Database;
 using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Category;
+using Shop.Domain.Dto.Educations;
 using Shop.Domain.Dto.Info;
 using Shop.Domain.Dto.Order;
 using Shop.Domain.Dto.Pagination;
@@ -486,7 +487,7 @@ namespace Shop.Services
         public long CountPrice()
         {
             return _dbContext.Orders
-                    .Where(c => c.IsPaid).Sum(c=>c.TotalPrice);
+                    .Where(c => c.IsPaid).Sum(c => c.TotalPrice);
         }
         public ServiceResult SaveInfo(InfoDto dto)
         {
@@ -608,6 +609,68 @@ namespace Shop.Services
             serviceResult = Save("یک نمایندگی با موفقیت حذف شد");
 
             return serviceResult;
+        }
+
+        public ServiceResult CreateEducation(EducationCreateDto dto)
+        {
+            var serviceResult = dto.IsValid();
+            if (serviceResult.IsSuccess)
+            {
+                var uploadService = Upload(dto.Image, FileType.EducationImage, 500 * 1024);
+                if (uploadService.IsSuccess)
+                {
+                    dto.ImageName = uploadService.Data;
+                    Insert(dto.ToEntity());
+                    serviceResult = Save("ثبت آموزش با موفقیت انجام شد");
+                    if (!serviceResult.IsSuccess)
+                        DeleteFile(dto.ImageName, FileType.EducationImage);
+                }
+                else serviceResult.AddError(uploadService.Errors.FirstOrDefault());
+            }
+            return serviceResult;
+        }
+        public PaginationDto<EducationDto> GetEducations(SearchEducationDto dto)
+        {
+            var query = _dbContext.Educations.AsQueryable();
+
+            IOrderedQueryable<Education> orderedQery =
+               query.OrderByDescending(c => c.Id);
+
+            return orderedQery.ToPaginated(dto).ToDto();
+        }
+
+        public ServiceResult UploadFileForEducation(UploadFileEducationDto dto)
+        {
+            var serviceResult = dto.IsValid();
+            if (serviceResult.IsSuccess)
+            {
+                var uploadService = Upload(dto.File, FileType.EducationFile, 300 * 1024 * 1024);
+                if (uploadService.IsSuccess)
+                {
+                    dto.FileName = uploadService.Data;
+                    Insert(dto.ToEntity());
+                    serviceResult = Save("آپلود فایل با موفقیت انجام شد");
+                    if (!serviceResult.IsSuccess)
+                        DeleteFile(dto.FileName, FileType.EducationFile);
+                }
+                else serviceResult.AddError(uploadService.Errors.FirstOrDefault());
+            }
+            return serviceResult;
+        }
+
+        public List<EducationFileDto> GetAllEducationFiles(int educationId)
+        {
+            var data = _dbContext.EducationFiles.Where(c => c.EducationId == educationId).ToList();
+            return data.ToDto();
+        }
+
+        public bool ExistEducation(int id)
+        {
+            return _dbContext.Educations.Any(c => c.Id == id);
+        }
+        public EducationDto GetEducations(int id)
+        {
+            return _dbContext.Educations.FirstOrDefault(c => c.Id == id)?.ToDto();
         }
     }
 }
