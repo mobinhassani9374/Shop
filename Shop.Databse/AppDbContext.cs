@@ -66,6 +66,8 @@ namespace Shop.Database
 
             product.Property(c => c.Attributes).HasMaxLength(Constants.Product_Attributes_Length).IsRequired(false);
 
+            product.Property(c => c.GarantyCondition).HasMaxLength(Constants.Product_Attributes_Length).IsRequired(false);
+
             product.HasOne(c => c.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(c => c.CategoryId)

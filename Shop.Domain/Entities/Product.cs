@@ -19,6 +19,7 @@ namespace Shop.Domain.Entities
         public long Discount { get; set; }
         public string Garanty { get; set; }
         public string Attributes { get; set; }
+        public string GarantyCondition { get; set; }
         public ICollection<Cart> Carts { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
         public ICollection<ProductVote> Votes { get; set; }
