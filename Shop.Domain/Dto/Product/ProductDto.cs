@@ -20,5 +20,6 @@ namespace Shop.Domain.Dto.Product
         public string Garanty { get; set; }
         public string Attributes { get; set; }
         public CategoryDto Category { get; set; }
+        public string GarantyCondition { get; set; }
     }
 }

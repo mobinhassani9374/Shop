@@ -24,7 +24,8 @@ namespace Shop.Mvc.Mapping
                 IsAmazing = source.IsAmazing,
                 Discount = source.Discount,
                 Attributes = source.Attributes,
-                Garanty = source.Garanty
+                Garanty = source.Garanty,
+                GarantyCondition = source.GarantyCondition
             };
         }
 
@@ -74,7 +75,8 @@ namespace Shop.Mvc.Mapping
                 Discount = source.Discount,
                 IsAmazing = source.IsAmazing,
                 Garanty = source.Garanty,
-                Attributes = source.Attributes
+                Attributes = source.Attributes,
+                GarantyCondition = source.GarantyCondition
             };
         }
 
@@ -92,7 +94,8 @@ namespace Shop.Mvc.Mapping
                 Discount = source.Discount,
                 IsAmazing = source.IsAmazing,
                 Attributes = source.Attributes,
-                Garanty = source.Garanty
+                Garanty = source.Garanty,
+                GarantyCondition = source.GarantyCondition
             };
         }
 

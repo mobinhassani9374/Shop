@@ -19,5 +19,6 @@ namespace Shop.Mvc.Models.Product
         public long Discount { get; set; }
         public string Garanty { get; set; }
         public string Attributes { get; set; }
+        public string GarantyCondition { get; set; }
     }
 }

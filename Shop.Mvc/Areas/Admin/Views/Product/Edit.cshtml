@@ -62,7 +62,7 @@
                             قیمت محصول را وارد کنید <span id="price-seperator" style="float: left;"></span>
                         </label>
                         <input asp-for="Price" onkeyup="numberWithCommas()" required type="number"
-                            placeholder="قیمت محصول" class="form-control">
+                               placeholder="قیمت محصول" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-4 col-xs-12">
@@ -121,7 +121,7 @@
                     <div class="form-group">
                         <label class="required">توضیحات محصول را وارد کنید </label>
                         <textarea asp-for="Description" class="editor" placeholder="توضیحات محصول"
-                            class="form-control"></textarea>
+                                  class="form-control"></textarea>
                     </div>
                 </div>
 
@@ -130,9 +130,19 @@
                     <div class="form-group">
                         <label class="required">مشخصات محصول را وارد کنید </label>
                         <textarea asp-for="Attributes" class="editor" placeholder="مشخصات محصول"
-                            class="form-control"></textarea>
+                                  class="form-control"></textarea>
                     </div>
                 </div>
+
+                <hr />
+                <div class="col-md-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="required">مشخصات محصول را وارد کنید </label>
+                        <textarea asp-for="GarantyCondition" class="editor" placeholder="مشخصات محصول"
+                                  class="form-control"></textarea>
+                    </div>
+                </div>
+
 
                 <hr />
                 <div class="col-xs-12">

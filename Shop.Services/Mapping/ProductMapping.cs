@@ -22,7 +22,8 @@ namespace Shop.Services.Mapping
                 Discount = source.Discount,
                 IsAmazing = source.IsAmazing,
                 Garanty = source.Garanty,
-                Attributes = source.Attributes
+                Attributes = source.Attributes,
+                GarantyCondition = source.GarantyCondition
             };
         }
 
@@ -40,7 +41,8 @@ namespace Shop.Services.Mapping
                 IsAmazing = source.IsAmazing,
                 Discount = source.Discount,
                 Attributes = source.Attributes,
-                Garanty = source.Garanty
+                Garanty = source.Garanty,
+                GarantyCondition = source.GarantyCondition
             };
         }
 
@@ -79,7 +81,8 @@ namespace Shop.Services.Mapping
                 IsAmazing = source.IsAmazing,
                 Discount = source.Discount,
                 Attributes = source.Attributes,
-                Garanty = source.Garanty
+                Garanty = source.Garanty,
+                GarantyCondition = source.GarantyCondition
             };
         }
         public static ProductVote ToEntity(this AddProductCommentDto source, string userId)

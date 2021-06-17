@@ -25,6 +25,9 @@ namespace Shop.Domain.Dto.Product
         [MaxLength(Constants.Product_Attributes_Length, ErrorMessage = "تعداد کاراکترهای مشخصات نمی تواند بیش از @ کاراکتر باشد")]
         public string Attributes { get; set; }
 
+        [MaxLength(Constants.Product_Attributes_Length, ErrorMessage = "تعداد کاراکترهای شرایط گارانتی نمی تواند بیش از @ کاراکتر باشد")]
+        public string GarantyCondition { get; set; }
+
         public string ImageName { get; set; }
 
         public int CategoryId { get; set; }
