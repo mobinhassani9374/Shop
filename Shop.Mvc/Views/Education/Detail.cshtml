@@ -1,0 +1,187 @@
+﻿@using Shop.Mvc.Models.Educations
+@using Shop.Domain.Enumeration
+@using DNTPersianUtils.Core
+
+@model List<EducationFileViewModel>
+@{
+    ViewData["Title"] = "- ایمن فروش";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var images = Model.Where(c => c.Type == EducationFileType.Image).ToList();
+    var audios = Model.Where(c => c.Type == EducationFileType.Audio).ToList();
+    var videos = Model.Where(c => c.Type == EducationFileType.Video).ToList();
+    var zips = Model.Where(c => c.Type == EducationFileType.Zip).ToList();
+
+}
+
+<div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">ایمن فروش</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> نمایندگی ها - ایمن فروش</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">فایل های آموزش</div>
+            <div class="panel-body">
+                <p>عکس های بارگذاری شده : </p>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>عکس</th>
+                                <th>عنوان</th>
+                                <th>حجم</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (images.Count > 0)
+                            {
+                                foreach (var item in images)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img src="~/Files/EducationFiles/@(item.FileName)" class="img-responsive img-thumbnail"
+                                                 style="max-width:60px" />
+                                        </td>
+                                        <td>@item.Title.ToPersianNumbers()</td>
+                                        <td>@((item.Length/ 1024f / 1024f).ToString().ToPersianNumbers()) مگابایت</td>
+                                        <td>
+                                            <a asp-action="Download" asp-route-id="@(item.Id)"
+                                               class="btn btn-success" data-style="zoom-in">
+                                                <span class="ladda-label">دانلود </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5">عکسی آپلود نشده است</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <p>صوت های بارگذاری شده : </p>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>عنوان</th>
+                                <th>حجم</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (audios.Count > 0)
+                            {
+                                foreach (var item in audios)
+                                {
+                                    <tr>
+                                        <td>@item.Title.ToPersianNumbers()</td>
+                                        <td>@((item.Length/ 1024f / 1024f).ToString().ToPersianNumbers()) مگابایت</td>
+                                        <td>
+                                            <a asp-action="Download" asp-route-id="@(item.Id)"
+                                               class="btn btn-success" data-style="zoom-in">
+                                                <span class="ladda-label">دانلود </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4">صوتی آپلود نشده است</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <p>ویدیوهای بارگذاری شده : </p>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>عنوان</th>
+                                <th>حجم</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (videos.Count > 0)
+                            {
+                                foreach (var item in videos)
+                                {
+                                    <tr>
+                                        <td>@item.Title.ToPersianNumbers()</td>
+                                        <td>@((item.Length/ 1024f / 1024f).ToString().ToPersianNumbers()) مگابایت</td>
+                                        <td>
+                                            <a asp-action="Download" asp-route-id="@(item.Id)"
+                                               class="btn btn-success" data-style="zoom-in">
+                                                <span class="ladda-label">دانلود </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4">ویدیویی آپلود نشده است</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <p>فایل های فشرده بارگذاری شده : </p>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>عنوان</th>
+                                <th>حجم</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (zips.Count > 0)
+                            {
+                                foreach (var item in zips)
+                                {
+                                    <tr>
+                                        <td>@item.Title.ToPersianNumbers()</td>
+                                        <td>@((item.Length/ 1024f / 1024f).ToString().ToPersianNumbers()) مگابایت</td>
+                                        <td>
+                                            <a asp-action="Download" asp-route-id="@(item.Id)"
+                                               class="btn btn-success" data-style="zoom-in">
+                                                <span class="ladda-label">دانلود </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4">ویدیویی آپلود نشده است</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

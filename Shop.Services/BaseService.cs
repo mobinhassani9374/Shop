@@ -125,6 +125,12 @@ namespace Shop.Services
                 Remove(entity);
             return entities;
         }
+
+        protected void RemoveOtherEntity<TOther>(List<TOther> entities)
+        {
+            foreach (var entity in entities)
+                Remove(entity);
+        }
         protected ServiceResult<string> Upload(IFormFile imageFile, FileType fileType)
         {
             var extension = System.IO.Path.GetExtension(imageFile.FileName);

@@ -45,10 +45,11 @@ namespace Shop.Mvc.Areas.Admin.Controllers
             }
 
             List<SelectListItem> typeSelector = new List<SelectListItem>();
-            typeSelector.Add(new SelectListItem("", ""));
+            typeSelector.Add(new SelectListItem("توع فایل را انتخاب کنید", ""));
             typeSelector.Add(new SelectListItem("عکس", EducationFileType.Image.ToString()));
             typeSelector.Add(new SelectListItem("صوت", EducationFileType.Audio.ToString()));
             typeSelector.Add(new SelectListItem("ویدیو", EducationFileType.Video.ToString()));
+            typeSelector.Add(new SelectListItem("فایل فشرده", EducationFileType.Zip.ToString()));
 
             ViewBag.TypeSelector = typeSelector;
             ViewBag.EducationId = id;
@@ -63,6 +64,19 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         public IActionResult UploadFile(UploadFileEducationViewModel model)
         {
             var serviceResult = _adminService.UploadFileForEducation(model.ToDto());
+
+            List<SelectListItem> typeSelector = new List<SelectListItem>();
+            typeSelector.Add(new SelectListItem("توع فایل را انتخاب کنید", ""));
+            typeSelector.Add(new SelectListItem("عکس", EducationFileType.Image.ToString()));
+            typeSelector.Add(new SelectListItem("صوت", EducationFileType.Audio.ToString()));
+            typeSelector.Add(new SelectListItem("ویدیو", EducationFileType.Video.ToString()));
+            typeSelector.Add(new SelectListItem("فایل فشرده", EducationFileType.Zip.ToString()));
+
+            ViewBag.TypeSelector = typeSelector;
+            ViewBag.EducationId = model.EducationId;
+
+            ViewBag.Education = _adminService.GetEducations(model.EducationId)?.ToViewModel();
+
             return View_Post(serviceResult, model);
         }
 
@@ -70,6 +84,27 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         {
             var data = _adminService.GetAllEducationFiles(id);
             return View(data.ToViewModel());
+        }
+
+        public IActionResult DeleteFile(int id)
+        {
+            var serviceResult = _adminService.DeleteEducationFile(id);
+
+            if (serviceResult.IsSuccess)
+                Swal(true, "عملیات با موفقیت صورت گرفت");
+            else Swal(false, serviceResult.Errors.FirstOrDefault());
+
+            return RedirectToAction(nameof(Files), new { id = serviceResult.Data });
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var serviceResult = _adminService.DeleteEducation(id);
+            if (serviceResult.IsSuccess)
+                Swal(true, serviceResult.Message);
+            else Swal(false, serviceResult.Errors.FirstOrDefault());
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

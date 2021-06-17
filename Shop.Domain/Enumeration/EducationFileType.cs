@@ -8,6 +8,7 @@ namespace Shop.Domain.Enumeration
     {
         Image = 1,
         Audio = 2,
-        Video = 3
+        Video = 3,
+        Zip = 4
     }
 }

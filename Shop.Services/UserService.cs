@@ -7,6 +7,7 @@ using Shop.Database.Identity.Entities;
 using Shop.Domain.Dto.Account;
 using Shop.Domain.Dto.Cart;
 using Shop.Domain.Dto.Category;
+using Shop.Domain.Dto.Educations;
 using Shop.Domain.Dto.Home;
 using Shop.Domain.Dto.Order;
 using Shop.Domain.Dto.Pagination;
@@ -70,6 +71,12 @@ namespace Shop.Services
                 }
             }
             return serviceResult;
+        }
+
+        public List<EducationFileDto> GetAllEducationFiles(int educationId)
+        {
+            var data = _dbContext.EducationFiles.Where(c => c.EducationId == educationId).ToList();
+            return data.ToDto();
         }
         public bool ExistUserByPhone(string phoneNumber)
         {
@@ -557,5 +564,39 @@ namespace Shop.Services
             var data = _dbContext.Representations.ToList();
             return data.ToDto();
         }
+
+        public PaginationDto<EducationDto> GetAllEducations(SearchEducationDto dto)
+        {
+            var query = _dbContext.Educations
+                .AsQueryable();
+
+            IOrderedQueryable<Education> orderedQery =
+                query.OrderByDescending(c => c.Id);
+
+            return orderedQery.ToPaginated(dto).ToDto();
+        }
+
+        public EducationFileDto GetAllEducationFile(int id)
+        {
+            var data = _dbContext.EducationFiles.FirstOrDefault(c => c.Id == id);
+            return data.ToDto();
+        }
+
+        public ServiceResult IncreaseCountDownload(int id)
+        {
+            var serviceResult = new ServiceResult(true);
+            var entity = _dbContext.EducationFiles.FirstOrDefault(c => c.Id == id);
+            if (entity == null)
+                serviceResult.AddError("فایلی یافت نشد");
+            else
+            {
+                entity.CountDownload++;
+                Update(entity);
+                Save("عملیات با موفقیت صورت گرفت");
+            }
+            return serviceResult;
+        }
     }
+
+
 }

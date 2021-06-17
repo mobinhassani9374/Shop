@@ -1,0 +1,67 @@
+﻿@using Shop.Mvc.Models
+@using Shop.Mvc.Models.Educations
+@using Shop.Mvc.Models.Pagination
+@using DNTPersianUtils.Core
+@using Shop.Utility.Extensions
+
+@model PaginationViewModel<EducationViewModel>
+@{
+    ViewData["Title"] = "آموزش - ایمن فروش";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">ایمن فروش</a></li>
+                <li class="breadcrumb-item active" aria-current="page">آموزش</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="category">
+            @if (Model.Data.Count > 0)
+            {
+                @foreach (var item in Model.Data)
+                {
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="category__item">
+                            <a asp-action="Detail" asp-controller="Education" asp-route-id="@(item.Id)">
+                                <div class="category__item__img">
+                                    <img alt="@(item.Title) - ایمن فروش" src="~/Files/EducationImages/@(item.Image)" class="img-responsive" />
+                                </div>
+                                <div class="category__item__title">
+                                    @(item.Title)
+                                </div>
+                                
+                                
+                                
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div style="padding: 10px;">
+                    <div class="alert alert-danger text-center" style="margin-bottom:0px">
+                        آموزشی یافت نشد
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@Html.Partial("~/Views/Shared/_Pagination.cshtml", Model)
+
+<script>
+    $(function () {
+        $('.category__item__title').matchHeight()
+    })
+</script>
+
+

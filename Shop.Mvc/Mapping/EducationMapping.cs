@@ -54,7 +54,8 @@ namespace Shop.Mvc.Mapping
             {
                 Id = source.Id,
                 Image = source.Image,
-                Title = source.Title
+                Title = source.Title,
+                Files = source.Files?.ToViewModel()
             };
         }
         public static UploadFileEducationDto ToDto(this UploadFileEducationViewModel source)

@@ -31,6 +31,7 @@
                         <th>تعداد عکس</th>
                         <th>تعداد صوت</th>
                         <th>تعداد ویدیو</th>
+                        <th>تعداد فایل های فشرده</th>
                         <th>عملیات</th>
                     </tr>
                 </thead>
@@ -45,9 +46,10 @@
                                  style="max-width:60px" />
                         </td>
                         <td>@item.Title.ToPersianNumbers()</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+                        <td>@item.Files.Where(c => c.Type == Shop.Domain.Enumeration.EducationFileType.Image).Count().ToPersianNumbers()</td>
+                        <td>@item.Files.Where(c => c.Type == Shop.Domain.Enumeration.EducationFileType.Audio).Count().ToPersianNumbers()</td>
+                        <td>@item.Files.Where(c => c.Type == Shop.Domain.Enumeration.EducationFileType.Audio).Count().ToPersianNumbers()</td>
+                        <td>@item.Files.Where(c => c.Type == Shop.Domain.Enumeration.EducationFileType.Zip).Count().ToPersianNumbers()</td>
                         <td>
                             <a asp-action="UploadFile" asp-route-id="@(item.Id)"
                                class="btn btn-success ladda-button" data-style="zoom-in">

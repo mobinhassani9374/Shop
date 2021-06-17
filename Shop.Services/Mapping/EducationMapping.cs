@@ -3,6 +3,7 @@ using Shop.Domain.Dto.Pagination;
 using Shop.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Shop.Services.Mapping
@@ -41,7 +42,8 @@ namespace Shop.Services.Mapping
             {
                 Id = source.Id,
                 Image = source.Image,
-                Title = source.Title
+                Title = source.Title,
+                Files = source.Files?.ToList().ToDto()
             };
         }
         public static EducationFile ToEntity(this UploadFileEducationDto source)

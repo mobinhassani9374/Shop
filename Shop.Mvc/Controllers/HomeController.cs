@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Shop.Mvc.Mapping;
+using Shop.Mvc.Models.Educations;
 using Shop.Mvc.Models.Home;
 using Shop.Services;
 
@@ -46,6 +47,12 @@ namespace Shop.Mvc.Controllers
         public IActionResult Representation()
         {
             var data = _userService.GetAllRepresentation();
+            return View(data.ToViewModel());
+        }
+
+        public IActionResult Education(EducationSearchViewModel model)
+        {
+            var data = _userService.GetAllEducations(model.ToDto());
             return View(data.ToViewModel());
         }
 

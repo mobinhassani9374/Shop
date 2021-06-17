@@ -631,7 +631,7 @@ namespace Shop.Services
         }
         public PaginationDto<EducationDto> GetEducations(SearchEducationDto dto)
         {
-            var query = _dbContext.Educations.AsQueryable();
+            var query = _dbContext.Educations.Include(c => c.Files).AsQueryable();
 
             IOrderedQueryable<Education> orderedQery =
                query.OrderByDescending(c => c.Id);
@@ -644,7 +644,7 @@ namespace Shop.Services
             var serviceResult = dto.IsValid();
             if (serviceResult.IsSuccess)
             {
-                var uploadService = Upload(dto.File, FileType.EducationFile, 300 * 1024 * 1024);
+                var uploadService = Upload(dto.File, FileType.EducationFile, 600 * 1024 * 1024);
                 if (uploadService.IsSuccess)
                 {
                     dto.FileName = uploadService.Data;
@@ -671,6 +671,59 @@ namespace Shop.Services
         public EducationDto GetEducations(int id)
         {
             return _dbContext.Educations.FirstOrDefault(c => c.Id == id)?.ToDto();
+        }
+
+        public ServiceResult<int> DeleteEducationFile(int id)
+        {
+            var serviceResult = new ServiceResult<int>(true);
+
+            var entity = _dbContext.EducationFiles.Find(id);
+
+            if (entity == null)
+                serviceResult.AddError("فایلی یافت نشد");
+
+            else
+            {
+                DeleteFile(entity.FileName, FileType.EducationFile);
+
+                Remove(entity);
+
+                var result = Save("یک فایل با موفقیت حذف شد");
+
+                serviceResult.IsSuccess = result.IsSuccess;
+                serviceResult.Data = entity.EducationId;
+                serviceResult.Message = result.Message;
+            }
+
+            return serviceResult;
+        }
+
+        public ServiceResult DeleteEducation(int id)
+        {
+            var serviceResult = new ServiceResult(true);
+
+            var entity = _dbContext.Educations.Include(c => c.Files).FirstOrDefault(c => c.Id == id);
+
+            if (entity == null)
+                serviceResult.AddError("آموزشی یافت نشد");
+
+            else
+            {
+                DeleteFile(entity.Image, FileType.EducationImage);
+
+                Remove(entity);
+
+                Remove<EducationFile>(entity.Files.ToList());
+
+                foreach(var file in entity.Files)
+                {
+                    DeleteFile(file.FileName, FileType.EducationFile);
+                }
+
+                serviceResult = Save("یک آموزش با موفقیت حذف شد");
+            }
+
+            return serviceResult;
         }
     }
 }
