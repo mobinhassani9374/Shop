@@ -26,6 +26,9 @@ namespace Shop.Mvc.Controllers
                 ViewBag.ProductTitle = serviceResult.Data.Title;
                 ViewBag.ProductId = serviceResult.Data.Id;
                 ViewBag.ProductImage = serviceResult.Data.PrimaryImage;
+
+                var relatedProducts = _userService.GetRelatedProducts(serviceResult.Data.CategoryId);
+                ViewBag.RelatedProduct = relatedProducts.ToViewModel();
             }
             return View_Get(serviceResult.Data?.ToViewModel(), "/");
         }

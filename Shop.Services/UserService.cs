@@ -596,6 +596,31 @@ namespace Shop.Services
             }
             return serviceResult;
         }
+
+        public List<Domain.Dto.Product.ProductDto> GetRelatedProducts(int categoryId)
+        {
+            var category = _dbContext
+                .Categories
+                .AsEnumerable()
+                .Where(c => c.Id == categoryId)
+                .ToList()
+                .FirstOrDefault();
+
+            _catIds.Add(category.Id);
+            if (category.Children != null && category.Children.Count > 0)
+                GetCategoryIds_Recursive(category.Children.ToList());
+
+            var query = _dbContext.Products
+                .Where(c => _catIds.Any(i => i == c.CategoryId))
+                .AsQueryable();
+
+            IOrderedQueryable<Product> orderedQery =
+                query.OrderByDescending(c => c.Id);
+
+            var data = query.Take(20).ToList();
+
+            return data.ToDto();
+        }
     }
 
 
