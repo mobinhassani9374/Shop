@@ -7,8 +7,6 @@
     var relatedProduct = (List<Shop.Mvc.Models.Product.ProductViewModel>)ViewBag.RelatedProduct;
 }
 
-<script src="~/js/jquery.zoom.js"></script>
-
 <div class="container">
     <div class="row">
         <nav aria-label="breadcrumb">
@@ -207,22 +205,22 @@
                 محصولات مشابه
             </div>
             <div class="slick__arrow">
-                <i data-role="slick-right_slick_11" class="fa fa-angle-right slick_arrow_right"></i>
-                <i data-role="slick-left_slick_11" class="fa fa-angle-left slick_arrow_left"></i>
+                <i data-role="slick-right_slick_11" class="fa fa-angle-right slick__arrow__right"></i>
+                <i data-role="slick-left_slick_11" class="fa fa-angle-left slick__arrow__left"></i>
             </div>
             <div class="slick__product" id="slick_11">
                 @foreach (var product in relatedProduct)
                 {
-                    <div class="slick_product_item">
+                    <div class="slick__product__item">
                         <a asp-action="Detail" asp-controller="Product" asp-route-id="@(product.Id)">
-                            <div class="slick_productitem_img">
+                            <div class="slick__produc__titem_img">
                                 <img alt="@product.Title - ایمن فروش (شرکت آرشانوین)"
                                      src="/Files/Images/@product.PrimaryImage" class="img-responsive" />
                             </div>
-                            <div class="slick_productitem_title">
+                            <div class="slick__produc__titem__title">
                                 @product.Title
                             </div>
-                            <div class="slick_productitem_price">
+                            <div class="slick__product__item__price">
                                 <div style="height: 25px;">
                                     @if (product.IsAmazing && product.Discount > 0)
                                     {
@@ -237,7 +235,7 @@
                                 </div>
                             </div>
 
-                            <div class="slick_productitem_btn">
+                            <div class="slick__product__item__btn">
                                 @if (product.Count > 0)
                                 {
                                     <a v-on:click="addCart(@product.Id)" id="addcart@(product.Id)" type="submit"
