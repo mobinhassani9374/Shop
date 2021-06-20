@@ -119,7 +119,7 @@
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#desc">بررسی اجمالی</a></li>
                 <li><a data-toggle="tab" href="#feature">مشخصات</a></li>
-                <li><a data-toggle="tab" href="#garantyCondition">شرایط گارانتی</a></li>
+                @*<li><a data-toggle="tab" href="#garantyCondition">شرایط گارانتی</a></li>*@
                 <li><a data-toggle="tab" href="#comments">نظرات کاربران</a></li>
                 <li><a data-toggle="tab" href="#addcomment">افزودن نظر</a></li>
             </ul>
@@ -137,9 +137,9 @@
                 <div id="feature" class="tab-pane fade">
                     @Html.Raw(Model.Attributes)
                 </div>
-                <div id="garantyCondition" class="tab-pane fade">
+                @*<div id="garantyCondition" class="tab-pane fade">
                     @Html.Raw(Model.GarantyCondition)
-                </div>
+                </div>*@
                 <div id="comments" class="tab-pane fade">
                     @if (comments.Count > 0)
                     {
