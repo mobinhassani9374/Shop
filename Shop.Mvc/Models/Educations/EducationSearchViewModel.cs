@@ -7,5 +7,9 @@ namespace Shop.Mvc.Models.Educations
 {
     public class EducationSearchViewModel : PagingViewModel
     {
+        public EducationSearchViewModel()
+        {
+            this.PageSize = 12;
+        }
     }
 }
