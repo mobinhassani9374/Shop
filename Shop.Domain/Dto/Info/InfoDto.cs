@@ -17,6 +17,7 @@ namespace Shop.Domain.Dto.Info
         public string AboutUs { get; set; }
         public string LawUs { get; set; }
         public string HelpForBuy { get; set; }
+        public string GarantyCondition { get; set; }
         public static InfoDto CreateNewInstance()
         {
             return new InfoDto

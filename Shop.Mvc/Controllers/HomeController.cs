@@ -49,7 +49,10 @@ namespace Shop.Mvc.Controllers
             var data = _userService.GetAllRepresentation();
             return View(data.ToViewModel());
         }
-
+        public IActionResult GarantyCondition()
+        {
+            return View();
+        }
         public IActionResult Education(EducationSearchViewModel model)
         {
             var data = _userService.GetAllEducations(model.ToDto());

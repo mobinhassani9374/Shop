@@ -17,5 +17,6 @@ namespace Shop.Domain.Entities
         public string AboutUs { get; set; }
         public string LawUs { get; set; }
         public string HelpForBuy { get; set; }
+        public string GarantyCondition { get; set; }
     }
 }

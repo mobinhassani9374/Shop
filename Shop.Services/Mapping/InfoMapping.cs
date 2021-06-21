@@ -22,7 +22,8 @@ namespace Shop.Services.Mapping
                 PhoneNumber2 = source.PhoneNumber2,
                 PhoneNumber3 = source.PhoneNumber3,
                 PhoneNumber4 = source.PhoneNumber4,
-                TelegramChanal = source.TelegramChanal
+                TelegramChanal = source.TelegramChanal,
+                GarantyCondition = source.GarantyCondition
             };
         }
 
@@ -39,7 +40,8 @@ namespace Shop.Services.Mapping
                 PhoneNumber2 = source.PhoneNumber2,
                 PhoneNumber3 = source.PhoneNumber3,
                 PhoneNumber4 = source.PhoneNumber4,
-                TelegramChanal = source.TelegramChanal
+                TelegramChanal = source.TelegramChanal,
+                GarantyCondition = source.GarantyCondition
             };
         }
     }
