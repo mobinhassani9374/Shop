@@ -43,6 +43,7 @@ namespace Shop.Services.Mapping
                 Id = source.Id,
                 Image = source.Image,
                 Title = source.Title,
+                 Description= source.Description,
                 Files = source.Files?.ToList().ToDto()
             };
         }

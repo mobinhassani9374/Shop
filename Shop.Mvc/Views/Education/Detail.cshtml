@@ -6,6 +6,7 @@
 @{
     ViewData["Title"] = "- ایمن فروش";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var data=(EducationViewModel) ViewBag.Data;
 
     var images = Model.Where(c => c.Type == EducationFileType.Image).ToList();
     var audios = Model.Where(c => c.Type == EducationFileType.Audio).ToList();
@@ -22,6 +23,14 @@
                 <li class="breadcrumb-item active" aria-current="page"> نمایندگی ها - ایمن فروش</li>
             </ol>
         </nav>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="panel panel-primary">
+            @Html.Raw(data.Description)
+        </div>
     </div>
 </div>
 

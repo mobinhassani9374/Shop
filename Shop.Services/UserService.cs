@@ -78,6 +78,12 @@ namespace Shop.Services
             var data = _dbContext.EducationFiles.Where(c => c.EducationId == educationId).ToList();
             return data.ToDto();
         }
+        public EducationDto GetEducation(int id)
+        {
+            var entity = _dbContext.Educations.Include(c => c.Files).FirstOrDefault(c => c.Id == id);
+
+            return entity.ToDto();
+        }
         public bool ExistUserByPhone(string phoneNumber)
         {
             return _dbContext.Users.Any(c => c.PhoneNumber == phoneNumber);

@@ -1,4 +1,4 @@
-﻿@model Shop.Mvc.Models.Educations.EducationViewModel
+﻿@model Shop.Mvc.Models.Educations.EducationSetDetailViewModel
 @{
     ViewData["Title"] = "تنظیم نمایش خروجی برای کاربر  - پنل مدیریتی ایمن فروش";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -16,10 +16,10 @@
     <div class="panel-body">
         <form method="post">
             @Html.AntiForgeryToken()
-
+            <input type="hidden" asp-for="Id" />
             <fieldset style="margin-top:15px">
                 <legend>تنظیم نمایش خروجی برای کاربر </legend>
-                <textarea  id="editor"></textarea>
+                <textarea asp-for="Description" id="editor"></textarea>
             </fieldset>
             <div class="form-group" style="margin-top:15px">
                 <button type="submit" class="ladda-button btn btn-primary" data-style="zoom-in">

@@ -22,6 +22,7 @@ namespace Shop.Mvc.Controllers
         public IActionResult Detail(int id)
         {
             var data = _userService.GetAllEducationFiles(id);
+            ViewBag.Data = _userService.GetEducation(id).ToViewModel();
             return View(data.ToViewModel());
         }
 

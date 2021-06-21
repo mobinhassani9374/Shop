@@ -111,7 +111,15 @@ namespace Shop.Mvc.Areas.Admin.Controllers
         public IActionResult SetDetail(int id)
         {
             var data = _adminService.GetEducation(id);
-            return View(data.ToViewModel());
+            return View(data.ToDetailViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        public IActionResult SetDetail(EducationSetDetailViewModel model)
+        {
+            var serviceResult = _adminService.SetEducationDetail(model.ToDto());
+            return View_Post(serviceResult, model);
         }
     }
 }

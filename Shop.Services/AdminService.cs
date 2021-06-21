@@ -732,5 +732,22 @@ namespace Shop.Services
 
             return serviceResult;
         }
+
+        public ServiceResult SetEducationDetail(EducationSetDetailDto dto)
+        {
+            var serviceReslt = dto.IsValid();
+
+            if (serviceReslt.IsSuccess)
+            {
+               var ent= _dbContext.Educations.FirstOrDefault(c=>c.Id==dto.Id);
+              
+              ent.Description=dto.Description;
+
+                Update(ent);
+                serviceReslt = Save("عملیات با موفقیت انجام شد");
+            }
+
+            return serviceReslt;
+        }
     }
 }

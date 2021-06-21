@@ -5,14 +5,10 @@ using System.Threading.Tasks;
 
 namespace Shop.Mvc.Models.Educations
 {
-    public class EducationViewModel
+    public class EducationSetDetailViewModel
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Image { get; set; }
 
         public string Description { get; set; }
-
-        public List<EducationFileViewModel> Files { get; set; }
     }
 }

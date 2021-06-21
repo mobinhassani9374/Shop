@@ -55,9 +55,20 @@ namespace Shop.Mvc.Mapping
                 Id = source.Id,
                 Image = source.Image,
                 Title = source.Title,
+                 Description= source.Description,
                 Files = source.Files?.ToViewModel()
             };
         }
+        public static  EducationSetDetailViewModel ToDetailViewModel(this EducationDto source)
+        {
+            return new EducationSetDetailViewModel
+            {
+                Id = source.Id,
+                Description = source.Description,
+            };
+        }
+
+        
         public static UploadFileEducationDto ToDto(this UploadFileEducationViewModel source)
         {
             return new UploadFileEducationDto
@@ -87,6 +98,15 @@ namespace Shop.Mvc.Mapping
                 Length = source.Length,
                 Title = source.Title,
                 Type = source.Type
+            };
+        }
+
+        public static EducationSetDetailDto ToDto(this EducationSetDetailViewModel source)
+        {
+            return new EducationSetDetailDto
+            {
+                 Description= source.Description,
+                  Id= source.Id
             };
         }
     }
