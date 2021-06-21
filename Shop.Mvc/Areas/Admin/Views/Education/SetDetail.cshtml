@@ -1,24 +1,24 @@
 ﻿@model Shop.Mvc.Models.Educations.EducationViewModel
 @{
-    ViewData["Title"] = "مدیریت ابنفوها - پنل مدیریتی ایمن فروش";
+    ViewData["Title"] = "تنظیم نمایش خروجی برای کاربر  - پنل مدیریتی ایمن فروش";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
-        <li class="breadcrumb-item active" aria-current="page">مدیریت اینفوها</li>
+        <li class="breadcrumb-item active" aria-current="page">تنظیم نمایش خروجی برای کاربر</li>
     </ol>
 </nav>
 
 <div class="panel panel-primary">
-    <div class="panel-heading">مدیریت اینفوها</div>
+    <div class="panel-heading">تنظیم نمایش خروجی برای کاربر</div>
     <div class="panel-body">
         <form method="post">
             @Html.AntiForgeryToken()
 
             <fieldset style="margin-top:15px">
-                <legend>درباره ما </legend>
+                <legend>تنظیم نمایش خروجی برای کاربر </legend>
                 <textarea  id="editor"></textarea>
             </fieldset>
             <div class="form-group" style="margin-top:15px">
