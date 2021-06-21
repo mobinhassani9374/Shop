@@ -7,6 +7,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
+        <li class="breadcrumb-item"><a href="/admin/Education">آموزش های ثبت شده</a></li>
         <li class="breadcrumb-item active" aria-current="page">تنظیم نمایش خروجی برای کاربر</li>
     </ol>
 </nav>
@@ -30,13 +31,13 @@
     </div>
 </div>
 
-<script>
-    debugger
+<script>   
     initSample();
     if (CKEDITOR.config) {
         CKEDITOR.config.height = 400;
         CKEDITOR.config.resize_enabled = true;
         CKEDITOR.config.contentsLangDirection = 'rtl';
+        CKEDITOR.config.fontSize_defaultLabel = '18px';
     }
 
     //$(function () {
