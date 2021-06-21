@@ -33,6 +33,7 @@
                         <th>تعدا دانلود</th>
                         <th>حجم</th>
                         <th>عملیات</th>
+                        <th>کپی عکس</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,6 +55,11 @@
                                 <span class="ladda-label">حذف </span>
                             </a>
                         </td>
+                        <td>
+                            <a class="btn btn-success" onclick="copy('/Files/EducationFiles/@(item.FileName)')">
+                                کپی عکس
+                            </a>                           
+                        </td>
                     </tr>
                         }
                     }
@@ -74,7 +80,7 @@
                         <th>عنوان</th>
                         <th>تعدا دانلود</th>
                         <th>حجم</th>
-                        <th>عملیات</th>
+                        <th>عملیات</th>                        
                     </tr>
                 </thead>
                 <tbody>
@@ -98,7 +104,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="4">صوتی آپلود نشده است</td>
+                            <td colspan="5">صوتی آپلود نشده است</td>
                         </tr>
                     }
                 </tbody>
@@ -182,4 +188,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    function copy(url) {        
+        url = 'https://imenforoush.com'+url   
+        navigator.clipboard.writeText(url);
+        toastr.success('لینک عکس کپی شد');
+    }
+</script>
 
