@@ -19,7 +19,7 @@
 
             <fieldset style="margin-top:15px">
                 <legend>درباره ما </legend>
-                <textarea  class="editor"></textarea>
+                <textarea  id="editor"></textarea>
             </fieldset>
             <div class="form-group" style="margin-top:15px">
                 <button type="submit" class="ladda-button btn btn-primary" data-style="zoom-in">
@@ -31,6 +31,7 @@
 </div>
 
 <script>
+    debugger
     initSample();
     if (CKEDITOR.config) {
         CKEDITOR.config.height = 400;
@@ -38,9 +39,9 @@
         CKEDITOR.config.contentsLangDirection = 'rtl';
     }
 
-    $(function () {
-        $('.editor').each(function (e) {
-            CKEDITOR.replace(this.id, { customConfig: '/jblog/ckeditor/config_Large.js' });
-        });
-    })
+    //$(function () {
+    //    $('.editor').each(function (e) {
+    //        CKEDITOR.replace(this.id, { customConfig: '/jblog/ckeditor/config_Large.js' });
+    //    });
+    //})
 </script>
