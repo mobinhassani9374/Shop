@@ -639,6 +639,13 @@ namespace Shop.Services
             return orderedQery.ToPaginated(dto).ToDto();
         }
 
+        public EducationDto GetEducation(int id)
+        {
+            var entity = _dbContext.Educations.Include(c => c.Files).FirstOrDefault(c => c.Id == id);
+
+            return entity.ToDto();
+        }
+
         public ServiceResult UploadFileForEducation(UploadFileEducationDto dto)
         {
             var serviceResult = dto.IsValid();
@@ -715,7 +722,7 @@ namespace Shop.Services
 
                 Remove<EducationFile>(entity.Files.ToList());
 
-                foreach(var file in entity.Files)
+                foreach (var file in entity.Files)
                 {
                     DeleteFile(file.FileName, FileType.EducationFile);
                 }

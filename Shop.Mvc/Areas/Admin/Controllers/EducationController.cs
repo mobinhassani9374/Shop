@@ -106,5 +106,12 @@ namespace Shop.Mvc.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+
+        public IActionResult SetDetail(int id)
+        {
+            var data = _adminService.GetEducation(id);
+            return View(data.ToViewModel());
+        }
     }
 }

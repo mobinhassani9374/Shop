@@ -1,0 +1,46 @@
+﻿@model Shop.Mvc.Models.Educations.EducationViewModel
+@{
+    ViewData["Title"] = "مدیریت ابنفوها - پنل مدیریتی ایمن فروش";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">پنل مدیریتی</a></li>
+        <li class="breadcrumb-item active" aria-current="page">مدیریت اینفوها</li>
+    </ol>
+</nav>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">مدیریت اینفوها</div>
+    <div class="panel-body">
+        <form method="post">
+            @Html.AntiForgeryToken()
+
+            <fieldset style="margin-top:15px">
+                <legend>درباره ما </legend>
+                <textarea  class="editor"></textarea>
+            </fieldset>
+            <div class="form-group" style="margin-top:15px">
+                <button type="submit" class="ladda-button btn btn-primary" data-style="zoom-in">
+                    <span class="ladda-label">ثبت اطلاعات</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    initSample();
+    if (CKEDITOR.config) {
+        CKEDITOR.config.height = 400;
+        CKEDITOR.config.resize_enabled = true;
+        CKEDITOR.config.contentsLangDirection = 'rtl';
+    }
+
+    $(function () {
+        $('.editor').each(function (e) {
+            CKEDITOR.replace(this.id, { customConfig: '/jblog/ckeditor/config_Large.js' });
+        });
+    })
+</script>
