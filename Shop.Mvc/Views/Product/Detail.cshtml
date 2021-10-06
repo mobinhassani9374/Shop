@@ -50,11 +50,7 @@
                 <h1 class="detail__title">@Model.Title</h1>
                 <div class="detail__desc">
                     دسته بندی : @Model.Category?.Title
-                </div>
-                <div class="detail__desc">
-                    <span>تعداد باقی مانده از این محصول : </span>
-                    <span class="text-danger">@Model.Count عدد</span>
-                </div>
+                </div>                
                 @if (!string.IsNullOrEmpty(Model.Garanty))
                 {
                     <div class="detail__desc">
