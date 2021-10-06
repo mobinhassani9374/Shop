@@ -273,8 +273,11 @@ namespace Shop.Services
                         else serviceResult.AddError(uploadServiceResult.Errors.FirstOrDefault());
                     }
                     else dto.ImageName = entity.PrimaryImage;
+                    var updatedProduct = dto.ToEntity();
+                    updatedProduct.ImagesJson = entity.ImagesJson;
 
-                    Update(dto.ToEntity());
+                    Update(updatedProduct);
+
                     serviceResult = Save("محصول با موفقیت ویرایش شد");
                 }
             }
@@ -739,9 +742,9 @@ namespace Shop.Services
 
             if (serviceReslt.IsSuccess)
             {
-               var ent= _dbContext.Educations.FirstOrDefault(c=>c.Id==dto.Id);
-              
-              ent.Description=dto.Description;
+                var ent = _dbContext.Educations.FirstOrDefault(c => c.Id == dto.Id);
+
+                ent.Description = dto.Description;
 
                 Update(ent);
                 serviceReslt = Save("عملیات با موفقیت انجام شد");

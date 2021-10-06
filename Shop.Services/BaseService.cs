@@ -69,7 +69,7 @@ namespace Shop.Services
         }
         protected List<User> GetAdminUsers()
         {
-            var list = new List<string>() { "09124234001", "09197442364", "09197572162" };
+            var list = new List<string>() { "09124234001" };
             return _dbContext.Users
                 .Where(c => list.Any(i => i == c.PhoneNumber))
                 .ToList();

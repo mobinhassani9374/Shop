@@ -42,7 +42,7 @@ namespace Shop.Services.Mapping
                 Discount = source.Discount,
                 Attributes = source.Attributes,
                 Garanty = source.Garanty,
-                GarantyCondition = source.GarantyCondition
+                GarantyCondition = source.GarantyCondition,
             };
         }
 
