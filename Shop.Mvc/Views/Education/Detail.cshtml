@@ -6,7 +6,7 @@
 @{
 
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var data=(EducationViewModel) ViewBag.Data;
+    var data = (EducationViewModel)ViewBag.Data;
     ViewData["Title"] = data.Title + "- ایمن فروش";
 
     var images = Model.Where(c => c.Type == EducationFileType.Image).ToList();
@@ -38,7 +38,7 @@
                 {
                     <div class="text-left">
                         <h2 style="font-size:18px">@item.Title.ToPersianNumbers()</h2>
-                        <video style="width:100%" controls>
+                        <video style="width:100%;height:300px" controls>
                             <source src="~/Files/EducationFiles/@(item.FileName)" type="video/mp4">
                         </video>
                     </div>
@@ -61,8 +61,7 @@
                 foreach (var item in zips)
                 {
                     <div class="text-left" style="margin-top:20px">
-                        <a style="font-size:18px" asp-action="Download" asp-route-id="@(item.Id)"
-                           data-style="zoom-in">
+                        <a style="font-size:18px" asp-action="Download" asp-route-id="@(item.Id)" data-style="zoom-in">
                             <span class="ladda-label">دانلود @item.Title </span>
                         </a>
                     </div>
@@ -71,9 +70,7 @@
             <hr />
             <div style="direction: rtl;">
                 @Html.Raw(data.Description)
-            </div>            
+            </div>
         </div>
- </div>
+    </div>
 </div>
-
-
