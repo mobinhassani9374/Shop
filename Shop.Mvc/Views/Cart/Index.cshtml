@@ -38,22 +38,22 @@
                                 <tr v-for="item in cart" :key="item.productId">
                                     <td>
                                         <img v-bind:src="'/Files/Images/' + item.productImage"
-                                            class="img-responsive img-thumbnail" />
+                                        class="img-responsive img-thumbnail" />
                                     </td>
                                     <td>{{item.productTitle}}</td>
                                     <td>
                                         <div class="quantity">
                                             <input style="width:60px;text-align:center" type="number" v-model="item.count"
-                                                step="1" v-on:change="computedPrice()" min="1" :max="item.productCount"
-                                                disabled>
+                                            step="1" v-on:change="computedPrice()" min="1" :max="item.productCount"
+                                            disabled>
 
                                             <button style="padding: 5px;display: inline-flex;"
-                                                :disabled="item.count==item.productCount" class="btn btn-success"
-                                                v-on:click="increase(item.productId)">
+                                            :disabled="item.count==item.productCount" class="btn btn-success"
+                                            v-on:click="increase(item.productId)">
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                             <button style="padding: 5px;display: inline-flex;" :disabled="item.count==1"
-                                                class="btn btn-danger" v-on:click="reduce(item.productId)">
+                                            class="btn btn-danger" v-on:click="reduce(item.productId)">
                                                 <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
@@ -72,16 +72,16 @@
                             @Html.AntiForgeryToken()
                             <div class="col-md-4 col-xs-12 pull-right">
                                 <!-- <div class="alert alert-danger text-center">
-                                    خرید بالای 700,000 تومان هزینه ارسالش رایگان
-                                    میباشد
-                                </div> -->
+                                                        خرید بالای 700,000 تومان هزینه ارسالش رایگان
+                                                        میباشد
+                                                    </div> -->
                                 <!-- <div class="cart__price">
-                                    <div>هزینه ارسال : </div>
-                                    <div class="text-success">{{seperator(shippingCost)}} تومان</div>
-                                </div> -->
-                                <div class="alert alert-danger text-center">
-                                   خرید بالای ۵،۰۰۰،۰۰۰ تومان=ارسال رایگان
-                                </div>
+                                                        <div>هزینه ارسال : </div>
+                                                        <div class="text-success">{{seperator(shippingCost)}} تومان</div>
+                                                    </div> -->
+                                @* <div class="alert alert-danger text-center">
+                                    خرید بالای ۵،۰۰۰،۰۰۰ تومان=ارسال رایگان
+                                    </div> *@
                                 <div class="cart__price">
                                     <div>مجموعا به تومان : </div>
                                     <div class="text-success">{{seperator(price)}} تومان</div>
@@ -92,7 +92,7 @@
                                     </a> *@
                                 <div class="form-group">
                                     <button type="submit" class="ladda-button btn btn-primary btn-block"
-                                        data-style="zoom-in">
+                                    data-style="zoom-in">
                                         <span class="ladda-label">ثبت اطلاعات و اتمام فرآیند خرید</span>
                                     </button>
                                 </div>
@@ -106,9 +106,9 @@
                                 <div class="form-group">
                                     <label class="required">آدرس محل تحویل را وارد کنید</label>
                                     <textarea name="address" class="form-control" rows="5" placeholder="آدرس را وارد کنید"
-                                        required>
-    @ViewBag.Address
-    </textarea>
+                                    required>
+                                        @ViewBag.Address
+                        </textarea>
                                 </div>
                             </div>
                         </form>
