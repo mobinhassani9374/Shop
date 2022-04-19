@@ -30,8 +30,7 @@ namespace Shop.Mvc
         {
             services.AddDbContext<AppDbContext>(options =>
             {
-                //options.UseSqlServer(@"Data Source=185.51.200.186\SQL2014,2014;Initial Catalog=imenForoshTest;Persist Security Info=True;User ID=mobin_imen; Password=Ju#82c8c; MultipleActiveResultSets=True");
-                options.UseSqlServer(@"Data Source=185.51.200.186\SQL2014,2014;Initial Catalog=imenForoush;Persist Security Info=True;User ID=imenForoush_MobinHassani; Password=bD8&j4q7; MultipleActiveResultSets=True");
+                options.UseSqlServer(@"Data Source=185.51.200.186\SQL2014,2014;Initial Catalog=imenForoshTest;Persist Security Info=True;User ID=mobin_imen; Password=Ju#82c8c; MultipleActiveResultSets=True");   
             });
 
             Database.Identity.StartUp.ConfigureServices(services,_hostingEnvironment);
