@@ -176,7 +176,7 @@
 
       // Find last fancyBox instance that has "hash"
       $.each(
-        $(".fancybox-container")
+        $(".fancybox-container-fluid")
           .get()
           .reverse(),
         function(index, value) {

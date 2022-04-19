@@ -172,7 +172,7 @@
 
     // Base template for layout
     baseTpl:
-      '<div class="fancybox-container" role="dialog" tabindex="-1">' +
+      '<div class="fancybox-container-fluid" role="dialog" tabindex="-1">' +
       '<div class="fancybox-bg"></div>' +
       '<div class="fancybox-inner">' +
       '<div class="fancybox-infobar"><span data-fancybox-index></span>&nbsp;/&nbsp;<span data-fancybox-count></span></div>' +
@@ -280,7 +280,7 @@
     thumbs: {
       autoStart: false, // Display thumbnails on opening
       hideOnClose: true, // Hide thumbnail grid when closing animation starts
-      parentEl: ".fancybox-container", // Container is injected into this element
+      parentEl: ".fancybox-container-fluid", // Container is injected into this element
       axis: "y" // Vertical (y) or horizontal (x) scrolling
     },
 
@@ -493,7 +493,7 @@
       return false;
     }
 
-    $(".fancybox-container").css("pointer-events", "none");
+    $(".fancybox-container-fluid").css("pointer-events", "none");
 
     elemCenter = {
       x: elem.getBoundingClientRect().left + elem.offsetWidth / 2,
@@ -502,7 +502,7 @@
 
     rez = document.elementFromPoint(elemCenter.x, elemCenter.y) === elem;
 
-    $(".fancybox-container").css("pointer-events", "");
+    $(".fancybox-container-fluid").css("pointer-events", "");
 
     return rez;
   };
@@ -2682,7 +2682,7 @@
       var self = this;
 
       // Deactivate all instances
-      $(".fancybox-container").each(function() {
+      $(".fancybox-container-fluid").each(function() {
         var instance = $(this).data("FancyBox");
 
         // Skip self and closing instances

@@ -452,7 +452,7 @@ legend {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  font-size: 16px;
+  font-size: 11px;
 }
 
 @media (min-width: 768px) {
@@ -551,7 +551,7 @@ legend {
   display: block;
   color: #222;
   padding: 3px 5px;
-  font-size: 17px;
+  font-size: 11px;
 }
 
 .mega-dropdown-menu > li ul > li > a:hover,
@@ -594,4 +594,131 @@ legend {
 
 .category .category__item {
   height: 360px;
+}
+
+.breadcrumb > li {
+  font-size: 12px;
+}
+
+.breadcrumb {
+  margin-top: 1px;
+}
+
+.form-control {
+  font-size: 12px;
+}
+
+.slick .slick__title {
+  font-size: 14px;
+}
+
+.slick .slick__title::before {
+  top: 29px;
+}
+
+.slick .slick__title a {
+  font-size: 12px;
+}
+
+.slick .slick__product .slick__product__item .slick__product__item__title,
+.category .category__item .category__item__title {
+  font-size: 13px;
+}
+
+del,
+.badge {
+  font-size: 14px;
+}
+.category .category__item .category__item__price,
+.price {
+  font-size: 15px;
+}
+
+.scroll-top,
+.footer .footer__info .footer__info__link,
+.footer .footer__info p,
+.detail *,
+.detail-tab *,
+.footer__info *,
+.footer-bottom,
+.alert {
+  font-size: 12px !important;
+}
+
+.alert {
+  border-radius: 0px;
+}
+
+.footer .footer__info .footer__info__title {
+  font-size: 14px !important;
+}
+
+.swal2-footer a,
+.login a {
+  font-size: 10px;
+}
+
+.form-group label {
+  font-size: 10px;
+}
+
+.login .login__title {
+  font-size: 15px;
+}
+
+.login .login__desc {
+  font-size: 14px;
+}
+
+.main__box__item {
+  font-size: 13px;
+}
+
+.cart .cart__title {
+  font-size: 15px;
+}
+
+.carousel .item,
+.carousel {
+  border-radius: 0 !important;
+  margin-top: 0 !important;
+}
+
+.border-left {
+  border-left: 1px solid #ececec;
+}
+
+.count-0 {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  font-size: 14px;
+}
+
+.btn-block {
+  transition: all 0.3s;
+}
+
+.btn-block:hover {
+  background-color: #fff;
+  color: #e52b52;
+}
+
+.navbar-brand {
+  font-size: 13px;
+}
+
+.detail-tab,
+.detail,
+.slick,
+.cart {
+  border-radius: 0px;
+}
+.border-left {
+  border-left: 0px;
+}
+
+.cart-register__title {
+  font-size: 15px;
 }

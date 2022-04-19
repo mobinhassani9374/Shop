@@ -3,7 +3,7 @@
     ViewData["Title"] = "ثبت نام در سایت - ایمن فروش";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
             <div class="login">
@@ -59,7 +59,7 @@
                         </button>
                     </div>
                     <div class="form-group text-center">
-                        <a style="font-size: 16px;" asp-action="Login" asp-controller="Account">اگر قبلا در سایت ثبت نام کرده اید از این لینک وارد شوید</a>
+                        <a  asp-action="Login" asp-controller="Account">اگر قبلا در سایت ثبت نام کرده اید از این لینک وارد شوید</a>
                     </div>
                 </form>
             </div>

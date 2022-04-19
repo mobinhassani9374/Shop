@@ -856,7 +856,7 @@
     }
 
     // Check where is clicked
-    if ($target.is(".fancybox-bg,.fancybox-inner,.fancybox-outer,.fancybox-container")) {
+    if ($target.is(".fancybox-bg,.fancybox-inner,.fancybox-outer,.fancybox-container-fluid")) {
       where = "Outside";
     } else if ($target.is(".fancybox-slide")) {
       where = "Slide";

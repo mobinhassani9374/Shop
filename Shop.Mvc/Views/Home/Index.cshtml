@@ -7,7 +7,7 @@
 <!-- carousel -->
 @if (Model.SlideShows.Count > 0)
 {
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
                 <!-- Indicators -->
@@ -69,8 +69,8 @@
 @if (Model.ProductsAmazing.Count > 0)
 {
     <!-- slick product  -->
-    <div class="container">
-        <div class="row">
+    <div class="container-fluid">
+        <div class="">
             <div class="slick">
                 <div class="slick__title">
                     پیشنهادات شگفت انگیز
@@ -136,8 +136,8 @@
     {
         if (item.Products.Count > 0)
         {
-            <div class="container">
-                <div class="row">
+            <div class="container-fluid">
+                <div class="">
                     <div class="slick">
                         <div class="slick__title">
                             @item.CategoryTitle

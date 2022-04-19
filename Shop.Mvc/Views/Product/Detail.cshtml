@@ -7,7 +7,7 @@
     var relatedProduct = (List<Shop.Mvc.Models.Product.ProductViewModel>)ViewBag.RelatedProduct;
 }
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -18,15 +18,15 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
+<div class="container-fluid">
+    <div class="">
         <div class="detail">
-            <div class="col-md-4 col-xs-12">
+            <div class="col-md-4 col-xs-12 border-left">
                 <div class="detail__img">
                     <span class='zoom' id='zoom'>
                         <a data-fancybox="gallery" href="~/Files/Images/@(Model.PrimaryImage)">
                             <img src="~/Files/Images/@(Model.PrimaryImage)" alt="@Model.Title - ایمن فروش"
-                                class="img-responsive img-thumbnail" />
+                                class="img-responsive" />
                         </a>
                         @* <img src="~/Files/Images/@(Model.PrimaryImage)" height="200" width="230"
                             alt="@Model.Title - ایمن فروش" class="img-responsive" /> *@
@@ -110,8 +110,8 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
+<div class="container-fluid">
+    <div class="">
         <div class="detail-tab">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#desc">بررسی اجمالی</a></li>
@@ -190,8 +190,8 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
+<div class="container-fluid">
+    <div class="">
         <div class="slick">
             <div class="slick__title">
                 محصولات مشابه

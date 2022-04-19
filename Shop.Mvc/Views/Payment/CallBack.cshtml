@@ -6,8 +6,8 @@
 
 @if (Model.IsSuccess)
 {
-    <div class="container" style="margin-top:30px">
-        <div class="row">
+    <div class="container-fluid" style="margin-top:30px">
+        <div class="">
             <div class="detail">
                 <h3 class="text-center text-success" style="font-weight: 600;">پرداخت شما با موفقیت انجام شد </h3>
                 <p class="text-center" style="font-weight: 600;">شماره پیگیری : @Model.Data</p>
@@ -20,8 +20,8 @@
 }
 else
 {
-    <div class="container" style="margin-top:30px">
-        <div class="row">
+    <div class="container-fluid" style="margin-top:30px">
+        <div class="">
             <div class="detail">
                 <h3 class="text-center text-danger" style="font-weight: 600;">پرداختی انجام نشد </h3>
                 <p class="text-center" style="font-weight: 600;">
