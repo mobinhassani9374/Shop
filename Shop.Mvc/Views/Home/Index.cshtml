@@ -70,10 +70,10 @@
 {
     <!-- slick product  -->
     <div class="container">
-        <div class="row">           
+        <div class="row">
             <div class="slick">
                 <div class="slick__title">
-                     پیشنهادات شگفت انگیز
+                    پیشنهادات شگفت انگیز
                 </div>
                 <div class="slick__arrow">
                     <i data-role="slick-right_slick_11011" class="fa fa-angle-right slick__arrow__right"></i>
@@ -86,7 +86,7 @@
                             <a asp-action="Detail" asp-controller="Product" asp-route-id="@(product.Id)">
                                 <div class="slick__product__item__img">
                                     <img alt="@product.Title - ایمن فروش (شرکت آرشانوین)"
-                                        src="/Files/Images/@product.PrimaryImage" class="img-responsive" />
+                                src="/Files/Images/@product.PrimaryImage" class="img-responsive" />
                                 </div>
                                 <div class="slick__product__item__title">
                                     @product.Title
@@ -96,7 +96,8 @@
                                         @if (product.IsAmazing && product.Discount > 0)
                                         {
                                             <span class="badge">@product.Discount %</span>
-                                            <del data-role="seperator">@product.Price</del>}
+                                            <del data-role="seperator">@product.Price</del>
+                                        }
                                     </div>
                                     <div class="price">
                                         <span data-role="seperator">
@@ -110,15 +111,18 @@
                                     @if (product.Count > 0)
                                     {
                                         <a v-on:click="addCart(@product.Id)" id="addcart@(product.Id)" type="submit"
-                                        class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
+                                class="ladda-button btn btn-danger btn-block" data-style="zoom-in">
                                             <span class="ladda-label">افزودن به سبد خرید</span>
-                                        </a> }
+                                        </a>
+                                    }
                                     else
                                     {
-                                        <p class="text-danger count-0">ناموجود</p>}
+                                        <p class="text-danger count-0">ناموجود</p>
+                                    }
                                 </div>
                             </a>
-                        </div>}
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -195,20 +199,20 @@
     }
 }
 
-<div class="bg-header">
+@* <div class="bg-header">
     <h1 class="title">
-        ایمن فروش (شرکت آرشانوین) :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن -
-        ردیاب های شخصی و خودرو
+    ایمن فروش (شرکت آرشانوین) :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم - دزدگیر اماکن -
+    ردیاب های شخصی و خودرو
     </h1>
     <div class="box">
-        <h2 class="box__item">فروش سیستم های امنیتی و نظارتی</h2>
-        <h2 class="box__item">دوربین های مداربسته با سیم و بیسیم</h2>
-        <h2 class="box__item">دزدگیر اماکن</h2>
-        <h2 class="box__item">ردیاب های شخصی و خودرو</h2>
-        <h2 class="box__item">شرکت آرشانوین</h2>
-        <h2 class="box__item">گروه صنعتی سایلکس</h2>
+    <h2 class="box__item">فروش سیستم های امنیتی و نظارتی</h2>
+    <h2 class="box__item">دوربین های مداربسته با سیم و بیسیم</h2>
+    <h2 class="box__item">دزدگیر اماکن</h2>
+    <h2 class="box__item">ردیاب های شخصی و خودرو</h2>
+    <h2 class="box__item">شرکت آرشانوین</h2>
+    <h2 class="box__item">گروه صنعتی سایلکس</h2>
     </div>
-</div>
+    </div> *@
 
 <script>
     $(function ()

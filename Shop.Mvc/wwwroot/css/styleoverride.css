@@ -591,3 +591,7 @@ legend {
 .category .category__item .category__item__title {
   direction: rtl !important;
 }
+
+.category .category__item {
+  height: 360px;
+}
