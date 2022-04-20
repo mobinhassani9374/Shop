@@ -582,6 +582,9 @@ legend {
   .tabligh__img {
     max-height: 150px;
   }
+  .border-left {
+    border-left: 0px;
+  }
 }
 
 .slick .slick__product .slick__product__item .slick__product__item__title {
@@ -675,7 +678,11 @@ del,
 }
 
 .cart .cart__title {
-  font-size: 15px;
+  font-size: 14px;
+}
+
+.cart__link {
+  font-size: 13px;
 }
 
 .carousel .item,
@@ -715,10 +722,31 @@ del,
 .cart {
   border-radius: 0px;
 }
-.border-left {
-  border-left: 0px;
-}
 
 .cart-register__title {
   font-size: 15px;
+}
+
+legend {
+  font-size: 14px;
+}
+
+.admin .admin__panel .admin__panel__title,
+.admin .admin__box .amin__box__title,
+.panel-primary > .panel-heading,
+.admin .sidebar a {
+  font-size: 13px;
+}
+
+.admin .admin__panel .admin__panel__link,
+.admin .admin__header .dropdown-toggle,
+.admin .admin__header .dropdown-menu a,
+.admin .breadcrumb a,
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+  font-size: 12px;
 }

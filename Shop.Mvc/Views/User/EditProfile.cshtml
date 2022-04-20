@@ -4,14 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container-fluid">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">ایمن فروش</a></li>
-            <li class="breadcrumb-item active" aria-current="page"> ویرایش پروفایل کاربر</li>
-        </ol>
-    </nav>
-</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">ایمن فروش</a></li>
+        <li class="breadcrumb-item active" aria-current="page"> ویرایش پروفایل کاربر</li>
+    </ol>
+</nav>
 
 <div class="container-fluid">
     <div class="">
@@ -37,14 +35,16 @@
                     <div class="col-md-6 col-xs-12">
                         <div class="form-group">
                             <label class="required">نام خود را ویرایش کنید</label>
-                            <input type="text" placeholder="نام و نام خانوادگی" required class="form-control" asp-for="FullName" />
+                            <input type="text" placeholder="نام و نام خانوادگی" required class="form-control"
+                                asp-for="FullName" />
                         </div>
                     </div>
                     <div style="clear: both;"></div>
                     <div class="col-md-6 col-xs-12">
                         <div class="form-group">
                             <label>آدرس خود را ویرایش کنید</label>
-                           <textarea rows="7" class="form-control" asp-for="Address" placeholder="آدرس را وارد نمایید"></textarea>
+                            <textarea rows="7" class="form-control" asp-for="Address"
+                                placeholder="آدرس را وارد نمایید"></textarea>
                         </div>
                     </div>
                     <div style="clear: both;"></div>

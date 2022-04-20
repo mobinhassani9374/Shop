@@ -39,70 +39,76 @@
                             <div class="col-xs-3">
                                 <a data-fancybox="gallery" href="~/Files/Images/@(item)">
                                     <img style="height:70px" src="~/Files/Images/@(item)" alt="@Model.Title - ایمن فروش"
-                                    class="img-responsive img-thumbnail" />
+                                    class="img-responsive" />
                                 </a>
                             </div>
                         }
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-xs-12">
+            <div class="col-md-8 col-xs-12">
                 <h1 class="detail__title">@Model.Title</h1>
                 <div class="detail__desc">
                     دسته بندی : @Model.Category?.Title
                 </div>
-                @if (!string.IsNullOrEmpty(Model.Garanty))
-                {
-                    <div class="detail__desc">
-                        @Model.Garanty
-                    </div>
-                }
-
-            </div>
-            <div class="col-md-4 col-xs-12">
-                <div class="box-price">
-                    @if (Model.IsAmazing && Model.Discount > 0)
-                    {
-                        <div class="text-right">
-                            <span class="badge">@Model.Discount %</span>
-                            <del data-role="seperator">@Model.Price</del>
-                        </div>
-                    }
-                    <div class="detail__price price" style="flex-direction: row;justify-content: space-between;">
-                        <div>
-                            قیمت مصرف کننده :
-                        </div>
-                        <div>
-                            @if (Model.IsAmazing)
-                            {
-                                <span data-role="seperator">
-                                    @(Model.Price - (Model.Price * Model.Discount / 100))
-                                </span>
-                            }
-                            else
-                            {
-                                <span data-role="seperator">@Model.Price</span>
-                            }
-                            <span style="margin-right:10px">تومان</span>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        @if (Model.Count != 0)
+                <hr />
+                <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                        @if (!string.IsNullOrEmpty(Model.Garanty))
                         {
-                            <a v-on:click="addCart(@Model.Id)" id="addcart@(Model.Id)" style="font-size: 18px;"
-                            class="ladda-button btn btn-danger" data-style="zoom-in">
-                                <span class="ladda-label">افزودن به سبد خرید</span>
-                            </a>
-                        }
-                        else
-                        {
-                            <p style="width:150px" class="text-danger count-0">ناموجود</p>
+                            <div class="detail__desc">
+                                @Model.Garanty
+                            </div>
                         }
                     </div>
-                    <hr />
-                    <div>
-                        ایمن فروش (شرکت آرشانوین) :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و بیسیم -
-                        دزدگیر اماکن - ردیاب های شخصی و خودرو
+                    <div class="col-md-6 col-xs-12">
+                        <div class="box-price">
+                            @if (Model.IsAmazing && Model.Discount > 0)
+                            {
+                                <div class="text-right">
+                                    <span class="badge">@Model.Discount %</span>
+                                    <del data-role="seperator">@Model.Price</del>
+                                </div>
+                            }
+                            <div class="detail__price price"
+                                style="flex-direction: row;justify-content: space-between;">
+                                <div>
+                                    قیمت مصرف کننده :
+                                </div>
+                                <div>
+                                    @if (Model.IsAmazing)
+                                    {
+                                        <span data-role="seperator">
+                                            @(Model.Price - (Model.Price * Model.Discount / 100))
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span data-role="seperator">@Model.Price</span>
+                                    }
+                                    <span style="margin-right:10px">تومان</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                @if (Model.Count != 0)
+                                {
+                                    <a v-on:click="addCart(@Model.Id)" id="addcart@(Model.Id)" style="font-size: 18px;"
+                                    class="ladda-button btn btn-danger" data-style="zoom-in">
+                                        <span class="ladda-label">افزودن به سبد خرید</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <p style="width:150px" class="text-danger count-0">ناموجود</p>
+                                }
+                            </div>
+                            <hr />
+                            <div>
+                                ایمن فروش (شرکت آرشانوین) :: فروش سیستم های امنیتی و نظارتی:دوربین های مداربسته با سیم و
+                                بیسیم -
+                                دزدگیر اماکن - ردیاب های شخصی و خودرو
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

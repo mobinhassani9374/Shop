@@ -4,14 +4,12 @@
     var muOrders = (List<Shop.Mvc.Models.Order.OrderViewModel>)ViewBag.MyOrders;
 }
 
-<div class="container-fluid">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">ایمن فروش</a></li>
-            <li class="breadcrumb-item active" aria-current="page">ناحیه کاربری کاربر</li>
-        </ol>
-    </nav>
-</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">ایمن فروش</a></li>
+        <li class="breadcrumb-item active" aria-current="page">ناحیه کاربری کاربر</li>
+    </ol>
+</nav>
 
 <div class="container-fluid">
     <div class="">
@@ -37,13 +35,13 @@
                                     هزینه ارسال :
                                     @if (order.ShippingPrice == 0)
                                     {
-                                        <span style="color:red;">ندارد</span>
+                                    <span style="color:red;">ندارد</span>
                                     }
                                     else
                                     {
-                                        <span data-role="seperator">@order.ShippingPrice</span> <span>تومان</span>
+                                    <span data-role="seperator">@order.ShippingPrice</span> <span>تومان</span>
                                     }
-                                </p>*@
+                                    </p>*@
                                 <p>مبلغ کل سفارش : <span data-role="seperator">@order.TotalPrice</span> تومان</p>
                             </div>
                             <div>
@@ -62,9 +60,9 @@
                                 </p>
                             </div>
                             <div data-toggle="collapse" data-target="#item@(order.Id)"
-                                 class="main__box__item__more collapsed" aria-expanded="false">
+                            class="main__box__item__more collapsed" aria-expanded="false">
                                 <i data-toggle="tooltip" title="" class="fa fa-angle-double-down"
-                                   data-original-title="جزییات بیشتر"></i>
+                                data-original-title="جزییات بیشتر"></i>
                             </div>
                         </div>
                         <div id="item@(order.Id)" class="collapse" aria-expanded="false" style="height: 0px;">
@@ -88,7 +86,7 @@
                                                     <tr>
                                                         <td>
                                                             <img src="~/Files/Images/@(detail.Product.PrimaryImage)"
-                                                                 class="img-responsive" style="width:50px;margin:auto" />
+                                                        class="img-responsive" style="width:50px;margin:auto" />
                                                         </td>
                                                         <td>@detail.Product.Title</td>
                                                         <td>@detail.Count</td>
@@ -104,7 +102,8 @@
                                                             }
                                                         </td>
                                                         <td data-role="seperator">
-                                                            @((detail.Price - (detail.Price * detail.DisCount / 100)) * detail.Count)
+                                                            @((detail.Price - (detail.Price * detail.DisCount / 100)) *
+                                                    detail.Count)
                                                         </td>
                                                     </tr>
                                                 </tbody>
